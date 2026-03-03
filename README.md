@@ -14,10 +14,15 @@ Das System ermöglicht die Verwaltung zentraler Spielelemente in einer übersich
     * **Farbvarianten:** Datenbank aller verfügbaren Farbvarianten.
     * **Gehegen & Statuen:** Organisation von Inventar und Park-Layout.
     * **Mitgliedern:** Verwaltung der aktiven Club-Mitglieder.
-* **Authentifizierung:** * Sicherer Login-Bereich.
+* **Datenbank-Integration:** 
+    * Anbindung an eine bereits bestehende und befüllte MySQL-Datenbank, um vorhandene Elementlisten nahtlos weiterzuführen.  
+* **Authentifizierung & Autorisierung:** 
+    * Sicherer Login-Bereich via **NextAuth.js**.
+    * Integration von **Discord-OAuth**.
     * Rollenbasierter Zugriff: Während alle User Daten einsehen können, ist das Erstellen, Bearbeiten und Löschen von 
-    * Inhalten einem autorisierten Nutzerkreis vorbehalten.
-* **Internationalisierung (i18n):** * Multilinguale Benutzeroberfläche (z. B. Deutsch, Englisch, Dänisch).
+      Inhalten einem autorisierten Nutzerkreis vorbehalten.
+* **Internationalisierung (i18n):** 
+  * Multilinguale Benutzeroberfläche (z. B. Deutsch, Englisch, Niederländisch, Dänisch).
   * Unterstützung für internationale Club-Mitglieder, um Sprachbarrieren bei der Wettbewerbsplanung abzubauen.
   
 ## 3. Bonus-Feature: Wettbewerbs-Planer
@@ -37,6 +42,7 @@ Die Anwendung wird mit modernen Web-Technologien realisiert, um Performance und 
 | **Styled Components** | CSS-in-JS für modulares und dynamisches Styling |
 | **MySQL** | Relationale Datenbank zur strukturierten Datenspeicherung |
 | **next-intl / i18next** | Bibliotheken zur Verwaltung der Sprachübersetzungen |
+| **NextAuth.js** | Authentifizierung via Discord & Session-Management |
 
 ## 5. Zielsetzung
 Ziel des Projekts ist es, eine benutzerfreundliche, multilinguale Plattform zu schaffen, die den Club-Mitgliedern durch 
