@@ -14,10 +14,10 @@ export default function Login() {
           <HeaderButton onClick={() =>
               signIn("discord")}>Login</HeaderButton>
         ) : (
-          <UserImageWrapper onClick={() =>
+          <UserWrapper onClick={() =>
               signOut()} title="Abmelden">
             <UserImage src={session.user.image} alt="Profil" />
-          </UserImageWrapper>
+          </UserWrapper>
         )}
       </TopRow>
 
@@ -49,23 +49,25 @@ const LoginWrapper = styled.div`
   justify-content: center;
 `;
 
-const UserImageWrapper = styled.div`
-  cursor: pointer;
+const UserWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  transition: transform 0.2s ease;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 
   &:hover {
-    transform: scale(1.05);
+    transform: translateY(-2px);
   }
 `;
 
 const UserImage = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  border: 2px solid var(--color-green);
-  box-shadow: var(--shadow-soft);
+  border: 3px solid white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   object-fit: cover;
 `;
 
@@ -111,15 +113,21 @@ const HeaderButton = styled.button`
 const WelcomeText = styled.span`
   color: var(--color-white);
   font-family: var(--font-text);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 1px;
   text-transform: uppercase;
+  text-align: center;
 
-  text-shadow: 1px 1px 3px var(--color-black);
-
-  margin-top: 2px;
+  text-shadow: 0 2px 4px var(--color-black);
+  margin-bottom: 10px;
+  margin-top: 20px;
   display: block;
+
+  span {
+    color: var(--color-green); /* Falls du eine Akzentfarbe hast */
+    filter: brightness(1.2);
+  }
 
   animation: fadeIn 0.5s ease-out;
 
