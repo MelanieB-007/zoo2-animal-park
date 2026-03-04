@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS users
+(
+    id         VARCHAR(255) PRIMARY KEY,
+    name       VARCHAR(255),
+    email      VARCHAR(255),
+    image      TEXT,
+    last_login DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
