@@ -12,7 +12,7 @@ export default function Login() {
         <LangSwitcher />
         {!session ? (
           <HeaderButton onClick={() =>
-              signIn("github")}>Login</HeaderButton>
+              signIn("discord")}>Login</HeaderButton>
         ) : (
           <UserImageWrapper onClick={() =>
               signOut()} title="Abmelden">
