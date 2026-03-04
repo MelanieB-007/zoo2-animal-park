@@ -13,7 +13,7 @@ export default function Logo() {
 
 const LogoWrapper = styled.div`
   grid-column: 1;
-  grid-row: 1 / span 2; /* WICHTIG: Streckt das Logo über beide Zeilen */
+  grid-row: 1 / span 2; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +23,6 @@ const StyledImage = styled.img`
   width: 120px;
   height: auto;
   object-fit: contain;
-  /* Dein Portfolio-Effekt: */
   filter: drop-shadow(var(--shadow-header-button));
   transition: transform 0.3s ease;
 

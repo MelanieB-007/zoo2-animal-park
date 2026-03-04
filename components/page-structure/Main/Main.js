@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
 export default function Main({ children }) {
-  return <StyledMain>{children}</StyledMain>;
+  return (
+    <StyledMain>
+      {children}
+    </StyledMain>
+);
 }
 
 const StyledMain = styled.main`
@@ -14,15 +18,13 @@ const StyledMain = styled.main`
   min-height: calc(100vh - 300px);
   z-index: 1;
   overflow: visible;
-
-  /* Dein Glass-Design */
-  background-color: var(--color-main-bg);
+  
+  background-color: var(--color-yellow-light);
   backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-soft);
-
-  /* Abstände zwischen den Kind-Elementen */
+  
   & > * {
     margin-bottom: 3rem;
   }

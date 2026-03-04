@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import styled from "styled-components";
+
 import Logo from "./Logo";
 import Navigation from "./Navigation";
 import Login from "./Login";
@@ -17,7 +18,9 @@ export default function Header() {
             </LogoWrapper>
 
             <TitleSection>
-                <MainTitle>Klub der tollen Tiere</MainTitle>
+                <MainTitle>
+                    Klub der tollen Tiere
+                </MainTitle>
             </TitleSection>
 
             <MobileMenuButton onClick={toggleMenu}>
@@ -52,7 +55,7 @@ const StyledHeader = styled.header`
   width: 100%;
   max-width: var(--width-page);
 
-  background: var(--zoo-orange);
+  background: var(--COLOR-zoo-orange);
   backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--border-radius);
@@ -78,7 +81,7 @@ const LogoWrapper = styled.div`
 
   @media (max-width: 768px) {
     grid-row: 1;
-    /* Falls dein Logo eine SVG ist, zwingen wir sie hier kleiner zu werden */
+    
     & svg, & img {
       width: 60px;
       height: auto;
@@ -96,20 +99,24 @@ const TitleSection = styled.div`
 
 const MainTitle = styled.h1`
   font-family: var(--font-club);
-  font-size: clamp(1.2rem, 5vw, 2.4rem); /* Passt sich nun besser an */
+  font-size: clamp(1.2rem, 5vw, 2.4rem); 
   color: var(--color-green);
   margin: 0;
   line-height: 1.1;
+  
   text-shadow:
           2px 2px 0 var(--color-petrol),
-          4px 4px 0 #056d42,
-          6px 6px 0 #1a1a1a;
+          4px 4px 0 var(--color-petrol-dark),
+          6px 6px 0 var(--color-black);
+  
   letter-spacing: 0.15em;
   white-space: nowrap;
 
   @media (max-width: 768px) {
     letter-spacing: 0.05em;
-    text-shadow: 1px 1px 0 var(--color-petrol), 2px 2px 0 #1a1a1a;
+    text-shadow: 
+            1px 1px 0 var(--color-petrol), 
+            2px 2px 0 --color-black;
   }
 `;
 
@@ -142,7 +149,7 @@ const RightSection = styled.div`
 
 const MobileMenuButton = styled.button`
   display: none;
-  z-index: 4000; /* Immer über dem Overlay */
+  z-index: 4000;
   background: none;
   border: none;
   color: white;

@@ -3,23 +3,23 @@
 export const theme = {
     colors: {
         // Deine Hauptfarben
-        primary: "var(--color-green)",      // #68B300
-        secondary: "var(--color-petrol)",   // #0e7a4a
-        accent: "var(--zoo-orange)",        // #FF8C00
-        warning: "var(--red-orange)",       // #ff6b35
+        primary: "var(--color-green)",
+        secondary: "var(--color-petrol)",
+        accent: "var(--color-zoo-orange)",
+        warning: "var(--color-red-orange)",
 
         // Backgrounds
-        mainBg: "var(--color-main-bg)",     // #DAE67F
+        mainBg: "var(--color-yellow-light)",
         white: "var(--color-white)",
-        glass: "rgba(255, 255, 255, 0.3)",
+        glass: "var( --color-grey)",
 
-        // Quiz/Wettbewerb Farben
-        coins: "#FBE378",
-        diamonds: "#87CEEB",
+        // Wettbewerb Farben
+        coins: "var(--color-yellow)",
+        diamonds: "vR8---color-sky-blue",
     },
 
     fonts: {
-        club: "var(--font-club)",    // Sedgwick Ave Display
+        club: "var(--font-club)",       // Sedgwick Ave Display
         heading: "var(--font-heading)", // Playfair Display
         comic: "var(--font-comic)",     // Comic Sans
         text: "var(--font-text)",       // DM Sans
