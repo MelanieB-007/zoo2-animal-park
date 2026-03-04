@@ -1,30 +1,55 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import LangSwitcher from "./LangSwitcher";
+import { useEffect, useRef, useState } from "react";
 
 export default function Login() {
   const { data: session } = useSession();
+  const [showLogout, setShowLogout] = useState(false);
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setShowLogout(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <LoginWrapper>
       <TopRow>
         <LangSwitcher />
         {!session ? (
-          <HeaderButton onClick={() =>
-              signIn("discord")}>Login</HeaderButton>
+          <HeaderButton onClick={() => signIn("discord")}>
+            Login
+          </HeaderButton>
         ) : (
-          <UserWrapper onClick={() =>
-              signOut()} title="Abmelden">
-            <UserImage src={session.user.image} alt="Profil" />
-          </UserWrapper>
+          <div style={{ position: "relative" }}>
+            <UserWrapper
+              onClick={() => setShowLogout(!showLogout)}
+              title="Menü öffnen"
+            >
+              <UserImage src={session.user.image} alt="Profil" />
+            </UserWrapper>
+
+            {showLogout && (
+              <LogoutBadge onClick={() => signOut()}>
+                Abmelden 👋
+              </LogoutBadge>
+            )}
+          </div>
         )}
       </TopRow>
 
       {session && (
         <BottomRow>
           <WelcomeText>
-              Hej, {session.user.name.split(" ")[0]}!
+            Hej, {session.user.name.split(" ")[0]}!
           </WelcomeText>
         </BottomRow>
       )}
@@ -32,12 +57,63 @@ export default function Login() {
   );
 }
 
+const popIn = keyframes`
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+`;
+
+const LogoutBadge = styled.div`
+  position: absolute;
+  top: 60px;
+  right: -25px;
+  background: var(--color-zoo-orange);
+  color: var(--color-green);
+  border: var(--border-header-button);
+  padding: 4px 10px;
+  border-radius: var(--border-radius);
+  font-family: var(--font-text);
+  font-size: 0.7rem;
+  font-weight: 800;
+  white-space: nowrap;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 100;
+
+  text-shadow:
+    1px 1px 0 var(--color-petrol),
+    2px 2px 0 var(--color-petrol-dark);
+
+  box-shadow: var(--shadow-header-button);
+
+  animation: ${popIn} 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--color-orange-light);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--shadow-header-button-hover);
+    filter: brightness(1.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: inset 2px 2px 5px var(--color-black);
+  }
+`;
+
 const TopRow = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+  position: relative;
 `;
-
 const BottomRow = styled.div`
   padding-right: 5px;
 `;
@@ -66,8 +142,8 @@ const UserImage = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border: 3px solid white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border: 3px solid var(--color-white);
+  box-shadow: 0 4px 10px var(--color-black);
   object-fit: cover;
 `;
 
@@ -106,7 +182,7 @@ const HeaderButton = styled.button`
 
   &:active {
     transform: translateY(0);
-    box-shadow: inset 2px 2px 5px var( --color-black);
+    box-shadow: inset 2px 2px 5px var(--color-black);
   }
 `;
 
@@ -125,7 +201,7 @@ const WelcomeText = styled.span`
   display: block;
 
   span {
-    color: var(--color-green); /* Falls du eine Akzentfarbe hast */
+    color: var(--color-green); 
     filter: brightness(1.2);
   }
 
