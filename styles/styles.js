@@ -51,6 +51,11 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html, body {
+    overflow-x: hidden; /* Verhindert das seitliche Scrollen zum versteckten Menü */
+    width: 100%;
+  }
+  
   body {
     margin: 0;
     padding: 0;

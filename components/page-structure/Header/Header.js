@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import styled from "styled-components";
 
@@ -10,6 +10,14 @@ import { MobileNavigation } from "./MobileNavigation";
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+    useEffect(() => {
+        if (isMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+    }, [isMenuOpen]);
 
     return (
         <StyledHeader>
@@ -55,7 +63,7 @@ const StyledHeader = styled.header`
   width: 100%;
   max-width: var(--width-page);
 
-  background: var(--COLOR-zoo-orange);
+  background: var(--color-zoo-orange);
   backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--border-radius);
@@ -149,11 +157,15 @@ const RightSection = styled.div`
 
 const MobileMenuButton = styled.button`
   display: none;
-  z-index: 4000;
-  background: none;
+  z-index: 10000;
+  background: transparent;
   border: none;
-  color: white;
+  color: var(--color-white) !important;
   cursor: pointer;
+
+  &:hover {
+    transform: rotate(90deg);
+  }
 
   @media (max-width: 768px) {
     display: flex;

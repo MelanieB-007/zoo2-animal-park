@@ -31,46 +31,40 @@ export const MobileNavigation = ({ isOpen, onClose }) => {
 
 const MobileNavLink = styled(Link)`
   font-family: var(--font-headline);
-  font-size: 2rem;
+  font-size: 1.6rem; /* Angenehme Größe */
   color: white;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 2px 2px 0 var(--color-petrol);
-  transition: all 0.2s ease;
+  /* Kleiner Schatten-Trick für Tiefe */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
 
-  &:hover,
   &:active {
-    color: var(--color-green);
-    transform: scale(1.1);
+    color: var(--zoo-orange); /* Beim Klicken leuchtet es kurz orange auf */
   }
 `;
 
 const LoginContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
   width: 100%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
 
+  /* Wir zielen auf den Wrapper innerhalb der Login-Komponente */
   & > div {
-    align-items: center;
-    text-align: center;
-  }
-
-  button {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    min-width: 150px;
+    flex-direction: row !important; /* Nebeneinander */
+    align-items: center !important; /* Gleiche Mittellinie */
+    gap: 15px !important;
   }
 `;
 
 const Divider = styled.div`
-  width: 100px;
-  height: 3px;
-  background: var(--glass-border);
-  border-radius: 2px;
-  margin: 10px 0;
+  width: 60px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 1.5rem 0;
 `;
 
 const Overlay = styled.nav`
@@ -79,20 +73,23 @@ const Overlay = styled.nav`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: var(--color-zoo-orange);
-  z-index: 5000;
 
+  /* Ein schönes, tiefes Petrol (passend zu deinem Text-Schatten) */
+  background-color: #004d4d;
+  /* Alternativ: background: linear-gradient(135deg, #004d4d 0%, #002e2e 100%); */
+
+  z-index: 9999;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
-  transform: ${({ $isOpen }) =>
-    $isOpen ? "translateX(0)" : "translateX(100%)"};
+
+  transform: ${({ $isOpen }) => ($isOpen ? "translateX(0)" : "translateX(100%)")};
   transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
 
-  /* Verhindert, dass man durch das Menü hindurchklicken kann */
-  pointer-events: ${({ $isOpen }) => ($isOpen ? "all" : "none")};
+  /* Damit es wirklich blickdicht ist */
+  opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
+  visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
 `;
 
 const MenuContent = styled.div`
