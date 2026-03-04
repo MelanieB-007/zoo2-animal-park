@@ -144,7 +144,7 @@ const Dropdown = styled.ul`
   left: 0;
   min-width: 180px;
 
-  background: var( --zoo-orange);
+  background: var( --color-zoo-orange);
   backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--border-radius);

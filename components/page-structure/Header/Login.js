@@ -76,7 +76,7 @@ const HeaderButton = styled.button`
   padding: 0.6rem 1.2rem;
   cursor: pointer;
 
-  background: var(--zoo-orange);
+  background: var(--color-zoo-orange);
   border: var(--border-header-button);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-header-button);

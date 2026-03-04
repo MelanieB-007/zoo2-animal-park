@@ -24,8 +24,12 @@ export default createGlobalStyle`
     --color-khaki-green: rgba(104, 179, 0, 0.25);
     --color-petrol: #0e7a4a;
     --color-petrol-dark: #056d42;
+    --color-petrol-darker: #004d4d;
     --color-grey-light: rgba(255, 255, 255, 0.4);
     --color-grey: rgba(255, 255, 255, 0.3);
+    --color-grey-0-25: rgba(255, 255, 255, 0.25);
+    --color-grey-0-2: rgba(255, 255, 255, 0.2);
+    --color-grey-0-1: rgba(255, 255, 255, 0.1);
     --color-grey-dark: #2f3542;
     --color-black: rgba(0, 0, 0, 0.2);
 

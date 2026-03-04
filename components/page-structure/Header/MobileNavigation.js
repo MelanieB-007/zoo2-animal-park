@@ -31,18 +31,17 @@ export const MobileNavigation = ({ isOpen, onClose }) => {
 
 const MobileNavLink = styled(Link)`
   font-family: var(--font-headline);
-  font-size: 1.6rem; /* Angenehme Größe */
+  font-size: 1.6rem; 
   color: white;
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 2px;
-  /* Kleiner Schatten-Trick für Tiefe */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 4px var(--color-black);
   margin-bottom: 1.5rem;
   transition: color 0.3s ease;
 
   &:active {
-    color: var(--zoo-orange); /* Beim Klicken leuchtet es kurz orange auf */
+    color: var(--color-zoo-orange); 
   }
 `;
 
@@ -51,11 +50,10 @@ const LoginContainer = styled.div`
   margin-top: 15px;
   display: flex;
   justify-content: center;
-
-  /* Wir zielen auf den Wrapper innerhalb der Login-Komponente */
+  
   & > div {
-    flex-direction: row !important; /* Nebeneinander */
-    align-items: center !important; /* Gleiche Mittellinie */
+    flex-direction: row !important;
+    align-items: center !important;
     gap: 15px !important;
   }
 `;
@@ -63,7 +61,7 @@ const LoginContainer = styled.div`
 const Divider = styled.div`
   width: 60px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--color-grey-0-2);
   margin: 1.5rem 0;
 `;
 
@@ -73,23 +71,31 @@ const Overlay = styled.nav`
   left: 0;
   width: 100vw;
   height: 100vh;
-
-  /* Ein schönes, tiefes Petrol (passend zu deinem Text-Schatten) */
-  background-color: #004d4d;
-  /* Alternativ: background: linear-gradient(135deg, #004d4d 0%, #002e2e 100%); */
-
+  background-color: var(--color-petrol-darker);
   z-index: 9999;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 
-  transform: ${({ $isOpen }) => ($isOpen ? "translateX(0)" : "translateX(100%)")};
+  scrollbar-width: none; 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  transform: ${({ $isOpen }) =>
+      ($isOpen ? "translateX(0)" : "translateX(100%)")};
+  
   transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-
-  /* Damit es wirklich blickdicht ist */
-  opacity: ${({ $isOpen }) => ($isOpen ? "1" : "0")};
-  visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
+  
+  opacity: ${({ $isOpen }) => 
+      ($isOpen ? "1" : "0")};
+  
+  visibility: ${({ $isOpen }) => 
+      ($isOpen ? "visible" : "hidden")};
 `;
 
 const MenuContent = styled.div`
@@ -97,4 +103,6 @@ const MenuContent = styled.div`
   flex-direction: column;
   gap: 2rem;
   align-items: center;
+  padding: 100px 0 80px 0; 
+  width: 100%;
 `;

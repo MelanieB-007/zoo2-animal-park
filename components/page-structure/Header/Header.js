@@ -35,15 +35,12 @@ export default function Header() {
                 {isMenuOpen ? <IoClose size={32} /> : <IoMenu size={32} />}
             </MobileMenuButton>
 
-            {/* Mobile Navigation Overlay */}
             <MobileNavigation isOpen={isMenuOpen} onClose={toggleMenu} />
 
-            {/* Desktop Navigation */}
             <NavSection>
                 <Navigation />
             </NavSection>
 
-            {/* Desktop Login/Language Bereich */}
             <RightSection>
                 <Login />
             </RightSection>
