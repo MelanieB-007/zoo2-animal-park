@@ -47,9 +47,12 @@ const MobileNavLink = styled(Link)`
 
 const LoginContainer = styled.div`
   width: 100%;
-  margin-top: 15px;
+  margin-top: 20px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 80px;
   
   & > div {
     flex-direction: row !important;
