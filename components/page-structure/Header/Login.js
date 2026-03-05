@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 
 import LangSwitcher from "./LangSwitcher";
 import { useEffect, useRef, useState } from "react";
+import RoleBadge from "./RoleBadge";
 
 export default function Login() {
   const { data: session } = useSession();
@@ -48,9 +49,13 @@ export default function Login() {
 
       {session && (
         <BottomRow>
-          <WelcomeText>
-            Hej, {session.user.name.split(" ")[0]}!
-          </WelcomeText>
+          <FlexContainer>
+            <RoleBadge role={session.user.role} />
+
+            <WelcomeText>
+              Hej, {session.user.name.split(" ")[0]}!
+            </WelcomeText>
+          </FlexContainer>
         </BottomRow>
       )}
     </LoginWrapper>
@@ -186,6 +191,17 @@ const HeaderButton = styled.button`
   }
 `;
 
+const FlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; 
+  gap: 15px; 
+  margin-top: 10px;
+  width: 100%; 
+  white-space: nowrap; 
+  padding-right: 10px; 
+`;
+
 const WelcomeText = styled.span`
   color: var(--color-white);
   font-family: var(--font-text);
@@ -193,15 +209,13 @@ const WelcomeText = styled.span`
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
-  text-align: center;
-
   text-shadow: 0 2px 4px var(--color-black);
-  margin-bottom: 10px;
-  margin-top: 20px;
-  display: block;
 
+  margin: 0; 
+  display: inline-block;
+  
   span {
-    color: var(--color-green); 
+    color: var(--color-green);
     filter: brightness(1.2);
   }
 

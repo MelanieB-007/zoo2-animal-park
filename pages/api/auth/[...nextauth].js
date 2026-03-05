@@ -38,8 +38,28 @@ export const authOptions = {
         return true; // Login erlauben
       } catch (error) {
         console.error("Datenbank-Fehler beim Login:", error);
-        return true; // Wir lassen ihn trotzdem rein, auch wenn die DB gerade zickt
+        return true;
       }
+    },
+
+    async session({ session, token }) {
+      try {
+        const results = await query({
+          query: "SELECT role FROM users WHERE email = ? LIMIT 1",
+          values: [session.user.email],
+        });
+
+        if (results.length > 0) {
+          // Wir fügen die Rolle dem session.user Objekt hinzu
+          session.user.role = results[0].role;
+        } else {
+          session.user.role = "Besucher";
+        }
+      } catch (error) {
+        console.error("Fehler beim Holen der Rolle:", error);
+        session.user.role = "Besucher";
+      }
+      return session;
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
