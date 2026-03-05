@@ -30,20 +30,25 @@ export default function Login() {
             Login
           </HeaderButton>
         ) : (
-          <div style={{ position: "relative" }}>
-            <UserWrapper
-              onClick={() => setShowLogout(!showLogout)}
-              title="Menü öffnen"
-            >
-              <UserImage src={session.user.image} alt="Profil" />
-            </UserWrapper>
+            <AvatarContainer>
+              <UserWrapper
+                  onClick={() => setShowLogout(!showLogout)}
+              >
+                <UserImage src={session.user.image} alt="Profil" />
 
-            {showLogout && (
-              <LogoutBadge onClick={() => signOut()}>
-                Abmelden 👋
-              </LogoutBadge>
-            )}
-          </div>
+                {!showLogout && (
+                    <AvatarTooltip>
+                      Menü öffnen 🐾
+                    </AvatarTooltip>
+                )}
+              </UserWrapper>
+
+              {showLogout && (
+                  <LogoutBadge onClick={() => signOut()}>
+                    Abmelden 👋
+                  </LogoutBadge>
+              )}
+            </AvatarContainer>
         )}
       </TopRow>
 
@@ -119,6 +124,7 @@ const TopRow = styled.div`
   gap: 12px;
   position: relative;
 `;
+
 const BottomRow = styled.div`
   padding-right: 5px;
 `;
@@ -130,7 +136,46 @@ const LoginWrapper = styled.div`
   justify-content: center;
 `;
 
+const AvatarTooltip = styled.span`
+  position: absolute;
+  top: 110%; 
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  
+  background: var(--color-zoo-orange); 
+  color: var(--color-green);
+  padding: 5px 12px;
+  border-radius: var(--border-radius);
+  font-family: var(--font-text);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  white-space: nowrap;
+  
+  box-shadow: 3px 3px 0 var(--color-black);
+  border: 2px solid var(--color-white);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+  z-index: 1000;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--color-white) transparent transparent transparent;
+  }
+`;
+
+
 const UserWrapper = styled.div`
+  position: relative; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -140,6 +185,12 @@ const UserWrapper = styled.div`
 
   &:hover {
     transform: translateY(-2px);
+
+    ${AvatarTooltip} {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
   }
 `;
 
@@ -231,4 +282,11 @@ const WelcomeText = styled.span`
       transform: translateY(0);
     }
   }
+`;
+
+const AvatarContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

@@ -50,7 +50,6 @@ export const authOptions = {
         });
 
         if (results.length > 0) {
-          // Wir fügen die Rolle dem session.user Objekt hinzu
           session.user.role = results[0].role;
         } else {
           session.user.role = "Besucher";
