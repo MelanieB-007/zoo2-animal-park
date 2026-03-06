@@ -22,48 +22,42 @@ export default function Login() {
   }, []);
 
   return (
-    <LoginWrapper>
-      <TopRow>
-        <LangSwitcher />
-        {!session ? (
-          <HeaderButton onClick={() => signIn("discord")}>
-            Login
-          </HeaderButton>
-        ) : (
-            <AvatarContainer>
-              <UserWrapper
-                  onClick={() => setShowLogout(!showLogout)}
-              >
-                <UserImage src={session.user.image} alt="Profil" />
-
-                {!showLogout && (
-                    <AvatarTooltip>
-                      Menü öffnen 🐾
-                    </AvatarTooltip>
+      <LoginWrapper>
+        <TopRow>
+          <LangSwitcher />
+          {session && (
+              <AvatarContainer>
+                <UserWrapper onClick={() => setShowLogout(!showLogout)}>
+                  <UserImage src={session.user.image} alt="Profil" />
+                  {!showLogout && (
+                      <AvatarTooltip className="avatar-tooltip">
+                        Menü öffnen 🐾
+                      </AvatarTooltip>
+                  )}
+                </UserWrapper>
+                {showLogout && (
+                    <LogoutBadge onClick={() => signOut()}>
+                      Abmelden 👋
+                    </LogoutBadge>
                 )}
-              </UserWrapper>
+              </AvatarContainer>
+          )}
+          {!session && (
+              <HeaderButton onClick={() => signIn("discord")}>Login</HeaderButton>
+          )}
+        </TopRow>
 
-              {showLogout && (
-                  <LogoutBadge onClick={() => signOut()}>
-                    Abmelden 👋
-                  </LogoutBadge>
-              )}
-            </AvatarContainer>
+        {session && (
+            <BottomRow>
+              <FlexContainer>
+                <RoleBadge role={session.user.role} />
+                <WelcomeText>
+                  Hej, {session.user.name.split(" ")[0]}!
+                </WelcomeText>
+              </FlexContainer>
+            </BottomRow>
         )}
-      </TopRow>
-
-      {session && (
-        <BottomRow>
-          <FlexContainer>
-            <RoleBadge role={session.user.role} />
-
-            <WelcomeText>
-              Hej, {session.user.name.split(" ")[0]}!
-            </WelcomeText>
-          </FlexContainer>
-        </BottomRow>
-      )}
-    </LoginWrapper>
+      </LoginWrapper>
   );
 }
 
@@ -121,19 +115,24 @@ const LogoutBadge = styled.div`
 const TopRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
-  position: relative;
+  gap: 20px; /* Platz zwischen Flagge und Avatar */
 `;
 
 const BottomRow = styled.div`
-  padding-right: 5px;
+  /* Hier landet die Rolle und das "Hej, Melanie!" */
+  display: flex;
+  justify-content: center;
 `;
 
 const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
+  align-items: flex-end; /* Desktop: rechtsbündig */
+
+  @media (max-width: 768px) {
+    align-items: center;   /* Mobile: alles zentriert */
+    gap: 15px;            /* Abstand zwischen den Zeilen */
+  }
 `;
 
 const AvatarTooltip = styled.span`
@@ -172,7 +171,6 @@ const AvatarTooltip = styled.span`
     border-color: var(--color-white) transparent transparent transparent;
   }
 `;
-
 
 const UserWrapper = styled.div`
   position: relative; 
@@ -245,12 +243,14 @@ const HeaderButton = styled.button`
 const FlexContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end; 
-  gap: 15px; 
-  margin-top: 10px;
-  width: 100%; 
+  gap: 10px;
   white-space: nowrap; 
-  padding-right: 10px; 
+  
+  @media (max-width: 768px) {
+    background: rgba(255, 255, 255, 0.1); /* Ganz leichter Schimmer-Hintergrund */
+    padding: 5px 15px;
+    border-radius: 20px;
+  }
 `;
 
 const WelcomeText = styled.span`
