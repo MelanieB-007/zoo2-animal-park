@@ -44,6 +44,7 @@ Die Anwendung wird mit modernen Web-Technologien realisiert, um Performance und 
 | **React** | Library für die deklarative Benutzeroberfläche |
 | **Styled Components** | CSS-in-JS für modulares und dynamisches Styling |
 | **MySQL** | Relationale Datenbank zur strukturierten Datenspeicherung |
+| **Prisma** | ORM (Object-Relational Mapper) – fungiert als Brücke zwischen Datenbank und Code; ersetzt manuelles SQL durch typsichere Abfragen. |
 | **next-intl / i18next** | Bibliotheken zur Verwaltung der Sprachübersetzungen |
 | **NextAuth.js** | Authentifizierung via Discord & Session-Management |
 
