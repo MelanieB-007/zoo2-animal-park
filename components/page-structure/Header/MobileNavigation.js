@@ -51,9 +51,9 @@ const LoginContainer = styled.div`
   padding: 2rem 1rem;
   display: flex;
   justify-content: center;
-  /* Eine feine Linie zur optischen Trennung vom Menü */
+  
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.2); /* Etwas dunklerer Bereich für den User-Teil */
+  background: rgba(0, 0, 0, 0.2); 
 `;
 
 const Divider = styled.div`
