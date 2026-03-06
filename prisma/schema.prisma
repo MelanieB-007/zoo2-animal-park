@@ -1,0 +1,247 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model akademie {
+  id      Int     @unique(map: "akademieindex") @default(autoincrement())
+  level   String  @db.VarChar(50)
+  levelEn String? @db.VarChar(50)
+}
+
+model farbvarianten {
+  id         Int     @unique(map: "farbvariantenindex") @default(autoincrement())
+  tierId     Int
+  farbe      String  @db.VarChar(20)
+  herkunftId Int
+  release    String? @db.VarChar(20)
+  bild       String? @db.VarChar(255)
+}
+
+model gehege {
+  id                       Int     @unique(map: "gehegeindex") @default(autoincrement())
+  name                     String  @db.VarChar(50)
+  nameEn                   String  @db.VarChar(50)
+  namegehege               String  @db.VarChar(50)
+  namegehegeEn             String  @db.VarChar(50)
+  pfad                     String  @db.VarChar(50)
+  preis                    Int?
+  preisartId               Int?
+  kostenvergroesserung     Int?
+  preisartvergroesserungId Int?
+  platzbedarf              Int?
+  hintergrundfarbe         String  @db.VarChar(10)
+  schriftfarbe             String  @db.VarChar(10)
+  bild                     String? @db.VarChar(255)
+}
+
+model gehegedeko {
+  id           Int     @unique(map: "gehegedekoindex")
+  name         String  @db.VarChar(255)
+  name_en      String? @map("name-en") @db.VarChar(255)
+  gehege       Int
+  preis        Int?
+  preisart     Int?
+  popularitaet Int?
+  platzbedarf  Int?
+  bild         String? @db.VarChar(255)
+}
+
+model gehegespielgeraet {
+  id                  Int     @unique(map: "gehegespielgeraetindex")
+  name                String  @db.VarChar(255)
+  nameEn              String? @db.VarChar(255)
+  gehegeId            Int
+  preis               Int?
+  preisartId          Int?
+  reparatur           Int?
+  reparaturpreisartId Int?
+  bild                String? @db.VarChar(255)
+}
+
+model gehegestall {
+  id             Int     @unique(map: "gehegestallindex")
+  gehege         Int
+  preis          Int?
+  preisart       Int?
+  level1         Int?
+  preisartlevel1 Int?
+  updatezeit1    Int?
+  level2         Int?
+  preisartlevel2 Int?
+  updatezeit2    Int?
+  level3         Int?
+  preisartlevel3 Int?
+  updatezeit3    Int?
+  bild           String? @db.VarChar(255)
+}
+
+model gehegetrog {
+  id       Int     @unique(map: "gehegeTrogindex")
+  gehege   Int
+  preis    Int?
+  preisart Int?
+  bild     String? @db.VarChar(255)
+}
+
+model gehegewasserstelle {
+  id                Int     @unique(map: "gehegewasserstelleindex")
+  gehege            Int
+  preis             Int?
+  preisart          Int?
+  reparatur         Int?
+  reparaturpreisart Int?
+  bild              String? @db.VarChar(255)
+}
+
+model herkunft {
+  id        Int     @unique(map: "herkunftindex") @default(autoincrement())
+  name      String  @db.VarChar(50)
+  nameen    String  @db.VarChar(50)
+  nametiere String  @db.VarChar(50)
+  bild      String? @db.VarChar(255)
+}
+
+model klubrollen {
+  id     Int     @unique(map: "klubrollenindex") @default(autoincrement())
+  name   String  @db.VarChar(255)
+  nameEn String? @db.VarChar(255)
+}
+
+model mitglieder {
+  id                Int     @unique(map: "id") @default(autoincrement())
+  upjersname        String  @db.VarChar(50)
+  webseitename      String? @db.VarChar(50)
+  webseitenpasswort String  @db.VarChar(100)
+  wikiname          String? @db.VarChar(50)
+  name              String? @db.VarChar(50)
+  upjersid          String? @db.VarChar(10)
+  sprache           String? @db.VarChar(20)
+  aktiv             String  @db.VarChar(5)
+  seit              String? @db.VarChar(20)
+  klubstatus        Int
+  webseitestatus    Int
+  klubrang          Int
+  level             Int
+  akademie          Int?
+}
+
+model mitgliederlevel20 {
+  id           Int     @unique(map: "mitgliederlevel20index") @default(autoincrement())
+  tierId       Int
+  mitgliederId Int
+  vorhanden    String? @default("0") @db.VarChar(20)
+}
+
+model mitgliederrang {
+  id                      Int     @unique(map: "id") @default(autoincrement())
+  name                    String? @db.VarChar(255)
+  name_en                 String? @map("name-en") @db.VarChar(255)
+  level                   Int
+  exp_zum_naechsten_level Int?    @map("exp-zum-naechsten-level")
+  bild                    String? @db.VarChar(255)
+}
+
+model mitgliederstatuen {
+  id           Int  @unique(map: "mitgliederstatuenindex") @default(autoincrement())
+  statueId     Int
+  mitgliederId Int
+  puzzleteile  Int? @default(0)
+}
+
+model mitgliederwettbewerbfarbvarianten {
+  id           Int     @unique(map: "mitgliederwettbewerbFarbvariantenindex") @default(autoincrement())
+  farbId       Int
+  mitgliederId Int
+  puzzleteile  String? @default("0") @db.VarChar(20)
+}
+
+model preisart {
+  id     Int     @unique(map: "preisartindex") @default(autoincrement())
+  name   String  @db.VarChar(50)
+  nameen String? @db.VarChar(50)
+  bild   String? @db.VarChar(50)
+}
+
+model tiere {
+  id            Int     @unique(map: "tiereindex")
+  name          String  @db.VarChar(50)
+  nameEn        String? @db.VarChar(50)
+  gehegeId      Int
+  spielgeraetId Int?
+  stalllevel    Int?
+  preis         Int?
+  preisartId    Int?
+  zuchtkosten   Int?
+  zuchtdauer    Int?
+  startprozent  Int?
+  platzbedarf   Int?
+  anzahlbasis   Int?
+  anzahlmax     Int?
+  xpfuettern    Int?    @default(0)
+  xpspielen     Int?    @default(0)
+  xpputzen      Int?    @default(0)
+  popularitaet  Int?
+  verkaufswert  Int?
+  auswildern    Int?
+  release       String? @db.VarChar(10)
+  bild          String? @db.VarChar(255)
+}
+
+model tierherkunft {
+  id         Int  @unique(map: "herkunftindex") @default(autoincrement())
+  tierid     Int
+  herkunftId Int?
+}
+
+model users {
+  id         String    @id @db.VarChar(255)
+  name       String?   @db.VarChar(255)
+  email      String?   @db.VarChar(255)
+  image      String?   @db.Text
+  role       String    @default("Besucher") @db.VarChar(20)
+  last_login DateTime? @default(now()) @db.DateTime(0)
+}
+
+model wettbewerbe {
+  id                 Int     @unique(map: "wettbewerbe") @default(autoincrement())
+  start              String  @db.VarChar(20)
+  ende               String  @db.VarChar(20)
+  tier1Id            Int
+  tier2Id            Int
+  tier3Id            Int
+  farbvarianteId     Int?
+  aktiv              Int
+  tierTeilgenommenId String? @db.VarChar(20)
+  ergebnis           String? @db.VarChar(20)
+  platz              String? @db.VarChar(255)
+}
+
+model wettbewerbfarbvarianten {
+  id             Int     @unique(map: "wettbewerbfarbvariantenindex") @default(autoincrement())
+  tierId         String  @db.VarChar(20)
+  farbvarianteId String? @db.VarChar(255)
+}
+
+model wettbewerbstatuen {
+  id            Int     @unique(map: "wettbewerbstatuenindex") @default(autoincrement())
+  tierId        String  @db.VarChar(20)
+  preis         Int?
+  preisartId    Int?
+  popularitaet  Int?
+  verkaufspreis Int?
+  bild          String? @db.VarChar(255)
+}
+
+model xp {
+  id     Int    @unique(map: "xpindex") @default(autoincrement())
+  tierId Int
+  xpart  String @db.VarChar(20)
+  wert   Int?
+  zeit   Int?
+}
