@@ -47,18 +47,13 @@ const MobileNavLink = styled(Link)`
 
 const LoginContainer = styled.div`
   width: 100%;
-  margin-top: 20px;
+  margin-top: 2rem;
+  padding: 2rem 1rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  padding-bottom: 80px;
+  justify-content: center;
   
-  & > div {
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 15px !important;
-  }
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2); 
 `;
 
 const Divider = styled.div`

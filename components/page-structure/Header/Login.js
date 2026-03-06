@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 
 import LangSwitcher from "./LangSwitcher";
 import { useEffect, useRef, useState } from "react";
+import RoleBadge from "./RoleBadge";
 
 export default function Login() {
   const { data: session } = useSession();
@@ -21,39 +22,42 @@ export default function Login() {
   }, []);
 
   return (
-    <LoginWrapper>
-      <TopRow>
-        <LangSwitcher />
-        {!session ? (
-          <HeaderButton onClick={() => signIn("discord")}>
-            Login
-          </HeaderButton>
-        ) : (
-          <div style={{ position: "relative" }}>
-            <UserWrapper
-              onClick={() => setShowLogout(!showLogout)}
-              title="Menü öffnen"
-            >
-              <UserImage src={session.user.image} alt="Profil" />
-            </UserWrapper>
+      <LoginWrapper>
+        <TopRow>
+          <LangSwitcher />
+          {session && (
+              <AvatarContainer>
+                <UserWrapper onClick={() => setShowLogout(!showLogout)}>
+                  <UserImage src={session.user.image} alt="Profil" />
+                  {!showLogout && (
+                      <AvatarTooltip className="avatar-tooltip">
+                        Menü öffnen 🐾
+                      </AvatarTooltip>
+                  )}
+                </UserWrapper>
+                {showLogout && (
+                    <LogoutBadge onClick={() => signOut()}>
+                      Abmelden 👋
+                    </LogoutBadge>
+                )}
+              </AvatarContainer>
+          )}
+          {!session && (
+              <HeaderButton onClick={() => signIn("discord")}>Login</HeaderButton>
+          )}
+        </TopRow>
 
-            {showLogout && (
-              <LogoutBadge onClick={() => signOut()}>
-                Abmelden 👋
-              </LogoutBadge>
-            )}
-          </div>
+        {session && (
+            <BottomRow>
+              <FlexContainer>
+                <RoleBadge role={session.user.role} />
+                <WelcomeText>
+                  Hej, {session.user.name.split(" ")[0]}!
+                </WelcomeText>
+              </FlexContainer>
+            </BottomRow>
         )}
-      </TopRow>
-
-      {session && (
-        <BottomRow>
-          <WelcomeText>
-            Hej, {session.user.name.split(" ")[0]}!
-          </WelcomeText>
-        </BottomRow>
-      )}
-    </LoginWrapper>
+      </LoginWrapper>
   );
 }
 
@@ -111,21 +115,65 @@ const LogoutBadge = styled.div`
 const TopRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
-  position: relative;
+  gap: 20px; /* Platz zwischen Flagge und Avatar */
 `;
+
 const BottomRow = styled.div`
-  padding-right: 5px;
+  /* Hier landet die Rolle und das "Hej, Melanie!" */
+  display: flex;
+  justify-content: center;
 `;
 
 const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
+  align-items: flex-end; /* Desktop: rechtsbündig */
+
+  @media (max-width: 768px) {
+    align-items: center;   /* Mobile: alles zentriert */
+    gap: 15px;            /* Abstand zwischen den Zeilen */
+  }
+`;
+
+const AvatarTooltip = styled.span`
+  position: absolute;
+  top: 110%; 
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  
+  background: var(--color-zoo-orange); 
+  color: var(--color-green);
+  padding: 5px 12px;
+  border-radius: var(--border-radius);
+  font-family: var(--font-text);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  white-space: nowrap;
+  
+  box-shadow: 3px 3px 0 var(--color-black);
+  border: 2px solid var(--color-white);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+  z-index: 1000;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--color-white) transparent transparent transparent;
+  }
 `;
 
 const UserWrapper = styled.div`
+  position: relative; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -135,6 +183,12 @@ const UserWrapper = styled.div`
 
   &:hover {
     transform: translateY(-2px);
+
+    ${AvatarTooltip} {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
   }
 `;
 
@@ -186,6 +240,19 @@ const HeaderButton = styled.button`
   }
 `;
 
+const FlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap; 
+  
+  @media (max-width: 768px) {
+    background: rgba(255, 255, 255, 0.1); /* Ganz leichter Schimmer-Hintergrund */
+    padding: 5px 15px;
+    border-radius: 20px;
+  }
+`;
+
 const WelcomeText = styled.span`
   color: var(--color-white);
   font-family: var(--font-text);
@@ -193,15 +260,13 @@ const WelcomeText = styled.span`
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
-  text-align: center;
-
   text-shadow: 0 2px 4px var(--color-black);
-  margin-bottom: 10px;
-  margin-top: 20px;
-  display: block;
 
+  margin: 0; 
+  display: inline-block;
+  
   span {
-    color: var(--color-green); 
+    color: var(--color-green);
     filter: brightness(1.2);
   }
 
@@ -217,4 +282,11 @@ const WelcomeText = styled.span`
       transform: translateY(0);
     }
   }
+`;
+
+const AvatarContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

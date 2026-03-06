@@ -1,29 +1,41 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { IoChevronDown } from "react-icons/io5";
+import {usePathname} from "next/navigation";
 
 export default function Navigation() {
+  const pathname = usePathname();
+
+  const isActive = (path) =>
+    pathname === path || pathname.startsWith(path + "/");
+
   return (
     <NavContainer>
       <NavList>
         <NavItem>
-          <NavLink href="/">
+          <NavLink href="/" $active={pathname === "/"}>
             Home
           </NavLink>
         </NavItem>
 
         <NavItem>
-          <NavButton>
+          <NavButton $active={isActive("/zoo")}>
             Zoo <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
-              <DropdownLink href="/zoo/gebiete">
+              <DropdownLink
+                href="/zoo/gebiete"
+                $active={pathname === "/zoo"}
+              >
                 Zoo Gebiete
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink href="/zoo/gehege">
+              <DropdownLink
+                href="/zoo/gehege"
+                $active={pathname === "/zoo"}
+              >
                 Zoo Gehege
               </DropdownLink>
             </li>
@@ -31,22 +43,28 @@ export default function Navigation() {
         </NavItem>
 
         <NavItem>
-          <NavButton>
+          <NavButton $active={pathname === "/tiere"}>
             Tiere <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
-              <DropdownLink href="/tiere">
+              <DropdownLink href="/tiere" $active={pathname === "/tiere"}>
                 Tierübersicht
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink href="/tiere/anlegen">
+              <DropdownLink
+                href="/tiere/anlegen"
+                $active={pathname === "/tiere"}
+              >
                 Tier anlegen
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink href="/tiere/farbvarianten">
+              <DropdownLink
+                href="/tiere/farbvarianten"
+                $active={pathname === "/tiere"}
+              >
                 Farbvarianten
               </DropdownLink>
             </li>
@@ -54,17 +72,23 @@ export default function Navigation() {
         </NavItem>
 
         <NavItem>
-          <NavButton>
+          <NavButton $active={pathname === "/klub"}>
             Klub <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
-              <DropdownLink href="/klub/mitglieder">
+              <DropdownLink
+                href="/klub/mitglieder"
+                $active={pathname === "/klub"}
+              >
                 Mitglieder
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink href="/klub/wettbewerbe">
+              <DropdownLink
+                href="/klub/wettbewerbe"
+                $active={pathname === "/klub"}
+              >
                 Wettbewerbe
               </DropdownLink>
             </li>
@@ -78,7 +102,7 @@ export default function Navigation() {
 const NavContainer = styled.nav`
   display: flex;
   align-items: center;
-  
+
   @media (max-width: 767px) {
     display: none;
   }
@@ -107,12 +131,13 @@ const NavItem = styled.li`
 `;
 
 const NavElementStyles = `
+  position: relative; 
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   height: 38px; 
-  padding: 0 1rem;
+  padding: 0 1.2rem; 
   
   background: var(--color-grey);
   border: var(--border-header-button);
@@ -128,14 +153,41 @@ const NavElementStyles = `
   &:hover {
     transform: translateY(-1px);
     box-shadow: var(--shadow-header-button-hover);
+    background: var(--color-orange-light); /* Ein schöner Hover-Effekt */
   }
 `;
 
 const NavLink = styled(Link)`
   ${NavElementStyles}
+  color: ${props => props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
+
+  &::before {
+    content: '🐾';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: ${props => (props.$active ? 'block' : 'none')};
+    font-size: 0.8rem;
+    filter: drop-shadow(1px 1px 0 var(--color-black));
+  }
 `;
+
 const NavButton = styled.div`
   ${NavElementStyles}
+  color: ${props => props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
+  cursor: pointer;
+
+  &::before {
+    content: '🐾';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: ${props => (props.$active ? 'block' : 'none')};
+    font-size: 0.8rem;
+    filter: drop-shadow(1px 1px 0 var(--color-black));
+  }
 `;
 
 const Dropdown = styled.ul`
@@ -144,7 +196,7 @@ const Dropdown = styled.ul`
   left: 0;
   min-width: 180px;
 
-  background: var( --color-zoo-orange);
+  background: var(--color-zoo-orange);
   backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--border-radius);
@@ -169,6 +221,9 @@ const DropdownLink = styled(Link)`
   text-decoration: none;
   font-size: 0.9rem;
   font-family: var(--font-text);
+  background: ${props => props.$active ? 'rgba(0,0,0,0.05)' : 'transparent'};
+  font-weight: ${props => props.$active ? '900' : '400'};
+  border-left: ${props => props.$active ? '4px solid var(--color-green)' : '4px solid transparent'};
 
   &:hover {
     background: #f5f5f5;
