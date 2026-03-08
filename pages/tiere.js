@@ -13,6 +13,7 @@ export default function TiereUebersicht() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedGehege, setSelectedGehege] = useState("Alle"); // <-- NEU
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -30,9 +31,12 @@ export default function TiereUebersicht() {
   }, []);
 
   // 1. Filtern basierend auf der Suche
-  const filteredTiere = tiere.filter(tier =>
-    tier.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredTiere = tiere.filter(tier => {
+    const matchesSearch = tier.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesGehege = selectedGehege === "Alle" || tier.gehege?.name === selectedGehege;
+
+    return matchesSearch && matchesGehege;
+  });
 
   // Berechnung der Gesamtseiten
   const totalPages = Math.ceil(filteredTiere.length / itemsPerPage);
@@ -71,9 +75,31 @@ export default function TiereUebersicht() {
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
-            setCurrentPage(1); // Wichtig: Zurück auf Seite 1 bei neuer Suche
+            setCurrentPage(1);
           }}
         />
+
+        <GehegeSelect
+          value={selectedGehege}
+          onChange={(e) => {
+            setSelectedGehege(e.target.value);
+            setCurrentPage(1);
+          }}
+        >
+          <option value="Alle">Alle Gehege ({tiere.length})</option>
+
+          {/* Wir extrahieren alle einzigartigen Gehegenamen */}
+          {[...new Set(tiere.map(t => t.gehege?.name))].filter(Boolean).map(name => {
+            // Hier zählen wir, wie viele Tiere zu diesem Gehege gehören
+            const count = tiere.filter(t => t.gehege?.name === name).length;
+
+            return (
+              <option key={name} value={name}>
+                {name} ({count})
+              </option>
+            );
+          })}
+        </GehegeSelect>
       </FilterBar>
 
       <TableFrame>
@@ -430,3 +456,28 @@ const PageIndicator = styled.div`
   }
 `;
 
+const GehegeSelect = styled.select`
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid #e0e7d5;
+  border-radius: 12px;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  min-width: 220px; /* Damit das Dropdown nicht springt, wenn die Zahlen zweistellig werden */
+  transition: all 0.2s;
+
+  /* Ein schöneres Pfeil-Icon für das Dropdown (optional) */
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%238dbd5b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+
+  &:focus {
+    outline: none;
+    border-color: #8dbd5b;
+    box-shadow: 0 0 0 4px rgba(141, 189, 91, 0.1);
+  }
+`;
