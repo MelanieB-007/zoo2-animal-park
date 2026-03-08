@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
+
 import XPIcon from "../components/icons/XPIcon";
 import PriceDisplay from "../components/icons/PriceDisplay";
 import ZoodollarIcon from "../components/icons/ZoodollarIcon";
@@ -8,61 +9,108 @@ import EditButton from "../components/icons/EditIcon";
 import DeleteButton from "../components/icons/DeleteIcon";
 import PageHeader from "../components/animal-overview/PageHeader";
 
+const translations = {
+  de: {
+    searchPlaceholder: "Nach Tiernamen suchen...",
+    allEnclosures: "Alle Gehege",
+    allLevels: "Alle Stall-Level",
+    level: "Level",
+    resultsShow: "Zeige",
+    resultsOf: "von",
+    resultsAnimals: "Tieren",
+    tableSpecies: "Tierart",
+    tableEnclosure: "Gehege",
+    tablePrice: "Preis",
+    tableStall: "Stall-Lvl",
+    tableSell: "Verkauf",
+    tableRelease: "Auswild.",
+    actions: "Aktionen",
+    back: "ZURÜCK",
+    next: "WEITER",
+    loading: "Hole die Tiere aus dem Stall...",
+    noResults: "Kein Tier mit diesem Namen gefunden...",
+  },
+  en: {
+    searchPlaceholder: "Search for animal names...",
+    allEnclosures: "All Enclosures",
+    allLevels: "All Stall Levels",
+    level: "Level",
+    resultsShow: "Showing",
+    resultsOf: "of",
+    resultsAnimals: "animals",
+    tableSpecies: "Species",
+    tableEnclosure: "Enclosure",
+    tablePrice: "Price",
+    tableStall: "Stall Lvl",
+    tableSell: "Sell",
+    tableRelease: "Release",
+    actions: "Actions",
+    back: "BACK",
+    next: "NEXT",
+    loading: "Getting animals from the shelter...",
+    noResults: "No animal found with this name...",
+  },
+};
+
 export default function TiereUebersicht() {
+  const [lang, setLang] = useState("de");
   const [tiere, setTiere] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedGehege, setSelectedGehege] = useState("Alle"); // <-- NEU
+  const [selectedGehege, setSelectedGehege] = useState("Alle");
   const [selectedLevel, setSelectedLevel] = useState("Alle");
   const itemsPerPage = 10;
 
+  const t = translations[lang];
+  const getAnimalName = (tier) => (lang === "de" ? tier.name : tier.nameEn);
+  const getEnclosureName = (tier) =>
+    tier.gehege?.name || (lang === "de" ? "Kein Gehege" : "No Enclosure");
+
   useEffect(() => {
     // Daten von der API abrufen
-    fetch('/api/tiere')
-      .then(res => res.json())
-      .then(data => {
+    fetch("/api/tiere")
+      .then((res) => res.json())
+      .then((data) => {
         setTiere(data);
         setLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error("Fehler beim Laden:", err);
         setLoading(false);
       });
   }, []);
 
   // 1. Filtern basierend auf der Suche
-  const filteredTiere = tiere.filter(tier => {
-    const matchesSearch = tier.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesGehege = selectedGehege === "Alle" || tier.gehege?.name === selectedGehege;
-    const matchesLevel = selectedLevel === "Alle" || String(tier.stalllevel) === selectedLevel;
+  const filteredTiere = tiere.filter((tier) => {
+    const matchesSearch = tier.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesGehege =
+      selectedGehege === "Alle" || tier.gehege?.name === selectedGehege;
+    const matchesLevel =
+      selectedLevel === "Alle" || String(tier.stalllevel) === selectedLevel;
 
     return matchesSearch && matchesGehege && matchesLevel;
   });
 
-  // Berechnung der Gesamtseiten
   const totalPages = Math.ceil(filteredTiere.length / itemsPerPage);
 
-  // 3. Seitenzahl korrigieren, falls durch Filterung die aktuelle Seite "leer" wird
   if (currentPage > totalPages && totalPages > 0) {
     setCurrentPage(totalPages);
   }
 
-  // 4. Pagination auf die gefilterte Liste anwenden
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredTiere.slice(indexOfFirstItem, indexOfLastItem);
 
-  // 5. Die Funktionen für die Wegweiser-Buttons
-  const handleNext = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  const handleNext = () =>
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
-  2.
-  if (loading){
+  if (loading) {
     return (
-      <LoadingWrapper>
-        Hole die Tiere aus dem Stall... 🐾
-      </LoadingWrapper>
+      <LoadingWrapper>placeholder={t.searchPlaceholder} 🐾</LoadingWrapper>
     );
   }
 
@@ -73,7 +121,7 @@ export default function TiereUebersicht() {
       <FilterBar>
         <SearchInput
           type="text"
-          placeholder="Nach Tiernamen suchen..."
+          placeholder={t.noResults}
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
@@ -88,19 +136,19 @@ export default function TiereUebersicht() {
             setCurrentPage(1);
           }}
         >
-          <option value="Alle">Alle Gehege ({tiere.length})</option>
+          <option value="Alle">{t.allEnclosures} ({tiere.length})</option>
 
-          {/* Wir extrahieren alle einzigartigen Gehegenamen */}
-          {[...new Set(tiere.map(t => t.gehege?.name))].filter(Boolean).map(name => {
-            // Hier zählen wir, wie viele Tiere zu diesem Gehege gehören
-            const count = tiere.filter(t => t.gehege?.name === name).length;
+          {[...new Set(tiere.map((t) => t.gehege?.name))]
+            .filter(Boolean)
+            .map((name) => {
+              const count = tiere.filter((t) => t.gehege?.name === name).length;
 
-            return (
-              <option key={name} value={name}>
-                {name} ({count})
-              </option>
-            );
-          })}
+              return (
+                <option key={name} value={name}>
+                  {name} ({count})
+                </option>
+              );
+            })}
         </GehegeSelect>
 
         <GehegeSelect
@@ -110,91 +158,102 @@ export default function TiereUebersicht() {
             setCurrentPage(1);
           }}
         >
-          <option value="Alle">Alle Stall-Level</option>
-          {/* Wir holen uns alle einzigartigen Level, sortieren sie aufsteigend */}
-          {[...new Set(tiere.map(t => t.stalllevel))]
-            .filter(lvl => lvl !== undefined && lvl !== null) // Behält die 0!
+          <option value="Alle">{t.allLevels}</option>
+          {[...new Set(tiere.map((t) => t.stalllevel))]
+            .filter((lvl) => lvl !== undefined && lvl !== null)
             .sort((a, b) => a - b)
-            .map(lvl => (
+            .map((lvl) => (
               <option key={lvl} value={String(lvl)}>
                 Level {lvl}
               </option>
             ))}
         </GehegeSelect>
-
       </FilterBar>
 
       <ResultsInfo>
-        Zeige <strong>{currentItems.length}</strong> von <strong>{filteredTiere.length}</strong> {selectedGehege === "Alle" ? "Tieren" : `${selectedGehege}tieren`}
+        {t.resultsShow} <strong>{currentItems.length}</strong> {t.resultsOf}
+        <strong>{filteredTiere.length}</strong> {t.resultsAnimals}
       </ResultsInfo>
 
       <TableFrame>
         <ZooTable>
           <thead>
-          <tr>
-            <th>Tierart</th>
-            <th>Gehege</th>
-            <th>Preis</th>
-            <th>Stall-Lvl</th>
-
-            <DesktopOnlyTh>XP</DesktopOnlyTh>
-            <DesktopOnlyTh>Verkauf</DesktopOnlyTh>
-            <DesktopOnlyTh>Auswild.</DesktopOnlyTh>
-            <th style={{ textAlign: 'center' }}>Aktionen</th>
-          </tr>
+            <tr>
+              <th>{t.tableSpecies}</th>
+              <th>{t.tableEnclosure}</th>
+              <th>{t.tablePrice}</th>
+              <th>{t.tableStall}</th>
+              <DesktopOnlyTh>XP</DesktopOnlyTh>
+              <DesktopOnlyTh>{t.tableSell}</DesktopOnlyTh>
+              <DesktopOnlyTh>{t.tableRelease}</DesktopOnlyTh>
+              <th style={{ textAlign: "center" }}>{t.actions}</th>
+            </tr>
           </thead>
           <tbody>
-          {currentItems.length > 0 ? (
-            currentItems.map((tier) => (
-              <AnimalRow key={tier.id}>
-                <td>
-                  <TierInfoCell>
-                    <GameIcon
-                      type={`tiere/${(tier.gehege?.name || 'standard').toLowerCase()}`}
-                      fileName={tier.bild || 'default.jpg'}
+            {currentItems.length > 0 ? (
+              currentItems.map((tier) => (
+                <AnimalRow key={tier.id}>
+                  <td>
+                    <TierInfoCell>
+                      <GameIcon
+                        type={`tiere/${(tier.gehege?.name || "standard").toLowerCase()}`}
+                        fileName={tier.bild || "default.jpg"}
+                      />
+                      <div>
+                        <NameDE>{tier.name}</NameDE>
+                        <NameEN>{tier.nameEn}</NameEN>
+                      </div>
+                    </TierInfoCell>
+                  </td>
+                  <td>
+                    <GehegeBadge>
+                      {tier.gehege?.name || "Kein Gehege"}
+                    </GehegeBadge>
+                  </td>
+                  <td>
+                    <PriceDisplay
+                      value={tier.preis}
+                      type={tier.preisart?.name.toLowerCase() || "gold"}
                     />
-                    <div>
-                      <NameDE>{tier.name}</NameDE>
-                      <NameEN>{tier.nameEn}</NameEN>
-                    </div>
-                  </TierInfoCell>
+                  </td>
+                  <td>
+                    <span style={{ fontWeight: "bold" }}>
+                      Lvl {tier.stalllevel}
+                    </span>
+                  </td>
+                  <DesktopOnlyTd>
+                    <XPIcon
+                      label={
+                        (tier.xpfuettern || 0) +
+                        (tier.xpspielen || 0) +
+                        (tier.xpputzen || 0)
+                      }
+                    />
+                  </DesktopOnlyTd>
+                  <DesktopOnlyTd>
+                    <ZoodollarIcon value={tier.verkaufswert} />
+                  </DesktopOnlyTd>
+                  <DesktopOnlyTd>
+                    <XPIcon label={tier.auswildern} />
+                  </DesktopOnlyTd>
+                  <td>
+                    <ActionGroup>
+                      <EditButton />
+                      <DeleteButton />
+                    </ActionGroup>
+                  </td>
+                </AnimalRow>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan="8"
+                  style={{ textAlign: "center", padding: "20px" }}
+                >
+                  {t.noResults} 🐾
                 </td>
-                <td>
-                  <GehegeBadge>{tier.gehege?.name || 'Kein Gehege'}</GehegeBadge>
-                </td>
-                <td>
-                  <PriceDisplay
-                    value={tier.preis}
-                    type={tier.preisart?.name.toLowerCase() || 'gold'}
-                  />
-                </td>
-                <td>
-                  <span style={{ fontWeight: 'bold' }}>Lvl {tier.stalllevel}</span>
-                </td>
-                <DesktopOnlyTd>
-                  <XPIcon label={(tier.xpfuettern || 0) + (tier.xpspielen || 0) + (tier.xpputzen || 0)} />
-                </DesktopOnlyTd>
-                <DesktopOnlyTd>
-                  <ZoodollarIcon value={tier.verkaufswert} />
-                </DesktopOnlyTd>
-                <DesktopOnlyTd>
-                  <XPIcon label={tier.auswildern} />
-                </DesktopOnlyTd>
-                <td>
-                  <ActionGroup>
-                    <EditButton />
-                    <DeleteButton />
-                  </ActionGroup>
-                </td>
-              </AnimalRow>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="8" style={{ textAlign: 'center', padding: '20px' }}>
-                Kein Tier mit diesem Namen gefunden... 🐾
-              </td>
-            </tr>
-          )}
+              </tr>
+            )}
           </tbody>
         </ZooTable>
       </TableFrame>
@@ -211,8 +270,16 @@ export default function TiereUebersicht() {
 
           {/* MITTELPFOSTEN MIT INFO */}
           <PageIndicator>
-            <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Register</span>
-            <div style={{ fontSize: '1.5rem', fontWeight: '900' }}>
+            <span
+              style={{
+                fontSize: "0.8rem",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+              }}
+            >
+              Register
+            </span>
+            <div style={{ fontSize: "1.5rem", fontWeight: "900" }}>
               {currentPage} / {totalPages}
             </div>
           </PageIndicator>
@@ -240,8 +307,8 @@ const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  @media (min-width: 768px) { 
+
+  @media (min-width: 768px) {
     padding: 40px;
   }
 `;
@@ -285,19 +352,25 @@ const TierInfoCell = styled.div`
 
 const AnimalRow = styled.tr`
   border-bottom: 1px solid #eee;
-  &:hover { background: #f0fff0; }
-  td { padding: 12px 15px; }
+
+  &:hover {
+    background: #f0fff0;
+  }
+
+  td {
+    padding: 12px 15px;
+  }
 `;
 
 const DesktopOnlyTh = styled.th`
-  @media (max-width: 1024px) { 
-    display: none; 
+  @media (max-width: 1024px) {
+    display: none;
   }
 `;
 
 const DesktopOnlyTd = styled.td`
-  @media (max-width: 1024px) { 
-    display: none; 
+  @media (max-width: 1024px) {
+    display: none;
   }
 `;
 
@@ -321,7 +394,6 @@ const GehegeBadge = styled.span`
   border-radius: 6px;
   font-size: 0.85rem;
 `;
-
 
 const ActionGroup = styled.div`
   display: flex;
@@ -399,7 +471,7 @@ const PageButton = styled.button`
 `;
 
 const PageInfo = styled.span`
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: #666;
   font-size: 0.9rem;
   font-weight: 500;
@@ -416,7 +488,7 @@ const SignpostAssembly = styled.div`
 
 const SignpostButton = styled.button`
   position: relative;
-  width: 180px; 
+  width: 180px;
   height: 85px;
   border: none;
   background: transparent;
@@ -427,19 +499,22 @@ const SignpostButton = styled.button`
   transition: all 0.2s ease-in-out;
 
   /* Das Bild von Plexi als Hintergrund */
-  background-image: url('/images/wegweiser.png');
+  background-image: url("/images/wegweiser.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 
   /* Zurück-Button nach links drehen */
-  ${props => props.direction === 'prev' && `
+
+  ${(props) =>
+    props.direction === "prev" &&
+    `
     transform: scaleX(-1);
   `}
-
   &:hover:not(:disabled) {
-    filter: brightness(1.1) drop-shadow(0 5px 15px rgba(0,0,0,0.2));
-    transform: translateY(-5px) ${props => props.direction === 'prev' ? 'scaleX(-1)' : 'scale(1.05)'};
+    filter: brightness(1.1) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+    transform: translateY(-5px)
+      ${(props) => (props.direction === "prev" ? "scaleX(-1)" : "scale(1.05)")};
   }
 
   &:disabled {
@@ -449,15 +524,17 @@ const SignpostButton = styled.button`
 `;
 
 const SignpostLabel = styled.span`
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-weight: 900;
   color: white;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-size: 1.1rem;
   z-index: 2;
 
   /* Text beim Zurück-Button wieder lesbar machen */
-  ${props => props.direction === 'prev' && `
+  ${(props) =>
+    props.direction === "prev" &&
+    `
     transform: scaleX(-1);
   `}
 `;
@@ -466,13 +543,14 @@ const PageIndicator = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   color: #1a331a;
   padding-bottom: 10px;
 
   /* Der Holzpfosten, an dem die Schilder "hängen" */
+
   &::before {
-    content: '';
+    content: "";
     width: 16px;
     height: 120px;
     background: linear-gradient(90deg, #5d3a1a 0%, #3e2711 100%);
@@ -480,7 +558,7 @@ const PageIndicator = styled.div`
     position: absolute;
     z-index: -1;
     transform: translateY(-20px);
-    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -517,7 +595,7 @@ const ResultsInfo = styled.p`
   padding: 0 10px;
   font-size: 0.9rem;
   color: #666;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 
   strong {
     color: #2d5a27; /* Ein dunkleres Zoo-Grün */
