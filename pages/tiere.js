@@ -11,6 +11,9 @@ import PageHeader from "../components/animal-overview/PageHeader";
 export default function TiereUebersicht() {
   const [tiere, setTiere] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
+  const itemsPerPage = 10;
 
   useEffect(() => {
     // Daten von der API abrufen
@@ -26,6 +29,29 @@ export default function TiereUebersicht() {
       });
   }, []);
 
+  // 1. Filtern basierend auf der Suche
+  const filteredTiere = tiere.filter(tier =>
+    tier.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Berechnung der Gesamtseiten
+  const totalPages = Math.ceil(filteredTiere.length / itemsPerPage);
+
+  // 3. Seitenzahl korrigieren, falls durch Filterung die aktuelle Seite "leer" wird
+  if (currentPage > totalPages && totalPages > 0) {
+    setCurrentPage(totalPages);
+  }
+
+  // 4. Pagination auf die gefilterte Liste anwenden
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredTiere.slice(indexOfFirstItem, indexOfLastItem);
+
+  // 5. Die Funktionen für die Wegweiser-Buttons
+  const handleNext = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+
+  2.
   if (loading){
     return (
       <LoadingWrapper>
@@ -37,6 +63,19 @@ export default function TiereUebersicht() {
   return (
     <PageWrapper>
       <PageHeader />
+
+      <FilterBar>
+        <SearchInput
+          type="text"
+          placeholder="Nach Tiernamen suchen..."
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setCurrentPage(1); // Wichtig: Zurück auf Seite 1 bei neuer Suche
+          }}
+        />
+      </FilterBar>
+
       <TableFrame>
         <ZooTable>
           <thead>
@@ -53,66 +92,92 @@ export default function TiereUebersicht() {
           </tr>
           </thead>
           <tbody>
-          {tiere.map(tier => (
-            <AnimalRow key={tier.id}>
-              <td>
-                <TierInfoCell>
-                  <GameIcon
-                    type={`tiere/${(tier.gehege?.name || 'standard').toLowerCase()}`}
-                    fileName={tier.bild || 'default.jpg'}
-                  />
-                  <div>
-                    <NameDE>{tier.name}</NameDE>
-                    <NameEN>{tier.nameEn}</NameEN>
-                  </div>
-                </TierInfoCell>
-              </td>
-
-              <td>
-                <GehegeBadge>
-                  {tier.gehege?.name || 'Kein Gehege'}
-                </GehegeBadge>
-              </td>
-
-              <td>
+          {currentItems.length > 0 ? (
+            currentItems.map((tier) => (
+              <AnimalRow key={tier.id}>
+                <td>
+                  <TierInfoCell>
+                    <GameIcon
+                      type={`tiere/${(tier.gehege?.name || 'standard').toLowerCase()}`}
+                      fileName={tier.bild || 'default.jpg'}
+                    />
+                    <div>
+                      <NameDE>{tier.name}</NameDE>
+                      <NameEN>{tier.nameEn}</NameEN>
+                    </div>
+                  </TierInfoCell>
+                </td>
+                <td>
+                  <GehegeBadge>{tier.gehege?.name || 'Kein Gehege'}</GehegeBadge>
+                </td>
+                <td>
                   <PriceDisplay
                     value={tier.preis}
                     type={tier.preisart?.name.toLowerCase() || 'gold'}
                   />
+                </td>
+                <td>
+                  <span style={{ fontWeight: 'bold' }}>Lvl {tier.stalllevel}</span>
+                </td>
+                <DesktopOnlyTd>
+                  <XPIcon label={(tier.xpfuettern || 0) + (tier.xpspielen || 0) + (tier.xpputzen || 0)} />
+                </DesktopOnlyTd>
+                <DesktopOnlyTd>
+                  <ZoodollarIcon value={tier.verkaufswert} />
+                </DesktopOnlyTd>
+                <DesktopOnlyTd>
+                  <XPIcon label={tier.auswildern} />
+                </DesktopOnlyTd>
+                <td>
+                  <ActionGroup>
+                    <EditButton />
+                    <DeleteButton />
+                  </ActionGroup>
+                </td>
+              </AnimalRow>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="8" style={{ textAlign: 'center', padding: '20px' }}>
+                Kein Tier mit diesem Namen gefunden... 🐾
               </td>
-
-              <td>
-                <span style={{fontWeight: 'bold'}}>
-                  Lvl {tier.stalllevel}
-                </span>
-              </td>
-
-              {/* Desktop-Spalten */}
-              <DesktopOnlyTd>
-                <XPIcon label={(tier.xpfuettern || 0) + (tier.xpspielen || 0) + (tier.xpputzen || 0)} />
-              </DesktopOnlyTd>
-              <DesktopOnlyTd>
-                <ZoodollarIcon value={tier.verkaufswert} />
-              </DesktopOnlyTd>
-              <DesktopOnlyTd>
-                <XPIcon label={tier.auswildern} />
-              </DesktopOnlyTd>
-
-              <td>
-                <ActionGroup>
-                  <EditButton />
-                  <DeleteButton />
-                 </ActionGroup>
-              </td>
-            </AnimalRow>
-          ))}
+            </tr>
+          )}
           </tbody>
         </ZooTable>
       </TableFrame>
+      {totalPages > 1 && (
+        <SignpostAssembly>
+          {/* LINKES SCHILD */}
+          <SignpostButton
+            direction="prev"
+            onClick={handlePrev}
+            disabled={currentPage === 1}
+          >
+            <SignpostLabel direction="prev">ZURÜCK</SignpostLabel>
+          </SignpostButton>
+
+          {/* MITTELPFOSTEN MIT INFO */}
+          <PageIndicator>
+            <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Register</span>
+            <div style={{ fontSize: '1.5rem', fontWeight: '900' }}>
+              {currentPage} / {totalPages}
+            </div>
+          </PageIndicator>
+
+          {/* RECHTES SCHILD */}
+          <SignpostButton
+            direction="next"
+            onClick={handleNext}
+            disabled={currentPage === totalPages}
+          >
+            <SignpostLabel direction="next">WEITER</SignpostLabel>
+          </SignpostButton>
+        </SignpostAssembly>
+      )}
     </PageWrapper>
   );
 }
-
 
 const PageWrapper = styled.div`
   padding: 40px 20px;
@@ -210,3 +275,158 @@ const ActionGroup = styled.div`
   display: flex;
   gap: 10px;
 `;
+
+const FilterBar = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 20px auto;
+  padding: 0 10px;
+`;
+
+const SearchInput = styled.input`
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid #e0e7d5; /* Ein ganz helles Zoo-Grün */
+  border-radius: 12px;
+  background-color: white;
+  color: #333;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  &:focus {
+    outline: none;
+    border-color: #8dbd5b; /* Dein Badge-Grün */
+    box-shadow: 0 0 0 4px rgba(141, 189, 91, 0.1);
+    transform: translateY(-1px);
+  }
+
+  &::placeholder {
+    color: #a0a0a0;
+  }
+`;
+
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 24px;
+  padding-bottom: 40px;
+`;
+
+const PageButton = styled.button`
+  background-color: #8dbd5b;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &:hover:not(:disabled) {
+    background-color: #76a44a;
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+`;
+
+const PageInfo = styled.span`
+  font-family: 'Inter', sans-serif;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+`;
+
+const SignpostAssembly = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Richtet Schilder an der Unterkante aus */
+  gap: 40px;
+  margin-top: 40px;
+  padding-bottom: 50px;
+`;
+
+const SignpostButton = styled.button`
+  position: relative;
+  width: 180px; 
+  height: 85px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+
+  /* Das Bild von Plexi als Hintergrund */
+  background-image: url('/images/wegweiser.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  /* Zurück-Button nach links drehen */
+  ${props => props.direction === 'prev' && `
+    transform: scaleX(-1);
+  `}
+
+  &:hover:not(:disabled) {
+    filter: brightness(1.1) drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+    transform: translateY(-5px) ${props => props.direction === 'prev' ? 'scaleX(-1)' : 'scale(1.05)'};
+  }
+
+  &:disabled {
+    filter: grayscale(1) opacity(0.4);
+    cursor: not-allowed;
+  }
+`;
+
+const SignpostLabel = styled.span`
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  font-size: 1.1rem;
+  z-index: 2;
+
+  /* Text beim Zurück-Button wieder lesbar machen */
+  ${props => props.direction === 'prev' && `
+    transform: scaleX(-1);
+  `}
+`;
+
+const PageIndicator = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  color: #1a331a;
+  padding-bottom: 10px;
+
+  /* Der Holzpfosten, an dem die Schilder "hängen" */
+  &::before {
+    content: '';
+    width: 16px;
+    height: 120px;
+    background: linear-gradient(90deg, #5d3a1a 0%, #3e2711 100%);
+    border-radius: 4px;
+    position: absolute;
+    z-index: -1;
+    transform: translateY(-20px);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  }
+`;
+

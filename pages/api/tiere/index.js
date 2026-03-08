@@ -8,11 +8,11 @@ export default async function handler(req, res) {
   try {
     const alleTiere = await prisma.tiere.findMany({
       include: {
-        gehege: true, // Das lädt jetzt die Gehege-Details (Name, Pfad etc.) mit
+        gehege: true,
         preisart: true
       },
       orderBy: {
-        name: 'asc', // Wichtig: In deinem Schema heißt es "name", nicht "name_de"
+        name: 'asc',
       },
     });
 
