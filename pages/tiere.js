@@ -14,6 +14,7 @@ export default function TiereUebersicht() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedGehege, setSelectedGehege] = useState("Alle"); // <-- NEU
+  const [selectedLevel, setSelectedLevel] = useState("Alle");
   const itemsPerPage = 10;
 
   useEffect(() => {
@@ -34,8 +35,9 @@ export default function TiereUebersicht() {
   const filteredTiere = tiere.filter(tier => {
     const matchesSearch = tier.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesGehege = selectedGehege === "Alle" || tier.gehege?.name === selectedGehege;
+    const matchesLevel = selectedLevel === "Alle" || String(tier.stalllevel) === selectedLevel;
 
-    return matchesSearch && matchesGehege;
+    return matchesSearch && matchesGehege && matchesLevel;
   });
 
   // Berechnung der Gesamtseiten
@@ -100,7 +102,31 @@ export default function TiereUebersicht() {
             );
           })}
         </GehegeSelect>
+
+        <GehegeSelect
+          value={selectedLevel}
+          onChange={(e) => {
+            setSelectedLevel(e.target.value);
+            setCurrentPage(1);
+          }}
+        >
+          <option value="Alle">Alle Stall-Level</option>
+          {/* Wir holen uns alle einzigartigen Level, sortieren sie aufsteigend */}
+          {[...new Set(tiere.map(t => t.stalllevel))]
+            .filter(lvl => lvl !== undefined && lvl !== null) // Behält die 0!
+            .sort((a, b) => a - b)
+            .map(lvl => (
+              <option key={lvl} value={String(lvl)}>
+                Level {lvl}
+              </option>
+            ))}
+        </GehegeSelect>
+
       </FilterBar>
+
+      <ResultsInfo>
+        Zeige <strong>{currentItems.length}</strong> von <strong>{filteredTiere.length}</strong> {selectedGehege === "Alle" ? "Tieren" : `${selectedGehege}tieren`}
+      </ResultsInfo>
 
       <TableFrame>
         <ZooTable>
@@ -304,12 +330,14 @@ const ActionGroup = styled.div`
 
 const FilterBar = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto 20px auto;
   padding: 0 10px;
+  gap: 15px;
 `;
 
 const SearchInput = styled.input`
@@ -479,5 +507,19 @@ const GehegeSelect = styled.select`
     outline: none;
     border-color: #8dbd5b;
     box-shadow: 0 0 0 4px rgba(141, 189, 91, 0.1);
+  }
+`;
+
+const ResultsInfo = styled.p`
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 10px auto;
+  padding: 0 10px;
+  font-size: 0.9rem;
+  color: #666;
+  font-family: 'Inter', sans-serif;
+
+  strong {
+    color: #2d5a27; /* Ein dunkleres Zoo-Grün */
   }
 `;
