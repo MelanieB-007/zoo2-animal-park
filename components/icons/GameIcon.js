@@ -11,8 +11,8 @@ export default function GameIcon({ type, fileName, size = 50, bordercolor = "#4c
       <StyledImage
         src={imagePath}
         alt={fileName}
-        onError={(e) =>
-        { e.target.src = '/images/placeholder.png'; }}
+        // onError={(e) =>
+        // { e.target.src = '/images/placeholder.png'; }}
       />
     </IconFrame>
   );

@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../lib/generated/prisma"
+  provider = "prisma-client-js"
+  output   = "../lib/generated/client"
 }
 
 datasource db {
@@ -8,23 +8,36 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model akademie {
-  id      Int     @unique(map: "akademieindex") @default(autoincrement())
-  level   String  @db.VarChar(50)
-  levelEn String? @db.VarChar(50)
-}
-
-model farbvarianten {
-  id         Int     @unique(map: "farbvariantenindex") @default(autoincrement())
-  tierId     Int
-  farbe      String  @db.VarChar(20)
-  herkunftId Int
-  release    String? @db.VarChar(20)
-  bild       String? @db.VarChar(255)
+model tiere {
+  id            Int     @id @unique(map: "tiereindex")
+  name          String  @db.VarChar(50)
+  nameEn        String? @db.VarChar(50)
+  gehegeId      Int
+  // Die Relation zum Gehege-Model
+  gehege        gehege  @relation(fields: [gehegeId], references: [id])
+  spielgeraetId Int?
+  stalllevel    Int?
+  preis         Int?
+  preisartId    Int?
+  preisart      preisart? @relation(fields: [preisartId], references: [id])
+  zuchtkosten   Int?
+  zuchtdauer    Int?
+  startprozent  Int?
+  platzbedarf   Int?
+  anzahlbasis   Int?
+  anzahlmax     Int?
+  xpfuettern    Int?    @default(0)
+  xpspielen     Int?    @default(0)
+  xpputzen      Int?    @default(0)
+  popularitaet  Int?
+  verkaufswert  Int?
+  auswildern    Int?
+  release       String? @db.VarChar(10)
+  bild          String? @db.VarChar(255)
 }
 
 model gehege {
-  id                       Int     @unique(map: "gehegeindex") @default(autoincrement())
+  id                       Int     @id @unique(map: "gehegeindex") @default(autoincrement())
   name                     String  @db.VarChar(50)
   nameEn                   String  @db.VarChar(50)
   namegehege               String  @db.VarChar(50)
@@ -38,10 +51,27 @@ model gehege {
   hintergrundfarbe         String  @db.VarChar(10)
   schriftfarbe             String  @db.VarChar(10)
   bild                     String? @db.VarChar(255)
+  // Rückrelation zu den Tieren (notwendig für Include)
+  tiere                    tiere[]
+}
+
+model akademie {
+  id      Int     @id @unique(map: "akademieindex") @default(autoincrement())
+  level   String  @db.VarChar(50)
+  levelEn String? @db.VarChar(50)
+}
+
+model farbvarianten {
+  id         Int     @id @unique(map: "farbvariantenindex") @default(autoincrement())
+  tierId     Int
+  farbe      String  @db.VarChar(20)
+  herkunftId Int
+  release    String? @db.VarChar(20)
+  bild       String? @db.VarChar(255)
 }
 
 model gehegedeko {
-  id           Int     @unique(map: "gehegedekoindex")
+  id           Int     @id @unique(map: "gehegedekoindex")
   name         String  @db.VarChar(255)
   name_en      String? @map("name-en") @db.VarChar(255)
   gehege       Int
@@ -53,7 +83,7 @@ model gehegedeko {
 }
 
 model gehegespielgeraet {
-  id                  Int     @unique(map: "gehegespielgeraetindex")
+  id                  Int     @id @unique(map: "gehegespielgeraetindex")
   name                String  @db.VarChar(255)
   nameEn              String? @db.VarChar(255)
   gehegeId            Int
@@ -65,7 +95,7 @@ model gehegespielgeraet {
 }
 
 model gehegestall {
-  id             Int     @unique(map: "gehegestallindex")
+  id             Int     @id @unique(map: "gehegestallindex")
   gehege         Int
   preis          Int?
   preisart       Int?
@@ -82,7 +112,7 @@ model gehegestall {
 }
 
 model gehegetrog {
-  id       Int     @unique(map: "gehegeTrogindex")
+  id       Int     @id @unique(map: "gehegeTrogindex")
   gehege   Int
   preis    Int?
   preisart Int?
@@ -90,7 +120,7 @@ model gehegetrog {
 }
 
 model gehegewasserstelle {
-  id                Int     @unique(map: "gehegewasserstelleindex")
+  id                Int     @id @unique(map: "gehegewasserstelleindex")
   gehege            Int
   preis             Int?
   preisart          Int?
@@ -100,7 +130,7 @@ model gehegewasserstelle {
 }
 
 model herkunft {
-  id        Int     @unique(map: "herkunftindex") @default(autoincrement())
+  id        Int     @id @unique(map: "herkunftindex") @default(autoincrement())
   name      String  @db.VarChar(50)
   nameen    String  @db.VarChar(50)
   nametiere String  @db.VarChar(50)
@@ -108,13 +138,13 @@ model herkunft {
 }
 
 model klubrollen {
-  id     Int     @unique(map: "klubrollenindex") @default(autoincrement())
+  id     Int     @id @unique(map: "klubrollenindex") @default(autoincrement())
   name   String  @db.VarChar(255)
   nameEn String? @db.VarChar(255)
 }
 
 model mitglieder {
-  id                Int     @unique(map: "id") @default(autoincrement())
+  id                Int     @id @unique(map: "id") @default(autoincrement())
   upjersname        String  @db.VarChar(50)
   webseitename      String? @db.VarChar(50)
   webseitenpasswort String  @db.VarChar(100)
@@ -132,14 +162,14 @@ model mitglieder {
 }
 
 model mitgliederlevel20 {
-  id           Int     @unique(map: "mitgliederlevel20index") @default(autoincrement())
+  id           Int     @id @unique(map: "mitgliederlevel20index") @default(autoincrement())
   tierId       Int
   mitgliederId Int
   vorhanden    String? @default("0") @db.VarChar(20)
 }
 
 model mitgliederrang {
-  id                      Int     @unique(map: "id") @default(autoincrement())
+  id                      Int     @id @unique(map: "id") @default(autoincrement())
   name                    String? @db.VarChar(255)
   name_en                 String? @map("name-en") @db.VarChar(255)
   level                   Int
@@ -148,53 +178,29 @@ model mitgliederrang {
 }
 
 model mitgliederstatuen {
-  id           Int  @unique(map: "mitgliederstatuenindex") @default(autoincrement())
+  id           Int  @id @unique(map: "mitgliederstatuenindex") @default(autoincrement())
   statueId     Int
   mitgliederId Int
   puzzleteile  Int? @default(0)
 }
 
 model mitgliederwettbewerbfarbvarianten {
-  id           Int     @unique(map: "mitgliederwettbewerbFarbvariantenindex") @default(autoincrement())
+  id           Int     @id @unique(map: "mitgliederwettbewerbFarbvariantenindex") @default(autoincrement())
   farbId       Int
   mitgliederId Int
   puzzleteile  String? @default("0") @db.VarChar(20)
 }
 
 model preisart {
-  id     Int     @unique(map: "preisartindex") @default(autoincrement())
+  id     Int     @id @unique(map: "preisartindex") @default(autoincrement())
   name   String  @db.VarChar(50)
   nameen String? @db.VarChar(50)
   bild   String? @db.VarChar(50)
-}
-
-model tiere {
-  id            Int     @unique(map: "tiereindex")
-  name          String  @db.VarChar(50)
-  nameEn        String? @db.VarChar(50)
-  gehegeId      Int
-  spielgeraetId Int?
-  stalllevel    Int?
-  preis         Int?
-  preisartId    Int?
-  zuchtkosten   Int?
-  zuchtdauer    Int?
-  startprozent  Int?
-  platzbedarf   Int?
-  anzahlbasis   Int?
-  anzahlmax     Int?
-  xpfuettern    Int?    @default(0)
-  xpspielen     Int?    @default(0)
-  xpputzen      Int?    @default(0)
-  popularitaet  Int?
-  verkaufswert  Int?
-  auswildern    Int?
-  release       String? @db.VarChar(10)
-  bild          String? @db.VarChar(255)
+  tiere  tiere[]
 }
 
 model tierherkunft {
-  id         Int  @unique(map: "herkunftindex") @default(autoincrement())
+  id         Int  @id @unique(map: "herkunftindex") @default(autoincrement())
   tierid     Int
   herkunftId Int?
 }
@@ -209,7 +215,7 @@ model users {
 }
 
 model wettbewerbe {
-  id                 Int     @unique(map: "wettbewerbe") @default(autoincrement())
+  id                 Int     @id @unique(map: "wettbewerbe") @default(autoincrement())
   start              String  @db.VarChar(20)
   ende               String  @db.VarChar(20)
   tier1Id            Int
@@ -223,13 +229,13 @@ model wettbewerbe {
 }
 
 model wettbewerbfarbvarianten {
-  id             Int     @unique(map: "wettbewerbfarbvariantenindex") @default(autoincrement())
+  id             Int     @id @unique(map: "wettbewerbfarbvariantenindex") @default(autoincrement())
   tierId         String  @db.VarChar(20)
   farbvarianteId String? @db.VarChar(255)
 }
 
 model wettbewerbstatuen {
-  id            Int     @unique(map: "wettbewerbstatuenindex") @default(autoincrement())
+  id            Int     @id @unique(map: "wettbewerbstatuenindex") @default(autoincrement())
   tierId        String  @db.VarChar(20)
   preis         Int?
   preisartId    Int?
@@ -239,7 +245,7 @@ model wettbewerbstatuen {
 }
 
 model xp {
-  id     Int    @unique(map: "xpindex") @default(autoincrement())
+  id     Int    @id @unique(map: "xpindex") @default(autoincrement())
   tierId Int
   xpart  String @db.VarChar(20)
   wert   Int?
