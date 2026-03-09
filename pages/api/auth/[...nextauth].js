@@ -1,7 +1,12 @@
 import NextAuth from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
-import prisma from "../../../lib/generated/client";
+import { PrismaClient } from "@prisma/client";
 
+// Damit wir nicht bei jedem Request eine neue Verbindung öffnen (Wichtig für Next.js!)
+const prisma = global.prisma || new PrismaClient();
+if (process.env.NODE_ENV !== "production") global.prisma = prisma;
+
+export { prisma };
 
 export const authOptions = {
   providers: [
