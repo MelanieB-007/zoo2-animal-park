@@ -11,7 +11,7 @@ export default function XPIcon({ label, size = 20 }) {
     <XPWrapper>
       {label && <XPValue>{label.toLocaleString()}</XPValue>}
       <StarImage
-        src="/images/star.png"
+        src="/images/icons/star.png"
         alt="XP-Sterne"
         width={size}
         height={size}

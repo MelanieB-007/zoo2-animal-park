@@ -19,6 +19,7 @@ export default createGlobalStyle`
     --color-orange-dark: rgba(255, 140, 0, 0.5);
     --color-orange-dark-shadow: rgba(255, 140, 0, 0.3);
     --color-red-orange: #ff6b35;
+    --color-lime: #d6efc0; //for PageWrapper
     --color-green: #68B300;
     --color-green-darker: rgba(104, 179, 0, 0.7);
     --color-khaki-green: rgba(104, 179, 0, 0.25);

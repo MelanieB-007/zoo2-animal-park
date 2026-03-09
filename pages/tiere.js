@@ -7,7 +7,11 @@ import ZoodollarIcon from "../components/icons/ZoodollarIcon";
 import GameIcon from "../components/icons/GameIcon";
 import EditButton from "../components/icons/EditIcon";
 import DeleteButton from "../components/icons/DeleteIcon";
-import PageHeader from "../components/animal-overview/PageHeader";
+import PageHeader from "../components/page-structure/Main/PageHeader";
+import PageWrapper from "../components/page-structure/Main/PageWrapper";
+import LoadingWrapper from "../components/page-structure/Elements/LoadingWrapper";
+import { NameDE, NameEN } from "../components/page-structure/Elements/Name";
+import FilterBar from "../components/page-structure/Elements/FilterBar";
 
 const translations = {
   de: {
@@ -110,7 +114,9 @@ export default function TiereUebersicht() {
 
   if (loading) {
     return (
-      <LoadingWrapper>placeholder={t.searchPlaceholder} 🐾</LoadingWrapper>
+      <LoadingWrapper>
+        placeholder={t.searchPlaceholder} 🐾
+      </LoadingWrapper>
     );
   }
 
@@ -298,20 +304,6 @@ export default function TiereUebersicht() {
   );
 }
 
-const PageWrapper = styled.div`
-  padding: 40px 20px;
-  background-color: #d6efc0;
-  border: 2px solid #4ca64c;
-  border-radius: var(--border-radius);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  @media (min-width: 768px) {
-    padding: 40px;
-  }
-`;
 
 const TableFrame = styled.div`
   background: white;
@@ -332,16 +324,6 @@ const ZooTable = styled.table`
     color: #4ca64c;
     border-bottom: 2px solid #eef2ee;
   }
-`;
-
-const LoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #d6efc0;
-  font-weight: bold;
-  color: #4ca64c;
 `;
 
 const TierInfoCell = styled.div`
@@ -374,19 +356,6 @@ const DesktopOnlyTd = styled.td`
   }
 `;
 
-const NameDE = styled.div`
-  font-weight: bold;
-  color: #1a331a;
-  font-size: 1rem;
-`;
-
-const NameEN = styled.div`
-  font-size: 0.8rem;
-  color: #666;
-  opacity: 0.7;
-  font-style: italic;
-`;
-
 const GehegeBadge = styled.span`
   background: #e2f2e2;
   color: #2d5a27;
@@ -400,17 +369,7 @@ const ActionGroup = styled.div`
   gap: 10px;
 `;
 
-const FilterBar = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto 20px auto;
-  padding: 0 10px;
-  gap: 15px;
-`;
+
 
 const SearchInput = styled.input`
   width: 100%;
@@ -434,47 +393,6 @@ const SearchInput = styled.input`
   &::placeholder {
     color: #a0a0a0;
   }
-`;
-
-const PaginationContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 24px;
-  padding-bottom: 40px;
-`;
-
-const PageButton = styled.button`
-  background-color: #8dbd5b;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  &:hover:not(:disabled) {
-    background-color: #76a44a;
-    transform: translateY(-1px);
-  }
-
-  &:disabled {
-    background-color: #e0e0e0;
-    cursor: not-allowed;
-    opacity: 0.7;
-  }
-`;
-
-const PageInfo = styled.span`
-  font-family: "Inter", sans-serif;
-  color: #666;
-  font-size: 0.9rem;
-  font-weight: 500;
 `;
 
 const SignpostAssembly = styled.div`
