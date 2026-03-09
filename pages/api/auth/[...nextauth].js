@@ -57,9 +57,10 @@ export const authOptions = {
           select: { role: true }
         });
 
+        console.log("DB User gefunden:", dbUser);
         session.user.role = dbUser?.role || "Besucher";
       } catch (error) {
-        console.error("Fehler beim Holen der Rolle:", error);
+        console.error("Prisma Fehler in Session:", error);
         session.user.role = "Besucher";
       }
       return session;
