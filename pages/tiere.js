@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import NextImage from "next/image";
 
 import XPIcon from "../components/icons/XPIcon";
 import PriceDisplay from "../components/icons/PriceDisplay";
@@ -54,6 +55,23 @@ const translations = {
     loading: "Getting animals from the shelter...",
     noResults: "No animal found with this name...",
   },
+};
+
+const habitatColors = {
+  gras: { main: "#47610d" },
+  steppe: { main: "#924722" },
+  wald: { main: "#224c0b" },
+  berg: { main: "#39525e"},
+  savanne: { main: "#c66f12" },
+  dschungel: { main: "#4c7c07" },
+  eis: { main: "#066eb8" },
+  wasser: { main: "#4634c1" },
+  blattdickicht: { main: "#779d59" },
+  felsenwueste: { main: "#dcbc5d" },
+  süsswasser: { main: "#71fef8" },
+  salzwasser: { main: "#603bde" },
+  noctarium: { main: "#a540a2" },
+  default: { main: "#666666" }
 };
 
 export default function TiereUebersicht() {
@@ -148,7 +166,9 @@ export default function TiereUebersicht() {
             setCurrentPage(1);
           }}
         >
-          <option value="Alle">{t.allEnclosures} ({tiere.length})</option>
+          <option value="Alle">
+            {t.allEnclosures} ({tiere.length})
+          </option>
 
           {[...new Set(tiere.map((t) => t.gehege?.name))]
             .filter(Boolean)
@@ -218,8 +238,16 @@ export default function TiereUebersicht() {
                     </TierInfoCell>
                   </td>
                   <td>
-                    <GehegeBadge>
-                      {tier.gehege?.name || "Kein Gehege"}
+                    <GehegeBadge $type={tier.gehege?.name}>
+                      {tier.gehege?.name && (
+                        <NextImage
+                          src={`/images/gehege/icons/${tier.gehege.name.toLowerCase()}.webp`}
+                          alt={tier.gehege.name}
+                          width={20}
+                          height={20}
+                        />
+                      )}
+
                     </GehegeBadge>
                   </td>
                   <td>
@@ -276,13 +304,14 @@ export default function TiereUebersicht() {
             direction="prev"
             onClick={handlePrev}
             disabled={currentPage === 1}
-          >
-          </SignpostButton>
+          ></SignpostButton>
 
           {/* MITTELPFOSTEN MIT INFO */}
           <PageIndicator>
             <div>
-              {currentPage} <small style={{ fontSize: "1rem", opacity: 0.5 }}>/</small> {totalPages}
+              {currentPage}{" "}
+              <small style={{ fontSize: "1rem", opacity: 0.5 }}>/</small>{" "}
+              {totalPages}
             </div>
           </PageIndicator>
 
@@ -291,8 +320,7 @@ export default function TiereUebersicht() {
             direction="next"
             onClick={handleNext}
             disabled={currentPage === totalPages}
-          >
-          </SignpostButton>
+          ></SignpostButton>
         </SignpostAssembly>
       )}
     </PageWrapper>
@@ -351,13 +379,55 @@ const DesktopOnlyTd = styled.td`
   }
 `;
 
-const GehegeBadge = styled.span`
-  background: #e2f2e2;
-  color: #2d5a27;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 0.85rem;
+const GehegeBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 14px; /* Etwas mehr Padding für den "Pille"-Look */
+  border-radius: 20px; /* Schön abgerundet */
+  
+  /* NEU: Wir nutzen die Upjers-Farbe als BASIS */
+  /* Das "main" aus habitatColors ist deine Originalfarbe */
+  /* Wir fügen "33" hinzu für ca. 20% Deckkraft (Transparenz) */
+  background-color: ${(props) =>
+  (habitatColors[props.$type?.toLowerCase()]?.main || habitatColors.default.main) + "33"};
+  
+  /* NEU: Ein Rand in der VOLLEN Upjers-Farbe für Definition */
+  border: 2px solid ${(props) =>
+  habitatColors[props.$type?.toLowerCase()]?.main || habitatColors.default.main};
+  
+  /* NEU: Der Text wird DUNKLER, passend zum braunen Icon */
+  /* Ein dunkles Zoo-Grün oder Braun passt hier perfekt */
+  color: #3e2723; /* Dunkles Braun, passend zu den Icons */
+  
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  
+  /* Ein sehr dezenter innerer Schatten für plastische Wirkung */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  span {
+    /* Optional: Text etwas schöner formatieren */
+    letter-spacing: 0.3px;
+  }
+
+  img {
+    /* WICHTIG: Das Icon bleibt BRAUN! */
+    /* Wir entfernen alle filter-Spielereien */
+    
+    /* Das Icon ein bisschen tiefer setzen für die optische Mitte */
+    margin-top: 1px;
+    
+    /* Ein minimaler drop-shadow, damit es sich vom 
+       farbigen Hintergrund abhebt */
+    filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.6));
+  }
 `;
+
 
 const ActionGroup = styled.div`
   display: flex;
@@ -371,7 +441,7 @@ const SearchInput = styled.input`
   max-width: 400px;
   padding: 12px 16px;
   font-size: 1rem;
-  border: 2px solid #e0e7d5; /* Ein ganz helles Zoo-Grün */
+  border: 2px solid #e0e7d5; 
   border-radius: 12px;
   background-color: white;
   color: #333;
