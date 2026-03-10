@@ -52,7 +52,7 @@ export const authOptions = {
     async session({ session }) {
       try {
         // Rolle mit Prisma holen
-        const dbUser = await prisma.users.findUnique({
+        const dbUser = await prisma.users.findFirst({
           where: { email: session.user.email },
           select: { role: true }
         });
