@@ -1,19 +1,36 @@
 import React from "react";
 import styled from "styled-components";
+import NextImage from "next/image";
 
 export default function DeleteButton(){
   return (
-    <StyledButton title="Delete">🗑️</StyledButton>
+    <StyledButton title="Delete">
+      <NextImage
+        src="/images/icons/trash.webp"
+        alt="Löschen"
+        width={24}
+        height={24}
+      />
+    </StyledButton>
   );
 }
-
 
 const StyledButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.2rem;
-  color: #ef4444;
-  transition: transform 0.1s;
-  &:hover { transform: scale(1.2); }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: filter 0.2s, transform 0.1s;
+
+  &:hover {
+    filter: brightness(1.3) drop-shadow(0 0 3px rgba(0,0,0,0.2));
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
