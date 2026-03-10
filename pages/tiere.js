@@ -67,7 +67,7 @@ const habitatColors = {
   eis: { main: "#066eb8" },
   wasser: { main: "#4634c1" },
   blattdickicht: { main: "#779d59" },
-  felsenwueste: { main: "#dcbc5d" },
+  felsenwüste: { main: "#dcbc5d" },
   süsswasser: { main: "#71fef8" },
   salzwasser: { main: "#603bde" },
   noctarium: { main: "#a540a2" },
@@ -515,25 +515,17 @@ const PageIndicator = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-
-  /* Diese Maße passen gut zu der 16:9 Optik deines Bildes */
+  
   width: 150px;
   height: 60px;
-
-  /* Ein kleiner negativer Margin oben schiebt die Tafel 
-     optisch näher an die Wegweiser-Linie */
   margin-top: -10px;
-
-  /* Falls der Text nicht ganz mittig im gelben Bereich sitzt, 
-     kannst du hier mit padding nachjustieren */
   padding-bottom: 5px;
 
   div {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 900;
-    color: #2d5a27; /* Sattes Zoo-Grün */
+    color: #2d5a27;
     font-family: 'Playfair Display', serif;
-    /* Ein ganz dezenter Schatten macht die Zahlen auf Gelb besser lesbar */
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
   }
 `;
@@ -546,10 +538,9 @@ const GehegeSelect = styled.select`
   background-color: white;
   color: #333;
   cursor: pointer;
-  min-width: 220px; /* Damit das Dropdown nicht springt, wenn die Zahlen zweistellig werden */
+  min-width: 220px;
   transition: all 0.2s;
-
-  /* Ein schöneres Pfeil-Icon für das Dropdown (optional) */
+  
   appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%238dbd5b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
@@ -574,6 +565,6 @@ const ResultsInfo = styled.p`
   font-family: "Inter", sans-serif;
 
   strong {
-    color: #2d5a27; /* Ein dunkleres Zoo-Grün */
+    color: #2d5a27;
   }
 `;
