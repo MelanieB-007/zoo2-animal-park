@@ -7,10 +7,12 @@ import styled from 'styled-components';
  * @param {number} size - Optionale Größe (Standard: 20px).
  */
 export default function ZoodollarIcon({ value, size = 20 }) {
+  const displayValue = (value !== undefined && value !== null) ? value : null;
+
   return (
     <ZoodollarWrapper>
-      {value && <ZoodollarValue>
-        {value.toLocaleString()}
+      {displayValue && <ZoodollarValue>
+        {displayValue.toLocaleString()}
       </ZoodollarValue>}
       <ZoodollarImage
         src="/images/currency/zoodollar.webp"
