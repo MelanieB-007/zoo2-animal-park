@@ -258,7 +258,13 @@ export default function TiereUebersicht() {
                   </td>
                   <td>
                     <span style={{ fontWeight: "bold" }}>
-                      Lvl {tier.stalllevel}
+                     <NextImage
+                       src={`/images/gehege/stall/${tier.gehege.name.toLowerCase()}.png`}
+                       alt={tier.stalllevel}
+                       width={55}
+                       height={55}
+                       />
+                      {tier.stalllevel}
                     </span>
                   </td>
                   <DesktopOnlyTd>
