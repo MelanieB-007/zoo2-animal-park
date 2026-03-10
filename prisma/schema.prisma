@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../lib/generated/client"
 }
 
 datasource db {
@@ -208,7 +207,7 @@ model tierherkunft {
 model users {
   id         String    @id @db.VarChar(255)
   name       String?   @db.VarChar(255)
-  email      String?   @db.VarChar(255)
+  email      String?   @unique @db.VarChar(255)
   image      String?   @db.Text
   role       String    @default("Besucher") @db.VarChar(20)
   last_login DateTime? @default(now()) @db.DateTime(0)

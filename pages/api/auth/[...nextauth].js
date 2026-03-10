@@ -1,6 +1,12 @@
 import NextAuth from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
-import {query} from "../../../lib/db";
+import { PrismaClient } from "@prisma/client";
+
+// Damit wir nicht bei jedem Request eine neue Verbindung öffnen (Wichtig für Next.js!)
+const prisma = global.prisma || new PrismaClient();
+if (process.env.NODE_ENV !== "production") global.prisma = prisma;
+
+export { prisma };
 
 export const authOptions = {
   providers: [
@@ -19,48 +25,48 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn({ user, profile }) {
       try {
-        // Wir speichern oder aktualisieren den User in der MySQL DB
-        // ON DUPLICATE KEY UPDATE sorgt dafür, dass wir den User nicht doppelt anlegen,
-        // sondern nur das Bild oder den Namen aktualisieren, falls er sich bei Discord ändert.
-        await query({
-          query: `
-                        INSERT INTO users (id, name, email, image)
-                        VALUES (?, ?, ?, ?)
-                        ON DUPLICATE KEY UPDATE name       = VALUES(name),
-                                                image      = VALUES(image),
-                                                last_login = CURRENT_TIMESTAMP
-                    `,
-          values: [user.id, user.name, user.email, user.image],
+        // Wir nutzen Prisma upsert: Update falls vorhanden, sonst Create
+        await prisma.users.upsert({
+          where: { id: user.id },
+          update: {
+            name: user.name,
+            image: user.image,
+            // Falls du ein Feld 'last_login' hast, kannst du es hier updaten
+          },
+          create: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            image: user.image,
+          },
         });
-
-        return true; // Login erlauben
+        return true;
       } catch (error) {
         console.error("Datenbank-Fehler beim Login:", error);
         return true;
       }
     },
 
-    async session({ session, token }) {
+    async session({ session }) {
       try {
-        const results = await query({
-          query: "SELECT role FROM users WHERE email = ? LIMIT 1",
-          values: [session.user.email],
+        // Rolle mit Prisma holen
+        const dbUser = await prisma.users.findFirst({
+          where: { email: session.user.email },
+          select: { role: true }
         });
 
-        if (results.length > 0) {
-          session.user.role = results[0].role;
-        } else {
-          session.user.role = "Besucher";
-        }
+        console.log("DB User gefunden:", dbUser);
+        session.user.role = dbUser?.role || "Besucher";
       } catch (error) {
-        console.error("Fehler beim Holen der Rolle:", error);
+        console.error("Prisma Fehler in Session:", error);
         session.user.role = "Besucher";
       }
       return session;
     },
   },
+
   secret: process.env.NEXTAUTH_SECRET,
 };
 
