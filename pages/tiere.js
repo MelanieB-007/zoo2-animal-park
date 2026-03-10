@@ -76,17 +76,23 @@ export default function TiereUebersicht() {
     fetch("/api/tiere")
       .then((res) => res.json())
       .then((data) => {
-        setTiere(data);
+        if (Array.isArray(data)) {
+          setTiere(data);
+        } else {
+          console.error("Erwartete Array, erhielt:", data);
+          setTiere([]); // Fallback auf leeres Array
+        }
         setLoading(false);
       })
       .catch((err) => {
         console.error("Fehler beim Laden:", err);
+        setTiere([]);
         setLoading(false);
       });
   }, []);
 
   // 1. Filtern basierend auf der Suche
-  const filteredTiere = tiere.filter((tier) => {
+  const filteredTiere = (tiere || []).filter((tier) => {
     const matchesSearch = tier.name
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
@@ -115,7 +121,7 @@ export default function TiereUebersicht() {
   if (loading) {
     return (
       <LoadingWrapper>
-        placeholder={t.searchPlaceholder} 🐾
+        {t.searchPlaceholder} 🐾
       </LoadingWrapper>
     );
   }
@@ -127,7 +133,7 @@ export default function TiereUebersicht() {
       <FilterBar>
         <SearchInput
           type="text"
-          placeholder={t.noResults}
+          placeholder={t.searchPlaceholder}
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
@@ -178,7 +184,7 @@ export default function TiereUebersicht() {
 
       <ResultsInfo>
         {t.resultsShow} <strong>{currentItems.length}</strong> {t.resultsOf}
-        <strong>{filteredTiere.length}</strong> {t.resultsAnimals}
+        <strong> {filteredTiere.length}</strong> {t.resultsAnimals}
       </ResultsInfo>
 
       <TableFrame>
@@ -271,22 +277,12 @@ export default function TiereUebersicht() {
             onClick={handlePrev}
             disabled={currentPage === 1}
           >
-            <SignpostLabel direction="prev">ZURÜCK</SignpostLabel>
           </SignpostButton>
 
           {/* MITTELPFOSTEN MIT INFO */}
           <PageIndicator>
-            <span
-              style={{
-                fontSize: "0.8rem",
-                textTransform: "uppercase",
-                letterSpacing: "1px",
-              }}
-            >
-              Register
-            </span>
-            <div style={{ fontSize: "1.5rem", fontWeight: "900" }}>
-              {currentPage} / {totalPages}
+            <div>
+              {currentPage} <small style={{ fontSize: "1rem", opacity: 0.5 }}>/</small> {totalPages}
             </div>
           </PageIndicator>
 
@@ -296,7 +292,6 @@ export default function TiereUebersicht() {
             onClick={handleNext}
             disabled={currentPage === totalPages}
           >
-            <SignpostLabel direction="next">WEITER</SignpostLabel>
           </SignpostButton>
         </SignpostAssembly>
       )}
@@ -401,13 +396,12 @@ const SignpostAssembly = styled.div`
   align-items: flex-end; /* Richtet Schilder an der Unterkante aus */
   gap: 40px;
   margin-top: 40px;
-  padding-bottom: 50px;
 `;
 
 const SignpostButton = styled.button`
   position: relative;
-  width: 180px;
-  height: 85px;
+  width: 160px;
+  height: 65px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -417,7 +411,7 @@ const SignpostButton = styled.button`
   transition: all 0.2s ease-in-out;
 
   /* Das Bild von Plexi als Hintergrund */
-  background-image: url("/images/wegweiser.png");
+  background-image: url("/images/icons/wegweiser-rechts.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -441,42 +435,36 @@ const SignpostButton = styled.button`
   }
 `;
 
-const SignpostLabel = styled.span`
-  font-family: "Playfair Display", serif;
-  font-weight: 900;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  font-size: 1.1rem;
-  z-index: 2;
-
-  /* Text beim Zurück-Button wieder lesbar machen */
-  ${(props) =>
-    props.direction === "prev" &&
-    `
-    transform: scaleX(-1);
-  `}
-`;
-
 const PageIndicator = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Inter", sans-serif;
-  color: #1a331a;
-  padding-bottom: 10px;
+  justify-content: center;
 
-  /* Der Holzpfosten, an dem die Schilder "hängen" */
+  background-image: url("/images/icons/Holztafel.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 
-  &::before {
-    content: "";
-    width: 16px;
-    height: 120px;
-    background: linear-gradient(90deg, #5d3a1a 0%, #3e2711 100%);
-    border-radius: 4px;
-    position: absolute;
-    z-index: -1;
-    transform: translateY(-20px);
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  /* Diese Maße passen gut zu der 16:9 Optik deines Bildes */
+  width: 150px;
+  height: 60px;
+
+  /* Ein kleiner negativer Margin oben schiebt die Tafel 
+     optisch näher an die Wegweiser-Linie */
+  margin-top: -10px;
+
+  /* Falls der Text nicht ganz mittig im gelben Bereich sitzt, 
+     kannst du hier mit padding nachjustieren */
+  padding-bottom: 5px;
+
+  div {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #2d5a27; /* Sattes Zoo-Grün */
+    font-family: 'Playfair Display', serif;
+    /* Ein ganz dezenter Schatten macht die Zahlen auf Gelb besser lesbar */
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
   }
 `;
 
