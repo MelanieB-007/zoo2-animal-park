@@ -14,27 +14,31 @@ const StyledMain = styled.main`
   margin: 0 auto;
   width: 100%;
   max-width: var(--width-page);
-  padding: 3rem 2rem;
+  padding: 3rem 2rem 1.5rem 2rem;
   min-height: calc(100vh - 300px);
   z-index: 1;
   overflow: visible;
-  
+
   background-color: var(--color-yellow-light);
   backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-soft);
-  
+
   & > * {
     margin-bottom: 3rem;
   }
+  
+  & > *:last-child {
+    margin-bottom: 0;
+  }
 
   @media (max-width: 1200px) {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 1rem 1rem;
   }
 
   @media (max-width: 768px) {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 1rem 1rem;
     margin: 8px auto;
     min-height: auto;
   }
