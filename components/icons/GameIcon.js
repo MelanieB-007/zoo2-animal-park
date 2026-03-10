@@ -11,8 +11,6 @@ export default function GameIcon({ type, fileName, size = 50, bordercolor = "#4c
       <StyledImage
         src={imagePath}
         alt={fileName}
-        // onError={(e) =>
-        // { e.target.src = '/images/placeholder.png'; }}
       />
     </IconFrame>
   );
@@ -31,7 +29,7 @@ const IconFrame = styled.div`
   display: flex;        
   overflow: hidden;     
   
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+  box-shadow: 2px 2px 6px rgba( 0, 0, 0, 0.15);
 `;
 
 const StyledImage = styled.img`
@@ -41,5 +39,5 @@ const StyledImage = styled.img`
   object-fit: cover;    
   object-position: center; 
   
-  -webkit-backface-visibility: hidden; // Verhindert leichtes Flackern bei manchen Browsern an abgerundeten Ecken
+  -webkit-backface-visibility: hidden;
 `;

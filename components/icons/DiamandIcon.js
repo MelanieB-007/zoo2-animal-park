@@ -7,18 +7,19 @@ import styled from 'styled-components';
  * @param {number} size - Optionale Größe (Standard: 20px).
  */
 export default function DiamandIcon({ value, size = 20 }) {
+  const displayValue = (value !== undefined && value !== null) ? value : null;
+
   return (
     <DiamandWrapper>
-      {value && <DiamandValue>
-        {value.toLocaleString()}
-      </DiamandValue>}
+      {displayValue && <DiamandValue>
+        {displayValue.toLocaleString()}
+        </DiamandValue>}
       <DiamandImage
         src="/images/currency/diamant.webp"
-        alt="Diamand"
+        alt="Diamant"
         width={size}
         height={size}
       />
-
     </DiamandWrapper>
   );
 }

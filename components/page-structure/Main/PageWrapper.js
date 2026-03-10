@@ -9,7 +9,7 @@ const StyledPageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding: 40px 20px;
+  padding: 20px 20px;
   
   background-color: var(--color-lime);
   border: 2px solid var(--color-petrol-darker);

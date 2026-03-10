@@ -14,7 +14,7 @@ const StyledMain = styled.main`
   margin: 0 auto;
   width: 100%;
   max-width: var(--width-page);
-  padding: 3rem 2rem 1.5rem 2rem;
+  padding: 2rem;
   min-height: calc(100vh - 300px);
   z-index: 1;
   overflow: visible;

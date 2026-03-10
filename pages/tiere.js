@@ -26,7 +26,7 @@ const translations = {
     tableSpecies: "Tierart",
     tableEnclosure: "Gehege",
     tablePrice: "Preis",
-    tableStall: "Stall-Lvl",
+    tableStall: "Stall-Level",
     tableSell: "Verkauf",
     tableRelease: "Auswild.",
     actions: "Aktionen",
@@ -61,7 +61,7 @@ const habitatColors = {
   gras: { main: "#47610d" },
   steppe: { main: "#924722" },
   wald: { main: "#224c0b" },
-  berg: { main: "#39525e"},
+  berg: { main: "#39525e" },
   savanne: { main: "#c66f12" },
   dschungel: { main: "#4c7c07" },
   eis: { main: "#066eb8" },
@@ -71,7 +71,7 @@ const habitatColors = {
   süsswasser: { main: "#71fef8" },
   salzwasser: { main: "#603bde" },
   noctarium: { main: "#a540a2" },
-  default: { main: "#666666" }
+  default: { main: "#666666" },
 };
 
 export default function TiereUebersicht() {
@@ -109,7 +109,7 @@ export default function TiereUebersicht() {
       });
   }, []);
 
-  // 1. Filtern basierend auf der Suche
+  // Filtern basierend auf der Suche
   const filteredTiere = (tiere || []).filter((tier) => {
     const matchesSearch = tier.name
       .toLowerCase()
@@ -137,11 +137,7 @@ export default function TiereUebersicht() {
   const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
   if (loading) {
-    return (
-      <LoadingWrapper>
-        {t.searchPlaceholder} 🐾
-      </LoadingWrapper>
-    );
+    return <LoadingWrapper>{t.searchPlaceholder} 🐾</LoadingWrapper>;
   }
 
   return (
@@ -213,7 +209,7 @@ export default function TiereUebersicht() {
             <tr>
               <th>{t.tableSpecies}</th>
               <th>{t.tableEnclosure}</th>
-              <th>{t.tablePrice}</th>
+              <RightAlignedTh>{t.tablePrice}</RightAlignedTh>
               <th>{t.tableStall}</th>
               <DesktopOnlyTh>XP</DesktopOnlyTh>
               <DesktopOnlyTh>{t.tableSell}</DesktopOnlyTh>
@@ -227,10 +223,14 @@ export default function TiereUebersicht() {
                 <AnimalRow key={tier.id}>
                   <td>
                     <TierInfoCell>
-                      <GameIcon
-                        type={`tiere/${(tier.gehege?.name || "standard").toLowerCase()}`}
-                        fileName={tier.bild || "default.jpg"}
-                      />
+                      <TierThumbnail $type={tier.gehege?.name}>
+                        <GameIcon
+                          type={`tiere/${(tier.gehege?.name || "standard").toLowerCase()}`}
+                          fileName={tier.bild || "default.jpg"}
+                          bordercolor="transparent"
+                        />
+                      </TierThumbnail>
+
                       <div>
                         <NameDE>{tier.name}</NameDE>
                         <NameEN>{tier.nameEn}</NameEN>
@@ -247,25 +247,25 @@ export default function TiereUebersicht() {
                           height={20}
                         />
                       )}
-
                     </GehegeBadge>
                   </td>
-                  <td>
+                  <RightAlignedTd>
                     <PriceDisplay
                       value={tier.preis}
                       type={tier.preisart?.name.toLowerCase() || "gold"}
                     />
-                  </td>
+                  </RightAlignedTd>
+
                   <td>
-                    <span style={{ fontWeight: "bold" }}>
-                     <NextImage
-                       src={`/images/gehege/stall/${tier.gehege.name.toLowerCase()}.png`}
-                       alt={tier.stalllevel}
-                       width={55}
-                       height={55}
-                       />
-                      {tier.stalllevel}
-                    </span>
+                    <StallContainer>
+                      <GameIcon
+                        type="gehege/stall"
+                        fileName={`${tier.gehege?.name.toLowerCase()}.png`}
+                      />
+                      <LevelBadgeCircle>
+                        {tier.stalllevel}
+                      </LevelBadgeCircle>
+                    </StallContainer>
                   </td>
                   <DesktopOnlyTd>
                     <XPIcon
@@ -333,7 +333,6 @@ export default function TiereUebersicht() {
   );
 }
 
-
 const TableFrame = styled.div`
   background: white;
   border: 2px solid #4ca64c;
@@ -373,13 +372,51 @@ const AnimalRow = styled.tr`
   }
 `;
 
+const TierThumbnail = styled.div`
+  position: relative;
+  width: 55px;
+  height: 55px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  border: 3px solid
+    ${(props) => 
+            habitatColors[props.$type?.toLowerCase()]?.main || "#8dbd5b"};
+
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  z-index: 1;
+
+  &:hover {
+    transform: scale(1.5); 
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+`;
+
 const DesktopOnlyTh = styled.th`
+  text-align: right !important;
+  padding-right: 20px !important; 
+
   @media (max-width: 1024px) {
     display: none;
   }
 `;
 
 const DesktopOnlyTd = styled.td`
+  text-align: right;
+  padding-right: 20px !important; 
+
   @media (max-width: 1024px) {
     display: none;
   }
@@ -390,64 +427,53 @@ const GehegeBadge = styled.div`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 6px 14px; /* Etwas mehr Padding für den "Pille"-Look */
-  border-radius: 20px; /* Schön abgerundet */
+  padding: 6px 14px; 
+  border-radius: 20px; 
   
-  /* NEU: Wir nutzen die Upjers-Farbe als BASIS */
-  /* Das "main" aus habitatColors ist deine Originalfarbe */
+  /* Das "main" aus habitatColors ist die Originalfarbe */
   /* Wir fügen "33" hinzu für ca. 20% Deckkraft (Transparenz) */
   background-color: ${(props) =>
-  (habitatColors[props.$type?.toLowerCase()]?.main || habitatColors.default.main) + "33"};
+    (habitatColors[props.$type?.toLowerCase()]?.main ||
+      habitatColors.default.main) + "33"};
   
-  /* NEU: Ein Rand in der VOLLEN Upjers-Farbe für Definition */
-  border: 2px solid ${(props) =>
-  habitatColors[props.$type?.toLowerCase()]?.main || habitatColors.default.main};
+  border: 2px solid
+    ${(props) =>
+      habitatColors[props.$type?.toLowerCase()]?.main ||
+      habitatColors.default.main};
   
-  /* NEU: Der Text wird DUNKLER, passend zum braunen Icon */
-  /* Ein dunkles Zoo-Grün oder Braun passt hier perfekt */
-  color: #3e2723; /* Dunkles Braun, passend zu den Icons */
-  
+  color: #3e2723; 
+
   font-weight: 800;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;
   
-  /* Ein sehr dezenter innerer Schatten für plastische Wirkung */
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.05);
 
   span {
-    /* Optional: Text etwas schöner formatieren */
     letter-spacing: 0.3px;
   }
 
   img {
-    /* WICHTIG: Das Icon bleibt BRAUN! */
-    /* Wir entfernen alle filter-Spielereien */
-    
-    /* Das Icon ein bisschen tiefer setzen für die optische Mitte */
     margin-top: 1px;
-    
-    /* Ein minimaler drop-shadow, damit es sich vom 
-       farbigen Hintergrund abhebt */
     filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.6));
   }
 `;
-
 
 const ActionGroup = styled.div`
   display: flex;
   gap: 10px;
 `;
 
-
-
 const SearchInput = styled.input`
   width: 100%;
   max-width: 400px;
   padding: 12px 16px;
   font-size: 1rem;
-  border: 2px solid #e0e7d5; 
+  border: 2px solid #e0e7d5;
   border-radius: 12px;
   background-color: white;
   color: #333;
@@ -456,7 +482,7 @@ const SearchInput = styled.input`
 
   &:focus {
     outline: none;
-    border-color: #8dbd5b; /* Dein Badge-Grün */
+    border-color: #8dbd5b; 
     box-shadow: 0 0 0 4px rgba(141, 189, 91, 0.1);
     transform: translateY(-1px);
   }
@@ -469,7 +495,7 @@ const SearchInput = styled.input`
 const SignpostAssembly = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-end; /* Richtet Schilder an der Unterkante aus */
+  align-items: flex-end; 
   gap: 40px;
   margin-top: 40px;
 `;
@@ -485,24 +511,23 @@ const SignpostButton = styled.button`
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease-in-out;
-
-  /* Das Bild von Plexi als Hintergrund */
+  
   background-image: url("/images/icons/wegweiser-rechts.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-
-  /* Zurück-Button nach links drehen */
 
   ${(props) =>
     props.direction === "prev" &&
     `
     transform: scaleX(-1);
   `}
+  
   &:hover:not(:disabled) {
     filter: brightness(1.1) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
     transform: translateY(-5px)
-      ${(props) => (props.direction === "prev" ? "scaleX(-1)" : "scale(1.05)")};
+      ${(props) => 
+              (props.direction === "prev" ? "scaleX(-1)" : "scale(1.05)")};
   }
 
   &:disabled {
@@ -521,7 +546,7 @@ const PageIndicator = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  
+
   width: 150px;
   height: 60px;
   margin-top: -10px;
@@ -531,13 +556,13 @@ const PageIndicator = styled.div`
     font-size: 1.2rem;
     font-weight: 900;
     color: #2d5a27;
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
   }
 `;
 
 const GehegeSelect = styled.select`
-  padding: 12px 16px;
+  padding: 12px 40px 12px 16px;
   font-size: 1rem;
   border: 2px solid #e0e7d5;
   border-radius: 12px;
@@ -546,13 +571,12 @@ const GehegeSelect = styled.select`
   cursor: pointer;
   min-width: 220px;
   transition: all 0.2s;
-  
+
   appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%238dbd5b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 16px;
-  padding-right: 40px;
 
   &:focus {
     outline: none;
@@ -573,4 +597,52 @@ const ResultsInfo = styled.p`
   strong {
     color: #2d5a27;
   }
+`;
+
+const StallContainer = styled.div`
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+
+  &:hover {
+    transform: scale(1.1);
+    z-index: 10;
+  }
+`;
+
+const LevelBadgeCircle = styled.div`
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background: #4ca64c;
+  border: 2px solid white;
+  border-radius: 50%;
+  
+  color: white;
+  font-weight: 900;
+  font-size: 0.85rem;
+  font-family: "Arial", sans-serif;
+  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+`;
+
+const RightAlignedTh = styled.th`
+  text-align: right !important;
+  width: 120px;
+  padding-right: 20px !important; 
+`;
+
+const RightAlignedTd = styled.td`
+  text-align: right;
 `;
