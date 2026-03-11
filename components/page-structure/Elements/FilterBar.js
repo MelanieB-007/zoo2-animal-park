@@ -8,48 +8,53 @@ export default function FilterBar({
   setSelectedGehege,
   selectedLevel,
   setSelectedLevel,
+  setCurrentPage,
   tiere = [],
   translation,
   showGehegeFilter = true,
   showLevelFilter = true,
 }) {
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    if (setCurrentPage) setCurrentPage(1);
+  };
+
+  const handleGehege = (e) => {
+    setSelectedGehege(e.target.value);
+    if (setCurrentPage) setCurrentPage(1);
+  };
+
+  const handleLevel = (e) => {
+    setSelectedLevel(e.target.value);
+    if (setCurrentPage) setCurrentPage(1);
+  };
+
   return (
     <StyledFilterBar>
       <SearchInput
         type="text"
         placeholder={translation.searchPlaceholder}
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={handleSearch}
       />
 
       {showGehegeFilter && (
-        <GehegeSelect
-          value={selectedGehege}
-          onChange={(e) => setSelectedGehege(e.target.value)}
-        >
+        <GehegeSelect value={selectedGehege} onChange={handleGehege}>
           <option value="Alle">
             {translation.allEnclosures} ({tiere.length})
           </option>
           {[...new Set(tiere.map((tier) => tier.gehege?.name))]
             .filter(Boolean)
-            .map((name) => {
-              const count = tiere.filter(
-                (tier) => tier.gehege?.name === name
-              ).length;
-              return (
-                <option key={name} value={name}>
-                  {name} ({count})
-                </option>
-              );
-            })}
+            .map((name) => (
+              <option key={name} value={name}>
+                {name}
+              </option>
+            ))}
         </GehegeSelect>
       )}
 
       {showLevelFilter && (
-        <GehegeSelect
-          value={selectedLevel}
-          onChange={(e) => setSelectedLevel(e.target.value)}
-        >
+        <GehegeSelect value={selectedLevel} onChange={handleLevel}>
           <option value="Alle">{translation.allLevels}</option>
           {[...new Set(tiere.map((tier) => tier.stalllevel))]
             .filter((lvl) => lvl !== undefined && lvl !== null)
@@ -65,20 +70,19 @@ export default function FilterBar({
   );
 }
 
-
 const StyledFilterBar = styled.div`
   display: flex;
   gap: 20px;
   align-items: center;
   flex-wrap: wrap;
-  
+
   background: white;
-  padding: 20px; 
+  padding: 20px;
   margin-bottom: 25px;
 
   border: 2px solid #4ca64c;
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 `;
 
 const SearchInput = styled.input`

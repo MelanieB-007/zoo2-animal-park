@@ -33,11 +33,7 @@ export default function TiereUebersicht() {
   const [selectedGehege, setSelectedGehege] = useState("Alle");
   const [selectedLevel, setSelectedLevel] = useState("Alle");
 
-  const updateSearch = (val) => { setSearchTerm(val); setCurrentPage(1); };
-  const updateGehege = (val) => { setSelectedGehege(val); setCurrentPage(1); };
-  const updateLevel = (val) => { setSelectedLevel(val); setCurrentPage(1); };
   const itemsPerPage = 10;
-
 
   useEffect(() => {
     // Daten von der API abrufen
@@ -101,6 +97,7 @@ export default function TiereUebersicht() {
         setSelectedGehege={setSelectedGehege}
         selectedLevel={selectedLevel}
         setSelectedLevel={setSelectedLevel}
+        setCurrentPage={setCurrentPage}
         tiere={tiere}
         translation={translationsAnimals}
       />
