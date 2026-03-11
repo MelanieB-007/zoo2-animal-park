@@ -226,7 +226,11 @@ export default function TiereUebersicht() {
                   {t.tableSell}
                 </Tooltip>
               </DesktopOnlyTh>
-              <DesktopOnlyTh>{t.tableRelease}</DesktopOnlyTh>
+              <DesktopOnlyTh>
+                <Tooltip text="XP beim Auswildern des Tieres">
+                  {t.tableRelease}
+                </Tooltip>
+              </DesktopOnlyTh>
               <th style={{ textAlign: "center" }}>{t.actions}</th>
             </tr>
           </thead>
@@ -371,21 +375,25 @@ const ZooTable = styled.table`
   min-width: 600px;
 
   /* Die oberste linke Ecke runden */
+
   th:first-child {
     border-top-left-radius: calc(var(--border-radius) - 2px);
   }
 
   /* Die oberste rechte Ecke runden */
+
   th:last-child {
     border-top-right-radius: calc(var(--border-radius) - 2px);
   }
 
   /* Die unterste linke Ecke runden */
+
   tr:last-child td:first-child {
     border-bottom-left-radius: calc(var(--border-radius) - 2px);
   }
 
   /* Die unterste rechte Ecke runden */
+
   tr:last-child td:last-child {
     border-bottom-right-radius: calc(var(--border-radius) - 2px);
   }
