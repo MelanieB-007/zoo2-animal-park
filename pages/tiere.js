@@ -70,9 +70,13 @@ export default function TiereUebersicht() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedGehege, setSelectedGehege] = useState("Alle");
   const [selectedLevel, setSelectedLevel] = useState("Alle");
+
+  const updateSearch = (val) => { setSearchTerm(val); setCurrentPage(1); };
+  const updateGehege = (val) => { setSelectedGehege(val); setCurrentPage(1); };
+  const updateLevel = (val) => { setSelectedLevel(val); setCurrentPage(1); };
   const itemsPerPage = 10;
 
-  const t = translations[lang];
+  const translate = translations[lang];
 
   useEffect(() => {
     // Daten von der API abrufen
@@ -122,70 +126,27 @@ export default function TiereUebersicht() {
   const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
   if (loading) {
-    return <LoadingWrapper>{t.searchPlaceholder} 🐾</LoadingWrapper>;
+    return <LoadingWrapper>{translate.searchPlaceholder} 🐾</LoadingWrapper>;
   }
 
   return (
     <PageWrapper>
       <PageHeader />
 
-      <FilterBar>
-        <SearchInput
-          type="text"
-          placeholder={t.searchPlaceholder}
-          value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            setCurrentPage(1);
-          }}
-        />
-
-        <GehegeSelect
-          value={selectedGehege}
-          onChange={(e) => {
-            setSelectedGehege(e.target.value);
-            setCurrentPage(1);
-          }}
-        >
-          <option value="Alle">
-            {t.allEnclosures} ({tiere.length})
-          </option>
-
-          {[...new Set(tiere.map((t) => t.gehege?.name))]
-            .filter(Boolean)
-            .map((name) => {
-              const count = tiere.filter((t) => t.gehege?.name === name).length;
-
-              return (
-                <option key={name} value={name}>
-                  {name} ({count})
-                </option>
-              );
-            })}
-        </GehegeSelect>
-
-        <GehegeSelect
-          value={selectedLevel}
-          onChange={(e) => {
-            setSelectedLevel(e.target.value);
-            setCurrentPage(1);
-          }}
-        >
-          <option value="Alle">{t.allLevels}</option>
-          {[...new Set(tiere.map((t) => t.stalllevel))]
-            .filter((lvl) => lvl !== undefined && lvl !== null)
-            .sort((a, b) => a - b)
-            .map((lvl) => (
-              <option key={lvl} value={String(lvl)}>
-                Level {lvl}
-              </option>
-            ))}
-        </GehegeSelect>
-      </FilterBar>
+      <FilterBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        selectedGehege={selectedGehege}
+        setSelectedGehege={setSelectedGehege}
+        selectedLevel={selectedLevel}
+        setSelectedLevel={setSelectedLevel}
+        tiere={tiere}
+        translation={translate}
+      />
 
       <ResultsInfo>
-        {t.resultsShow} <strong>{currentItems.length}</strong> {t.resultsOf}
-        <strong> {filteredTiere.length}</strong> {t.resultsAnimals}
+        {translate.resultsShow} <strong>{currentItems.length}</strong> {translate.resultsOf}
+        <strong> {filteredTiere.length}</strong> {translate.resultsAnimals}
       </ResultsInfo>
 
       {currentItems.length > 0 ? (
@@ -193,12 +154,12 @@ export default function TiereUebersicht() {
           <ZooTable>
             <thead>
               <tr>
-                <th>{t.tableSpecies}</th>
-                <th>{t.tableEnclosure}</th>
-                <RightAlignedTh>{t.tablePrice}</RightAlignedTh>
+                <th>{translate.tableSpecies}</th>
+                <th>{translate.tableEnclosure}</th>
+                <RightAlignedTh>{translate.tablePrice}</RightAlignedTh>
                 <StyledTh>
                   <Tooltip text="Welches Level wird für dieses Tier benötigt?">
-                    {t.tableStall}
+                    {translate.tableStall}
                   </Tooltip>
                 </StyledTh>
                 <DesktopOnlyTh>
@@ -208,15 +169,15 @@ export default function TiereUebersicht() {
                 </DesktopOnlyTh>
                 <DesktopOnlyTh>
                   <Tooltip text="Preis beim Verkaufen des Tieres">
-                    {t.tableSell}
+                    {translate.tableSell}
                   </Tooltip>
                 </DesktopOnlyTh>
                 <DesktopOnlyTh>
                   <Tooltip text="XP beim Auswildern des Tieres">
-                    {t.tableRelease}
+                    {translate.tableRelease}
                   </Tooltip>
                 </DesktopOnlyTh>
-                <th style={{ textAlign: "center" }}>{t.actions}</th>
+                <th style={{ textAlign: "center" }}>{translate.actions}</th>
               </tr>
             </thead>
             <tbody>
@@ -290,7 +251,7 @@ export default function TiereUebersicht() {
                     colSpan="8"
                     style={{ textAlign: "center", padding: "20px" }}
                   >
-                    {t.noResults} 🐾
+                    {translate.noResults} 🐾
                   </td>
                 </tr>
               )}
