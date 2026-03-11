@@ -14,6 +14,7 @@ import LoadingWrapper from "../components/page-structure/Elements/LoadingWrapper
 import { NameDE } from "../components/page-structure/Elements/Name";
 import FilterBar from "../components/page-structure/Elements/FilterBar";
 import Tooltip from "../components/icons/Tooltip";
+import EmptyState from "../components/page-structure/Elements/EmptyState";
 
 const translations = {
   de: {
@@ -204,6 +205,7 @@ export default function TiereUebersicht() {
         <strong> {filteredTiere.length}</strong> {t.resultsAnimals}
       </ResultsInfo>
 
+      {currentItems.length === 0 ? (
       <TableFrame>
         <ZooTable>
           <thead>
@@ -324,6 +326,20 @@ export default function TiereUebersicht() {
           </tbody>
         </ZooTable>
       </TableFrame>
+      ) : (
+        <EmptyState
+          title="Oje, kein Tier da!"
+          message="Uppy hat überall gesucht, konnte aber nichts finden."
+          buttonText="Suche neu starten"
+          onReset={() => {
+            setSearchTerm("");
+            setSelectedGehege("Alle");
+            setSelectedLevel("Alle");
+            setCurrentPage(1);
+          }}
+        />
+      )}
+
       {totalPages > 1 && (
         <SignpostAssembly>
           <Tooltip text="Zurück">
@@ -550,6 +566,7 @@ const SignpostButton = styled.button`
   justify-content: center;
   transition: all 0.2s ease-in-out;
 
+  background-color: transparent;
   background-image: url("/images/icons/wegweiser-rechts.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -560,6 +577,7 @@ const SignpostButton = styled.button`
     `
     transform: scaleX(-1);
   `}
+  
   &:hover:not(:disabled) {
     filter: brightness(1.1) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
     transform: translateY(-5px)
