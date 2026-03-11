@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import NextImage from "next/image";
-import Tooltip from "./Tooltip";
+import Tooltip from "../ui/Tooltip";
 
 export default function EditButton({ tooltip, align }) {
   return (

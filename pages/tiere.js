@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import NextImage from "next/image";
 
 import XPIcon from "../components/icons/XPIcon";
 import PriceDisplay from "../components/icons/PriceDisplay";
@@ -13,8 +12,11 @@ import PageWrapper from "../components/page-structure/PageWrapper";
 import LoadingWrapper from "../components/page-structure/Elements/LoadingWrapper";
 import { NameDE } from "../components/page-structure/Elements/Name";
 import FilterBar from "../components/page-structure/Elements/FilterBar";
-import Tooltip from "../components/icons/Tooltip";
+import Tooltip from "../components/ui/Tooltip";
 import EmptyState from "../components/page-structure/Elements/EmptyState";
+import PaginationSignpost from "../components/ui/PaginationSignpost";
+import StallLevelBadge from "../components/page-structure/Elements/StallLevelBadge";
+import GehegeBadge from "../components/page-structure/Elements/GehegeBadge";
 
 const translations = {
   de: {
@@ -87,9 +89,6 @@ export default function TiereUebersicht() {
   const itemsPerPage = 10;
 
   const t = translations[lang];
-  const getAnimalName = (tier) => (lang === "de" ? tier.name : tier.nameEn);
-  const getEnclosureName = (tier) =>
-    tier.gehege?.name || (lang === "de" ? "Kein Gehege" : "No Enclosure");
 
   useEffect(() => {
     // Daten von der API abrufen
@@ -206,126 +205,114 @@ export default function TiereUebersicht() {
       </ResultsInfo>
 
       {currentItems.length > 0 ? (
-      <TableFrame>
-        <ZooTable>
-          <thead>
-            <tr>
-              <th>{t.tableSpecies}</th>
-              <th>{t.tableEnclosure}</th>
-              <RightAlignedTh>{t.tablePrice}</RightAlignedTh>
-              <StyledTh>
-                <Tooltip text="Welches Level wird für dieses Tier benötigt?">
-                  {t.tableStall}
-                </Tooltip>
-              </StyledTh>
-              <DesktopOnlyTh>
-                <Tooltip text="XP insgesamt - Füttern, Putzen, Spielen">
-                  XP
-                </Tooltip>
-              </DesktopOnlyTh>
-              <DesktopOnlyTh>
-                <Tooltip text="Preis beim Verkaufen des Tieres">
-                  {t.tableSell}
-                </Tooltip>
-              </DesktopOnlyTh>
-              <DesktopOnlyTh>
-                <Tooltip text="XP beim Auswildern des Tieres">
-                  {t.tableRelease}
-                </Tooltip>
-              </DesktopOnlyTh>
-              <th style={{ textAlign: "center" }}>{t.actions}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentItems.length > 0 ? (
-              currentItems.map((tier) => (
-                <AnimalRow key={tier.id}>
-                  <td>
-                    <TierInfoCell>
-                      <TierThumbnail $type={tier.gehege?.name}>
-                        <GameIcon
-                          type={`tiere/${(tier.gehege?.name || "standard").toLowerCase()}`}
-                          fileName={tier.bild || "default.jpg"}
-                          bordercolor="transparent"
-                        />
-                      </TierThumbnail>
-
-                      <div>
-                        <NameDE>{tier.name}</NameDE>
-                      </div>
-                    </TierInfoCell>
-                  </td>
-                  <td>
-                    <Tooltip text={`${tier.gehege.name} Gehege`}>
-                      <GehegeBadge $type={tier.gehege?.name}>
-                        {tier.gehege?.name && (
-                          <NextImage
-                            src={`/images/gehege/icons/${tier.gehege.name.toLowerCase()}.webp`}
-                            alt={tier.gehege.name}
-                            width={20}
-                            height={20}
-                          />
-                        )}
-                      </GehegeBadge>
-                    </Tooltip>
-                  </td>
-                  <RightAlignedTd>
-                    <PriceDisplay
-                      value={tier.preis}
-                      type={tier.preisart?.name.toLowerCase() || "gold"}
-                    />
-                  </RightAlignedTd>
-
-                  <td>
-                    <Tooltip
-                      text={`Benötigtes Stall-Level: ${tier.stalllevel}`}
-                      position="bottom"
-                    >
-                      <StallContainer>
-                        <GameIcon
-                          type="gehege/stall"
-                          fileName={`${tier.gehege?.name.toLowerCase()}.png`}
-                        />
-                        <LevelBadgeCircle>{tier.stalllevel}</LevelBadgeCircle>
-                      </StallContainer>
-                    </Tooltip>
-                  </td>
-                  <DesktopOnlyTd>
-                    <XPIcon
-                      label={
-                        (tier.xpfuettern || 0) +
-                        (tier.xpspielen || 0) +
-                        (tier.xpputzen || 0)
-                      }
-                    />
-                  </DesktopOnlyTd>
-                  <DesktopOnlyTd>
-                    <ZoodollarIcon value={tier.verkaufswert} />
-                  </DesktopOnlyTd>
-                  <DesktopOnlyTd>
-                    <XPIcon label={tier.auswildern} />
-                  </DesktopOnlyTd>
-                  <td>
-                    <ActionGroup>
-                      <EditButton tooltip="Tier bearbeiten" />
-                      <DeleteButton tooltip="Tier löschen" align="left" />
-                    </ActionGroup>
-                  </td>
-                </AnimalRow>
-              ))
-            ) : (
+        <TableFrame>
+          <ZooTable>
+            <thead>
               <tr>
-                <td
-                  colSpan="8"
-                  style={{ textAlign: "center", padding: "20px" }}
-                >
-                  {t.noResults} 🐾
-                </td>
+                <th>{t.tableSpecies}</th>
+                <th>{t.tableEnclosure}</th>
+                <RightAlignedTh>{t.tablePrice}</RightAlignedTh>
+                <StyledTh>
+                  <Tooltip text="Welches Level wird für dieses Tier benötigt?">
+                    {t.tableStall}
+                  </Tooltip>
+                </StyledTh>
+                <DesktopOnlyTh>
+                  <Tooltip text="XP insgesamt - Füttern, Putzen, Spielen">
+                    XP
+                  </Tooltip>
+                </DesktopOnlyTh>
+                <DesktopOnlyTh>
+                  <Tooltip text="Preis beim Verkaufen des Tieres">
+                    {t.tableSell}
+                  </Tooltip>
+                </DesktopOnlyTh>
+                <DesktopOnlyTh>
+                  <Tooltip text="XP beim Auswildern des Tieres">
+                    {t.tableRelease}
+                  </Tooltip>
+                </DesktopOnlyTh>
+                <th style={{ textAlign: "center" }}>{t.actions}</th>
               </tr>
-            )}
-          </tbody>
-        </ZooTable>
-      </TableFrame>
+            </thead>
+            <tbody>
+              {currentItems.length > 0 ? (
+                currentItems.map((tier) => (
+                  <AnimalRow key={tier.id}>
+                    <td>
+                      <TierInfoCell>
+                        <TierThumbnail $type={tier.gehege?.name}>
+                          <GameIcon
+                            type={`tiere/${(tier.gehege?.name || "standard").toLowerCase()}`}
+                            fileName={tier.bild || "default.jpg"}
+                            bordercolor="transparent"
+                          />
+                        </TierThumbnail>
+
+                        <div>
+                          <NameDE>{tier.name}</NameDE>
+                        </div>
+                      </TierInfoCell>
+                    </td>
+                    <td>
+                      <Tooltip text={`${tier.gehege.name} Gehege`}>
+                        <GehegeBadge type={tier.gehege?.name} />
+                      </Tooltip>
+                    </td>
+                    <RightAlignedTd>
+                      <PriceDisplay
+                        value={tier.preis}
+                        type={tier.preisart?.name.toLowerCase() || "gold"}
+                      />
+                    </RightAlignedTd>
+
+                    <td>
+                      <Tooltip
+                        text={`Benötigtes Stall-Level: ${tier.stalllevel}`}
+                        position="bottom"
+                      >
+                        <StallLevelBadge
+                          level={tier.stalllevel}
+                          habitatName={tier.gehege?.name}
+                        />
+                      </Tooltip>
+                    </td>
+                    <DesktopOnlyTd>
+                      <XPIcon
+                        label={
+                          (tier.xpfuettern || 0) +
+                          (tier.xpspielen || 0) +
+                          (tier.xpputzen || 0)
+                        }
+                      />
+                    </DesktopOnlyTd>
+                    <DesktopOnlyTd>
+                      <ZoodollarIcon value={tier.verkaufswert} />
+                    </DesktopOnlyTd>
+                    <DesktopOnlyTd>
+                      <XPIcon label={tier.auswildern} />
+                    </DesktopOnlyTd>
+                    <td>
+                      <ActionGroup>
+                        <EditButton tooltip="Tier bearbeiten" />
+                        <DeleteButton tooltip="Tier löschen" align="left" />
+                      </ActionGroup>
+                    </td>
+                  </AnimalRow>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan="8"
+                    style={{ textAlign: "center", padding: "20px" }}
+                  >
+                    {t.noResults} 🐾
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </ZooTable>
+        </TableFrame>
       ) : (
         <EmptyState
           title="Oje, kein Tier da!"
@@ -341,33 +328,12 @@ export default function TiereUebersicht() {
       )}
 
       {totalPages > 1 && (
-        <SignpostAssembly>
-          <Tooltip text="Zurück">
-            <SignpostButton
-              direction="prev"
-              onClick={handlePrev}
-              disabled={currentPage === 1}
-            ></SignpostButton>
-          </Tooltip>
-
-          <Tooltip text="Aktuelle Seite">
-            <PageIndicator>
-              <div>
-                {currentPage}{" "}
-                <small style={{ fontSize: "1rem", opacity: 0.5 }}>/</small>{" "}
-                {totalPages}
-              </div>
-            </PageIndicator>
-          </Tooltip>
-
-          <Tooltip text="Weiter">
-            <SignpostButton
-              direction="next"
-              onClick={handleNext}
-              disabled={currentPage === totalPages}
-            ></SignpostButton>
-          </Tooltip>
-        </SignpostAssembly>
+        <PaginationSignpost
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onNext={handleNext}
+          onPrev={handlePrev}
+        />
       )}
     </PageWrapper>
   );
@@ -386,7 +352,7 @@ const ZooTable = styled.table`
   border-collapse: separate;
   border-spacing: 0;
   min-width: 600px;
-  
+
   th:first-child {
     border-top-left-radius: calc(var(--border-radius) - 2px);
   }
@@ -479,45 +445,6 @@ const DesktopOnlyTd = styled.td`
   }
 `;
 
-const GehegeBadge = styled.div`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 20px;
-  
-  background-color: ${(props) =>
-    (habitatColors[props.$type?.toLowerCase()]?.main ||
-      habitatColors.default.main) + "33"};
-
-  border: 2px solid
-    ${(props) =>
-      habitatColors[props.$type?.toLowerCase()]?.main ||
-      habitatColors.default.main};
-
-  color: #3e2723;
-
-  font-weight: 800;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    0 1px 2px rgba(0, 0, 0, 0.05);
-
-  span {
-    letter-spacing: 0.3px;
-  }
-
-  img {
-    margin-top: 1px;
-    filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.6));
-  }
-`;
-
 const ActionGroup = styled.div`
   display: flex;
   gap: 10px;
@@ -544,75 +471,6 @@ const SearchInput = styled.input`
 
   &::placeholder {
     color: #a0a0a0;
-  }
-`;
-
-const SignpostAssembly = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 40px;
-  margin-top: 40px;
-`;
-
-const SignpostButton = styled.button`
-  position: relative;
-  width: 160px;
-  height: 65px;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease-in-out;
-
-  background-color: transparent;
-  background-image: url("/images/icons/wegweiser-rechts.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter: saturate(1.2) contrast(1.1);
-
-  ${(props) =>
-    props.direction === "prev" &&
-    `
-    transform: scaleX(-1);
-  `}
-  
-  &:hover:not(:disabled) {
-    filter: saturate(1.4) contrast(1.1) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
-    transform: translateY(-5px)
-      ${(props) => (props.direction === "prev" ? "scaleX(-1)" : "scale(1.05)")};
-  }
-
-  &:disabled {
-    filter: grayscale(1) opacity(0.4);
-    cursor: not-allowed;
-  }
-`;
-
-const PageIndicator = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  background-image: url("/images/icons/Holztafel.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  width: 150px;
-  height: 60px;
-  margin-top: -10px;
-  padding-bottom: 5px;
-
-  div {
-    font-size: 1.2rem;
-    font-weight: 900;
-    color: #2d5a27;
-    font-family: "Playfair Display", serif;
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
   }
 `;
 
@@ -654,45 +512,6 @@ const ResultsInfo = styled.p`
   }
 `;
 
-const StallContainer = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 64px;
-  height: 64px;
-  transition: transform 0.2s ease-in-out;
-
-  &:hover {
-    transform: scale(1.1);
-    z-index: 5;
-  }
-`;
-
-const LevelBadgeCircle = styled.div`
-  position: absolute;
-  bottom: -2px;
-  right: -2px;
-
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #4ca64c;
-  border: 2px solid white;
-  border-radius: 50%;
-
-  color: white;
-  font-weight: 900;
-  font-size: 0.85rem;
-  font-family: "Arial", sans-serif;
-
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  z-index: 2;
-`;
-
 const RightAlignedTh = styled.th`
   text-align: right !important;
   width: 120px;
@@ -704,7 +523,7 @@ const RightAlignedTd = styled.td`
 `;
 
 const StyledTh = styled.th`
-  position: relative; 
-  overflow: visible !important; 
-  z-index: 1; 
+  position: relative;
+  overflow: visible !important;
+  z-index: 1;
 `;
