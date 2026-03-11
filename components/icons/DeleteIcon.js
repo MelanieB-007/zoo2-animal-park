@@ -1,17 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import NextImage from "next/image";
+import Tooltip from "./Tooltip";
 
-export default function DeleteButton(){
+export default function DeleteButton({ tooltip, align }) {
   return (
-    <StyledButton title="Delete">
-      <NextImage
-        src="/images/icons/trash.webp"
-        alt="Löschen"
-        width={24}
-        height={24}
-      />
-    </StyledButton>
+    <Tooltip
+      text={tooltip}
+      align={align}
+    >
+      <StyledButton>
+        <NextImage
+          src="/images/icons/trash.webp"
+          alt="Löschen"
+          width={24}
+          height={24}
+        />
+      </StyledButton>
+    </Tooltip>
   );
 }
 
@@ -23,10 +29,12 @@ const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   padding: 4px;
-  transition: filter 0.2s, transform 0.1s;
+  transition:
+    filter 0.2s,
+    transform 0.1s;
 
   &:hover {
-    filter: brightness(1.3) drop-shadow(0 0 3px rgba(0,0,0,0.2));
+    filter: brightness(1.3) drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
     transform: scale(1.1);
   }
 

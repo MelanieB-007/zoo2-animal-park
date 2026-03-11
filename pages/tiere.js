@@ -13,6 +13,7 @@ import PageWrapper from "../components/page-structure/Main/PageWrapper";
 import LoadingWrapper from "../components/page-structure/Elements/LoadingWrapper";
 import { NameDE, NameEN } from "../components/page-structure/Elements/Name";
 import FilterBar from "../components/page-structure/Elements/FilterBar";
+import Tooltip from "../components/icons/Tooltip";
 
 const translations = {
   de: {
@@ -210,9 +211,21 @@ export default function TiereUebersicht() {
               <th>{t.tableSpecies}</th>
               <th>{t.tableEnclosure}</th>
               <RightAlignedTh>{t.tablePrice}</RightAlignedTh>
-              <th>{t.tableStall}</th>
-              <DesktopOnlyTh>XP</DesktopOnlyTh>
-              <DesktopOnlyTh>{t.tableSell}</DesktopOnlyTh>
+              <StyledTh>
+                <Tooltip text="Welches Level wird für dieses Tier benötigt?">
+                  {t.tableStall}
+                </Tooltip>
+              </StyledTh>
+              <DesktopOnlyTh>
+                <Tooltip text="XP insgesamt - Füttern, Putzen, Spielen">
+                  XP
+                </Tooltip>
+              </DesktopOnlyTh>
+              <DesktopOnlyTh>
+                <Tooltip text="Preis beim Verkaufen des Tieres">
+                  {t.tableSell}
+                </Tooltip>
+              </DesktopOnlyTh>
               <DesktopOnlyTh>{t.tableRelease}</DesktopOnlyTh>
               <th style={{ textAlign: "center" }}>{t.actions}</th>
             </tr>
@@ -238,16 +251,18 @@ export default function TiereUebersicht() {
                     </TierInfoCell>
                   </td>
                   <td>
-                    <GehegeBadge $type={tier.gehege?.name}>
-                      {tier.gehege?.name && (
-                        <NextImage
-                          src={`/images/gehege/icons/${tier.gehege.name.toLowerCase()}.webp`}
-                          alt={tier.gehege.name}
-                          width={20}
-                          height={20}
-                        />
-                      )}
-                    </GehegeBadge>
+                    <Tooltip text={`${tier.gehege.name} Gehege`}>
+                      <GehegeBadge $type={tier.gehege?.name}>
+                        {tier.gehege?.name && (
+                          <NextImage
+                            src={`/images/gehege/icons/${tier.gehege.name.toLowerCase()}.webp`}
+                            alt={tier.gehege.name}
+                            width={20}
+                            height={20}
+                          />
+                        )}
+                      </GehegeBadge>
+                    </Tooltip>
                   </td>
                   <RightAlignedTd>
                     <PriceDisplay
@@ -257,15 +272,18 @@ export default function TiereUebersicht() {
                   </RightAlignedTd>
 
                   <td>
-                    <StallContainer>
-                      <GameIcon
-                        type="gehege/stall"
-                        fileName={`${tier.gehege?.name.toLowerCase()}.png`}
-                      />
-                      <LevelBadgeCircle>
-                        {tier.stalllevel}
-                      </LevelBadgeCircle>
-                    </StallContainer>
+                    <Tooltip
+                      text={`Benötigtes Stall-Level: ${tier.stalllevel}`}
+                      position="bottom"
+                    >
+                      <StallContainer>
+                        <GameIcon
+                          type="gehege/stall"
+                          fileName={`${tier.gehege?.name.toLowerCase()}.png`}
+                        />
+                        <LevelBadgeCircle>{tier.stalllevel}</LevelBadgeCircle>
+                      </StallContainer>
+                    </Tooltip>
                   </td>
                   <DesktopOnlyTd>
                     <XPIcon
@@ -284,8 +302,8 @@ export default function TiereUebersicht() {
                   </DesktopOnlyTd>
                   <td>
                     <ActionGroup>
-                      <EditButton />
-                      <DeleteButton />
+                      <EditButton tooltip="Tier bearbeiten" />
+                      <DeleteButton tooltip="Tier löschen" align="left" />
                     </ActionGroup>
                   </td>
                 </AnimalRow>
@@ -305,28 +323,31 @@ export default function TiereUebersicht() {
       </TableFrame>
       {totalPages > 1 && (
         <SignpostAssembly>
-          {/* LINKES SCHILD */}
-          <SignpostButton
-            direction="prev"
-            onClick={handlePrev}
-            disabled={currentPage === 1}
-          ></SignpostButton>
+          <Tooltip text="Zurück">
+            <SignpostButton
+              direction="prev"
+              onClick={handlePrev}
+              disabled={currentPage === 1}
+            ></SignpostButton>
+          </Tooltip>
 
-          {/* MITTELPFOSTEN MIT INFO */}
-          <PageIndicator>
-            <div>
-              {currentPage}{" "}
-              <small style={{ fontSize: "1rem", opacity: 0.5 }}>/</small>{" "}
-              {totalPages}
-            </div>
-          </PageIndicator>
+          <Tooltip text="Aktuelle Seite">
+            <PageIndicator>
+              <div>
+                {currentPage}{" "}
+                <small style={{ fontSize: "1rem", opacity: 0.5 }}>/</small>{" "}
+                {totalPages}
+              </div>
+            </PageIndicator>
+          </Tooltip>
 
-          {/* RECHTES SCHILD */}
-          <SignpostButton
-            direction="next"
-            onClick={handleNext}
-            disabled={currentPage === totalPages}
-          ></SignpostButton>
+          <Tooltip text="Weiter">
+            <SignpostButton
+              direction="next"
+              onClick={handleNext}
+              disabled={currentPage === totalPages}
+            ></SignpostButton>
+          </Tooltip>
         </SignpostAssembly>
       )}
     </PageWrapper>
@@ -337,13 +358,37 @@ const TableFrame = styled.div`
   background: white;
   border: 2px solid #4ca64c;
   border-radius: var(--border-radius);
-  overflow-x: auto;
+  /* Wichtig: visible erlaubt dem Tooltip das Rausragen */
+  overflow: visible;
+  position: relative;
 `;
 
 const ZooTable = styled.table`
   width: 100%;
-  border-collapse: collapse;
+  /* Separate sorgt dafür, dass die Rundungen an den Ecken greifen */
+  border-collapse: separate;
+  border-spacing: 0;
   min-width: 600px;
+
+  /* Die oberste linke Ecke runden */
+  th:first-child {
+    border-top-left-radius: calc(var(--border-radius) - 2px);
+  }
+
+  /* Die oberste rechte Ecke runden */
+  th:last-child {
+    border-top-right-radius: calc(var(--border-radius) - 2px);
+  }
+
+  /* Die unterste linke Ecke runden */
+  tr:last-child td:first-child {
+    border-bottom-left-radius: calc(var(--border-radius) - 2px);
+  }
+
+  /* Die unterste rechte Ecke runden */
+  tr:last-child td:last-child {
+    border-bottom-right-radius: calc(var(--border-radius) - 2px);
+  }
 
   th {
     background: #f9fbf9;
@@ -381,17 +426,16 @@ const TierThumbnail = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   border: 3px solid
-    ${(props) => 
-            habitatColors[props.$type?.toLowerCase()]?.main || "#8dbd5b"};
+    ${(props) => habitatColors[props.$type?.toLowerCase()]?.main || "#8dbd5b"};
 
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   z-index: 1;
 
   &:hover {
-    transform: scale(1.5); 
+    transform: scale(1.5);
     z-index: 10;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
@@ -406,7 +450,7 @@ const TierThumbnail = styled.div`
 
 const DesktopOnlyTh = styled.th`
   text-align: right !important;
-  padding-right: 20px !important; 
+  padding-right: 20px !important;
 
   @media (max-width: 1024px) {
     display: none;
@@ -415,7 +459,7 @@ const DesktopOnlyTh = styled.th`
 
 const DesktopOnlyTd = styled.td`
   text-align: right;
-  padding-right: 20px !important; 
+  padding-right: 20px !important;
 
   @media (max-width: 1024px) {
     display: none;
@@ -427,28 +471,28 @@ const GehegeBadge = styled.div`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 6px 14px; 
-  border-radius: 20px; 
-  
+  padding: 6px 14px;
+  border-radius: 20px;
+
   /* Das "main" aus habitatColors ist die Originalfarbe */
   /* Wir fügen "33" hinzu für ca. 20% Deckkraft (Transparenz) */
   background-color: ${(props) =>
     (habitatColors[props.$type?.toLowerCase()]?.main ||
       habitatColors.default.main) + "33"};
-  
+
   border: 2px solid
     ${(props) =>
       habitatColors[props.$type?.toLowerCase()]?.main ||
       habitatColors.default.main};
-  
-  color: #3e2723; 
+
+  color: #3e2723;
 
   font-weight: 800;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;
-  
+
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.4),
     0 1px 2px rgba(0, 0, 0, 0.05);
@@ -482,7 +526,7 @@ const SearchInput = styled.input`
 
   &:focus {
     outline: none;
-    border-color: #8dbd5b; 
+    border-color: #8dbd5b;
     box-shadow: 0 0 0 4px rgba(141, 189, 91, 0.1);
     transform: translateY(-1px);
   }
@@ -495,7 +539,7 @@ const SearchInput = styled.input`
 const SignpostAssembly = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-end; 
+  align-items: flex-end;
   gap: 40px;
   margin-top: 40px;
 `;
@@ -511,7 +555,7 @@ const SignpostButton = styled.button`
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease-in-out;
-  
+
   background-image: url("/images/icons/wegweiser-rechts.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -522,12 +566,10 @@ const SignpostButton = styled.button`
     `
     transform: scaleX(-1);
   `}
-  
   &:hover:not(:disabled) {
     filter: brightness(1.1) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
     transform: translateY(-5px)
-      ${(props) => 
-              (props.direction === "prev" ? "scaleX(-1)" : "scale(1.05)")};
+      ${(props) => (props.direction === "prev" ? "scaleX(-1)" : "scale(1.05)")};
   }
 
   &:disabled {
@@ -601,15 +643,21 @@ const ResultsInfo = styled.p`
 
 const StallContainer = styled.div`
   position: relative;
-  display: inline-flex;
+  display: flex; /* Von inline-flex auf flex, für stabilere Box-Berechnung */
   justify-content: center;
   align-items: center;
   width: 64px;
   height: 64px;
 
+  /* WICHTIG: Kein overflow: hidden hier! */
+
+  transition: transform 0.2s ease-in-out;
+
   &:hover {
     transform: scale(1.1);
-    z-index: 10;
+    /* Der z-index muss hoch genug sein, damit er über anderen Zeilen schwebt, 
+       aber der Tooltip im Inneren braucht später einen noch höheren. */
+    z-index: 5;
   }
 `;
 
@@ -617,22 +665,22 @@ const LevelBadgeCircle = styled.div`
   position: absolute;
   bottom: -2px;
   right: -2px;
-  
+
   width: 24px;
   height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   background: #4ca64c;
   border: 2px solid white;
   border-radius: 50%;
-  
+
   color: white;
   font-weight: 900;
   font-size: 0.85rem;
   font-family: "Arial", sans-serif;
-  
+
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   z-index: 2;
 `;
@@ -640,9 +688,15 @@ const LevelBadgeCircle = styled.div`
 const RightAlignedTh = styled.th`
   text-align: right !important;
   width: 120px;
-  padding-right: 20px !important; 
+  padding-right: 20px !important;
 `;
 
 const RightAlignedTd = styled.td`
   text-align: right;
+`;
+
+const StyledTh = styled.th`
+  position: relative; /* Wichtig für die Positionierung des Tooltips */
+  overflow: visible !important; /* Erlaubt dem Tooltip, über den Rand zu ragen */
+  z-index: 1; /* Sorgt dafür, dass der Header nicht unter anderen Elementen liegt */
 `;
