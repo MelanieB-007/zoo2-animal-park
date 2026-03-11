@@ -24,6 +24,12 @@ export const translations = {
       emptyTitle: "Oje, kein Tier da!",
       emptyMessage: "Uppy hat überall gesucht, konnte aber nichts finden.",
       emptyButton: "Suche neu starten",
+      tooltipLevel: "Welches Level wird für dieses Tier benötigt?",
+      tooltipXP: "XP insgesamt - Füttern, Putzen, Spielen",
+      tooltipVerkaufswert: "Preis beim Verkaufen des Tieres",
+      tooltipAuswildern: "XP beim Auswildern des Tieres",
+      editAnimal: "Tier bearbeiten",
+      deleteAnimal: "Tier löschen",
     }
   },
   en: {
@@ -51,6 +57,12 @@ export const translations = {
       emptyTitle: "Oh dear, no animal here!",
       emptyMessage: "Uppy searched everywhere but couldn't find anything.",
       emptyButton: "Restart search",
+      tooltipLevel: "What level is required for this animal?",
+      tooltipXP: "Total XP - feeding, cleaning, playing",
+      tooltipVerkaufswert: "Price when selling the animal",
+      tooltipAuswildern: "XP gained for releasing the animal",
+      editAnimal: "Edit animal",
+      deleteAnimal: "Delete animal",
     }
   },
 };

@@ -43,26 +43,30 @@ export const AnimalService = {
       let valA = this._getNestedValue(a, sortBy);
       let valB = this._getNestedValue(b, sortBy);
 
-      if (typeof valA === "string") {
-        return sortDirection === "asc"
+      if (typeof valA === 'string') {
+        return sortDirection === 'asc'
           ? valA.localeCompare(valB)
           : valB.localeCompare(valA);
       }
 
-      return sortDirection === "asc" ? valA - valB : valB - valA;
+      return sortDirection === 'asc' ? valA - valB : valB - valA;
     });
   },
 
   _getNestedValue(obj, path) {
     if (path === "xp") {
-      return (obj.xpfuettern || 0) + (obj.xpputzen || 0) + (obj.xpspielen || 0);
+      return calculateTotalXP(obj);
     }
 
-    return path.split(".").reduce((acc, part) => acc && acc[part], obj) || 0;
+    if (path === "verkaufswert") {
+      return obj.verkaufswert || 0;
+    }
+
+    return path.split('.').reduce((acc, part) => acc && acc[part], obj) || 0;
   }
 }
 
-// Im AnimalService.js zusätzlich:
+
 export const calculateTotalXP = (tier) => {
   return (tier.xpfuettern || 0) + (tier.xpspielen || 0) + (tier.xpputzen || 0);
 };
