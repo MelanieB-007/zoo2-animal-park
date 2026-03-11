@@ -14,7 +14,7 @@ import "flag-icons/css/flag-icons.min.css";
 import Header from "../components/page-structure/Header/Header";
 import Main from "../components/page-structure/Main/Main";
 import Footer from "../components/page-structure/Footer/Footer";
-import ScrollToTop from "../components/page-structure/ScrollToTop";
+import ScrollToTop from "../components/ui/ScrollToTop";
 
 const sedgwick = Sedgwick_Ave_Display({ weight: "400", subsets: ["latin"] });
 const dmSans = DM_Sans({

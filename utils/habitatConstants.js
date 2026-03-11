@@ -1,0 +1,16 @@
+export const habitatColors = {
+  gras: { main: "#47610d" },
+  steppe: { main: "#924722" },
+  wald: { main: "#224c0b" },
+  berg: { main: "#39525e" },
+  savanne: { main: "#c66f12" },
+  dschungel: { main: "#4c7c07" },
+  eis: { main: "#066eb8" },
+  wasser: { main: "#4634c1" },
+  blattdickicht: { main: "#779d59" },
+  felsenwüste: { main: "#dcbc5d" },
+  süsswasser: { main: "#71fef8" },
+  salzwasser: { main: "#603bde" },
+  noctarium: { main: "#a540a2" },
+  default: { main: "#666666" },
+};
