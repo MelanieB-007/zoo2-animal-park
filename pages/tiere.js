@@ -8,10 +8,10 @@ import ZoodollarIcon from "../components/icons/ZoodollarIcon";
 import GameIcon from "../components/icons/GameIcon";
 import EditButton from "../components/icons/EditIcon";
 import DeleteButton from "../components/icons/DeleteIcon";
-import PageHeader from "../components/page-structure/Main/PageHeader";
-import PageWrapper from "../components/page-structure/Main/PageWrapper";
+import PageHeader from "../components/page-structure/PageHeader";
+import PageWrapper from "../components/page-structure/PageWrapper";
 import LoadingWrapper from "../components/page-structure/Elements/LoadingWrapper";
-import { NameDE, NameEN } from "../components/page-structure/Elements/Name";
+import { NameDE } from "../components/page-structure/Elements/Name";
 import FilterBar from "../components/page-structure/Elements/FilterBar";
 import Tooltip from "../components/icons/Tooltip";
 
@@ -250,7 +250,6 @@ export default function TiereUebersicht() {
 
                       <div>
                         <NameDE>{tier.name}</NameDE>
-                        <NameEN>{tier.nameEn}</NameEN>
                       </div>
                     </TierInfoCell>
                   </td>

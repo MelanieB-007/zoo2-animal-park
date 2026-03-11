@@ -45,9 +45,16 @@ const TooltipContainer = styled.div`
       
       return "left: 50%; transform: translateX(-50%);";
     }}
-    
+
     background-color: var(--color-petrol-darker);
-    color: white;
+    color: var(--color-white);
+    
+    box-shadow:
+            0 4px 6px -1px rgba(0, 0, 0, 0.3),
+            0 2px 4px -1px rgba(0, 0, 0, 0.2),
+            0 10px 15px -3px rgba(0, 0, 0, 0.4);
+    
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 8px 12px;
     border-radius: 8px;
     font-size: 0.8rem;
@@ -56,7 +63,6 @@ const TooltipContainer = styled.div`
     visibility: hidden;
     transition: opacity 0.2s ease;
     pointer-events: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
 
   &::before {

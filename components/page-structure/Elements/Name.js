@@ -17,14 +17,17 @@ export function NameEN({children}){
 }
 
 const StyledNameDE = styled.div`
-  font-weight: bold;
-  color: var(--color-petrol-darker);
-  font-size: 1rem;
+  font-weight: 700;
+  color: #3e2723;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  word-wrap: break-word;
+  max-width: 250px;
 `;
 
 const StyledNameEN = styled.div`
-  font-size: 0.8rem;
-  color: var(--color-grey-dark);
-  opacity: 0.5;
+  font-size: 0.85rem;
+  color: #777;
   font-style: italic;
+  margin-top: 2px;
 `;
