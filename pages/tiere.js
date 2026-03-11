@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 
 import XPIcon from "../components/icons/XPIcon";
@@ -20,12 +20,19 @@ import GehegeBadge from "../components/page-structure/Elements/GehegeBadge";
 import { habitatColors } from "../utils/habitatConstants";
 import ResultsInfo from "../components/page-structure/Elements/ResultsInfo";
 import { translations } from "../utils/translations";
+import { AnimalService } from "../services/AnimalService";
+import { SortIcon } from "../components/icons/SortIcon";
+import { calculateTotalXP } from "../services/AnimalService";
 
 
 export default function TiereUebersicht() {
+  const [sortBy, setSortBy] = useState("name"); // Standard: Name
+  const [sortDirection, setSortDirection] = useState("asc");
+
   const [lang, setLang] = useState("de");
   const translationsAnimals = translations[lang].animals;
   const translationsCommon = translations[lang].common;
+
   const [tiere, setTiere] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -55,28 +62,27 @@ export default function TiereUebersicht() {
       });
   }, []);
 
-  // Filtern basierend auf der Suche
-  const filteredTiere = (tiere || []).filter((tier) => {
-    const matchesSearch = tier.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const matchesGehege =
-      selectedGehege === "Alle" || tier.gehege?.name === selectedGehege;
-    const matchesLevel =
-      selectedLevel === "Alle" || String(tier.stalllevel) === selectedLevel;
+  const filteredTiere = useMemo(() => {
+    return AnimalService.filterAnimals(tiere, {
+      searchTerm,
+      selectedGehege,
+      selectedLevel
+    });
+  }, [tiere, searchTerm, selectedGehege, selectedLevel]);
 
-    return matchesSearch && matchesGehege && matchesLevel;
-  });
+  const sortedTiere = useMemo(() => {
+    return AnimalService.sortAnimals(filteredTiere, { sortBy, sortDirection });
+  }, [filteredTiere, sortBy, sortDirection]);
+
+  const currentItems = useMemo(() => {
+    return AnimalService.paginate(sortedTiere, currentPage, itemsPerPage);
+  }, [sortedTiere, currentPage]);
 
   const totalPages = Math.ceil(filteredTiere.length / itemsPerPage);
 
   if (currentPage > totalPages && totalPages > 0) {
     setCurrentPage(totalPages);
   }
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredTiere.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleNext = () =>
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
@@ -85,6 +91,15 @@ export default function TiereUebersicht() {
   if (loading) {
     return <LoadingWrapper>{translationsAnimals.searchPlaceholder} 🐾</LoadingWrapper>;
   }
+
+  const toggleSort = (key) => {
+    if (sortBy === key) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortBy(key);
+      setSortDirection("asc");
+    }
+  };
 
   return (
     <PageWrapper>
@@ -115,30 +130,52 @@ export default function TiereUebersicht() {
           <ZooTable>
             <thead>
               <tr>
-                <th>{translationsAnimals.tableSpecies}</th>
-                <th>{translationsAnimals.tableEnclosure}</th>
-                <RightAlignedTh>{translationsAnimals.tablePrice}</RightAlignedTh>
-                <StyledTh>
+                <SortableTh onClick={() => toggleSort("name")}>
+                  {translationsAnimals.tableSpecies}
+                  <SortIcon columnKey="name" currentSortBy={sortBy} direction={sortDirection} />
+                </SortableTh>
+
+                <SortableTh onClick={() => toggleSort("gehege.name")}>
+                  {translationsAnimals.tableEnclosure}
+                  <SortIcon columnKey="gehege.name" currentSortBy={sortBy} direction={sortDirection} />
+                </SortableTh>
+
+                <RightAlignedSortableTh onClick={() => toggleSort("preis")}>
+                  {translationsAnimals.tablePrice}
+                  <SortIcon columnKey="preis" currentSortBy={sortBy} direction={sortDirection} />
+                </RightAlignedSortableTh>
+
+                <StyledTh onClick={() => toggleSort("stalllevel")}>
                   <Tooltip text="Welches Level wird für dieses Tier benötigt?">
                     {translationsAnimals.tableStall}
                   </Tooltip>
+                  <SortIcon columnKey="stalllevel" currentSortBy={sortBy} direction={sortDirection} />
                 </StyledTh>
-                <DesktopOnlyTh>
+
+                <DesktopOnlyTh onClick={() => toggleSort("xp")}>
                   <Tooltip text="XP insgesamt - Füttern, Putzen, Spielen">
                     XP
                   </Tooltip>
+                  <SortIcon columnKey="xp" currentSortBy={sortBy} direction={sortDirection} />
                 </DesktopOnlyTh>
-                <DesktopOnlyTh>
+
+                <DesktopOnlyTh onClick={() => toggleSort("verkaufswert")}>
                   <Tooltip text="Preis beim Verkaufen des Tieres">
                     {translationsAnimals.tableSell}
                   </Tooltip>
+                  <SortIcon columnKey="verkaufswert" currentSortBy={sortBy} direction={sortDirection} />
                 </DesktopOnlyTh>
-                <DesktopOnlyTh>
+
+                <DesktopOnlyTh onClick={() => toggleSort("auswildern")} style={{cursor: 'pointer'}}>
                   <Tooltip text="XP beim Auswildern des Tieres">
                     {translationsAnimals.tableRelease}
                   </Tooltip>
+                  <SortIcon columnKey="auswildern" currentSortBy={sortBy} direction={sortDirection} />
                 </DesktopOnlyTh>
-                <th style={{ textAlign: "center" }}>{translationsAnimals.actions}</th>
+
+                <th style={{ textAlign: "center" }}>
+                  {translationsCommon.actions}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -184,13 +221,7 @@ export default function TiereUebersicht() {
                       </Tooltip>
                     </td>
                     <DesktopOnlyTd>
-                      <XPIcon
-                        label={
-                          (tier.xpfuettern || 0) +
-                          (tier.xpspielen || 0) +
-                          (tier.xpputzen || 0)
-                        }
-                      />
+                      <XPIcon label={AnimalService.calculateTotalXP(tier)} />
                     </DesktopOnlyTd>
                     <DesktopOnlyTd>
                       <ZoodollarIcon value={tier.verkaufswert} />
@@ -333,14 +364,6 @@ const TierThumbnail = styled.div`
   }
 `;
 
-const DesktopOnlyTh = styled.th`
-  text-align: right !important;
-  padding-right: 20px !important;
-
-  @media (max-width: 1024px) {
-    display: none;
-  }
-`;
 
 const DesktopOnlyTd = styled.td`
   text-align: right;
@@ -356,18 +379,34 @@ const ActionGroup = styled.div`
   gap: 10px;
 `;
 
-const RightAlignedTh = styled.th`
-  text-align: right !important;
-  width: 120px;
-  padding-right: 20px !important;
-`;
-
 const RightAlignedTd = styled.td`
   text-align: right;
 `;
 
-const StyledTh = styled.th`
-  position: relative;
-  overflow: visible !important;
-  z-index: 1;
+const SortableTh = styled.th`
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: rgba(76, 166, 76, 0.05);
+    color: #2d5a27;
+  }
+`;
+
+const RightAlignedSortableTh = styled(SortableTh)`
+  text-align: right;
+`;
+
+// Desktop-Only übernimmt jetzt die Sortier-Styles
+const DesktopOnlyTh = styled(SortableTh)`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+// Wenn du ein StyledTh hast, lass es auch von SortableTh erben
+const StyledTh = styled(SortableTh)`
+  /* Deine zusätzlichen Styles für normale Spalten */
 `;

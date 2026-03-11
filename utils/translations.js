@@ -18,7 +18,7 @@ export const translations = {
       tablePrice: "Preis",
       tableStall: "Stall-Level",
       tableSell: "Verkauf",
-      tableRelease: "Auswil-derung",
+      tableRelease: "Auswilderung",
       loading: "Hole die Tiere aus dem Stall...",
       noResults: "Kein Tier mit diesem Namen gefunden...",
       emptyTitle: "Oje, kein Tier da!",
