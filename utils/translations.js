@@ -1,0 +1,56 @@
+export const translations = {
+  de: {
+    common: {
+      resultsShow: "Zeige",
+      resultsOf: "von",
+      back: "ZURÜCK",
+      next: "WEITER",
+      actions: "Aktionen",
+    },
+    animals: {
+      searchPlaceholder: "Nach Tiernamen suchen...",
+      allEnclosures: "Alle Gehege",
+      allLevels: "Alle Stall-Level",
+      level: "Level",
+      resultsUnit: "Tieren",
+      tableSpecies: "Tierart",
+      tableEnclosure: "Gehege",
+      tablePrice: "Preis",
+      tableStall: "Stall-Level",
+      tableSell: "Verkauf",
+      tableRelease: "Auswil-derung",
+      loading: "Hole die Tiere aus dem Stall...",
+      noResults: "Kein Tier mit diesem Namen gefunden...",
+      emptyTitle: "Oje, kein Tier da!",
+      emptyMessage: "Uppy hat überall gesucht, konnte aber nichts finden.",
+      emptyButton: "Suche neu starten",
+    }
+  },
+  en: {
+    common: {
+      resultsShow: "Showing",
+      resultsOf: "of",
+      back: "BACK",
+      next: "NEXT",
+      actions: "Actions",
+    },
+    animals: {
+      searchPlaceholder: "Search for animal names...",
+      allEnclosures: "All Enclosures",
+      allLevels: "All Stall Levels",
+      level: "Level",
+      resultsUnit: "animals",
+      tableSpecies: "Species",
+      tableEnclosure: "Enclosure",
+      tablePrice: "Price",
+      tableStall: "Stall Level",
+      tableSell: "Sell",
+      tableRelease: "Release",
+      loading: "Getting animals from the shelter...",
+      noResults: "No animal found with this name...",
+      emptyTitle: "Oh dear, no animal here!",
+      emptyMessage: "Uppy searched everywhere but couldn't find anything.",
+      emptyButton: "Restart search",
+    }
+  },
+};

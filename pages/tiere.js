@@ -19,52 +19,13 @@ import StallLevelBadge from "../components/page-structure/Elements/StallLevelBad
 import GehegeBadge from "../components/page-structure/Elements/GehegeBadge";
 import { habitatColors } from "../utils/habitatConstants";
 import ResultsInfo from "../components/page-structure/Elements/ResultsInfo";
+import { translations } from "../utils/translations";
 
-const translations = {
-  de: {
-    searchPlaceholder: "Nach Tiernamen suchen...",
-    allEnclosures: "Alle Gehege",
-    allLevels: "Alle Stall-Level",
-    level: "Level",
-    resultsShow: "Zeige",
-    resultsOf: "von",
-    resultsAnimals: "Tieren",
-    tableSpecies: "Tierart",
-    tableEnclosure: "Gehege",
-    tablePrice: "Preis",
-    tableStall: "Stall-Level",
-    tableSell: "Verkauf",
-    tableRelease: "Auswil-derung",
-    actions: "Aktionen",
-    back: "ZURÜCK",
-    next: "WEITER",
-    loading: "Hole die Tiere aus dem Stall...",
-    noResults: "Kein Tier mit diesem Namen gefunden...",
-  },
-  en: {
-    searchPlaceholder: "Search for animal names...",
-    allEnclosures: "All Enclosures",
-    allLevels: "All Stall Levels",
-    level: "Level",
-    resultsShow: "Showing",
-    resultsOf: "of",
-    resultsAnimals: "animals",
-    tableSpecies: "Species",
-    tableEnclosure: "Enclosure",
-    tablePrice: "Price",
-    tableStall: "Stall Level",
-    tableSell: "Sell",
-    tableRelease: "Release",
-    actions: "Actions",
-    back: "BACK",
-    next: "NEXT",
-    loading: "Getting animals from the shelter...",
-    noResults: "No animal found with this name...",
-  },
-};
 
 export default function TiereUebersicht() {
   const [lang, setLang] = useState("de");
+  const translationsAnimals = translations[lang].animals;
+  const translationsCommon = translations[lang].common;
   const [tiere, setTiere] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -77,7 +38,6 @@ export default function TiereUebersicht() {
   const updateLevel = (val) => { setSelectedLevel(val); setCurrentPage(1); };
   const itemsPerPage = 10;
 
-  const translate = translations[lang];
 
   useEffect(() => {
     // Daten von der API abrufen
@@ -127,7 +87,7 @@ export default function TiereUebersicht() {
   const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
   if (loading) {
-    return <LoadingWrapper>{translate.searchPlaceholder} 🐾</LoadingWrapper>;
+    return <LoadingWrapper>{translationsAnimals.searchPlaceholder} 🐾</LoadingWrapper>;
   }
 
   return (
@@ -142,15 +102,15 @@ export default function TiereUebersicht() {
         selectedLevel={selectedLevel}
         setSelectedLevel={setSelectedLevel}
         tiere={tiere}
-        translation={translate}
+        translation={translationsAnimals}
       />
 
       <ResultsInfo
         currentCount={currentItems.length}
         totalCount={filteredTiere.length}
-        labelShown={translate.resultsShow}
-        labelOf={translate.resultsOf}
-        labelUnit={translate.resultsAnimals}
+        labelShown={translationsCommon.resultsShow}
+        labelOf={translationsCommon.resultsOf}
+        labelUnit={translationsAnimals.resultsUnit}
       />
 
       {currentItems.length > 0 ? (
@@ -158,12 +118,12 @@ export default function TiereUebersicht() {
           <ZooTable>
             <thead>
               <tr>
-                <th>{translate.tableSpecies}</th>
-                <th>{translate.tableEnclosure}</th>
-                <RightAlignedTh>{translate.tablePrice}</RightAlignedTh>
+                <th>{translationsAnimals.tableSpecies}</th>
+                <th>{translationsAnimals.tableEnclosure}</th>
+                <RightAlignedTh>{translationsAnimals.tablePrice}</RightAlignedTh>
                 <StyledTh>
                   <Tooltip text="Welches Level wird für dieses Tier benötigt?">
-                    {translate.tableStall}
+                    {translationsAnimals.tableStall}
                   </Tooltip>
                 </StyledTh>
                 <DesktopOnlyTh>
@@ -173,15 +133,15 @@ export default function TiereUebersicht() {
                 </DesktopOnlyTh>
                 <DesktopOnlyTh>
                   <Tooltip text="Preis beim Verkaufen des Tieres">
-                    {translate.tableSell}
+                    {translationsAnimals.tableSell}
                   </Tooltip>
                 </DesktopOnlyTh>
                 <DesktopOnlyTh>
                   <Tooltip text="XP beim Auswildern des Tieres">
-                    {translate.tableRelease}
+                    {translationsAnimals.tableRelease}
                   </Tooltip>
                 </DesktopOnlyTh>
-                <th style={{ textAlign: "center" }}>{translate.actions}</th>
+                <th style={{ textAlign: "center" }}>{translationsAnimals.actions}</th>
               </tr>
             </thead>
             <tbody>
@@ -255,7 +215,7 @@ export default function TiereUebersicht() {
                     colSpan="8"
                     style={{ textAlign: "center", padding: "20px" }}
                   >
-                    {translate.noResults} 🐾
+                    {translationsAnimals.noResults} 🐾
                   </td>
                 </tr>
               )}
