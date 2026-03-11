@@ -205,7 +205,7 @@ export default function TiereUebersicht() {
         <strong> {filteredTiere.length}</strong> {t.resultsAnimals}
       </ResultsInfo>
 
-      {currentItems.length === 0 ? (
+      {currentItems.length > 0 ? (
       <TableFrame>
         <ZooTable>
           <thead>
@@ -571,6 +571,7 @@ const SignpostButton = styled.button`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  filter: saturate(1.2) contrast(1.1);
 
   ${(props) =>
     props.direction === "prev" &&
@@ -579,7 +580,7 @@ const SignpostButton = styled.button`
   `}
   
   &:hover:not(:disabled) {
-    filter: brightness(1.1) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+    filter: saturate(1.4) contrast(1.1) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
     transform: translateY(-5px)
       ${(props) => (props.direction === "prev" ? "scaleX(-1)" : "scale(1.05)")};
   }
