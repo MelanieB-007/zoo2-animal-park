@@ -29,7 +29,7 @@ const translations = {
     tablePrice: "Preis",
     tableStall: "Stall-Level",
     tableSell: "Verkauf",
-    tableRelease: "Auswild.",
+    tableRelease: "Auswil-derung",
     actions: "Aktionen",
     back: "ZURÜCK",
     next: "WEITER",
@@ -47,7 +47,7 @@ const translations = {
     tableSpecies: "Species",
     tableEnclosure: "Enclosure",
     tablePrice: "Price",
-    tableStall: "Stall Lvl",
+    tableStall: "Stall Level",
     tableSell: "Sell",
     tableRelease: "Release",
     actions: "Actions",
@@ -99,7 +99,7 @@ export default function TiereUebersicht() {
           setTiere(data);
         } else {
           console.error("Erwartete Array, erhielt:", data);
-          setTiere([]); // Fallback auf leeres Array
+          setTiere([]);
         }
         setLoading(false);
       })
@@ -362,37 +362,27 @@ const TableFrame = styled.div`
   background: white;
   border: 2px solid #4ca64c;
   border-radius: var(--border-radius);
-  /* Wichtig: visible erlaubt dem Tooltip das Rausragen */
   overflow: visible;
   position: relative;
 `;
 
 const ZooTable = styled.table`
   width: 100%;
-  /* Separate sorgt dafür, dass die Rundungen an den Ecken greifen */
   border-collapse: separate;
   border-spacing: 0;
   min-width: 600px;
-
-  /* Die oberste linke Ecke runden */
-
+  
   th:first-child {
     border-top-left-radius: calc(var(--border-radius) - 2px);
   }
-
-  /* Die oberste rechte Ecke runden */
 
   th:last-child {
     border-top-right-radius: calc(var(--border-radius) - 2px);
   }
 
-  /* Die unterste linke Ecke runden */
-
   tr:last-child td:first-child {
     border-bottom-left-radius: calc(var(--border-radius) - 2px);
   }
-
-  /* Die unterste rechte Ecke runden */
 
   tr:last-child td:last-child {
     border-bottom-right-radius: calc(var(--border-radius) - 2px);
@@ -481,9 +471,7 @@ const GehegeBadge = styled.div`
   gap: 8px;
   padding: 6px 14px;
   border-radius: 20px;
-
-  /* Das "main" aus habitatColors ist die Originalfarbe */
-  /* Wir fügen "33" hinzu für ca. 20% Deckkraft (Transparenz) */
+  
   background-color: ${(props) =>
     (habitatColors[props.$type?.toLowerCase()]?.main ||
       habitatColors.default.main) + "33"};
@@ -557,7 +545,6 @@ const SignpostButton = styled.button`
   width: 160px;
   height: 65px;
   border: none;
-  background: transparent;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -651,20 +638,15 @@ const ResultsInfo = styled.p`
 
 const StallContainer = styled.div`
   position: relative;
-  display: flex; /* Von inline-flex auf flex, für stabilere Box-Berechnung */
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 64px;
   height: 64px;
-
-  /* WICHTIG: Kein overflow: hidden hier! */
-
   transition: transform 0.2s ease-in-out;
 
   &:hover {
     transform: scale(1.1);
-    /* Der z-index muss hoch genug sein, damit er über anderen Zeilen schwebt, 
-       aber der Tooltip im Inneren braucht später einen noch höheren. */
     z-index: 5;
   }
 `;
@@ -704,7 +686,7 @@ const RightAlignedTd = styled.td`
 `;
 
 const StyledTh = styled.th`
-  position: relative; /* Wichtig für die Positionierung des Tooltips */
-  overflow: visible !important; /* Erlaubt dem Tooltip, über den Rand zu ragen */
-  z-index: 1; /* Sorgt dafür, dass der Header nicht unter anderen Elementen liegt */
+  position: relative; 
+  overflow: visible !important; 
+  z-index: 1; 
 `;
