@@ -18,6 +18,7 @@ import PaginationSignpost from "../components/ui/PaginationSignpost";
 import StallLevelBadge from "../components/page-structure/Elements/StallLevelBadge";
 import GehegeBadge from "../components/page-structure/Elements/GehegeBadge";
 import { habitatColors } from "../utils/habitatConstants";
+import ResultsInfo from "../components/page-structure/Elements/ResultsInfo";
 
 const translations = {
   de: {
@@ -144,10 +145,13 @@ export default function TiereUebersicht() {
         translation={translate}
       />
 
-      <ResultsInfo>
-        {translate.resultsShow} <strong>{currentItems.length}</strong> {translate.resultsOf}
-        <strong> {filteredTiere.length}</strong> {translate.resultsAnimals}
-      </ResultsInfo>
+      <ResultsInfo
+        currentCount={currentItems.length}
+        totalCount={filteredTiere.length}
+        labelShown={translate.resultsShow}
+        labelOf={translate.resultsOf}
+        labelUnit={translate.resultsAnimals}
+      />
 
       {currentItems.length > 0 ? (
         <TableFrame>
@@ -393,68 +397,6 @@ const DesktopOnlyTd = styled.td`
 const ActionGroup = styled.div`
   display: flex;
   gap: 10px;
-`;
-
-const SearchInput = styled.input`
-  width: 100%;
-  max-width: 400px;
-  padding: 12px 16px;
-  font-size: 1rem;
-  border: 2px solid #e0e7d5;
-  border-radius: 12px;
-  background-color: white;
-  color: #333;
-  transition: all 0.2s ease-in-out;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-
-  &:focus {
-    outline: none;
-    border-color: #8dbd5b;
-    box-shadow: 0 0 0 4px rgba(141, 189, 91, 0.1);
-    transform: translateY(-1px);
-  }
-
-  &::placeholder {
-    color: #a0a0a0;
-  }
-`;
-
-const GehegeSelect = styled.select`
-  padding: 12px 40px 12px 16px;
-  font-size: 1rem;
-  border: 2px solid #e0e7d5;
-  border-radius: 12px;
-  background-color: white;
-  color: #333;
-  cursor: pointer;
-  min-width: 220px;
-  transition: all 0.2s;
-
-  appearance: none;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%238dbd5b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 16px;
-
-  &:focus {
-    outline: none;
-    border-color: #8dbd5b;
-    box-shadow: 0 0 0 4px rgba(141, 189, 91, 0.1);
-  }
-`;
-
-const ResultsInfo = styled.p`
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto 10px auto;
-  padding: 0 10px;
-  font-size: 0.9rem;
-  color: #666;
-  font-family: "Inter", sans-serif;
-
-  strong {
-    color: #2d5a27;
-  }
 `;
 
 const RightAlignedTh = styled.th`
