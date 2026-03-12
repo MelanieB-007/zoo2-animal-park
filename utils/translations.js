@@ -6,6 +6,7 @@ export const translations = {
       back: "ZURÜCK",
       next: "WEITER",
       actions: "Aktionen",
+      popularity: "Popularität",
     },
     animals: {
       searchPlaceholder: "Nach Tiernamen suchen...",
@@ -39,6 +40,7 @@ export const translations = {
       back: "BACK",
       next: "NEXT",
       actions: "Actions",
+      popularity: "Popularity",
     },
     animals: {
       searchPlaceholder: "Search for animal names...",

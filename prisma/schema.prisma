@@ -33,6 +33,7 @@ model tiere {
   auswildern    Int?
   release       String? @db.VarChar(10)
   bild          String? @db.VarChar(255)
+  tierherkunft  tierherkunft[]
 }
 
 model gehege {
@@ -134,6 +135,8 @@ model herkunft {
   nameen    String  @db.VarChar(50)
   nametiere String  @db.VarChar(50)
   bild      String? @db.VarChar(255)
+
+  tierherkunft tierherkunft[]
 }
 
 model klubrollen {
@@ -202,6 +205,12 @@ model tierherkunft {
   id         Int  @id @unique(map: "herkunftindex") @default(autoincrement())
   tierid     Int
   herkunftId Int?
+
+  tier       tiere     @relation(fields: [tierid], references: [id])
+  herkunft   herkunft? @relation(fields: [herkunftId], references: [id])
+
+  @@index([tierid])
+  @@index([herkunftId])
 }
 
 model users {
