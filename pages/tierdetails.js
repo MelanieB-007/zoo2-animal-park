@@ -1,15 +1,25 @@
 import styled from 'styled-components';
-import HeaderCard from '@/components/TierDetails/HeaderCard';
-import InfoAccordion from '@/components/TierDetails/InfoAccordion';
-import VariantCard from '@/components/TierDetails/VariantCard';
+import HeaderCard from '/components/TierDetails/HeaderCard';
+import InfoAccordion from '/components/TierDetails/InfoAccordion';
+import VariantCard from '/components/TierDetails/VariantCard';
 import PageWrapper from "../components/page-structure/PageWrapper";
+import AccordionCard from "../components/TierDetails/AccordionCard";
+import { useState } from "react";
+import { translations } from "../utils/translations";
 
 export default function TierDetail({ animal }) {
+  const [lang, setLang] = useState("de");
+  const translationsAnimals = translations[lang].animals;
+  const translationsCommon = translations[lang].common;
+
   return (
     <PageWrapper>
       <ContentWrapper>
-        {/* Die obere große Karte */}
-        <HeaderCard animal={animal} />
+        <HeaderCard
+          animal={animal}
+          translationsAnimals={translationsAnimals}
+          translationsCommon={translationsCommon}
+        />
 
         <TwoColumnGrid>
           <section>
@@ -27,25 +37,15 @@ export default function TierDetail({ animal }) {
             </div>
           </section>
 
-          <aside>
-            {/* Rechte Spalte: Accordions */}
-            <InfoAccordion title="Zucht" icon="🐣" data={animal.breeding} />
-            <InfoAccordion title="XP & Aktionen" icon="⭐" />
-            <InfoAccordion title="Anzahl Tiere pro Gehege" icon="🐾" />
-          </aside>
+          <AccordionCard
+            translationsAnimals={translationsAnimals}
+          />
         </TwoColumnGrid>
       </ContentWrapper>
     </PageWrapper>
   );
 }
 
-const PageContainer = styled.div`
-  background-color: #d4e88d; /* Der hellgrüne Hintergrund aus dem Bild */
-  min-height: 100vh;
-  padding: 40px 20px;
-  display: flex;
-  justify-content: center;
-`;
 
 const ContentWrapper = styled.div`
   max-width: 1000px;

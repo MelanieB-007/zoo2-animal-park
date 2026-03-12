@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import { useState } from "react";
 
 import CardContainer from "../page-structure/CardContainer";
 import MainImage from "../page-structure/Elements/MainImage";
 import PriceDisplay from "../icons/PriceDisplay";
 import PopularityDisplay from "../icons/PopularityDisplay";
-import { translations } from "../../utils/translations";
 import StatBox from "../page-structure/Elements/StatBox";
 import GameIcon from "../icons/GameIcon";
 import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
@@ -13,10 +11,7 @@ import BoxWithHeadline, { EnclosureArea } from "../page-structure/Elements/BoxWi
 import OriginBadgeList from "../page-structure/Elements/OriginBadgeList";
 import XPIcon from "../icons/XPIcon";
 
-export default function HeaderCard({ animal }) {
-  const [lang, setLang] = useState("de");
-  const translationsAnimals = translations[lang].animals;
-  const translationsCommon = translations[lang].common;
+export default function HeaderCard({ animal, translationsAnimals, translationsCommon }) {
 
   return (
     <CardContainer>

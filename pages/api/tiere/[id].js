@@ -10,6 +10,7 @@ export async function getServerSideProps({ params, locale }) {
       enclosures: true,
       stats: true,
       breeding: true,
+      xp: true,
       tierherkunft: {
         include: {
           herkunft: true,

@@ -31,6 +31,15 @@ export const translations = {
       tooltipAuswildern: "XP beim Auswildern des Tieres",
       editAnimal: "Tier bearbeiten",
       deleteAnimal: "Tier löschen",
+      breeding: "Zucht",
+      costs: "Kosten",
+      time: "Dauer",
+      xpAndActions : "XP & Aktionen",
+      actions: "Aktionen",
+      action: "Aktion",
+      feed: "Füttern",
+      play: "Spielen",
+      clean: "Säubern"
     }
   },
   en: {

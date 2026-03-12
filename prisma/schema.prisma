@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
@@ -80,6 +81,16 @@ model gehegedeko {
   popularitaet Int?
   platzbedarf  Int?
   bild         String? @db.VarChar(255)
+}
+
+model gehegekapazitaet {
+  id           Int   @id @default(autoincrement())
+  tierid       Int
+  anzahlTiere  Int   // Spalte "Animals" (1, 2, 3...)
+  gehegeFeld   Int   // Spalte "Enclosure size" (9, 12, 16...)
+  tier         tier  @relation(fields: [tierid], references: [id])
+
+  @@index([tierid])
 }
 
 model gehegespielgeraet {
