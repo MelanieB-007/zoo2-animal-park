@@ -1,5 +1,4 @@
-import prisma from '../lib/db'; // Pfad zu deiner db.js anpassen
-
+import { prisma } from "../lib/prisma";
 export async function getServerSideProps() {
   try {
     // Ein einfacher Test-Query
