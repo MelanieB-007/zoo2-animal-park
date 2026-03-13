@@ -13,7 +13,11 @@ export default function AccordionCard({ translationsAnimals, animal }) {
   // 1. Die Daten aus animal.xp ziehen (oder leeres Array falls nicht vorhanden)
   const xpData = animal.xp || [];
 
-  // 2. Sortierung basierend auf deinem actionOrder-Array
+  // 2. hasData definieren (Prüfen, ob Kapazitäts-Daten vorhanden sind)
+  const capacityData = animal.tier_gehege_kapazitaet || [];
+  const hasData = capacityData.length > 0;
+
+  // 3. Sortierung basierend auf deinem actionOrder-Array
   // Wir mappen die Keys aus actionOrder auf die IDs (0=fuettern, 1=spielen, 2=putzen)
   const sortedXp = [...xpData].sort((a, b) => {
     const orderA = actionOrder.indexOf(XP_MAP[a.xpart]?.key);
@@ -21,21 +25,23 @@ export default function AccordionCard({ translationsAnimals, animal }) {
     return orderA - orderB;
   });
 
-  {sortedXp.map((item) => {
-    const action = XP_MAP[item.xpart];
+  {
+    sortedXp.map((item) => {
+      const action = XP_MAP[item.xpart];
 
-    return (
-      <tr key={item.id}>
-        <td>
-          {action?.icon} {action?.label}
-        </td>
-        <td>{formatMinutes(item.zeit)}</td>
-        <td>
-          {item.wert} <span className="xp-star">★</span>
-        </td>
-      </tr>
-    );
-  })}
+      return (
+        <tr key={item.id}>
+          <td>
+            {action?.icon} {action?.label}
+          </td>
+          <td>{formatMinutes(item.zeit)}</td>
+          <td>
+            {item.wert} <span className="xp-star">★</span>
+          </td>
+        </tr>
+      );
+    });
+  }
 
   return (
     <aside>
@@ -59,10 +65,6 @@ export default function AccordionCard({ translationsAnimals, animal }) {
 
         <InfoRow>
           <span>{translationsAnimals.time}</span>
-          <NextImage
-            src="/images/icons/clock.png"
-            alt={translationsAnimals.time}
-          />
           {animal.zuchtdauer} h
         </InfoRow>
       </InfoAccordion>
@@ -77,62 +79,56 @@ export default function AccordionCard({ translationsAnimals, animal }) {
             <tr>
               <th>{translationsAnimals.action}</th>
               <th>{translationsAnimals.time}</th>
-              <th>XP</th>
+              <THRechts>XP</THRechts>
             </tr>
           </thead>
           <tbody>
-          {sortedXp.map((item) => {
-            const actionInfo = XP_MAP[item.xpart];
-            return (
-              <tr key={item.id}>
-                <td>
-                  <NextImage
-                    src={actionInfo?.icon}
-                    alt="XP"
-                />
-                </td>
-                <td>
-                  <NextImage
-                    src="/images/icons/clock.png"
-                    alt={translationsAnimals.time}
-                    width={16}
-                    height={16}
-                  />
-                  {formatMinutes(item.zeit)}
-                </td>
-                <td>
-                  <XPIcon
-                  label={item.wert}
-                  />
-                </td>
-              </tr>
-          );
-          })}
+            {sortedXp.map((item) => {
+              const actionInfo = XP_MAP[item.xpart];
+              return (
+                <tr key={item.id}>
+                  <td>
+                    <NextImage
+                      src={actionInfo?.icon}
+                      alt="XP"
+                      width={25}
+                      height={25}
+                    />
+                  </td>
+                  <td>
+                    {formatMinutes(item.zeit)}
+                  </td>
+                  <td>
+                    <XPIcon label={item.wert} />
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </XpTable>
       </InfoAccordion>
 
-      {/* Anzahl Tiere pro Gehege */}
-      <InfoAccordion title="Anzahl Tiere pro Gehege" icon="🐾">
-        <XpTable>
-          <thead>
-            <tr>
-              <th>Tiere</th>
-              <th>Gehegegröße</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* Das hier schreit nach einem animal.enclosureCapacities.map() */}
-            <tr>
-              <td>1</td>
-              <td>9</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>9</td>
-            </tr>
-          </tbody>
-        </XpTable>
+      <InfoAccordion title="Anzahl Tiere pro Gehege" icon="/images/icons/pfote.png">
+        {hasData ? (
+          <XpTable>
+            <thead>
+              <tr>
+                <TableHeader>Anzahl Tiere</TableHeader>
+                <TableHeader>Gehegegröße (Felder)</TableHeader>
+              </tr>
+            </thead>
+            <tbody>
+              {animal.tier_gehege_kapazitaet.map((kap) => (
+                <tr key={kap.anzahlTiere}>
+                  <TableCell>{kap.anzahlTiere}</TableCell>
+                  <TableCell>{kap.felder}</TableCell>
+                </tr>
+              ))}
+            </tbody>
+          </XpTable>
+        ) : (
+          <EmptyState>Daten werden gerade vom System erfasst...</EmptyState>
+        )}
       </InfoAccordion>
     </aside>
   );
@@ -143,15 +139,61 @@ const InfoRow = styled.div`
   justify-content: space-between;
   padding: 8px 0;
   border-bottom: 1px solid #f5f5f5;
-  &:last-child { border-bottom: none; }
+
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 const XpTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9rem;
+
+  th {
+    text-align: right;
+    color: #888;
+    padding-bottom: 8px;
+    font-weight: normal;
+  }
+
+  td {
+    padding: 6px 0;
+    border-bottom: 1px solid #f5f5f5;
+  }
+
+  .xp-star {
+    color: #f1c40f;
+  }
+`;
+
+const THRechts = styled.th`
+  text-align: right !important;
+  display: table-cell; 
+`;
+
+const TableHeader = styled.th`
+  text-align: left;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #e9ecef;
+  font-weight: 600;
+`;
+
+const TableCell = styled.td`
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  text-align: right;
   
-  th { text-align: left; color: #888; padding-bottom: 8px; font-weight: normal; }
-  td { padding: 6px 0; border-bottom: 1px solid #f5f5f5; }
-  .xp-star { color: #f1c40f; }
+  &:first-child {
+    font-weight: bold;
+    color: #555;
+  }
+`;
+
+const EmptyState = styled.p`
+  padding: 15px;
+  text-align: center;
+  color: #888;
+  font-style: italic;
 `;

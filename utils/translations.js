@@ -7,6 +7,7 @@ export const translations = {
       next: "WEITER",
       actions: "Aktionen",
       popularity: "Popularität",
+      description: "Beschreibung",
     },
     animals: {
       searchPlaceholder: "Nach Tiernamen suchen...",

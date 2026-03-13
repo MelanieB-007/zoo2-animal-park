@@ -12,8 +12,8 @@ model tiere {
   id            Int     @id @unique(map: "tiereindex")
   name          String  @db.VarChar(50)
   nameEn        String? @db.VarChar(50)
+  beschreibung  String?  @db.Text
   gehegeId      Int
-  // Die Relation zum Gehege-Model
   gehege        gehege  @relation(fields: [gehegeId], references: [id])
   spielgeraetId Int?
   stalllevel    Int?
@@ -26,15 +26,15 @@ model tiere {
   platzbedarf   Int?
   anzahlbasis   Int?
   anzahlmax     Int?
-  xpfuettern    Int?    @default(0)
-  xpspielen     Int?    @default(0)
-  xpputzen      Int?    @default(0)
   popularitaet  Int?
   verkaufswert  Int?
   auswildern    Int?
   release       String? @db.VarChar(10)
   bild          String? @db.VarChar(255)
   tierherkunft  tierherkunft[]
+  variants      farbvarianten[]
+  tier_gehege_kapazitaet tier_gehege_kapazitaet[]
+  xp            xp[]
 }
 
 model gehege {
@@ -52,7 +52,6 @@ model gehege {
   hintergrundfarbe         String  @db.VarChar(10)
   schriftfarbe             String  @db.VarChar(10)
   bild                     String? @db.VarChar(255)
-  // Rückrelation zu den Tieren (notwendig für Include)
   tiere                    tiere[]
 }
 
@@ -69,6 +68,9 @@ model farbvarianten {
   herkunftId Int
   release    String? @db.VarChar(20)
   bild       String? @db.VarChar(255)
+  tier       tiere   @relation(fields: [tierId], references: [id], onDelete: Cascade)
+
+  @@index([tierId])
 }
 
 model gehegedeko {
@@ -83,14 +85,12 @@ model gehegedeko {
   bild         String? @db.VarChar(255)
 }
 
-model gehegekapazitaet {
-  id           Int   @id @default(autoincrement())
-  tierid       Int
-  anzahlTiere  Int   // Spalte "Animals" (1, 2, 3...)
-  gehegeFeld   Int   // Spalte "Enclosure size" (9, 12, 16...)
-  tier         tier  @relation(fields: [tierid], references: [id])
-
-  @@index([tierid])
+model tier_gehege_kapazitaet {
+  tierId      Int
+  anzahlTiere Int
+  felder      Int
+  tier        tiere @relation(fields: [tierId], references: [id], onDelete: Cascade)
+  @@id([tierId, anzahlTiere])
 }
 
 model gehegespielgeraet {
@@ -217,8 +217,8 @@ model tierherkunft {
   tierid     Int
   herkunftId Int?
 
-  tier       tiere     @relation(fields: [tierid], references: [id])
-  herkunft   herkunft? @relation(fields: [herkunftId], references: [id])
+  tier       tiere     @relation(fields: [tierid], references: [id], onDelete: Cascade)
+  herkunft   herkunft? @relation(fields: [herkunftId], references: [id], onDelete: Cascade)
 
   @@index([tierid])
   @@index([herkunftId])
@@ -269,4 +269,7 @@ model xp {
   xpart  String @db.VarChar(20)
   wert   Int?
   zeit   Int?
+  tier    tiere  @relation(fields: [tierId], references: [id], onDelete: Cascade)
+
+  @@index([tierId])
 }

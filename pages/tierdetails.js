@@ -1,7 +1,6 @@
-import styled from 'styled-components';
-import HeaderCard from '/components/TierDetails/HeaderCard';
-import InfoAccordion from '/components/TierDetails/InfoAccordion';
-import VariantCard from '/components/TierDetails/VariantCard';
+import styled from "styled-components";
+import HeaderCard from "/components/TierDetails/HeaderCard";
+import VariantCard from "/components/TierDetails/VariantCard";
 import PageWrapper from "../components/page-structure/PageWrapper";
 import AccordionCard from "../components/TierDetails/AccordionCard";
 import { useState } from "react";
@@ -23,29 +22,35 @@ export default function TierDetail({ animal }) {
 
         <TwoColumnGrid>
           <section>
-            {/* Linke Spalte: Beschreibung */}
-            <DetailBox title="Beschreibung" icon="📖">
-              <p>{animal.description}</p>
+            <DetailBox>
+              <label>{translationsCommon.description}</label>
+              <p>{animal.beschreibung}</p>
             </DetailBox>
 
             {/* Farbvarianten */}
-            <h3 style={{ color: '#4a7c2a', marginTop: '20px' }}>🌸 Farbvarianten</h3>
-            <div style={{ display: 'flex', gap: '15px' }}>
-              {animal.variants.map(variant => (
-                <VariantCard key={variant.id} variant={variant} />
-              ))}
-            </div>
+            {animal.variants && animal.variants.length > 0 && (
+              <>
+                <h3 style={{ color: "#4a7c2a", marginTop: "20px" }}>
+                  🌸 Farbvarianten
+                </h3>
+                <div style={{ display: "flex", gap: "15px" }}>
+                  {animal.variants.map((variant) => (
+                    <VariantCard key={variant.id} variant={variant} />
+                  ))}
+                </div>
+              </>
+            )}
           </section>
 
           <AccordionCard
             translationsAnimals={translationsAnimals}
+            animal={animal}
           />
         </TwoColumnGrid>
       </ContentWrapper>
     </PageWrapper>
   );
 }
-
 
 const ContentWrapper = styled.div`
   max-width: 1000px;
@@ -63,3 +68,26 @@ const TwoColumnGrid = styled.div`
   }
 `;
 
+const DetailBox = styled.div`
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+  h3 {
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    font-size: 1.25rem;
+    color: #2c3e50;
+    border-bottom: 2px solid #f1f2f6;
+    padding-bottom: 0.8rem;
+
+    span {
+      margin-right: 12px;
+    }
+  }
+`;

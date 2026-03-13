@@ -4,8 +4,10 @@ import NextImage from "next/image";
 export default function MainImage({animal}){
   return (
     <StyledMainImage
-      src={`/images/tiere/{animal.gehege.name}/{animal.bild}`}
+      src={`/images/tiere/${animal.gehege.name}/${animal.bild}`}
       alt={animal.name}
+      width={50}
+      height={50}
     />
   );
 }

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import NextImage from "next/image";
 
 export default function InfoAccordion({ title, icon, children, defaultOpen = false }){
   const [isOpen, setIsOpen] = useState(defaultOpen);
@@ -7,7 +8,14 @@ export default function InfoAccordion({ title, icon, children, defaultOpen = fal
   return (
     <AccordionWrapper>
       <AccordionHeader onClick={() => setIsOpen(!isOpen)}>
-        <HeaderIcon>{icon}</HeaderIcon>
+        <HeaderIcon>
+          <NextImage
+          src={icon}
+          alt={title}
+          width={30}
+          height={30}
+          />
+        </HeaderIcon>
         {title}
         <Chevron $isOpen={isOpen}>▼</Chevron>
       </AccordionHeader>

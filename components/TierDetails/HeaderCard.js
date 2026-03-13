@@ -33,7 +33,7 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
           {/* Spalte 1 & 2 für die Stats */}
           <Stats>
             <StatBox>
-              <label>{translationsAnimals.preis}</label>
+              <label>{translationsAnimals.tablePrice}</label>
               <PriceDisplay
                 value={animal.preis}
                 type={animal.preisart}
@@ -41,9 +41,9 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
             </StatBox>
 
             <StatBox>
-              <label>{translationsAnimals.popularity}</label>
+              <label>{translationsCommon.popularity}</label>
               <PopularityDisplay
-                popularity={animal.popularity}
+                popularity={animal.popularitaet}
                 translation={translationsCommon}
               />
             </StatBox>
@@ -72,7 +72,7 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
             <EnclosureArea>
               {/* Gehegeart */}
               <GameIcon
-                type="images/gehege/"
+                type="/gehege/"
                 fileName={`${animal.gehege.name}.webp`}
                 bordercolor="#4ca64c"
               />
@@ -85,7 +85,7 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
 
               {/* Spielgerät */}
               <GameIcon
-                type="images/gehege/"
+                type="/gehege/"
                 fileName={`${animal.gehege.name}.webp`}
                 bordercolor="#4ca64c"
               />

@@ -8,9 +8,11 @@ export default function OriginBadgeList({ animal }) {
       {animal.tierherkunft.map((entry, index) => (
         <StyledImage
           key={entry.herkunft?.id || index}
-          src={`/images/herkunft/${entry.herkunft?.bild}.webp`}
+          src={`/images/herkunft/${entry.herkunft?.bild}`}
           alt={entry.herkunft?.name}
           title={entry.herkunft?.name}
+          width={50}
+          height={50}
         />
       ))}
     </StyledOriginBadgeList>

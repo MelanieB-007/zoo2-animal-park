@@ -1,30 +1,30 @@
 import { PrismaClient } from '@prisma/client';
+import TierDetails from '../../pages/tierdetails';
 
 const prisma = new PrismaClient();
-
 export async function getServerSideProps({ params, locale }) {
   const animal = await prisma.tiere.findUnique({
     where: { id: parseInt(params.id) },
     include: {
       variants: true,
-      enclosures: true,
-      stats: true,
-      breeding: true,
+      gehege: true,
       xp: true,
       tierherkunft: {
         include: {
           herkunft: true,
         }
+      },
+      tier_gehege_kapazitaet: {
+        orderBy: {
+          anzahlTiere: 'asc'
+        }
       }
     },
   });
 
-  if (!animal) return {落地: { destination: '/404' } };
+  return { props: { animal: JSON.parse(JSON.stringify(animal)) } };
+}
 
-  return {
-    props: {
-      animal: JSON.parse(JSON.stringify(animal)), // Prisma-Daten für Next.js serialisieren
-      // messages: (await import(`../../messages/${locale}.json`)).default, // Falls du next-intl nutzt
-    },
-  };
+export default function TierPage({ animal }) {
+  return <TierDetails animal={animal} />;
 }
