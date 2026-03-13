@@ -6,7 +6,11 @@ export async function getServerSideProps({ params, locale }) {
   const animal = await prisma.tiere.findUnique({
     where: { id: parseInt(params.id) },
     include: {
-      variants: true,
+      variants: {
+        include: {
+          herkunft: true // Hiermit werden Name und Bild der Herkunft geladen
+        }
+      },
       gehege: true,
       xp: true,
       tierherkunft: {

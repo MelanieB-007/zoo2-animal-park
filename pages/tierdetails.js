@@ -23,7 +23,9 @@ export default function TierDetail({ animal }) {
         <TwoColumnGrid>
           <section>
             <DetailBox>
-              <label>{translationsCommon.description}</label>
+              <LabelDescription>
+                {translationsCommon.description}
+              </LabelDescription>
               <p>{animal.beschreibung}</p>
             </DetailBox>
 
@@ -75,6 +77,7 @@ const DetailBox = styled.div`
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  height: 203px;
 
   h3 {
     display: flex;
@@ -90,4 +93,10 @@ const DetailBox = styled.div`
       margin-right: 12px;
     }
   }
+`;
+
+const LabelDescription = styled.label`
+  font-weight: bold;
+  font-size: 1rem;
+  color: #2d5a27;
 `;

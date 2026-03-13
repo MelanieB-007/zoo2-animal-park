@@ -66,6 +66,7 @@ model farbvarianten {
   tierId     Int
   farbe      String  @db.VarChar(20)
   herkunftId Int
+  herkunft    herkunft @relation(fields: [herkunftId], references: [id])
   release    String? @db.VarChar(20)
   bild       String? @db.VarChar(255)
   tier       tiere   @relation(fields: [tierId], references: [id], onDelete: Cascade)
@@ -148,6 +149,7 @@ model herkunft {
   bild      String? @db.VarChar(255)
 
   tierherkunft tierherkunft[]
+  variants    farbvarianten[]
 }
 
 model klubrollen {

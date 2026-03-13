@@ -67,6 +67,10 @@ export default function AccordionCard({ translationsAnimals, animal }) {
           <span>{translationsAnimals.time}</span>
           {animal.zuchtdauer} h
         </InfoRow>
+        <InfoRow>
+          <span>Startprozentsatz</span>
+          {animal.startprozent} %
+        </InfoRow>
       </InfoAccordion>
 
       {/* XP & Aktionen Accordion */}
