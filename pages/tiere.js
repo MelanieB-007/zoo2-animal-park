@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 import XPIcon from "../components/icons/XPIcon";
 import PriceDisplay from "../components/icons/PriceDisplay";
@@ -34,6 +35,7 @@ import {
   StyledTh
 } from "../components/page-structure/Elements/ZooTableElements";
 import { TierThumbnail } from "../components/icons/TierThumbnail";
+import Link from "next/link";
 
 
 export default function TiereUebersicht() {
@@ -52,6 +54,7 @@ export default function TiereUebersicht() {
   const [selectedLevel, setSelectedLevel] = useState("Alle");
 
   const itemsPerPage = 10;
+  const router = useRouter();
 
   useEffect(() => {
     
@@ -247,6 +250,8 @@ export default function TiereUebersicht() {
                 currentItems.map((tier) => (
                   <AnimalRow
                     key={tier.id}
+                    onClick={() => router.push(`/tiere/${tier.id}`)}
+                    style={{ cursor: "pointer" }}
                   >
                     <td>
                       <TierInfoCell>
@@ -307,7 +312,7 @@ export default function TiereUebersicht() {
                       />
                     </DesktopOnlyTd>
                     <td>
-                      <ActionGroup>
+                      <ActionGroup onClick={(e) => e.stopPropagation()}>
                         <EditButton
                           tooltip={translationsAnimals.editAnimal}
                         />
@@ -325,6 +330,7 @@ export default function TiereUebersicht() {
                     {translationsAnimals.noResults} 🐾
                   </NoResult>
                 </tr>
+
               )}
             </tbody>
           </Table>
