@@ -60,7 +60,7 @@ const StyledHeader = styled.header`
   width: 100%;
   max-width: var(--width-page);
 
-  background: var(--color-zoo-orange);
+  background: var(--color-header);
   backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--border-radius);
