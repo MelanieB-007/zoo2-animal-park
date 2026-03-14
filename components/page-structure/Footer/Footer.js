@@ -22,7 +22,7 @@ const StyledFooter = styled.footer`
   z-index: 1;
   text-align: center;
   
-  background-color: var(--color-green);
+  background-color: var(--color-header);
   box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
   border-top: 2px solid rgba(255,255,255,0.2);
   
@@ -38,8 +38,8 @@ const StyledFooter = styled.footer`
     transform: translateX(-50%);
     width: 80%;
     height: 2px;
-    background: var(--color-green-darker);
-    box-shadow: 0 4px 16px var(--color-khaki-green);
+    background: var(--color-header);
+    box-shadow: 0 4px 16px var(--color-zoo-orange);
   }
 
   p {

@@ -24,9 +24,11 @@ export default function XPIcon({ label, size = 20 }) {
 
 const XPWrapper = styled.div`
   display: inline-flex;
+  justify-content: flex-end;
   align-items: center;
   gap: 6px; 
   vertical-align: middle;
+  width: 100%;
 `;
 
 const StarImage = styled.img`

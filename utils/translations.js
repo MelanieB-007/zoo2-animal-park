@@ -6,6 +6,8 @@ export const translations = {
       back: "ZURÜCK",
       next: "WEITER",
       actions: "Aktionen",
+      popularity: "Popularität",
+      description: "Beschreibung",
     },
     animals: {
       searchPlaceholder: "Nach Tiernamen suchen...",
@@ -30,6 +32,16 @@ export const translations = {
       tooltipAuswildern: "XP beim Auswildern des Tieres",
       editAnimal: "Tier bearbeiten",
       deleteAnimal: "Tier löschen",
+      breeding: "Zucht",
+      costs: "Kosten",
+      time: "Dauer",
+      xpAndActions : "XP & Aktionen",
+      actions: "Aktionen",
+      action: "Aktion",
+      feed: "Füttern",
+      play: "Spielen",
+      clean: "Säubern",
+      colorVariants: "Farbvarianten"
     }
   },
   en: {
@@ -39,6 +51,7 @@ export const translations = {
       back: "BACK",
       next: "NEXT",
       actions: "Actions",
+      popularity: "Popularity",
     },
     animals: {
       searchPlaceholder: "Search for animal names...",

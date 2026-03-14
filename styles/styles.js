@@ -9,11 +9,17 @@ export default createGlobalStyle`
 
     --glass-border: 2pt solid var(--color-glass-border);
 
+    --colo1: #086910;
+    --colo2: #f49200;
+    --colo3: #ebf3ce;
+    --colo4: #c4f3fb;
+    
     --color-white: #ffffff;
     --color-yellow-light: #DAE67F;
     --color-yellow: #FBE378;
     --color-sky-blue: #87CEEB;
     --color-earth-brown: #8B4513;
+    --color-header: #ffaf4a;
     --color-orange-light: rgba(255, 165, 0, 1);
     --color-zoo-orange: #FF8C00;
     --color-orange-dark: rgba(255, 140, 0, 0.5);
@@ -66,10 +72,7 @@ export default createGlobalStyle`
     padding: 0;
     min-height: 100vh;
     
-    background-image: linear-gradient(to bottom,
-    var(--color-sky-blue) 0%,
-    var(--color-yellow-light) 70%,
-    var(--color-earth-brown) 100%);
+    background-color: #c4f3fb;
     
     background-attachment: fixed;
     font-family: var(--font-text), sans-serif;
