@@ -12,7 +12,8 @@ import OriginBadgeList from "../page-structure/Elements/OriginBadgeList";
 import XPIcon from "../icons/XPIcon";
 
 export default function HeaderCard({ animal, translationsAnimals, translationsCommon }) {
-console.log("Preisart", animal.preisart);
+  if (!animal) return null;
+
   return (
     <CardContainer>
       <MainImage animal={animal} />

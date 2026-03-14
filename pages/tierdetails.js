@@ -11,6 +11,8 @@ export default function TierDetail({ animal }) {
   const translationsAnimals = translations[lang].animals;
   const translationsCommon = translations[lang].common;
 
+  const description = animal.beschreibung || "Keine Beschreibung verfügbar";
+
   return (
     <PageWrapper>
       <ContentWrapper>
@@ -26,7 +28,7 @@ export default function TierDetail({ animal }) {
               <LabelDescription>
                 {translationsCommon.description}
               </LabelDescription>
-              <p>{animal.beschreibung}</p>
+              <p>{description}</p>
             </DetailBox>
 
             {/* Farbvarianten */}
