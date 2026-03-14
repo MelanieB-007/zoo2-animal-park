@@ -4,7 +4,6 @@ import NextImage from "next/image";
 export default function VariantCard({ variant }) {
   const herkunft = variant.herkunft
 
-  console.log("Variant ", variant);
   return (
     <StyledVariantCard title={variant.name}>
       <ImageWrapper>
@@ -42,13 +41,20 @@ const StyledVariantCard = styled.div`
   border: 2px solid #e0e0e0;
   border-radius: 15px;
   padding: 15px;
-  width: 230px;
-  /* Hinzugefügt: Stellt sicher, dass die Karte hoch genug für den Inhalt wird */
+  width: 100%;           /* Standard für Handy: Volle Breite */
+  max-width: none;      /* Aber maximal 280px breit (etwas breiter als Desktop) */
+  margin: 0 auto;        /* Auf Mobile in der Mitte zentrieren */
+  
   height: auto;
   min-height: 260px;
   transition: all 0.2s ease-in-out;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 
+  @media (min-width: 768px) {
+    width: 230px;
+    margin: 0;           /* Zentrierung auf Desktop aufheben */
+  }
+  
   &:hover {
     transform: translateY(-5px);
     border-color: #4a7c2a;
@@ -58,8 +64,9 @@ const StyledVariantCard = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1 / 1;
   position: relative;
   display: flex;
   justify-content: center;
@@ -67,6 +74,11 @@ const ImageWrapper = styled.div`
   /* Entferne eventuell overflow: hidden zum Testen, ob der Text dann erscheint */
   border-radius: 10px;
   background: #fff;
+
+  img {
+    max-width: 100%;
+    height: auto !important;
+  }
 `;
 
 const VariantName = styled.span`

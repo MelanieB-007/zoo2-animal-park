@@ -105,6 +105,13 @@ const ReleaseDate = styled.div`
 
 const InfoSection = styled.div`
   flex: 1;
+  width: 100%; /* Wichtig für die volle Breite auf Mobile */
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Zentriert alles, falls das Bild zentriert ist */
+  }
 `;
 
 const TitleRow = styled.div`
@@ -112,6 +119,14 @@ const TitleRow = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 15px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;    /* Zentriert den Namen und die Badge-Liste */
+    text-align: center;     /* Zentriert den Textinhalt */
+    gap: 12px;
+    width: 100%;
+  }
 `;
 
 const TextContent = styled.div`
@@ -141,11 +156,28 @@ const TextContent = styled.div`
 
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* Drei Spalten: Stats, Stats, Gehege */
-  gap: 12px;
+  /* Auf Mobile: 1 Spalte für die Blöcke (Stats1, Stats2, Gehege untereinander) */
+  grid-template-columns: 1fr;
+  gap: 15px;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    /* Desktop: 3 Spalten (Stats, Stats, Gehege nebeneinander) */
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: stretch;
+  }
 `;
 
 const Stats = styled.div`
   display: grid;
+  /* Das zwingt Preis & Popularität (und Verkauf & Auswilderung) 
+     auf Mobile in zwei exakt gleich breite Spalten */
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
+  align-items: stretch; /* Macht alle Boxen in einer Reihe gleich hoch */
+
+  @media (min-width: 768px) {
+    /* Auf Desktop stehen sie wieder untereinander in ihrer Spalte */
+    grid-template-columns: 1fr;
+  }
 `;

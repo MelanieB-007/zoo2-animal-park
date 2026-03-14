@@ -35,11 +35,11 @@ export default function TierDetail({ animal }) {
                 <h3 style={{ color: "#4a7c2a", marginTop: "20px" }}>
                   🌸 Farbvarianten
                 </h3>
-                <div style={{ display: "flex", gap: "15px" }}>
+                <VariantGrid>
                   {animal.variants.map((variant) => (
                     <VariantCard key={variant.id} variant={variant} />
                   ))}
-                </div>
+                </VariantGrid>
               </>
             )}
           </section>
@@ -57,6 +57,10 @@ export default function TierDetail({ animal }) {
 const ContentWrapper = styled.div`
   max-width: 1000px;
   width: 100%;
+  padding: 0 10px; /* Kleiner Seitenabstand für das Handy */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const TwoColumnGrid = styled.div`
@@ -64,9 +68,13 @@ const TwoColumnGrid = styled.div`
   grid-template-columns: 1.5fr 1fr;
   gap: 20px;
   margin-top: 20px;
+  width: 100%; /* Sicherstellen, dass das Grid vollflächig ist */
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    display: flex; /* Wechsel auf Flexbox für einfache Umkehrung */
+    flex-direction: column-reverse; /* Akkordeon (unten im Code) rutscht nach oben */
+    align-items: center;
+    gap: 15px;
   }
 `;
 
@@ -77,7 +85,16 @@ const DetailBox = styled.div`
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  height: 203px;
+
+  /* DER WICHTIGE TEIL: */
+  height: auto;          /* Die Box darf so hoch werden wie der Text */
+  min-height: 203px;     /* Auf Desktop behält sie ihre Mindesthöhe */
+
+  p {
+    line-height: 1.6;    /* Macht den Text auf dem Handy besser lesbar */
+    margin: 0;           /* Verhindert komische Abstände nach unten */
+    color: #333;
+  }
 
   h3 {
     display: flex;
@@ -99,4 +116,20 @@ const LabelDescription = styled.label`
   font-weight: bold;
   font-size: 1rem;
   color: #2d5a27;
+`;
+
+
+const VariantGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px; /* Abstand zwischen den Karten */
+  width: 100%;
+  margin-top: 20px;
+
+  /* --- DESKTOP-ANSICHT (ab 768px Breite) --- */
+  @media (min-width: 768px) {
+    /* Platziere so viele 230px-Spalten wie möglich nebeneinander */
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    justify-content: start; /* Linksbündig ausrichten */
+  }
 `;
