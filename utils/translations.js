@@ -40,7 +40,8 @@ export const translations = {
       action: "Aktion",
       feed: "Füttern",
       play: "Spielen",
-      clean: "Säubern"
+      clean: "Säubern",
+      colorVariants: "Farbvarianten"
     }
   },
   en: {

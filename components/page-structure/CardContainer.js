@@ -10,28 +10,26 @@ export default function CardContainer({children}){
 }
 
 const StyledCardContainer = styled.div`
-  background: #fdfdfd; 
+  background: #fdfdfd;
   border: 1.5px solid #d1e2a5;
   border-radius: 20px;
   padding: 24px;
   display: flex;
-  gap: 20px;
+  gap: 25px; /* Abstand zwischen Bild und der Info-Sektion */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 
-  /* DESKTOP-LOGIK (Standard) */
-  flex-direction: row;      /* Bild und Info nebeneinander */
-  align-items: flex-start;  /* Oben bündig */
+  /* DESKTOP-LOGIK */
+  flex-direction: row;
+  justify-content: flex-start; /* Zieht den gesamten Inhalt (Bild + Boxen) nach links */
+  align-items: flex-start;
   width: 100%;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    align-items: center;    /* Zentriert Bild und Info-Sektion horizontal */
-    padding: 15px;          /* Etwas weniger Padding, damit mehr Platz für den Inhalt bleibt */
-    gap: 15px;              /* Kleinerer Abstand zwischen Bild und Text */
-
-    /* Falls der Container auf dem Handy zu schmal wirkt: */
-    margin: 0;        /* Entfernt seitliche Abstände */
-    width: 100%;      /* Erzwingt die gleiche Breite wie die Akkordeons */
+    align-items: center;
+    padding: 15px;
+    gap: 15px;
+    width: 100%;
     border-radius: 20px;
   }
 `;

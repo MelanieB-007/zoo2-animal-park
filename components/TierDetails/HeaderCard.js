@@ -26,7 +26,9 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
             </ReleaseDate>
           </TextContent>
 
-          <OriginBadgeList animal={animal} />
+          <BadgeWrapper>
+            <OriginBadgeList animal={animal} />
+          </BadgeWrapper>
         </TitleRow>
 
         <StatsGrid>
@@ -99,33 +101,45 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
 const ReleaseDate = styled.div`
   font-size: 0.8rem;
   margin-top: 5px;
-  margin-bottom: 10px;
 `;
 
 const InfoSection = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* Desktop: Linksbündig und volle Breite des rechten Bereichs */
-  align-items: flex-start;
+  align-items: flex-start; /* Stellt sicher, dass alles links beginnt */
+  width: 100%;
 
   @media (max-width: 768px) {
-    width: 100%;
     align-items: center;
   }
 `;
 
 const TitleRow = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 15px;
   width: 100%;
+  justify-content: flex-start; /* Der Inhalt beginnt links am Bild */
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 10px;
 
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+`;
+
+// DAS sorgt für die Rechtsbündigkeit oben rechts
+const BadgeWrapper = styled.div`
+  /* Auf Desktop: Schiebt sich so weit wie möglich nach rechts im Header */
+  margin-left: auto; 
+
+  @media (max-width: 768px) {
+    margin: 0; /* Auf Mobile wieder mittig */
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 `;
 
@@ -155,16 +169,18 @@ const TextContent = styled.div`
 `;
 
 const StatsGrid = styled.div`
-  width: 100%;
   display: flex;
-  flex-direction: column; /* Mobile: Alles untereinander stapeln */
+  flex-direction: column;
   gap: 15px;
+  width: 100%;
+  margin-top: 10px;
 
   @media (min-width: 768px) {
-    /* Desktop: Zurück zum stabilen 3-Spalten-Grid */
     display: grid;
-    grid-template-columns: 1fr 1fr 1.3fr;
-    align-items: stretch;
+    /* Spaltenbreiten verringert: 140px statt 160px */
+    grid-template-columns: repeat(2, 220px) minmax(220px, 1fr);
+    justify-content: start; /* Das gesamte Grid nach links zum Bild ziehen */
+    gap: 15px; /* Etwas kompakterer Abstand */
   }
 `;
 
@@ -184,27 +200,36 @@ const StatsGroup = styled.div`
   }
 `;
 
-// Diese Komponente sorgt dafür, dass die Gehege-Box auf Mobile ausschert
-const EnclosureWrapper = styled(BoxWithHeadline)`
-  @media (max-width: 767px) {
-    grid-column: span 2; /* Nutzt die volle Breite unter den Stats */
-    width: 100%;
-  }
 
-  @media (min-width: 768px) {
-    grid-row: span 2; /* Auf Desktop wieder die volle Höhe rechts */
-  }
-`;
-
-const Stats = styled.div`
+// Diesen Style kannst du in deine Datei kopieren, wo die Farbvarianten sind
+const SectionHeadline = styled.h2`
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
+  align-items: center;
+  gap: 12px;                  /* Abstand zwischen Icon/Emoji und Text */
+  
+  /* HINTERGRUND & FORM */
+  background: #fdfdfd;         /* Heller Hintergrund, wie die Boxen oben */
+  border: 1.5px solid #d1e2a5; /* Grüner Rand, passend zum Theme */
+  border-radius: 30px;         /* Stark abgerundet für den Plaketten-Look */
+  padding: 8px 24px;          /* Innenabstand, damit der Text Luft hat */
+  width: fit-content;          /* Die Box wird nur so breit wie der Text */
+  
+  /* TEXT-STYLING */
+  color: #2d5a27;             /* Dunkles Zoo-Grün */
+  font-size: 1.3rem;          /* Etwas kleiner als die Hauptüberschrift oben */
+  font-weight: 600;
+  
+  /* POSITIONIERUNG */
+  margin: 35px 0 20px 5px;    /* Abstand nach oben (35px), unten (20px) und links (5px) */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Ganz dezenter Schatten für Tiefe */
 
-  /* Auf Desktop bleibt es eine Grid-Zelle im StatsGrid */
-  @media (min-width: 768px) {
-    display: grid;
-    grid-template-columns: 1fr;
+  /* Kleiner visueller Akzent, um sie mit der Sektion darunter zu verbinden */
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1.5px;
+    background-color: #d1e2a5;
+    margin-left: 20px;
+    opacity: 0.5;
   }
 `;

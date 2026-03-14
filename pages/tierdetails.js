@@ -32,9 +32,10 @@ export default function TierDetail({ animal }) {
             {/* Farbvarianten */}
             {animal.variants && animal.variants.length > 0 && (
               <>
-                <h3 style={{ color: "#4a7c2a", marginTop: "20px" }}>
-                  🌸 Farbvarianten
-                </h3>
+                <SectionHeadline>
+                  <span style={{ fontSize: '1.2rem' }}>🌸</span> {/* Dein Icon hier */}
+                  {translationsAnimals.colorVariants} {/* Der Text "Farbvarianten" */}
+                </SectionHeadline>
                 <VariantGrid>
                   {animal.variants.map((variant) => (
                     <VariantCard key={variant.id} variant={variant} />
@@ -131,5 +132,48 @@ const VariantGrid = styled.div`
     /* Platziere so viele 230px-Spalten wie möglich nebeneinander */
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     justify-content: start; /* Linksbündig ausrichten */
+  }
+`;
+
+
+const SectionHeadline = styled.h2`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  background: #fdfdfd;
+  border: 1.5px solid #d1e2a5;
+  border-radius: 30px;
+  padding: 8px 24px;
+  width: fit-content;
+
+  color: #2d5a27;
+  font-size: 1.3rem;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+
+  /* DESKTOP-POSITION */
+  margin: 35px 0 20px 5px;
+
+  /* Die Linie nach rechts nur auf Desktop anzeigen */
+  &::after {
+    @media (min-width: 769px) {
+      content: "";
+      flex: 1;
+      height: 1.5px;
+      background-color: #d1e2a5;
+      margin-left: 20px;
+      opacity: 0.5;
+      /* Erlaubt der Linie, sich weit nach rechts auszudehnen */
+      min-width: 100px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* MOBILE-ZENTRIERUNG */
+    margin: 30px auto 20px auto; /* auto links/rechts zentriert die Box */
+    font-size: 1.15rem;           /* Etwas kleiner für schmale Displays */
+    padding: 6px 20px;
+    justify-content: center;
   }
 `;
