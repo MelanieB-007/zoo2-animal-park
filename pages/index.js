@@ -91,25 +91,41 @@ export default function IndexPage({ stats }) {
   );
 }
 
+
+// --- HAUPT-CONTAINER ---
 const FullPageContainer = styled.div`
   width: 100%;
-  height: calc(100vh - 70px); // Abzug der Header-Höhe, falls vorhanden
-  overflow: hidden; // Verhindert Scrollen
+  // Auf Desktop fixieren wir die Höhe, auf Mobile lassen wir Wachstum zu
+  min-height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
+  background-color: #ffffff;
+
+  @media (max-width: 768px) {
+    height: auto;
+    overflow-y: auto;
+  }
 `;
 
+// --- HERO SEKTION MIT HINTERGRUND ---
 const HeroSection = styled.div`
-  flex: 1; // Füllt den gesamten verfügbaren Platz aus
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  
+  padding: 40px 20px;
+
+  // Hintergrundbild Setup
   background-image: url("/images/Zoo2_AnimalPark.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  @media (max-width: 768px) {
+    padding: 60px 15px;
+    min-height: 100vh; // Stellt sicher, dass das Bild auf Mobile den Screen füllt
+  }
 
   &::before {
     content: "";
@@ -118,8 +134,12 @@ const HeroSection = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    // Stärkerer Verlauf nach unten, um den Übergang zum Footer (falls vorhanden) zu kaschieren
-    background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
+    // Verlauf für bessere Lesbarkeit: Auf Mobile etwas deckender
+    background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.85) 0%,
+            rgba(255, 255, 255, 0.4) 100%
+    );
     z-index: 1;
   }
 `;
@@ -127,17 +147,21 @@ const HeroSection = styled.div`
 const ContentWrapper = styled.div`
   max-width: 1100px;
   width: 100%;
-  padding: 0 20px;
   text-align: center;
   position: relative;
   z-index: 2;
 
   h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-size: clamp(2.2rem, 6vw, 4rem);
     color: #2d5a27;
     margin-bottom: 30px;
-    text-shadow: 0 2px 4px rgba(255,255,255,0.5);
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+
     span { color: #88b04b; }
+
+    @media (max-width: 768px) {
+      margin-top: 10px;
+    }
   }
 `;
 
@@ -147,52 +171,76 @@ const Badge = styled.span`
   padding: 6px 16px;
   border-radius: 20px;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 1px;
 `;
 
+// --- STATISTIKEN ---
 const StatsBar = styled.div`
   display: flex;
   justify-content: center;
   gap: 30px;
-  margin-bottom: 50px; /* Abstand zu den Kacheln */
+  margin-bottom: 50px;
   background: white;
   padding: 20px 40px;
   border-radius: 50px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   border: 1px solid #e8f5d7;
 
   @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); // 2x2 Raster auf Mobile
     gap: 15px;
-    padding: 15px;
+    padding: 20px;
+    border-radius: 25px;
+    margin-bottom: 30px;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 
 const StatItem = styled.div`
   text-align: center;
+
   .number {
     font-size: 1.8rem;
     font-weight: 900;
     color: #2d5a27;
+
+    @media (max-width: 768px) {
+      font-size: 1.4rem;
+    }
   }
+
   .label {
     font-size: 0.8rem;
     color: #88b04b;
     text-transform: uppercase;
     font-weight: bold;
+
+    @media (max-width: 768px) {
+      font-size: 0.65rem;
+    }
   }
 `;
 
+// --- NAVIGATION / KACHELN ---
 const ActionGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
   width: 100%;
   margin-top: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; // Eine Kachel pro Zeile
+    gap: 15px;
+  }
 `;
 
-const MenuCard = styled.a` /* Als Link gestylt */
+const MenuCard = styled.a`
   background: white;
   padding: 30px;
   border-radius: 20px;
@@ -201,105 +249,39 @@ const MenuCard = styled.a` /* Als Link gestylt */
   cursor: pointer;
   text-decoration: none;
   text-align: left;
-  display: block; /* Für Klickbarkeit */
+  display: block;
 
   &:hover {
     border-color: ${props => props.$color};
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   }
 
-  h3 { margin: 15px 0 10px; color: #333; }
-  p { font-size: 0.95rem; margin: 0; text-align: left; color: #777; }
+  h3 {
+    margin: 15px 0 10px;
+    color: #333;
+    font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    margin: 0;
+    color: #777;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+
+    h3 { font-size: 1.15rem; }
+    p { font-size: 0.85rem; }
+  }
 `;
 
 const Icon = styled.div`
   font-size: 2.5rem;
-`;
-
-const LatestSection = styled.div`
-  max-width: 900px;
-  margin: -60px auto 60px; /* Überlappt leicht mit Hero für Dynamik */
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  position: relative;
-  z-index: 2;
-
-  h3 { color: #2d5a27; margin-top: 0; margin-bottom: 25px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
-`;
-
-const LatestGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-`;
-
-const MiniCard = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  border-radius: 12px;
-  background: #fdfdfd;
-  border: 1px solid #f0f0f0;
-
-  .emoji { font-size: 1.5rem; }
-  strong { display: block; color: #333; font-size: 0.95rem; }
-  p { margin: 0; font-size: 0.8rem; color: #888; }
-`;
-
-const AboutSection = styled.section`
-  padding: 100px 20px;
-  background: #f9fbf7;
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-  align-items: center;
-
+  
   @media (max-width: 768px) {
-    flex-direction: column;
-    text-align: center;
-    padding: 60px 20px;
+    font-size: 2rem;
   }
-`;
-
-const AboutContent = styled.div`
-  max-width: 500px;
-  h2 { color: #2d5a27; margin-bottom: 20px; font-size: 2.2rem; }
-  p { line-height: 1.7; color: #555; font-size: 1.05rem; }
-`;
-
-const FeatureList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin-top: 30px;
-  text-align: left;
-  li {
-    margin-bottom: 12px;
-    padding-left: 30px;
-    position: relative;
-    color: #666;
-    &::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #88b04b;
-      font-weight: bold;
-    }
-  }
-`;
-
-const IconLarge = styled.div`
-  font-size: 9rem;
-  background: white;
-  width: 220px;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 45px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-  border: 2px solid #f0f0f0;
 `;
