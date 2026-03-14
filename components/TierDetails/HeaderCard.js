@@ -31,7 +31,7 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
 
         <StatsGrid>
           {/* Spalte 1 & 2 für die Stats */}
-          <Stats>
+          <StatsGroup>
             <StatBox>
               <label>{translationsAnimals.tablePrice}</label>
               <PriceDisplay
@@ -47,9 +47,9 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
                 translation={translationsCommon}
               />
             </StatBox>
-          </Stats>
+          </StatsGroup>
 
-          <Stats>
+          <StatsGroup>
             <StatBox>
               <label>{translationsAnimals.tableSell}</label>
               <PriceDisplay
@@ -65,11 +65,10 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
                />
 
             </StatBox>
-          </Stats>
+          </StatsGroup>
 
           {/* Spalte 3 für die Gehege */}
           <BoxWithHeadline translations={translationsAnimals}>
-            <EnclosureArea>
               {/* Gehegeart */}
               <GameIcon
                 type="/gehege/"
@@ -89,7 +88,6 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
                 fileName={`${animal.gehege.name}.webp`}
                 bordercolor="#4ca64c"
               />
-            </EnclosureArea>
           </BoxWithHeadline>
         </StatsGrid>
       </InfoSection>
@@ -101,16 +99,19 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
 const ReleaseDate = styled.div`
   font-size: 0.8rem;
   margin-top: 5px;
+  margin-bottom: 10px;
 `;
 
 const InfoSection = styled.div`
   flex: 1;
-  width: 100%; /* Wichtig für die volle Breite auf Mobile */
+  display: flex;
+  flex-direction: column;
+  /* Desktop: Linksbündig und volle Breite des rechten Bereichs */
+  align-items: flex-start;
 
   @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Zentriert alles, falls das Bild zentriert ist */
+    width: 100%;
+    align-items: center;
   }
 `;
 
@@ -119,13 +120,12 @@ const TitleRow = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 15px;
+  width: 100%;
 
   @media (max-width: 768px) {
     flex-direction: column;
-    align-items: center;    /* Zentriert den Namen und die Badge-Liste */
-    text-align: center;     /* Zentriert den Textinhalt */
-    gap: 12px;
-    width: 100%;
+    align-items: center;
+    text-align: center;
   }
 `;
 
@@ -155,29 +155,56 @@ const TextContent = styled.div`
 `;
 
 const StatsGrid = styled.div`
-  display: grid;
-  /* Auf Mobile: 1 Spalte für die Blöcke (Stats1, Stats2, Gehege untereinander) */
-  grid-template-columns: 1fr;
-  gap: 15px;
   width: 100%;
+  display: flex;
+  flex-direction: column; /* Mobile: Alles untereinander stapeln */
+  gap: 15px;
 
   @media (min-width: 768px) {
-    /* Desktop: 3 Spalten (Stats, Stats, Gehege nebeneinander) */
-    grid-template-columns: 1fr 1fr 1fr;
+    /* Desktop: Zurück zum stabilen 3-Spalten-Grid */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.3fr;
     align-items: stretch;
   }
 `;
 
-const Stats = styled.div`
-  display: grid;
-  /* Das zwingt Preis & Popularität (und Verkauf & Auswilderung) 
-     auf Mobile in zwei exakt gleich breite Spalten */
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  align-items: stretch; /* Macht alle Boxen in einer Reihe gleich hoch */
+const StatsGroup = styled.div`
+  display: flex;
+  gap: 15px;
+  width: 100%;
+
+  /* Auf Mobile: 2 Boxen nebeneinander */
+  & > * {
+    flex: 1;
+  }
 
   @media (min-width: 768px) {
-    /* Auf Desktop stehen sie wieder untereinander in ihrer Spalte */
+    /* Desktop: Untereinander innerhalb der Grid-Spalte */
+    flex-direction: column;
+  }
+`;
+
+// Diese Komponente sorgt dafür, dass die Gehege-Box auf Mobile ausschert
+const EnclosureWrapper = styled(BoxWithHeadline)`
+  @media (max-width: 767px) {
+    grid-column: span 2; /* Nutzt die volle Breite unter den Stats */
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    grid-row: span 2; /* Auf Desktop wieder die volle Höhe rechts */
+  }
+`;
+
+const Stats = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+
+  /* Auf Desktop bleibt es eine Grid-Zelle im StatsGrid */
+  @media (min-width: 768px) {
+    display: grid;
     grid-template-columns: 1fr;
   }
 `;

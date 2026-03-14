@@ -16,9 +16,12 @@ const StyledCardContainer = styled.div`
   padding: 24px;
   display: flex;
   gap: 20px;
-  width: 100%;
-  flex-direction: row;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+  /* DESKTOP-LOGIK (Standard) */
+  flex-direction: row;      /* Bild und Info nebeneinander */
+  align-items: flex-start;  /* Oben bündig */
+  width: 100%;
 
   @media (max-width: 768px) {
     flex-direction: column;
