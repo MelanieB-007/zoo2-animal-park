@@ -13,6 +13,7 @@ export async function getServerSideProps({ params, locale }) {
       },
       gehege: true,
       xp: true,
+      preisart: true,
       tierherkunft: {
         include: {
           herkunft: true,

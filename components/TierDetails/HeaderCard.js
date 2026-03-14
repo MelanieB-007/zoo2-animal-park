@@ -12,7 +12,7 @@ import OriginBadgeList from "../page-structure/Elements/OriginBadgeList";
 import XPIcon from "../icons/XPIcon";
 
 export default function HeaderCard({ animal, translationsAnimals, translationsCommon }) {
-
+console.log("Preisart", animal.preisart);
   return (
     <CardContainer>
       <MainImage animal={animal} />
@@ -38,7 +38,7 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
               <label>{translationsAnimals.tablePrice}</label>
               <PriceDisplay
                 value={animal.preis}
-                type={animal.preisart}
+                type={animal.preisart?.name.toLowerCase() || "gold"}
               />
             </StatBox>
 
@@ -85,11 +85,11 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
               />
 
               {/* Spielgerät */}
-              <GameIcon
-                type="/gehege/"
-                fileName={`${animal.gehege.name}.webp`}
-                bordercolor="#4ca64c"
-              />
+              {/*<GameIcon*/}
+              {/*  type="/gehege/"*/}
+              {/*  fileName={`${animal.gehege.name}.webp`}*/}
+              {/*  bordercolor="#4ca64c"*/}
+              {/*/>*/}
           </BoxWithHeadline>
         </StatsGrid>
       </InfoSection>

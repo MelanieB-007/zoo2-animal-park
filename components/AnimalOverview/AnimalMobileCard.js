@@ -24,36 +24,32 @@ export default function AnimalMobileCard({ tier, translations, onClick }) {
       <Divider />
 
       <StatsRow>
-        {/* Slot 1: Tierbild (GameIcon ist bereits gestylt) */}
-        <IconSlot>
-          <GameIcon
-            type={`tiere/${habitatId}`}
-            fileName={tier.bild || "default.jpg"}
-            size={45} // Falls GameIcon eine Size-Prop annimmt, passend zum Stall-Level
-          />
-        </IconSlot>
+      <PriceRow>
+        <PriceDisplay
+          value={tier.preis}
+          type={tier.preisart?.name?.toLowerCase()}
+        />
+      </PriceRow>
 
-        {/* Slot 2: Gehege */}
-        <IconSlot>
-          <GehegeBadge type={tier.gehege?.name} scale={0.85} />
-        </IconSlot>
+      {/* Zeile 2: Die visuellen Merkmale */}
+      <IconsRow>
+        <GameIcon
+          type={`tiere/${habitatId}`}
+          fileName={tier.bild || "default.jpg"}
+          size={50}
+        />
 
-        {/* Slot 3: Preis */}
-        <IconSlot>
-          <PriceDisplay
-            value={tier.preis}
-            type={tier.preisart?.name.toLowerCase()}
-          />
-        </IconSlot>
+        <GehegeBadge
+          type={tier.gehege?.name}
+          size={35}
+        />
 
-        {/* Slot 4: Stall-Level */}
-        <IconSlot>
-          <StallLevelBadge
-            level={tier.stalllevel}
-            habitatName={tier.gehege?.name}
-          />
-        </IconSlot>
-      </StatsRow>
+        <StallLevelBadge
+          level={tier.stalllevel}
+          habitatName={tier.gehege?.name}
+        />
+      </IconsRow>
+    </StatsRow>
     </CardContainer>
   );
 }
@@ -84,18 +80,22 @@ const Divider = styled.div`
 
 const StatsRow = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column; // Wir stapeln Preis und Icons
+  gap: 8px;
   width: 100%;
-  margin-top: 5px;
 `;
 
-// Ein Wrapper für jedes Icon, um die 25% Breite zu garantieren
-const IconSlot = styled.div`
-  flex: 1; // Alle Slots sind gleich groß
+const PriceRow = styled.div`
   display: flex;
-  justify-content: center; // Zentriert das Icon im Slot
+  justify-content: flex-end; // Preis klebt rechts unter der Linie
+  padding-right: 4px;
+`;
+
+const IconsRow = styled.div`
+  display: flex;
   align-items: center;
+  justify-content: space-between; // Bild, Gehege und Stall verteilen sich
+  width: 100%;
 `;
 
 const ActionGroup = styled.div`
