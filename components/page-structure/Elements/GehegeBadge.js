@@ -3,15 +3,15 @@ import NextImage from "next/image";
 import { habitatColors } from "../../../utils/habitatConstants";
 
 
-export default function GehegeBadge({ type }) {
+export default function GehegeBadge({ type, size=20 }) {
   const safeType = type?.toLowerCase() || "default";
   return (
     <BadgeWrapper $type={safeType}>
       <NextImage
         src={`/images/gehege/icons/${safeType}.webp`}
         alt={type}
-        width={20}
-        height={20}
+        width={size}
+        height={size}
       />
     </BadgeWrapper>
   );

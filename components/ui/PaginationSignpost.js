@@ -36,6 +36,13 @@ const SignpostAssembly = styled.div`
   align-items: flex-end;
   gap: 40px;
   margin-top: 40px;
+  margin-bottom: 20px; // Etwas Platz nach unten
+
+  @media (max-width: 768px) {
+    gap: 10px; // Weniger Abstand auf Mobile
+    margin-top: 20px;
+    transform: scale(0.85); // Das gesamte Set dezent verkleinern
+  }
 `;
 
 const SignpostButton = styled.button`
@@ -72,6 +79,11 @@ const SignpostButton = styled.button`
     filter: grayscale(1) opacity(0.4);
     cursor: not-allowed;
   }
+
+  @media (max-width: 768px) {
+    width: 110px; // Schmaler auf Mobile
+    height: 45px;
+  }
 `;
 
 const PageIndicator = styled.div`
@@ -96,5 +108,14 @@ const PageIndicator = styled.div`
     color: #2d5a27;
     font-family: "Playfair Display", serif;
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  @media (max-width: 768px) {
+    width: 100px; // Schmaler auf Mobile
+    height: 40px;
+
+    div {
+      font-size: 1rem; // Schrift etwas kleiner
+    }
   }
 `;

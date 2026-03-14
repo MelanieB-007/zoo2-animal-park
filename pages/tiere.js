@@ -32,11 +32,10 @@ import {
   DesktopOnlyTd,
   RightAlignedTd,
   RightAlignedSortableTh,
-  StyledTh
+  StyledTh,
 } from "../components/page-structure/Elements/ZooTableElements";
 import { TierThumbnail } from "../components/icons/TierThumbnail";
-import Link from "next/link";
-
+import AnimalMobileCard from "../components/AnimalOverview/AnimalMobileCard";
 
 export default function TiereUebersicht() {
   const [sortBy, setSortBy] = useState("name");
@@ -57,7 +56,6 @@ export default function TiereUebersicht() {
   const router = useRouter();
 
   useEffect(() => {
-    
     fetch("/api/tiere")
       .then((res) => res.json())
       .then((data) => {
@@ -80,7 +78,7 @@ export default function TiereUebersicht() {
     return AnimalService.filterAnimals(tiere, {
       searchTerm,
       selectedGehege,
-      selectedLevel
+      selectedLevel,
     });
   }, [tiere, searchTerm, selectedGehege, selectedLevel]);
 
@@ -102,11 +100,14 @@ export default function TiereUebersicht() {
 
   const handleNext = () =>
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  const handlePrev = () =>
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
   if (loading) {
-    return <LoadingWrapper>{translationsAnimals.searchPlaceholder} 🐾</LoadingWrapper>;
+    return (
+      <LoadingWrapper>
+        {translationsAnimals.searchPlaceholder} 🐾
+      </LoadingWrapper>
+    );
   }
 
   const toggleSort = (key) => {
@@ -143,198 +144,176 @@ export default function TiereUebersicht() {
       />
 
       {currentItems.length > 0 ? (
-        <TableFrame>
-          <Table>
-            <thead>
-              <tr>
-                <SortableTh
-                  onClick={() => toggleSort("name")}
-                >
-                  {translationsAnimals.tableSpecies}
-                  <SortIcon
-                    columnKey="name"
-                    currentSortBy={sortBy}
-                    direction={sortDirection}
-                  />
-                </SortableTh>
+        <>
+          {/* DESKTOP TABELLE */}
+          <DesktopView>
+            <TableFrame>
+              <Table>
+                <thead>
+                  <tr>
+                    <SortableTh onClick={() => toggleSort("name")}>
+                      {translationsAnimals.tableSpecies}
+                      <SortIcon
+                        columnKey="name"
+                        currentSortBy={sortBy}
+                        direction={sortDirection}
+                      />
+                    </SortableTh>
 
-                <SortableTh
-                  onClick={() => toggleSort("gehege.name")}
-                >
-                  {translationsAnimals.tableEnclosure}
-                  <SortIcon
-                    columnKey="gehege.name"
-                    currentSortBy={sortBy}
-                    direction={sortDirection}
-                  />
-                </SortableTh>
+                    <SortableTh onClick={() => toggleSort("gehege.name")}>
+                      {translationsAnimals.tableEnclosure}
+                      <SortIcon
+                        columnKey="gehege.name"
+                        currentSortBy={sortBy}
+                        direction={sortDirection}
+                      />
+                    </SortableTh>
 
-                <RightAlignedSortableTh
-                  onClick={() => toggleSort("preis")}
-                >
-                  {translationsAnimals.tablePrice}
-                  <SortIcon
-                    columnKey="preis"
-                    currentSortBy={sortBy}
-                    direction={sortDirection}
-                  />
-                </RightAlignedSortableTh>
+                    <RightAlignedSortableTh onClick={() => toggleSort("preis")}>
+                      {translationsAnimals.tablePrice}
+                      <SortIcon
+                        columnKey="preis"
+                        currentSortBy={sortBy}
+                        direction={sortDirection}
+                      />
+                    </RightAlignedSortableTh>
 
-                <StyledTh
-                  onClick={() => toggleSort("stalllevel")}
-                >
-                  <Tooltip
-                    text={translationsAnimals.tooltipLevel}
-                  >
-                    {translationsAnimals.tableStall}
-                  </Tooltip>
-                  <SortIcon
-                    columnKey="stalllevel"
-                    currentSortBy={sortBy}
-                    direction={sortDirection}
-                  />
-                </StyledTh>
+                    <StyledTh onClick={() => toggleSort("stalllevel")}>
+                      <Tooltip text={translationsAnimals.tooltipLevel}>
+                        {translationsAnimals.tableStall}
+                      </Tooltip>
+                      <SortIcon
+                        columnKey="stalllevel"
+                        currentSortBy={sortBy}
+                        direction={sortDirection}
+                      />
+                    </StyledTh>
 
-                <DesktopOnlyTh
-                  onClick={() => toggleSort("xp")}
-                >
-                  <Tooltip
-                    text={translationsAnimals.tooltipXP}
-                  >
-                    XP
-                  </Tooltip>
-                  <SortIcon
-                    columnKey="xp"
-                    currentSortBy={sortBy}
-                    direction={sortDirection}
-                  />
-                </DesktopOnlyTh>
+                    <DesktopOnlyTh onClick={() => toggleSort("xp")}>
+                      <Tooltip text={translationsAnimals.tooltipXP}>XP</Tooltip>
+                      <SortIcon
+                        columnKey="xp"
+                        currentSortBy={sortBy}
+                        direction={sortDirection}
+                      />
+                    </DesktopOnlyTh>
 
-                <DesktopOnlyTh
-                  onClick={() => toggleSort("verkaufswert")}
-                >
-                  <Tooltip
-                    text={translationsAnimals.tooltipVerkaufswert}
-                  >
-                    {translationsAnimals.tableSell}
-                  </Tooltip>
-                  <SortIcon
-                    columnKey="verkaufswert"
-                    currentSortBy={sortBy}
-                    direction={sortDirection}
-                  />
-                </DesktopOnlyTh>
+                    <DesktopOnlyTh onClick={() => toggleSort("verkaufswert")}>
+                      <Tooltip text={translationsAnimals.tooltipVerkaufswert}>
+                        {translationsAnimals.tableSell}
+                      </Tooltip>
+                      <SortIcon
+                        columnKey="verkaufswert"
+                        currentSortBy={sortBy}
+                        direction={sortDirection}
+                      />
+                    </DesktopOnlyTh>
 
-                <DesktopOnlyTh
-                  onClick={() => toggleSort("auswildern")}
-                >
-                  <Tooltip
-                    text={translationsAnimals.tooltipAuswildern}
-                  >
-                    {translationsAnimals.tableRelease}
-                  </Tooltip>
-                  <SortIcon
-                    columnKey="auswildern"
-                    currentSortBy={sortBy}
-                    direction={sortDirection}
-                  />
-                </DesktopOnlyTh>
+                    <DesktopOnlyTh onClick={() => toggleSort("auswildern")}>
+                      <Tooltip text={translationsAnimals.tooltipAuswildern}>
+                        {translationsAnimals.tableRelease}
+                      </Tooltip>
+                      <SortIcon
+                        columnKey="auswildern"
+                        currentSortBy={sortBy}
+                        direction={sortDirection}
+                      />
+                    </DesktopOnlyTh>
 
-                <ActionText>
-                  {translationsCommon.actions}
-                </ActionText>
-              </tr>
-            </thead>
-            <tbody>
-              {currentItems.length > 0 ? (
-                currentItems.map((tier) => (
-                  <AnimalRow
-                    key={tier.id}
-                    onClick={() => router.push(`/tiere/${tier.id}`)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <td>
-                      <TierInfoCell>
-                        <TierThumbnail
-                          $type={tier.gehege?.name}
-                        >
-                          <GameIcon
-                            type={`tiere/${(tier.gehege?.name || "standard").toLowerCase()}`}
-                            fileName={tier.bild || "default.jpg"}
-                            bordercolor="transparent"
+                    <ActionText>{translationsCommon.actions}</ActionText>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentItems.length > 0 ? (
+                    currentItems.map((tier) => (
+                      <AnimalRow
+                        key={tier.id}
+                        onClick={() => router.push(`/tiere/${tier.id}`)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <td>
+                          <TierInfoCell>
+                            <TierThumbnail $type={tier.gehege?.name}>
+                              <GameIcon
+                                type={`tiere/${(tier.gehege?.name || "standard").toLowerCase()}`}
+                                fileName={tier.bild || "default.jpg"}
+                                bordercolor="transparent"
+                              />
+                            </TierThumbnail>
+
+                            <div>
+                              <NameDE>{tier.name}</NameDE>
+                            </div>
+                          </TierInfoCell>
+                        </td>
+                        <td>
+                          <Tooltip text={`${tier.gehege.name} Gehege`}>
+                            <GehegeBadge type={tier.gehege?.name} />
+                          </Tooltip>
+                        </td>
+                        <RightAlignedTd>
+                          <PriceDisplay
+                            value={tier.preis}
+                            type={tier.preisart?.name.toLowerCase() || "gold"}
                           />
-                        </TierThumbnail>
+                        </RightAlignedTd>
+                        <td>
+                          <Tooltip
+                            text={`Benötigtes Stall-Level: ${tier.stalllevel}`}
+                            position="bottom"
+                          >
+                            <StallLevelBadge
+                              level={tier.stalllevel}
+                              habitatName={tier.gehege?.name}
+                            />
+                          </Tooltip>
+                        </td>
+                        <DesktopOnlyTd>
+                          <XPIcon label={calculateTotalXP(tier)} />
+                        </DesktopOnlyTd>
+                        <DesktopOnlyTd>
+                          <ZoodollarIcon value={tier.verkaufswert} />
+                        </DesktopOnlyTd>
+                        <DesktopOnlyTd>
+                          <XPIcon label={tier.auswildern} />
+                        </DesktopOnlyTd>
+                        <td>
+                          <ActionGroup onClick={(e) => e.stopPropagation()}>
+                            <EditButton
+                              tooltip={translationsAnimals.editAnimal}
+                            />
+                            <DeleteButton
+                              tooltip={translationsAnimals.deleteAnimal}
+                              align="left"
+                            />
+                          </ActionGroup>
+                        </td>
+                      </AnimalRow>
+                    ))
+                  ) : (
+                    <tr>
+                      <NoResult colSpan="8">
+                        {translationsAnimals.noResults} 🐾
+                      </NoResult>
+                    </tr>
+                  )}
+                </tbody>
+              </Table>
+            </TableFrame>
+          </DesktopView>
 
-                        <div>
-                          <NameDE>{tier.name}</NameDE>
-                        </div>
-                      </TierInfoCell>
-                    </td>
-                    <td>
-                      <Tooltip
-                        text={`${tier.gehege.name} Gehege`}
-                      >
-                        <GehegeBadge
-                          type={tier.gehege?.name}
-                        />
-                      </Tooltip>
-                    </td>
-                    <RightAlignedTd>
-                      <PriceDisplay
-                        value={tier.preis}
-                        type={tier.preisart?.name.toLowerCase() || "gold"}
-                      />
-                    </RightAlignedTd>
-                    <td>
-                      <Tooltip
-                        text={`Benötigtes Stall-Level: ${tier.stalllevel}`}
-                        position="bottom"
-                      >
-                        <StallLevelBadge
-                          level={tier.stalllevel}
-                          habitatName={tier.gehege?.name}
-                        />
-                      </Tooltip>
-                    </td>
-                    <DesktopOnlyTd>
-                      <XPIcon
-                        label={calculateTotalXP(tier)}
-                      />
-                    </DesktopOnlyTd>
-                    <DesktopOnlyTd>
-                      <ZoodollarIcon
-                        value={tier.verkaufswert}
-                      />
-                    </DesktopOnlyTd>
-                    <DesktopOnlyTd>
-                      <XPIcon
-                        label={tier.auswildern}
-                      />
-                    </DesktopOnlyTd>
-                    <td>
-                      <ActionGroup onClick={(e) => e.stopPropagation()}>
-                        <EditButton
-                          tooltip={translationsAnimals.editAnimal}
-                        />
-                        <DeleteButton
-                          tooltip={translationsAnimals.deleteAnimal}
-                          align="left"
-                        />
-                      </ActionGroup>
-                    </td>
-                  </AnimalRow>
-                ))
-              ) : (
-                <tr>
-                  <NoResult colSpan="8">
-                    {translationsAnimals.noResults} 🐾
-                  </NoResult>
-                </tr>
-
-              )}
-            </tbody>
-          </Table>
-        </TableFrame>
+          {/* MOBILE CARDS */}
+          <MobileView>
+            {currentItems.map((tier) => (
+              <AnimalMobileCard
+                key={tier.id}
+                tier={tier}
+                translations={translationsAnimals}
+                onClick={() => router.push(`/tiere/${tier.id}`)}
+              />
+            ))}
+          </MobileView>
+        </>
       ) : (
         <EmptyState
           title={translationsAnimals.emptyTitle}
@@ -360,7 +339,6 @@ export default function TiereUebersicht() {
     </PageWrapper>
   );
 }
-
 
 const TierInfoCell = styled.div`
   display: flex;
@@ -392,4 +370,19 @@ const ActionText = styled.th`
 const NoResult = styled.td`
   text-align: center;
   padding: 20px;
+`;
+
+const DesktopView = styled.div`
+  display: block;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileView = styled.div`
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+    padding: 0 10px;
+  }
 `;
