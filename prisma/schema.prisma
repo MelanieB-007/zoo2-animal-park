@@ -64,12 +64,12 @@ model akademie {
 model farbvarianten {
   id         Int     @id @unique(map: "farbvariantenindex") @default(autoincrement())
   tierId     Int
+  tier       tiere   @relation(fields: [tierId], references: [id], onDelete: Cascade)
   farbe      String  @db.VarChar(20)
   herkunftId Int
   herkunft    herkunft @relation(fields: [herkunftId], references: [id])
   release    String? @db.VarChar(20)
   bild       String? @db.VarChar(255)
-  tier       tiere   @relation(fields: [tierId], references: [id], onDelete: Cascade)
 
   @@index([tierId])
 }
@@ -88,9 +88,10 @@ model gehegedeko {
 
 model tier_gehege_kapazitaet {
   tierId      Int
+  tier        tiere @relation(fields: [tierId], references: [id], onDelete: Cascade)
   anzahlTiere Int
   felder      Int
-  tier        tiere @relation(fields: [tierId], references: [id], onDelete: Cascade)
+
   @@id([tierId, anzahlTiere])
 }
 
