@@ -17,6 +17,7 @@ export default createGlobalStyle`
     --color-white: #ffffff;
     --color-yellow-light: #DAE67F;
     --color-yellow: #FBE378;
+    --color-blue-light: #c4f3fb;
     --color-sky-blue: #87CEEB;
     --color-earth-brown: #8B4513;
     --color-header: #ffaf4a;
@@ -63,7 +64,7 @@ export default createGlobalStyle`
   }
 
   html, body {
-    overflow-x: hidden; /* Verhindert das seitliche Scrollen zum versteckten Menü */
+    overflow-x: hidden; 
     width: 100%;
   }
   
@@ -72,7 +73,7 @@ export default createGlobalStyle`
     padding: 0;
     min-height: 100vh;
     
-    background-color: #c4f3fb;
+    background-color: var(--color-blue-light);
     
     background-attachment: fixed;
     font-family: var(--font-text), sans-serif;
