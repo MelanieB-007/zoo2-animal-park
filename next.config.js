@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
+const { i18n } = require('./next-i18next.config');
+
 const nextConfig = {
+  i18n,
   compiler: {
-    // Das ist lebensnotwendig für Styled Components in Next.js!
     styledComponents: true,
   },
   reactStrictMode: true,

@@ -1,4 +1,5 @@
 import { SessionProvider } from "next-auth/react";
+import { appWithTranslation } from 'next-i18next';
 import { SWRConfig } from "swr";
 
 import {
@@ -27,7 +28,7 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
-export default function App({
+function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
@@ -61,3 +62,5 @@ export default function App({
     </SessionProvider>
   );
 }
+
+export default appWithTranslation(App);

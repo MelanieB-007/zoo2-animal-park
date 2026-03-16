@@ -1,10 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { IoChevronDown } from "react-icons/io5";
+import { useRouter } from "next/router";
 
 export default function LangSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
+
+  const router = useRouter();
+  const { pathname, asPath, query, locale: currentLocale } = router;
+
+  // Funktion zum Wechseln der Sprache
+  const changeLanguage = (newLocale) => {
+    router.push({ pathname, query }, asPath, { locale: newLocale });
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -12,35 +22,32 @@ export default function LangSwitcher() {
         setIsOpen(false);
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Map für die Flaggen-Kürzel passend zum Locale
+  const localeToFlag = {
+    de: "de",
+    en: "gb",
+    dk: "dk",
+    nl: "nl",
+    be: "be"
+  };
+
   return (
     <LangSwitcherContainer ref={wrapperRef}>
-      <CurrentLanguage onClick={() =>
-          setIsOpen(!isOpen)} $isOpen={isOpen}>
-        <span className="fi fi-de"></span>
+      <CurrentLanguage onClick={() => setIsOpen(!isOpen)} $isOpen={isOpen}>
+        <span className={`fi fi-${localeToFlag[currentLocale] || 'de'}`}></span>
         <StyledChevron $isOpen={isOpen} />
       </CurrentLanguage>
 
       <LangDropdown $show={isOpen}>
-        <LangOption onClick={() => setIsOpen(false)}>
-          <span className="fi fi-de"></span> DE
-        </LangOption>
-        <LangOption onClick={() => setIsOpen(false)}>
-          <span className="fi fi-dk"></span> DK
-        </LangOption>
-        <LangOption onClick={() => setIsOpen(false)}>
-          <span className="fi fi-gb"></span> EN
-        </LangOption>
-        <LangOption onClick={() => setIsOpen(false)}>
-          <span className="fi fi-nl"></span> NL
-        </LangOption>
-        <LangOption onClick={() => setIsOpen(false)}>
-          <span className="fi fi-be"></span> BE
-        </LangOption>
+        {router.locales.map((loc) => (
+          <LangOption key={loc} onClick={() => changeLanguage(loc)}>
+            <span className={`fi fi-${localeToFlag[loc]}`}></span> {loc.toUpperCase()}
+          </LangOption>
+        ))}
       </LangDropdown>
     </LangSwitcherContainer>
   );
