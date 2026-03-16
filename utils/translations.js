@@ -8,6 +8,9 @@ export const translations = {
       actions: "Aktionen",
       popularity: "Popularität",
       description: "Beschreibung",
+      delete: "Löschen",
+      edit: "Editieren",
+      diamond: "Diamant",
     },
     animals: {
       searchPlaceholder: "Nach Tiernamen suchen...",
@@ -18,6 +21,7 @@ export const translations = {
       tableSpecies: "Tierart",
       tableEnclosure: "Gehege",
       tablePrice: "Preis",
+
       tableStall: "Stall-Level",
       tableSell: "Verkauf",
       tableRelease: "Auswilderung",

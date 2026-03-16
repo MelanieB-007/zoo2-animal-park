@@ -13,12 +13,15 @@ export default createGlobalStyle`
     --colo2: #f49200;
     --colo3: #ebf3ce;
     --colo4: #c4f3fb;
+   
     
     --color-white: #ffffff;
     --color-yellow-light: #DAE67F;
     --color-yellow: #FBE378;
     --color-blue-light: #c4f3fb;
     --color-sky-blue: #87CEEB;
+    --color-blue: #3b82f6;
+    --color-blau-marine: #1d4ed8;
     --color-earth-brown: #8B4513;
     --color-header: #ffaf4a;
     --color-orange-light: rgba(255, 165, 0, 1);
