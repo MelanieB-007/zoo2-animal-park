@@ -6,6 +6,7 @@ export default createGlobalStyle`
     --width-page: 1200px;
     --glass-blur: blur(10px);
     --border-radius: 20px;
+    --border-radius-icon: 10px;
 
     --glass-border: 2pt solid var(--color-glass-border);
 

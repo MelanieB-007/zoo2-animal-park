@@ -1,0 +1,33 @@
+{
+  "overview_title": "All Animals Overview",
+  "search_placeholder": "Search for animals...",
+  "results_unit": "animals found",
+  "table": {
+    "species": "Species",
+    "enclosure": "Enclosure",
+    "price": "Price",
+    "stall": "Stall",
+    "xp": "XP",
+    "sell": "Sell",
+    "release": "Release",
+    "actions": "Actions"
+  },
+  "tooltips": {
+    "level": "Required Habitat Level",
+    "xp": "Total XP Yield",
+    "sell": "Sale value in Zoodollars",
+    "release": "XP when released",
+    "edit": "Edit animal",
+    "delete": "Delete animal"
+  },
+  "empty": {
+    "title": "No animals found",
+    "message": "Try changing your filters or your search term.",
+    "button": "Reset filters"
+  },
+  "filter": {
+    "all_enclosures": "All Enclosures",
+    "all_levels": "All Levels",
+    "level_label": "Level"
+  }
+}

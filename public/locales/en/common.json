@@ -28,5 +28,11 @@
   "footer": {
     "title": "Great Animals Club",
     "imprint": "Imprint"
-  }
+  },
+  "results": {
+    "show": "Showing",
+    "of": "of"
+  },
+  "actions": "Actions",
+  "loading": "Loading..."
 }

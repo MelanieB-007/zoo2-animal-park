@@ -28,5 +28,11 @@
   "footer": {
     "title": "Klub der tollen Tiere",
     "imprint": "Impressum"
-  }
+  },
+  "results": {
+    "show": "Angezeigt",
+    "of": "von"
+  },
+  "actions": "Aktionen",
+  "loading": "Wird geladen..."
 }
