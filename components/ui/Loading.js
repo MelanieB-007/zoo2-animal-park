@@ -1,11 +1,10 @@
+import React from "react";
 import styled from "styled-components";
 
-export default function ({ children }) {
-  return (
-    <StyledLoadingWrapper>
-      {children}
-    </StyledLoadingWrapper>
-  );
+export default function Loading({ text }) {
+  return <StyledLoadingWrapper>
+    {text}
+  </StyledLoadingWrapper>;
 }
 
 const StyledLoadingWrapper = styled.div`

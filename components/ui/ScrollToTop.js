@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
+import { useTranslation } from "next-i18next";
+
+import Tooltip from "./Tooltip";
 
 export default function ScrollToTop() {
+    const { t } = useTranslation('common');
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -14,7 +18,8 @@ export default function ScrollToTop() {
         };
 
         window.addEventListener("scroll", toggleVisibility);
-        return () => window.removeEventListener("scroll", toggleVisibility);
+        return () =>
+          window.removeEventListener("scroll", toggleVisibility);
     }, []);
 
     const scrollToTop = () => {
@@ -25,9 +30,16 @@ export default function ScrollToTop() {
     };
 
     return (
-        <ScrollButton $visible={isVisible} onClick={scrollToTop} title="Nach oben">
+      <Tooltip
+      text={t('on_top')}
+      >
+        <ScrollButton
+          $visible={isVisible}
+          onClick={scrollToTop}
+        >
             🐾
         </ScrollButton>
+      </Tooltip>
     );
 }
 

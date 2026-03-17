@@ -26,7 +26,6 @@ export default function LangSwitcher() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Map für die Flaggen-Kürzel passend zum Locale
   const localeToFlag = {
     de: "de",
     en: "gb",

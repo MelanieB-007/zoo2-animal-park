@@ -54,9 +54,9 @@ const TooltipContainer = styled.div`
             0 2px 4px -1px rgba(0, 0, 0, 0.2),
             0 10px 15px -3px rgba(0, 0, 0, 0.4);
     
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var( --color-grey-dark);
     padding: 8px 12px;
-    border-radius: 8px;
+    border-radius: var(--border-radius-icon);
     font-size: 0.8rem;
     white-space: nowrap;
     opacity: 0;

@@ -1,0 +1,23 @@
+{
+  "searchPlaceholder": "Nach Tiernamen suchen...",
+  "species": "Tierart",
+  "shelter": "Stall",
+  "shelter-level": "Stall-Level",
+  "tooltipLevel": "Welches Level wird für dieses Tier benötigt?",
+  "tooltipXP": "XP insgesamt - Füttern, Putzen, Spielen",
+  "tooltipSell": "Preis beim Verkaufen des Tieres",
+  "tooltipRelease": "XP beim Auswildern des Tieres",
+  "sell": "Verkauf",
+  "release": "Auswilderung",
+  "editAnimal": "Tier bearbeiten",
+  "deleteAnimal": "Tier löschen",
+  "resultsUnit": "Tieren",
+  "emptyTitle": "Oje, kein Tier da!",
+  "headline_animal_overview": "Übersicht über alle Tiere",
+  "colorVariants": "Farbvarianten",
+  "breeding": "Zucht",
+  "StartingPercentage": "Startprozentsatz",
+  "xpAndActions" : "XP & Aktionen",
+  "allEnclosures": "Alle Gehege",
+  "allLevels": "Alle Stall-Level"
+}

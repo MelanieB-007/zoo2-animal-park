@@ -1,13 +1,16 @@
 import NextImage from "next/image";
 import styled from "styled-components";
+import { useTranslation } from "next-i18next";
 
-export default function PopularityDisplay({popularity, translation}) {
+export default function PopularityDisplay({popularity}) {
+  const { t } = useTranslation('common');
+
   return (
     <StyledWrapper>
         {popularity}
         <NextImage
           src="/images/icons/besucher.jpg"
-          alt={translation.popularity}
+          alt={t('popularity')}
           width={25}
           height={16}
         />

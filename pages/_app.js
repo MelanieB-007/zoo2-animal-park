@@ -2,11 +2,6 @@ import { SessionProvider } from "next-auth/react";
 import { appWithTranslation } from 'next-i18next';
 import { SWRConfig } from "swr";
 
-import {
-  Sedgwick_Ave_Display,
-  DM_Sans,
-  Playfair_Display,
-} from "next/font/google";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "../styles/styles";
 import { theme } from "../styles/theme";
@@ -17,16 +12,6 @@ import Main from "../components/page-structure/Main/Main";
 import Footer from "../components/page-structure/Footer/Footer";
 import ScrollToTop from "../components/ui/ScrollToTop";
 
-const sedgwick = Sedgwick_Ave_Display({ weight: "400", subsets: ["latin"] });
-const dmSans = DM_Sans({
-  weight: ["400", "500", "700"], // Hier die Gewichte definieren
-  subsets: ["latin"],
-});
-
-const playfair = Playfair_Display({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-});
 
 function App({
   Component,
@@ -35,15 +20,6 @@ function App({
   return (
     <SessionProvider session={session}>
       <ThemeProvider theme={theme}>
-        {/* Wir übergeben die CSS-Variablen der Schriften an die GlobalStyles */}
-        <style jsx global>{`
-          :root {
-            --font-club: ${sedgwick.style.fontFamily};
-            --font-text: ${dmSans.style.fontFamily};
-            --font-heading: ${playfair.style.fontFamily};
-            --font-comic: "Comic Sans MS", "Chalkboard SE", cursive;
-          }
-        `}</style>
         <GlobalStyle />
         <SWRConfig
           value={{

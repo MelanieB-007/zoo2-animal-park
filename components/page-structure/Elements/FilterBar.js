@@ -1,5 +1,7 @@
 import React from "react";
+
 import styled from "styled-components";
+import { useTranslation } from "next-i18next";
 
 export default function FilterBar({
   searchTerm,
@@ -10,10 +12,11 @@ export default function FilterBar({
   setSelectedLevel,
   setCurrentPage,
   tiere = [],
-  translation,
   showGehegeFilter = true,
   showLevelFilter = true,
 }) {
+  const { t } = useTranslation(['common','animal']);
+
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
     if (setCurrentPage) setCurrentPage(1);
@@ -33,16 +36,20 @@ export default function FilterBar({
     <StyledFilterBar>
       <SearchInput
         type="text"
-        placeholder={translation.searchPlaceholder}
+        placeholder={t('searchPlaceholder', { ns: 'animal' })}
         value={searchTerm}
         onChange={handleSearch}
       />
 
       {showGehegeFilter && (
-        <GehegeSelect value={selectedGehege} onChange={handleGehege}>
+        <GehegeSelect
+          value={selectedGehege}
+          onChange={handleGehege}
+        >
           <option value="Alle">
-            {translation.allEnclosures} ({tiere.length})
+            {t('allEnclosures', { ns: 'animal' })} ({tiere.length})
           </option>
+
           {[...new Set(tiere.map((tier) => tier.gehege?.name))]
             .filter(Boolean)
             .map((name) => (
@@ -54,8 +61,14 @@ export default function FilterBar({
       )}
 
       {showLevelFilter && (
-        <GehegeSelect value={selectedLevel} onChange={handleLevel}>
-          <option value="Alle">{translation.allLevels}</option>
+        <GehegeSelect
+          value={selectedLevel}
+          onChange={handleLevel}
+        >
+          <option value="Alle">
+            {t('allLevels', { ns: 'animal' })}
+          </option>
+
           {[...new Set(tiere.map((tier) => tier.stalllevel))]
             .filter((lvl) => lvl !== undefined && lvl !== null)
             .sort((a, b) => a - b)
@@ -76,27 +89,27 @@ const StyledFilterBar = styled.div`
   align-items: center;
   flex-wrap: wrap;
 
-  background: white;
+  background: var(--color-white);
   padding: 20px;
   margin-bottom: 25px;
 
-  border: 2px solid #4ca64c;
+  border: 2px solid var(--color-greeen);
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 15px var(--color-black);
 `;
 
 const SearchInput = styled.input`
   flex: 2;
   min-width: 250px;
   padding: 12px 16px;
-  border: 2px solid #e0e7d5;
-  border-radius: 12px;
+  border: 2px solid var(--color-white);
+  border-radius: var(--border-radius-icon);
   font-size: 1rem;
 
   &:focus {
     outline: none;
-    border-color: #8dbd5b;
-    box-shadow: 0 0 0 4px rgba(141, 189, 91, 0.1);
+    border-color: var(--color-green);
+    box-shadow: 0 0 0 4px var( --color-grey-dark);
   }
 `;
 
@@ -104,9 +117,9 @@ const GehegeSelect = styled.select`
   flex: 1;
   min-width: 200px;
   padding: 12px 40px 12px 16px;
-  border: 2px solid #e0e7d5;
-  border-radius: 12px;
-  background-color: white;
+  border: 2px solid var(--color-white);
+  border-radius: var(--border-radius-icon);
+  background-color: var(--color-white);
   cursor: pointer;
   appearance: none;
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%238dbd5b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");

@@ -2,7 +2,6 @@ import NextAuth from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 import { PrismaClient } from "@prisma/client";
 
-// Damit wir nicht bei jedem Request eine neue Verbindung öffnen (Wichtig für Next.js!)
 const prisma = global.prisma || new PrismaClient();
 if (process.env.NODE_ENV !== "production") global.prisma = prisma;
 
@@ -16,7 +15,6 @@ export const authOptions = {
       profile(profile) {
         return {
           id: profile.id,
-          // Wir priorisieren den global_name (Display Name) vor dem Usernamen
           name: profile.global_name || profile.username,
           email: profile.email,
           image: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.png`,
@@ -27,13 +25,11 @@ export const authOptions = {
   callbacks: {
     async signIn({ user, profile }) {
       try {
-        // Wir nutzen Prisma upsert: Update falls vorhanden, sonst Create
         await prisma.users.upsert({
           where: { id: user.id },
           update: {
             name: user.name,
             image: user.image,
-            // Falls du ein Feld 'last_login' hast, kannst du es hier updaten
           },
           create: {
             id: user.id,
@@ -51,7 +47,6 @@ export const authOptions = {
 
     async session({ session }) {
       try {
-        // Rolle mit Prisma holen
         const dbUser = await prisma.users.findFirst({
           where: { email: session.user.email },
           select: { role: true }

@@ -18,7 +18,7 @@ export function NameEN({children}){
 
 const StyledNameDE = styled.div`
   font-weight: 700;
-  color: #3e2723;
+  color: var(--color-brown);
   font-size: 1.1rem;
   line-height: 1.2;
   word-wrap: break-word;
@@ -27,7 +27,7 @@ const StyledNameDE = styled.div`
 
 const StyledNameEN = styled.div`
   font-size: 0.85rem;
-  color: #777;
+  color: var(--color-grey);
   font-style: italic;
   margin-top: 2px;
 `;

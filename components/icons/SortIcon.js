@@ -5,14 +5,20 @@ export const SortIcon = ({ columnKey, currentSortBy, direction }) => {
     return <StyledIcon>↕</StyledIcon>;
   }
   return (
-    <span style={{ color: '#4ca64c', marginLeft: '8px', fontWeight: 'bold' }}>
+    <StyledSortIcon>
       {direction === 'asc' ? '▲' : '▼'}
-    </span>
+    </StyledSortIcon>
   );
 };
 
 const StyledIcon = styled.span`
-  color: #ccc;
+  color: var(--color-white);
   margin-left: 8px;
   font-size: 0.8rem;
+`;
+
+const StyledSortIcon = styled.span`
+  color: var(--color-green-darker);
+  margin-left: 8px;
+  font-weight: bold;
 `;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function GameIcon({ type, fileName, size = 50, bordercolor = "#4ca64c" }) {
+export default function GameIcon({ type, fileName, size = 50, bordercolor = "var(--color-green)" }) {
   const imagePath = `/images/${type}/${fileName}`;
 
   return (
@@ -20,16 +20,16 @@ export default function GameIcon({ type, fileName, size = 50, bordercolor = "#4c
 const IconFrame = styled.div`
   width: ${props => props.size}px;
   height: ${props => props.size}px;
-  background: #eee; 
+  background: var(--color-white); 
   
   border: 2px solid ${props => props.bordercolor};
-  border-radius: 10px; 
+  border-radius: var(--border-radius-icon); 
   
   padding: 0;           
   display: flex;        
   overflow: hidden;     
   
-  box-shadow: 2px 2px 6px rgba( 0, 0, 0, 0.15);
+  box-shadow: 2px 2px 6px var(--color-black);
 `;
 
 const StyledImage = styled.img`

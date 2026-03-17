@@ -1,10 +1,22 @@
 import styled from "styled-components";
+import { useTranslation } from "next-i18next";
+
 import Tooltip from "./Tooltip";
 
-export default function PaginationSignpost({ currentPage, totalPages, onNext, onPrev }) {
+export default function PaginationSignpost({
+  currentPage,
+  totalPages,
+  onNext,
+  onPrev,
+}) {
+  const { t } = useTranslation('common');
+
+
   return (
     <SignpostAssembly>
-      <Tooltip text="Zurück">
+      <Tooltip
+        text={t('back')}
+      >
         <SignpostButton
           direction="prev"
           onClick={onPrev}
@@ -18,7 +30,9 @@ export default function PaginationSignpost({ currentPage, totalPages, onNext, on
         </div>
       </PageIndicator>
 
-      <Tooltip text="Weiter">
+      <Tooltip
+        text={t('next')}
+      >
         <SignpostButton
           direction="next"
           onClick={onNext}
@@ -29,19 +43,18 @@ export default function PaginationSignpost({ currentPage, totalPages, onNext, on
   );
 }
 
-
 const SignpostAssembly = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
   gap: 40px;
   margin-top: 40px;
-  margin-bottom: 20px; // Etwas Platz nach unten
+  margin-bottom: 20px; 
 
   @media (max-width: 768px) {
-    gap: 10px; // Weniger Abstand auf Mobile
+    gap: 10px; 
     margin-top: 20px;
-    transform: scale(0.85); // Das gesamte Set dezent verkleinern
+    transform: scale(0.85); 
   }
 `;
 
@@ -64,15 +77,16 @@ const SignpostButton = styled.button`
   filter: saturate(1.2) contrast(1.1);
 
   ${(props) =>
-  props.direction === "prev" &&
-  `
+    props.direction === "prev" &&
+    `
     transform: scaleX(-1);
   `}
-  
   &:hover:not(:disabled) {
-    filter: saturate(1.4) contrast(1.1) drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+    filter: saturate(1.4) contrast(1.1)
+      drop-shadow(0 5px 15px var(--black));
     transform: translateY(-5px)
-      ${(props) => (props.direction === "prev" ? "scaleX(-1)" : "scale(1.05)")};
+      ${(props) => 
+              (props.direction === "prev" ? "scaleX(-1)" : "scale(1.05)")};
   }
 
   &:disabled {
@@ -81,7 +95,7 @@ const SignpostButton = styled.button`
   }
 
   @media (max-width: 768px) {
-    width: 110px; // Schmaler auf Mobile
+    width: 110px;
     height: 45px;
   }
 `;
@@ -105,9 +119,9 @@ const PageIndicator = styled.div`
   div {
     font-size: 1.2rem;
     font-weight: 900;
-    color: #2d5a27;
-    font-family: "Playfair Display", serif;
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+    color: var(--color-green-darker);
+    font-family: var(--font-heading), serif;
+    text-shadow: 1px 1px 0 var(--color-grey-lighter);
   }
 
   @media (max-width: 768px) {

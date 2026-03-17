@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const TableFrame = styled.div`
-  background: white;
-  border: 2px solid #4ca64c;
+  background: var(--color-white);
+  border: 2px solid var(--color-green);
   border-radius: var(--border-radius);
   overflow: visible;
   position: relative;
@@ -16,20 +16,20 @@ export const Table = styled.table`
   min-width: 600px;
 
   th {
-    background: #f9fbf9;
+    background: var(--color-white);
     padding: 15px;
     text-align: left;
-    color: #4ca64c;
-    border-bottom: 2px solid #eef2ee;
+    color: var(--color-green);
+    border-bottom: 2px solid var(--color-white);
   }
 
   td {
     padding: 12px 15px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-white);
   }
 
   tr:hover td {
-    background: #f0fff0;
+    background: var(--color-white);
   }
 
   /* Abrundung der Ecken */
@@ -39,18 +39,6 @@ export const Table = styled.table`
   tr:last-child td:last-child { border-bottom-right-radius: calc(var(--border-radius) - 2px); }
 `;
 
-export const SortableTh = styled.th`
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.2s;
-  white-space: nowrap;
-
-  &:hover {
-    background-color: rgba(76, 166, 76, 0.08) !important;
-    color: #2d5a27;
-  }
-`;
-
 export const RightAlignedTd = styled.td`
   text-align: right;
 `;
@@ -58,21 +46,10 @@ export const RightAlignedTd = styled.td`
 export const DesktopOnlyTd = styled.td`
   text-align: right;
   padding-right: 20px !important;
-  @media (max-width: 1024px) {
-    display: none;
-  }
-`;
-
-export const DesktopOnlyTh = styled(SortableTh)`
-  @media (max-width: 1024px) {
-    display: none;
-  }
-`;
-
-export const RightAlignedSortableTh = styled(SortableTh)`
-  text-align: right;
-`;
-
-export const StyledTh = styled(SortableTh)`
   
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
+
+

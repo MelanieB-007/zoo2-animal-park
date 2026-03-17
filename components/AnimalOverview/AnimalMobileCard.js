@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { TierThumbnail } from "../icons/TierThumbnail";
+import { useTranslation } from "next-i18next";
+
 import GameIcon from "../icons/GameIcon";
 import { NameDE } from "../page-structure/Elements/Name";
 import GehegeBadge from "../page-structure/Elements/GehegeBadge";
@@ -8,59 +9,55 @@ import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
 import EditButton from "../icons/EditIcon";
 import DeleteButton from "../icons/DeleteIcon";
 
-export default function AnimalMobileCard({ tier, translations, onClick }) {
+export default function AnimalMobileCard({ tier, onClick }) {
+  const { t } = useTranslation(["common", "animal"]);
+
   const habitatId = tier.gehege?.name?.toLowerCase() || "standard";
 
   return (
     <CardContainer onClick={onClick}>
       <HeaderRow>
-        <NameDE style={{ fontSize: '1.15rem', margin: 0 }}>{tier.name}</NameDE>
+        <StyledNameDE>{tier.name}</StyledNameDE>
+
         <ActionGroup onClick={(e) => e.stopPropagation()}>
-          <EditButton />
-          <DeleteButton />
+          <EditButton tooltip={t("editAnimal", { ns: "animal" })} />
+          <DeleteButton tooltip={t("deleteAnimal", { ns: "animal" })} />
         </ActionGroup>
       </HeaderRow>
 
       <Divider />
 
       <StatsRow>
-      <PriceRow>
-        <PriceDisplay
-          value={tier.preis}
-          type={tier.preisart?.name?.toLowerCase()}
-        />
-      </PriceRow>
+        <PriceRow>
+          <PriceDisplay value={tier.preis} type={tier.preisart?.name} />
+        </PriceRow>
 
-      {/* Zeile 2: Die visuellen Merkmale */}
-      <IconsRow>
-        <GameIcon
-          type={`tiere/${habitatId}`}
-          fileName={tier.bild || "default.jpg"}
-          size={50}
-        />
+        <IconsRow>
+          <GameIcon
+            type={`tiere/${habitatId}`}
+            fileName={tier.bild || "default.jpg"}
+            size={50}
+          />
 
-        <GehegeBadge
-          type={tier.gehege?.name}
-          size={35}
-        />
+          <GehegeBadge type={tier.gehege?.name} size={35} />
 
-        <StallLevelBadge
-          level={tier.stalllevel}
-          habitatName={tier.gehege?.name}
-        />
-      </IconsRow>
-    </StatsRow>
+          <StallLevelBadge
+            level={tier.stalllevel}
+            habitatName={tier.gehege?.name}
+          />
+        </IconsRow>
+      </StatsRow>
     </CardContainer>
   );
 }
 
 const CardContainer = styled.div`
-  background: white;
+  background: var(--color-white);
   border-radius: 12px;
   padding: 12px 16px;
   margin-bottom: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px var(--color-black);
+  border: 1px solid var(--color-white);
   display: flex;
   flex-direction: column;
 `;
@@ -74,27 +71,27 @@ const HeaderRow = styled.div`
 
 const Divider = styled.div`
   height: 1px;
-  background-color: #eee;
+  background-color: var(--color-grey-200);
   margin-bottom: 12px;
 `;
 
 const StatsRow = styled.div`
   display: flex;
-  flex-direction: column; // Wir stapeln Preis und Icons
+  flex-direction: column;
   gap: 8px;
   width: 100%;
 `;
 
 const PriceRow = styled.div`
   display: flex;
-  justify-content: flex-end; // Preis klebt rechts unter der Linie
+  justify-content: flex-end;
   padding-right: 4px;
 `;
 
 const IconsRow = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between; // Bild, Gehege und Stall verteilen sich
+  justify-content: space-between;
   width: 100%;
 `;
 
@@ -106,4 +103,9 @@ const ActionGroup = styled.div`
     width: 20px;
     height: 20px;
   }
+`;
+
+const StyledNameDE = styled(NameDE)`
+  font-size: 1.15rem;
+  margin: 0;
 `;

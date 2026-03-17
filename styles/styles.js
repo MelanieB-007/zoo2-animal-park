@@ -1,11 +1,25 @@
 import { createGlobalStyle } from "styled-components";
+import { DM_Sans, Playfair_Display, Sedgwick_Ave_Display } from "next/font/google";
+
+const sedgwick = Sedgwick_Ave_Display({ weight: "400", subsets: ["latin"] });
+const dmSans = DM_Sans({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+});
+
+const playfair = Playfair_Display({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+});
 
 export default createGlobalStyle`
+  
 
   :root {
     --width-page: 1200px;
     --glass-blur: blur(10px);
     --border-radius: 20px;
+    --border-radius-icon: 10px;
 
     --glass-border: 2pt solid var(--color-glass-border);
 
@@ -16,6 +30,7 @@ export default createGlobalStyle`
    
     
     --color-white: #ffffff;
+    --color-white-border: #e0e0e0;
     --color-yellow-light: #DAE67F;
     --color-yellow: #FBE378;
     --color-blue-light: #c4f3fb;
@@ -28,14 +43,20 @@ export default createGlobalStyle`
     --color-zoo-orange: #FF8C00;
     --color-orange-dark: rgba(255, 140, 0, 0.5);
     --color-orange-dark-shadow: rgba(255, 140, 0, 0.3);
+    --color-brown: #3e2723;
     --color-red-orange: #ff6b35;
     --color-lime: #d6efc0; //for PageWrapper
     --color-green: #68B300;
+    --color-green-blue: #4ca64c;
     --color-green-darker: rgba(104, 179, 0, 0.7);
+    --color-green-label: #2d5a27;
     --color-khaki-green: rgba(104, 179, 0, 0.25);
+    --color-khaki-green-darker: rgba(76, 166, 76, 0.08);
     --color-petrol: #0e7a4a;
     --color-petrol-dark: #056d42;
     --color-petrol-darker: #004d4d;
+    --color-petrol-grey: #2c3e50;
+    --color-grey-lighter: rgba(255, 255, 255, 0.6);
     --color-grey-light: rgba(255, 255, 255, 0.4);
     --color-grey: rgba(255, 255, 255, 0.3);
     --color-grey-0-25: rgba(255, 255, 255, 0.25);
@@ -52,6 +73,11 @@ export default createGlobalStyle`
     --shadow-footer-text-mobile: 0.8px 0.8px 0 var(--color-petrol);
     --shadow-header-button: 0 2px 8px var(--color-orange-dark-shadow);
     --shadow-header-button-hover: 0 4px 12px var(--color-orange-dark);
+
+    --font-club: ${sedgwick.style.fontFamily};
+    --font-text: ${dmSans.style.fontFamily};
+    --font-heading: ${playfair.style.fontFamily};
+    --font-comic: "Comic Sans MS", "Chalkboard SE", cursive;
   }
 
   @media (max-width: 1200px) {

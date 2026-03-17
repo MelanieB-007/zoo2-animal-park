@@ -9,15 +9,15 @@ export default function StatBox({children}){
 }
 
 const StyledStatBox = styled.div`
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
+  background: var(--color-white);
+  border: 1px solid var(--color-white);
+  border-radius:var(--border-radius-icon);
   padding: 8px 12px;
   
   label {
     display: block;
     font-size: 0.7rem;
-    color: #999;
+    color: var(--color-grey-lighter);
     text-transform: uppercase;
     font-weight: bold;
     margin-bottom: 4px;
@@ -28,7 +28,7 @@ const StyledStatBox = styled.div`
     align-items: center;
     font-weight: bold;
     font-size: 1.1rem;
-    color: #333;
+    color: var(--color-grey-0-1);
     gap: 5px;
   }
 `;

@@ -4,8 +4,11 @@ import styled, { keyframes } from "styled-components";
 import LangSwitcher from "./LangSwitcher";
 import { useEffect, useRef, useState } from "react";
 import RoleBadge from "./RoleBadge";
+import { useTranslation } from "next-i18next";
 
 export default function Login() {
+  const { t } = useTranslation('login');
+
   const { data: session } = useSession();
   const [showLogout, setShowLogout] = useState(false);
   const wrapperRef = useRef(null);
@@ -18,7 +21,8 @@ export default function Login() {
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
@@ -27,23 +31,36 @@ export default function Login() {
           <LangSwitcher />
           {session && (
               <AvatarContainer>
-                <UserWrapper onClick={() => setShowLogout(!showLogout)}>
-                  <UserImage src={session.user.image} alt="Profil" />
+
+                <UserWrapper
+                  onClick={() =>
+                  setShowLogout(!showLogout)}>
+                  <UserImage
+                    src={session.user.image}
+                    alt={t('profile')}
+                  />
                   {!showLogout && (
-                      <AvatarTooltip className="avatar-tooltip">
-                        Menü öffnen 🐾
+                      <AvatarTooltip>
+                        {t('open_menu')} 🐾
                       </AvatarTooltip>
                   )}
                 </UserWrapper>
+
                 {showLogout && (
-                    <LogoutBadge onClick={() => signOut()}>
-                      Abmelden 👋
+                    <LogoutBadge
+                      onClick={() => signOut()}
+                    >
+                      {t('logout')} 👋
                     </LogoutBadge>
                 )}
               </AvatarContainer>
           )}
           {!session && (
-              <HeaderButton onClick={() => signIn("discord")}>Login</HeaderButton>
+              <HeaderButton
+                onClick={() =>
+                  signIn("discord")}>
+                Login
+              </HeaderButton>
           )}
         </TopRow>
 
@@ -52,7 +69,7 @@ export default function Login() {
               <FlexContainer>
                 <RoleBadge role={session.user.role} />
                 <WelcomeText>
-                  Hej, {session.user.name.split(" ")[0]}!
+                  {t('hello')}, {session.user.name.split(" ")[0]}!
                 </WelcomeText>
               </FlexContainer>
             </BottomRow>
@@ -115,11 +132,10 @@ const LogoutBadge = styled.div`
 const TopRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px; /* Platz zwischen Flagge und Avatar */
+  gap: 20px; 
 `;
 
 const BottomRow = styled.div`
-  /* Hier landet die Rolle und das "Hej, Melanie!" */
   display: flex;
   justify-content: center;
 `;
@@ -127,11 +143,11 @@ const BottomRow = styled.div`
 const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Desktop: rechtsbündig */
+  align-items: flex-end; 
 
   @media (max-width: 768px) {
-    align-items: center;   /* Mobile: alles zentriert */
-    gap: 15px;            /* Abstand zwischen den Zeilen */
+    align-items: center;   
+    gap: 15px;            
   }
 `;
 
@@ -247,9 +263,9 @@ const FlexContainer = styled.div`
   white-space: nowrap; 
   
   @media (max-width: 768px) {
-    background: rgba(255, 255, 255, 0.1); /* Ganz leichter Schimmer-Hintergrund */
+    background: var(--color-grey-0-1); 
     padding: 5px 15px;
-    border-radius: 20px;
+    border-radius: var(--border-radius);
   }
 `;
 

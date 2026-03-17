@@ -1,43 +1,43 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useTranslation } from "next-i18next";
+import { useTranslation } from 'next-i18next';
 
-export default function ZoodollarIcon({ value, size = 20 }) {
-  const { t } = useTranslation('common');
+export default function DiamondIcon({ value, size = 20 }) {
   const displayValue = (value !== undefined && value !== null) ? value : null;
+  const { t } = useTranslation('common');
 
   return (
-    <ZoodollarWrapper>
-      {displayValue && <ZoodollarValue>
+    <DiamondWrapper>
+      {displayValue && <DiamondValue>
         {displayValue.toLocaleString()}
-      </ZoodollarValue>}
-      <ZoodollarImage
-        src="/images/currency/zoodollar.webp"
-        alt={t('gold')}
+        </DiamondValue>}
+      <DiamondImage
+        src="/images/currency/diamant.webp"
+        alt={t('diamond')}
         width={size}
         height={size}
       />
-    </ZoodollarWrapper>
+    </DiamondWrapper>
   );
 }
 
 
-const ZoodollarWrapper = styled.div`
+const DiamondWrapper = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 6px; 
   vertical-align: middle;
 `;
 
-const ZoodollarImage = styled.img`
+const DiamondImage = styled.img`
   width: ${props => props.width}px;
   height: ${props => props.height}px;
   object-fit: contain;
   filter: drop-shadow(1px 1px 1px var(--color-black));
 `;
 
-const ZoodollarValue = styled.span`
+const DiamondValue = styled.span`
   font-weight: 700;
   font-size: 0.95rem;
-  color: #1d4ed8;
+  color: var(--color-blue-marine);
 `;

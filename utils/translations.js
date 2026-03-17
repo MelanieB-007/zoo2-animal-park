@@ -1,16 +1,9 @@
 export const translations = {
   de: {
     common: {
-      resultsShow: "Zeige",
-      resultsOf: "von",
-      back: "ZURÜCK",
-      next: "WEITER",
-      actions: "Aktionen",
-      popularity: "Popularität",
-      description: "Beschreibung",
-      delete: "Löschen",
-      edit: "Editieren",
-      diamond: "Diamant",
+
+
+
     },
     animals: {
       searchPlaceholder: "Nach Tiernamen suchen...",
@@ -22,20 +15,14 @@ export const translations = {
       tableEnclosure: "Gehege",
       tablePrice: "Preis",
 
-      tableStall: "Stall-Level",
-      tableSell: "Verkauf",
-      tableRelease: "Auswilderung",
+
       loading: "Hole die Tiere aus dem Stall...",
       noResults: "Kein Tier mit diesem Namen gefunden...",
-      emptyTitle: "Oje, kein Tier da!",
-      emptyMessage: "Uppy hat überall gesucht, konnte aber nichts finden.",
-      emptyButton: "Suche neu starten",
       tooltipLevel: "Welches Level wird für dieses Tier benötigt?",
       tooltipXP: "XP insgesamt - Füttern, Putzen, Spielen",
       tooltipVerkaufswert: "Preis beim Verkaufen des Tieres",
       tooltipAuswildern: "XP beim Auswildern des Tieres",
-      editAnimal: "Tier bearbeiten",
-      deleteAnimal: "Tier löschen",
+
       breeding: "Zucht",
       costs: "Kosten",
       time: "Dauer",

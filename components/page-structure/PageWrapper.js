@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export default function PageWrapper({ children }) {
-  return <StyledPageWrapper>{children}</StyledPageWrapper>;
+  return <StyledPageWrapper>
+    {children}
+  </StyledPageWrapper>;
 }
 
 const StyledPageWrapper = styled.div`

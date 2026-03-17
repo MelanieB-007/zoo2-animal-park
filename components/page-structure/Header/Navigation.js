@@ -2,8 +2,11 @@ import styled from "styled-components";
 import Link from "next/link";
 import { IoChevronDown } from "react-icons/io5";
 import {usePathname} from "next/navigation";
+import { useTranslation } from "next-i18next";
 
 export default function Navigation() {
+  const { t } = useTranslation('navigation');
+
   const pathname = usePathname();
 
   const isActive = (path) =>
@@ -20,7 +23,7 @@ export default function Navigation() {
 
         <NavItem>
           <NavButton $active={isActive("/zoo")}>
-            Zoo <IoChevronDown className="arrow" />
+            {t('zoo')} <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
@@ -28,7 +31,7 @@ export default function Navigation() {
                 href="/zoo/gebiete"
                 $active={pathname === "/zoo"}
               >
-                Zoo Gebiete
+                {t('zoo_areas')}
               </DropdownLink>
             </li>
             <li>
@@ -36,7 +39,7 @@ export default function Navigation() {
                 href="/zoo/gehege"
                 $active={pathname === "/zoo"}
               >
-                Zoo Gehege
+                {t('zoo_biomes')}
               </DropdownLink>
             </li>
           </Dropdown>
@@ -44,12 +47,12 @@ export default function Navigation() {
 
         <NavItem>
           <NavButton $active={pathname === "/tiere"}>
-            Tiere <IoChevronDown className="arrow" />
+            {t('animals')} <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
               <DropdownLink href="/tiere" $active={pathname === "/tiere"}>
-                Tierübersicht
+                {t('animal_overview')}
               </DropdownLink>
             </li>
             <li>
@@ -57,7 +60,7 @@ export default function Navigation() {
                 href="/tiere/anlegen"
                 $active={pathname === "/tiere"}
               >
-                Tier anlegen
+                {t('create_animal')}
               </DropdownLink>
             </li>
             <li>
@@ -65,7 +68,7 @@ export default function Navigation() {
                 href="/tiere/farbvarianten"
                 $active={pathname === "/tiere"}
               >
-                Farbvarianten
+                {t('colorVariants')}
               </DropdownLink>
             </li>
           </Dropdown>
@@ -73,7 +76,7 @@ export default function Navigation() {
 
         <NavItem>
           <NavButton $active={pathname === "/klub"}>
-            Klub <IoChevronDown className="arrow" />
+            {t('club')} <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
@@ -81,7 +84,7 @@ export default function Navigation() {
                 href="/klub/mitglieder"
                 $active={pathname === "/klub"}
               >
-                Mitglieder
+                {t('members')}
               </DropdownLink>
             </li>
             <li>
@@ -89,7 +92,7 @@ export default function Navigation() {
                 href="/klub/wettbewerbe"
                 $active={pathname === "/klub"}
               >
-                Wettbewerbe
+                {t('contest')}
               </DropdownLink>
             </li>
           </Dropdown>
@@ -158,8 +161,10 @@ const NavElementStyles = `
 `;
 
 const NavLink = styled(Link)`
-  ${NavElementStyles}
-  color: ${props => props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
+  ${NavElementStyles}; /* <- Wichtig: Semikolon hier! */
+  
+  color: ${props =>
+  props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
 
   &::before {
     content: '🐾';
@@ -174,10 +179,9 @@ const NavLink = styled(Link)`
 `;
 
 const NavButton = styled.div`
-  ${NavElementStyles}
+  ${NavElementStyles}; /* <- Hier das Semikolon ergänzen */
   color: ${props => props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
   cursor: pointer;
-
   &::before {
     content: '🐾';
     position: absolute;

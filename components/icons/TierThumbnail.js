@@ -5,14 +5,15 @@ export const TierThumbnail = styled.div`
   position: relative;
   width: 55px;
   height: 55px;
-  border-radius: 12px;
+  border-radius: var(--border-redius-icon);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 
   border: 3px solid
-    ${(props) => habitatColors[props.$type?.toLowerCase()]?.main || "#8dbd5b"};
+    ${(props) => 
+      habitatColors[props.$type?.toLowerCase()]?.main || "var(--color-lime)"};
 
   transition: all 0.2s ease-in-out;
   cursor: pointer;
@@ -21,7 +22,7 @@ export const TierThumbnail = styled.div`
   &:hover {
     transform: scale(1.5);
     z-index: 10;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px var(--color-black);
   }
 
   img {

@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next';
 import Tooltip from "../ui/Tooltip";
 
 export default function DeleteButton({ tooltip, align }) {
-  const { translation } = useTranslation('common');
+  const { t } = useTranslation('common');
 
   return (
     <Tooltip
@@ -16,7 +16,7 @@ export default function DeleteButton({ tooltip, align }) {
       <StyledButton>
         <NextImage
           src="/images/icons/trash.webp"
-          alt={translation.delete}
+          alt={t('delete')}
           width={24}
           height={24}
         />

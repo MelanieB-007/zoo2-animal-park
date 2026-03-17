@@ -29,7 +29,7 @@ const StyledImage = styled(NextImage)`
   width: 32px;
   height: 32px;
   object-fit: contain;
-  filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(0px 2px 3px var(--color-black));
   transition: transform 0.2s;
 
   &:hover {

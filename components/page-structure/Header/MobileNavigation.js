@@ -2,21 +2,24 @@ import styled from "styled-components";
 import Link from "next/link";
 
 import Login from "./Login";
+import { useTranslation } from "next-i18next";
 
 export const MobileNavigation = ({ isOpen, onClose }) => {
+  const { t } = useTranslation('navigation');
+
   return (
     <Overlay $isOpen={isOpen}>
       <MenuContent>
         <MobileNavLink href="/zoo" onClick={onClose}>
-          Zoo
+          {t('zoo')}
         </MobileNavLink>
 
         <MobileNavLink href="/tiere" onClick={onClose}>
-          Tiere
+          {t('animals')}
         </MobileNavLink>
 
         <MobileNavLink href="/klub" onClick={onClose}>
-          Klub
+          {t('club')}
         </MobileNavLink>
 
         <Divider />
