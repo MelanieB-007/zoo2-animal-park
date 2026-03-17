@@ -1,3 +1,28 @@
 {
-  "test": "Hallo Welt"
+  "test": "Hallo Welt",
+  "zoo_title": "KLUB DER TOLLEN TIERE",
+  "navigation": {
+    "home": "Home",
+    "zoo": "Zoo",
+    "zoo_areas": "Zoo Gebiete",
+    "zoo_enclosures": "Zoo Gehege",
+    "animals": "Tiere",
+    "animal_overview": "Tierübersicht",
+    "animal_create": "Tier anlegen",
+    "animal_variants": "Farbvarianten",
+    "club": "Klub",
+    "club_members": "Mitglieder",
+    "club_contests": "Wettbewerbe"
+  },
+  "login": {
+    "open_menu": "Menü öffnen 🐾",
+    "logout": "Abmelden 👋",
+    "login_button": "Login",
+    "welcome": "Hej"
+  },
+  "roles": {
+    "Direktor": "Direktor",
+    "Guide": "Guide",
+    "Besucher": "Besucher"
+  }
 }

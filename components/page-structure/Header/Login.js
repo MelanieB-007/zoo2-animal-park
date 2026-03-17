@@ -4,9 +4,14 @@ import styled, { keyframes } from "styled-components";
 import LangSwitcher from "./LangSwitcher";
 import { useEffect, useRef, useState } from "react";
 import RoleBadge from "./RoleBadge";
+import { useTranslation } from "next-i18next";
 
 export default function Login() {
   const { data: session } = useSession();
+  const user = session?.user;
+  const userRole = user ? /** @type {any} */ (user).role : null;
+
+  const { t } = /** @type {any} */ (useTranslation("common"));
   const [showLogout, setShowLogout] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -22,42 +27,45 @@ export default function Login() {
   }, []);
 
   return (
-      <LoginWrapper>
-        <TopRow>
-          <LangSwitcher />
-          {session && (
-              <AvatarContainer>
-                <UserWrapper onClick={() => setShowLogout(!showLogout)}>
-                  <UserImage src={session.user.image} alt="Profil" />
-                  {!showLogout && (
-                      <AvatarTooltip className="avatar-tooltip">
-                        Menü öffnen 🐾
-                      </AvatarTooltip>
-                  )}
-                </UserWrapper>
-                {showLogout && (
-                    <LogoutBadge onClick={() => signOut()}>
-                      Abmelden 👋
-                    </LogoutBadge>
-                )}
-              </AvatarContainer>
-          )}
-          {!session && (
-              <HeaderButton onClick={() => signIn("discord")}>Login</HeaderButton>
-          )}
-        </TopRow>
-
+    <LoginWrapper>
+      <TopRow>
+        <LangSwitcher />
         {session && (
-            <BottomRow>
-              <FlexContainer>
-                <RoleBadge role={session.user.role} />
-                <WelcomeText>
-                  Hej, {session.user.name.split(" ")[0]}!
-                </WelcomeText>
-              </FlexContainer>
-            </BottomRow>
+          <AvatarContainer>
+            <UserWrapper onClick={() => setShowLogout(!showLogout)}>
+              <UserImage src={session.user.image} alt="Profil" />
+              {!showLogout && (
+                <AvatarTooltip className="avatar-tooltip">
+                  {t("login.open_menu", "Menü öffnen 🐾")}
+                </AvatarTooltip>
+              )}
+            </UserWrapper>
+            {showLogout && (
+              <LogoutBadge onClick={() => signOut()}>
+                {t("login.logout", "Abmelden 👋")}
+              </LogoutBadge>
+            )}
+          </AvatarContainer>
         )}
-      </LoginWrapper>
+        {!session && (
+          <HeaderButton onClick={() => signIn("discord")}>
+            {t("login.login_button", "Login")}
+          </HeaderButton>
+        )}
+      </TopRow>
+
+      {session && (
+        <BottomRow>
+          <FlexContainer>
+            <RoleBadge role={userRole} />
+            <WelcomeText>
+              {/* "Hej" ist schwedisch/dänisch, wir können es aber auch übersetzbar machen */}
+              {t("login.welcome", "Hej")}, {session.user.name.split(" ")[0]}!
+            </WelcomeText>
+          </FlexContainer>
+        </BottomRow>
+      )}
+    </LoginWrapper>
   );
 }
 

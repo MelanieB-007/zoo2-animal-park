@@ -1,10 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { IoChevronDown } from "react-icons/io5";
+import { useRouter } from "next/router"; // 1. Router importieren
 
 export default function LangSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
+
+  const router = useRouter(); // 2. Router initialisieren
+  const { pathname, asPath, query, locale } = router;
+
+  // 3. Funktion für den Sprachwechsel
+  const handleLocaleChange = (newLocale) => {
+    router.push({ pathname, query }, asPath, { locale: newLocale });
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -12,39 +22,49 @@ export default function LangSwitcher() {
         setIsOpen(false);
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Map für die Flaggen-Klassen basierend auf dem Locale
+  const flagMap = {
+    de: "fi-de",
+    en: "fi-gb", // EN nutzt meist GB oder US Flagge
+    dk: "fi-dk",
+    nl: "fi-nl",
+    be: "fi-be"
+  };
+
   return (
     <LangSwitcherContainer ref={wrapperRef}>
-      <CurrentLanguage onClick={() =>
-          setIsOpen(!isOpen)} $isOpen={isOpen}>
-        <span className="fi fi-de"></span>
+      <CurrentLanguage onClick={() => setIsOpen(!isOpen)} $isOpen={isOpen}>
+        {/* Hier wird die Flagge dynamisch angezeigt */}
+        <span className={`fi ${flagMap[locale] || "fi-de"}`}></span>
         <StyledChevron $isOpen={isOpen} />
       </CurrentLanguage>
 
       <LangDropdown $show={isOpen}>
-        <LangOption onClick={() => setIsOpen(false)}>
+        <LangOption onClick={() => handleLocaleChange("de")}>
           <span className="fi fi-de"></span> DE
         </LangOption>
-        <LangOption onClick={() => setIsOpen(false)}>
+        <LangOption onClick={() => handleLocaleChange("dk")}>
           <span className="fi fi-dk"></span> DK
         </LangOption>
-        <LangOption onClick={() => setIsOpen(false)}>
+        <LangOption onClick={() => handleLocaleChange("en")}>
           <span className="fi fi-gb"></span> EN
         </LangOption>
-        <LangOption onClick={() => setIsOpen(false)}>
+        <LangOption onClick={() => handleLocaleChange("nl")}>
           <span className="fi fi-nl"></span> NL
         </LangOption>
-        <LangOption onClick={() => setIsOpen(false)}>
+        {/* Falls du BE (Belgien) wirklich als Sprache hast: */}
+        <LangOption onClick={() => handleLocaleChange("be")}>
           <span className="fi fi-be"></span> BE
         </LangOption>
       </LangDropdown>
     </LangSwitcherContainer>
   );
 }
+
 
 const LangSwitcherContainer = styled.div`
   position: relative;

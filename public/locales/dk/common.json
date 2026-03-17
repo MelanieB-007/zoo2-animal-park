@@ -1,5 +1,5 @@
 {
-  "test": "Hello World",
+  "test": "Hallo Welt",
   "zoo_title": "KLUB DER TOLLEN TIERE",
   "navigation": {
     "home": "Home",
@@ -13,16 +13,5 @@
     "club": "Club",
     "club_members": "Members",
     "club_contests": "Contents"
-  },
-  "login": {
-    "open_menu": "Open menu 🐾",
-    "logout": "Logout 👋",
-    "login_button": "Login",
-    "welcome": "Hello"
-  },
-  "roles": {
-    "Direktor": "Director",
-    "Guide": "Guide",
-    "Besucher": "Visitor"
   }
 }

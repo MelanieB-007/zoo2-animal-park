@@ -26,7 +26,6 @@ export default function Header() {
     <StyledHeader>
       <LogoWrapper>
         <Logo />
-        {t("test")}
       </LogoWrapper>
 
       <TitleSection>

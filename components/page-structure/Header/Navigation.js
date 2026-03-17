@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { IoChevronDown } from "react-icons/io5";
-import {usePathname} from "next/navigation";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 export default function Navigation() {
-  const pathname = usePathname();
+  const router = useRouter();
+  const { t } = /** @type {any} */ (useTranslation("common"));
+
+  const pathname = router.pathname;
 
   const isActive = (path) =>
     pathname === path || pathname.startsWith(path + "/");
@@ -14,82 +18,64 @@ export default function Navigation() {
       <NavList>
         <NavItem>
           <NavLink href="/" $active={pathname === "/"}>
-            Home
+            {t("navigation.home", "Home")}
           </NavLink>
         </NavItem>
 
         <NavItem>
           <NavButton $active={isActive("/zoo")}>
-            Zoo <IoChevronDown className="arrow" />
+            {t("navigation.zoo", "Zoo")} <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
-              <DropdownLink
-                href="/zoo/gebiete"
-                $active={pathname === "/zoo"}
-              >
-                Zoo Gebiete
+              <DropdownLink href="/zoo/gebiete" $active={pathname === "/zoo/gebiete"}>
+                {t("navigation.zoo_areas", "Zoo Gebiete")}
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink
-                href="/zoo/gehege"
-                $active={pathname === "/zoo"}
-              >
-                Zoo Gehege
+              <DropdownLink href="/zoo/gehege" $active={pathname === "/zoo/gehege"}>
+                {t("navigation.zoo_enclosures", "Zoo Gehege")}
               </DropdownLink>
             </li>
           </Dropdown>
         </NavItem>
 
         <NavItem>
-          <NavButton $active={pathname === "/tiere"}>
-            Tiere <IoChevronDown className="arrow" />
+          <NavButton $active={isActive("/tiere")}>
+            {t("navigation.animals", "Tiere")} <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
               <DropdownLink href="/tiere" $active={pathname === "/tiere"}>
-                Tierübersicht
+                {t("navigation.animal_overview", "Tierübersicht")}
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink
-                href="/tiere/anlegen"
-                $active={pathname === "/tiere"}
-              >
-                Tier anlegen
+              <DropdownLink href="/tiere/anlegen" $active={pathname === "/tiere/anlegen"}>
+                {t("navigation.animal_create", "Tier anlegen")}
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink
-                href="/tiere/farbvarianten"
-                $active={pathname === "/tiere"}
-              >
-                Farbvarianten
+              <DropdownLink href="/tiere/farbvarianten" $active={pathname === "/tiere/farbvarianten"}>
+                {t("navigation.animal_variants", "Farbvarianten")}
               </DropdownLink>
             </li>
           </Dropdown>
         </NavItem>
 
         <NavItem>
-          <NavButton $active={pathname === "/klub"}>
-            Klub <IoChevronDown className="arrow" />
+          <NavButton $active={isActive("/klub")}>
+            {t("navigation.club", "Klub")} <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
-              <DropdownLink
-                href="/klub/mitglieder"
-                $active={pathname === "/klub"}
-              >
-                Mitglieder
+              <DropdownLink href="/klub/mitglieder" $active={pathname === "/klub/mitglieder"}>
+                {t("navigation.club_members", "Mitglieder")}
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink
-                href="/klub/wettbewerbe"
-                $active={pathname === "/klub"}
-              >
-                Wettbewerbe
+              <DropdownLink href="/klub/wettbewerbe" $active={pathname === "/klub/wettbewerbe"}>
+                {t("navigation.club_contests", "Wettbewerbe")}
               </DropdownLink>
             </li>
           </Dropdown>
@@ -153,12 +139,12 @@ const NavElementStyles = `
   &:hover {
     transform: translateY(-1px);
     box-shadow: var(--shadow-header-button-hover);
-    background: var(--color-orange-light); /* Ein schöner Hover-Effekt */
+    background: var(--color-orange-light); 
   }
 `;
 
 const NavLink = styled(Link)`
-  ${NavElementStyles}
+  ${NavElementStyles}; 
   color: ${props => props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
 
   &::before {
@@ -174,7 +160,7 @@ const NavLink = styled(Link)`
 `;
 
 const NavButton = styled.div`
-  ${NavElementStyles}
+  ${NavElementStyles};
   color: ${props => props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
   cursor: pointer;
 
@@ -221,7 +207,7 @@ const DropdownLink = styled(Link)`
   text-decoration: none;
   font-size: 0.9rem;
   font-family: var(--font-text);
-  background: ${props => props.$active ? 'rgba(0,0,0,0.05)' : 'transparent'};
+  background: ${({ $active }) => $active ? 'rgba(0,0,0,0.05)' : 'transparent'};
   font-weight: ${props => props.$active ? '900' : '400'};
   border-left: ${props => props.$active ? '4px solid var(--color-green)' : '4px solid transparent'};
 
