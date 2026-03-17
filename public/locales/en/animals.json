@@ -20,14 +20,14 @@
     "edit": "Edit animal",
     "delete": "Delete animal"
   },
-  "empty": {
-    "title": "No animals found",
-    "message": "Try changing your filters or your search term.",
-    "button": "Reset filters"
-  },
   "filter": {
     "all_enclosures": "All Enclosures",
     "all_levels": "All Levels",
     "level_label": "Level"
+  },
+  "empty": {
+    "title": "Oh no, no animals found!",
+    "message": "Uppy searched everywhere but couldn't find anything.",
+    "button": "Reset search"
   }
 }

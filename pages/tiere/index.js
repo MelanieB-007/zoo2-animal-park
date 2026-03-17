@@ -99,6 +99,13 @@ export default function TiereUebersicht() {
     }
   };
 
+  function handleResetFilters() {
+    setSearchTerm("");
+    setSelectedGehege("Alle");
+    setSelectedLevel("Alle");
+    setCurrentPage(1);
+  }
+
   return (
     <PageWrapper>
       <PageHeader text="{t('animals.overview_title)}" />
@@ -117,9 +124,6 @@ export default function TiereUebersicht() {
       <ResultsInfo
         currentCount={currentItems.length}
         totalCount={filteredTiere.length}
-        labelShown={translationsCommon.resultsShow}
-        labelOf={translationsCommon.resultsOf}
-        labelUnit={translationsAnimals.resultsUnit}
       />
 
       {currentItems.length > 0 ? (
@@ -146,17 +150,7 @@ export default function TiereUebersicht() {
           </MobileView>
         </>
       ) : (
-        <EmptyState
-          title={translationsAnimals.emptyTitle}
-          message={translationsAnimals.emptyMessage}
-          buttonText={translationsAnimals.emptyButton}
-          onReset={() => {
-            setSearchTerm("");
-            setSelectedGehege("Alle");
-            setSelectedLevel("Alle");
-            setCurrentPage(1);
-          }}
-        />
+        <EmptyState onReset={handleResetFilters} />
       )}
 
       {totalPages > 1 && (
