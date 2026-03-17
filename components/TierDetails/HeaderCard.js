@@ -18,7 +18,6 @@ export default function HeaderCard({ animal }) {
   return (
     <CardContainer>
       <MainImage animal={animal} />
-
       <InfoSection>
         <TitleRow>
           <TextContent>

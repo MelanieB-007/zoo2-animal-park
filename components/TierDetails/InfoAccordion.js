@@ -7,11 +7,13 @@ export default function InfoAccordion({ title, icon, children, defaultOpen = fal
 
   return (
     <AccordionWrapper>
-      <AccordionHeader onClick={() => setIsOpen(!isOpen)}>
+      <AccordionHeader
+        onClick={() => setIsOpen(!isOpen)}
+      >
         <HeaderIcon>
           <NextImage
           src={icon}
-          alt={title}
+          alt={title || "Accordion Icon"}
           width={30}
           height={30}
           />
@@ -32,8 +34,8 @@ const AccordionWrapper = styled.div`
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  background: white;
-  border: 1px solid #e0e0e0;
+  background: var(--color-white);
+  border: 1px solid var(--color-white-border);
 `;
 
 const AccordionHeader = styled.button`
@@ -41,12 +43,12 @@ const AccordionHeader = styled.button`
   padding: 12px 16px;
   display: flex;
   align-items: center;
-  background: white;
+  background: var(--color-white);
   border: none;
   cursor: pointer;
   font-weight: bold;
   font-size: 1rem;
-  color: #2d5a27;
+  color: var(--color-green-label);
   transition: background 0.2s;
 
   &:hover {
@@ -59,18 +61,26 @@ const HeaderIcon = styled.span`
   font-size: 1.2rem;
 `;
 
-const Chevron = styled.span`
+const Chevron = styled.span.withConfig({
+  // Diese Zeile sorgt dafür, dass $isOpen NICHT ans HTML weitergereicht wird
+  shouldForwardProp: (prop) => prop !== '$isOpen',
+})`
   margin-left: auto;
+  display: inline-block;
   transition: transform 0.3s ease;
   transform: ${(props) => (props.$isOpen ? "rotate(180deg)" : "rotate(0deg)")};
-  color: #aaa;
+  color: var(--color-grey-lighter);
+  font-size: 0.8rem;
+  line-height: 1;
+  pointer-events: none;
 `;
 
-const AccordionBody = styled.div`
+const AccordionBody = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== '$isOpen',
+})`
   padding: ${(props) => (props.$isOpen ? "16px" : "0 16px")};
-  max-height: ${(props) => (props.$isOpen ? "500px" : "0")};
+  max-height: ${(props) => (props.$isOpen ? "1000px" : "0")}; /* 1000px ist sicherer für viel Inhalt */
   overflow: hidden;
   transition: all 0.3s ease-in-out;
   border-top: ${(props) => (props.$isOpen ? "1px solid #eee" : "none")};
 `;
-

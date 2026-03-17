@@ -9,7 +9,7 @@ import FilterBar from "../components/page-structure/Elements/FilterBar";
 import EmptyState from "../components/page-structure/Elements/EmptyState";
 import PaginationSignpost from "../components/ui/PaginationSignpost";
 import ResultsInfo from "../components/page-structure/Elements/ResultsInfo";
-import { AnimalService } from "../services/AnimalService";
+import { filterAnimals, paginate, sortAnimals } from "../services/AnimalService";
 
 import { TableFrame } from "../components/page-structure/Table/ZooTableElements";
 import AnimalMobileCard from "../components/AnimalOverview/AnimalMobileCard";
@@ -53,7 +53,7 @@ export default function TiereUebersicht() {
   }, []);
 
   const filteredTiere = useMemo(() => {
-    return AnimalService.filterAnimals(tiere, {
+    return filterAnimals(tiere, {
       searchTerm,
       selectedGehege,
       selectedLevel,
@@ -62,12 +62,12 @@ export default function TiereUebersicht() {
     [tiere, searchTerm, selectedGehege, selectedLevel]);
 
   const sortedTiere = useMemo(() => {
-    return AnimalService.sortAnimals(filteredTiere, { sortBy, sortDirection });
+    return sortAnimals(filteredTiere, { sortBy, sortDirection });
   },
     [filteredTiere, sortBy, sortDirection]);
 
   const currentItems = useMemo(() => {
-    return AnimalService.paginate(sortedTiere, currentPage, itemsPerPage);
+    return paginate(sortedTiere, currentPage, itemsPerPage);
   },
     [sortedTiere, currentPage]);
 

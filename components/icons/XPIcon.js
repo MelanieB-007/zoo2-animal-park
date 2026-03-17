@@ -1,22 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useTranslation } from "next-i18next";
 
-/**
- * Eine spezifische Komponente NUR für den Zoo 2 XP-Stern.
- * @param {string|number} label - Der XP-Wert, der neben dem Stern angezeigt wird.
- * @param {number} size - Optionale Größe (Standard: 20px).
- */
+
 export default function XPIcon({ label, size = 20 }) {
+  const { t } = useTranslation('common');
+
   return (
     <XPWrapper>
-      {label && <XPValue>{label.toLocaleString()}</XPValue>}
+      {/* Prüfen, ob label existiert UND ob es eine Zahl ist */}
+      {typeof label === 'number' && (
+        <XPValue>{label.toLocaleString()}</XPValue>
+      )}
+
+      {/* Das Bild nur rendern, wenn src hart codiert ist oder existiert */}
       <StarImage
         src="/images/icons/star.png"
-        alt="XP-Sterne"
+        alt="XP" // Erstmal hart codieren zum Testen!
         width={size}
         height={size}
       />
-
     </XPWrapper>
   );
 }
@@ -35,11 +38,11 @@ const StarImage = styled.img`
   width: ${props => props.width}px;
   height: ${props => props.height}px;
   object-fit: contain;
-  filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.15));
+  filter: drop-shadow(1px 1px 1px var(--color-black));
 `;
 
 const XPValue = styled.span`
   font-weight: 700; 
   font-size: 0.95rem;
-  color: #1d4ed8; 
+  color: var(--color-blau-marine); 
 `;

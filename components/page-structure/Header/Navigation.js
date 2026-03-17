@@ -1,29 +1,35 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { IoChevronDown } from "react-icons/io5";
-import {usePathname} from "next/navigation";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 export default function Navigation() {
   const { t } = useTranslation('navigation');
 
-  const pathname = usePathname();
+  const router = useRouter();
+  const { pathname, isReady } = router;
 
-  const isActive = (path) =>
-    pathname === path || pathname.startsWith(path + "/");
+  const isActive = (path) => {
+    if (!isReady) return false;
+    return pathname === path || pathname.startsWith(path + "/");
+  };
 
   return (
     <NavContainer>
       <NavList>
         <NavItem>
-          <NavLink href="/" $active={pathname === "/"}>
-            Home
+          <NavLink href="/" $active={isActive("/")}>
+            <span suppressHydrationWarning>
+              {t('home') || 'Home'}
+            </span>
           </NavLink>
         </NavItem>
 
-        <NavItem>
+        {/*<NavItem>
           <NavButton $active={isActive("/zoo")}>
-            {t('zoo')} <IoChevronDown className="arrow" />
+            <span suppressHydrationWarning>Zoo</span>
+            <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
@@ -43,11 +49,12 @@ export default function Navigation() {
               </DropdownLink>
             </li>
           </Dropdown>
-        </NavItem>
+        </NavItem>*/}
 
         <NavItem>
-          <NavButton $active={pathname === "/tiere"}>
-            {t('animals')} <IoChevronDown className="arrow" />
+          <NavButton $active={isActive("/tiere")}>
+            <span suppressHydrationWarning>{t('animals')}</span>
+            <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
@@ -75,8 +82,10 @@ export default function Navigation() {
         </NavItem>
 
         <NavItem>
-          <NavButton $active={pathname === "/klub"}>
-            {t('club')} <IoChevronDown className="arrow" />
+          <NavButton $active={isActive("/klub")}>
+            <span suppressHydrationWarning>{t('club')}</span>
+
+            <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
@@ -161,7 +170,7 @@ const NavElementStyles = `
 `;
 
 const NavLink = styled(Link)`
-  ${NavElementStyles}; /* <- Wichtig: Semikolon hier! */
+  ${NavElementStyles}; 
   
   color: ${props =>
   props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
