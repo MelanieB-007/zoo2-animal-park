@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import PageWrapper from "../../components/page-structure/PageWrapper"; // Pfad ggf. anpassen
+import PageWrapper from "../../components/page-structure/PageWrapper";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const prisma = new PrismaClient();
 
@@ -30,7 +31,7 @@ export default function TierDetail({ animal }) {
   );
 }
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ params, locale }) { // 2. locale hinzufügen
   const { id } = params;
   const animalData = await prisma.tiere.findUnique({
     where: { id: parseInt(id) },
@@ -41,6 +42,8 @@ export async function getServerSideProps({ params }) {
   return {
     props: {
       animal: JSON.parse(JSON.stringify(animalData)),
+      // 3. Hier laden wir die Übersetzungs-Datei 'common.json'
+      ...(await serverSideTranslations(locale || 'de', ['common'])),
     },
   };
 }

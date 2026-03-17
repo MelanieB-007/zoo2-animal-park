@@ -1,5 +1,6 @@
 import { SessionProvider } from "next-auth/react";
 import { SWRConfig } from "swr";
+import { appWithTranslation } from 'next-i18next';
 
 import {
   Sedgwick_Ave_Display,
@@ -27,7 +28,7 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
-export default function App({
+export function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
@@ -61,3 +62,6 @@ export default function App({
     </SessionProvider>
   );
 }
+
+// 2. Export mit appWithTranslation umschließen
+export default appWithTranslation(App);
