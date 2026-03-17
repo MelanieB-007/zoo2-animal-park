@@ -121,7 +121,7 @@ export default function TiereUebersicht() {
 
   return (
     <PageWrapper>
-      <PageHeader />
+      <PageHeader text="Übersicht über alle Tiere" />
 
       <FilterBar
         searchTerm={searchTerm}

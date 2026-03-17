@@ -30,12 +30,14 @@ export default createGlobalStyle`
     --color-orange-dark-shadow: rgba(255, 140, 0, 0.3);
     --color-red-orange: #ff6b35;
     --color-lime: #d6efc0; //for PageWrapper
+    --color-green-lighter: #8dbd5b;
     --color-green: #68B300;
     --color-green-darker: rgba(104, 179, 0, 0.7);
     --color-khaki-green: rgba(104, 179, 0, 0.25);
     --color-petrol: #0e7a4a;
     --color-petrol-dark: #056d42;
     --color-petrol-darker: #004d4d;
+    --color-petrol-green-dark: #1a4332;
     --color-grey-light: rgba(255, 255, 255, 0.4);
     --color-grey: rgba(255, 255, 255, 0.3);
     --color-grey-0-25: rgba(255, 255, 255, 0.25);

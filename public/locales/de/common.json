@@ -24,5 +24,9 @@
     "Direktor": "Direktor",
     "Guide": "Guide",
     "Besucher": "Besucher"
+  },
+  "footer": {
+    "title": "Klub der tollen Tiere",
+    "imprint": "Impressum"
   }
 }

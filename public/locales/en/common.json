@@ -24,5 +24,9 @@
     "Direktor": "Director",
     "Guide": "Guide",
     "Besucher": "Visitor"
+  },
+  "footer": {
+    "title": "Great Animals Club",
+    "imprint": "Imprint"
   }
 }
