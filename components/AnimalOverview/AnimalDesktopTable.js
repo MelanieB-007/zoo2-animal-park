@@ -3,16 +3,7 @@ import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 
-import {
-  DesktopOnlyTd,
-  DesktopOnlyTh,
-  RightAlignedSortableTh,
-  RightAlignedTd,
-  SortableTh,
-  StyledTh,
-  Table,
-  TableFrame,
-} from "../page-structure/Elements/ZooTableElements";
+
 import { SortIcon } from "../icons/SortIcon";
 import Tooltip from "../ui/Tooltip";
 import { TierThumbnail } from "../icons/TierThumbnail";
@@ -26,6 +17,8 @@ import { calculateTotalXP } from "../../services/AnimalService";
 import ZoodollarIcon from "../icons/ZoodollarIcon";
 import EditButton from "../icons/EditIcon";
 import DeleteButton from "../icons/DeleteIcon";
+import SortableTableHeader from "../page-structure/Table/SortableTableHeader";
+import ActionsHeadline from "../page-structure/Table/ActionsHeadline";
 
 
 export default function AnimalDesktopTable({
@@ -43,76 +36,75 @@ export default function AnimalDesktopTable({
         <Table>
           <thead>
             <tr>
-              <SortableTh onClick={() => onSort("name")}>
-                {t("animals:table.species")}
-                <SortIcon
-                  columnKey="name"
-                  currentSortBy={sortBy}
-                  direction={sortDirection}
-                />
-              </SortableTh>
+              <SortableTableHeader
+                text={t("animals:table.species")}
+                onSort={() => toggleSort("name")}
+                columnKey="name"
+                currentSortBy={sortBy}
+                direction={sortDirection}
+              />
 
-              <SortableTh onClick={() => onSort("gehege.name")}>
-                {t("animals:table.enclosure")}
-                <SortIcon
-                  columnKey="gehege.name"
-                  currentSortBy={sortBy}
-                  direction={sortDirection}
-                />
-              </SortableTh>
+              <SortableTableHeader
+                text={t("animals:table.enclosure")}
+                onSort={() => toggleSort("gehege.name")}
+                columnKey="gehege.name"
+                currentSortBy={sortBy}
+                direction={sortDirection}
+              />
 
-              <RightAlignedSortableTh onClick={() => onSort("preis")}>
-                {t("animals:table.price")}
-                <SortIcon
-                  columnKey="preis"
-                  currentSortBy={sortBy}
-                  direction={sortDirection}
-                />
-              </RightAlignedSortableTh>
+              <SortableTableHeader
+                text={t("animals:table.price")}
+                onSort={() => toggleSort("preis")}
+                columnKey="preis"
+                currentSortBy={sortBy}
+                direction={sortDirection}
+                align="right"
+              />
 
-              <StyledTh onClick={() => onSort("stalllevel")}>
-                <Tooltip text={t("animals:tooltips.level")}>
-                  {t("animals:table.stall")}
-                </Tooltip>
-                <SortIcon
-                  columnKey="stalllevel"
-                  currentSortBy={sortBy}
-                  direction={sortDirection}
-                />
-              </StyledTh>
+              <SortableTableHeader
+                text= {t("animals:table.stall")}
+                onSort={() => toggleSort("stalllevel")}
+                columnKey="stalllevel"
+                currentSortBy={sortBy}
+                direction={sortDirection}
+                tooltipText={t("animals:tooltips.level")}
+              />
 
-              <DesktopOnlyTh onClick={() => onSort("xp")}>
-                <Tooltip text={t("animals:tooltips.xp")}>XP</Tooltip>
-                <SortIcon
-                  columnKey="xp"
-                  currentSortBy={sortBy}
-                  direction={sortDirection}
-                />
-              </DesktopOnlyTh>
+              <SortableTableHeader
+                text="XP"
+                tooltipText={t("animals:tooltips.xp")}
+                onSort={() => toggleSort("xp")}
+                columnKey="xp"
+                currentSortBy={sortBy}
+                direction={sortDirection}
+                desktopOnly={true}
+              />
 
-              <DesktopOnlyTh onClick={() => onSort("verkaufswert")}>
-                <Tooltip text={t("animals:tooltips.sell")}>
-                  {t("animals:table.sell")}
-                </Tooltip>
-                <SortIcon
-                  columnKey="verkaufswert"
-                  currentSortBy={sortBy}
-                  direction={sortDirection}
-                />
-              </DesktopOnlyTh>
+              <SortableTableHeader
+                text={t("animals:table.sell")}
+                tooltipText={t("animals:tooltips.sell")}
+                onSort={() => toggleSort("verkaufswert")}
+                columnKey="verkaufswert"
+                currentSortBy={sortBy}
+                direction={sortDirection}
+                desktopOnly={true}
+                align="right"
+              />
 
-              <DesktopOnlyTh onClick={() => onSort("auswildern")}>
-                <Tooltip text={t("animals:tooltips.release")}>
-                  {t("animals:table.release")}
-                </Tooltip>
-                <SortIcon
-                  columnKey="auswildern"
-                  currentSortBy={sortBy}
-                  direction={sortDirection}
-                />
-              </DesktopOnlyTh>
+              <SortableTableHeader
+                text={t("animals:table.release")}
+                tooltipText={t("animals:tooltips.release")}
+                onSort={() => toggleSort("auswildern")}
+                columnKey="auswildern"
+                currentSortBy={sortBy}
+                direction={sortDirection}
+                desktopOnly={true}
+                align="right"
+              />
 
-              <ActionText>{t("common:actions")}</ActionText>
+              <ActionsHeadline
+                text ={t("common:actions")}
+              />
             </tr>
           </thead>
           <tbody>
@@ -229,10 +221,6 @@ const ActionGroup = styled.div`
   gap: 10px;
 `;
 
-const ActionText = styled.th`
-  text-align: center;
-`;
-
 const NoResult = styled.td`
   text-align: center;
   padding: 20px;
@@ -240,7 +228,59 @@ const NoResult = styled.td`
 
 const DesktopView = styled.div`
   display: block;
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`;
+
+export const TableFrame = styled.div`
+  background: var(--color-white);
+  border: 2px solid var(--color-green);
+  border-radius: var(--border-radius);
+  overflow: visible;
+  position: relative;
+  margin-top: 10px;
+`;
+
+export const Table = styled.table`
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 600px;
+
+  th {
+    background: var(--color-white);
+    padding: 15px;
+    text-align: left;
+    color: var(--color-green);
+    border-bottom: 2px solid var(--color-white);
+  }
+
+  td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--color-white);
+  }
+
+  tr:hover td {
+    background: var(--color-white);
+  }
+
+  /* Abrundung der Ecken */
+  th:first-child { border-top-left-radius: calc(var(--border-radius) - 2px); }
+  th:last-child { border-top-right-radius: calc(var(--border-radius) - 2px); }
+  tr:last-child td:first-child { border-bottom-left-radius: calc(var(--border-radius) - 2px); }
+  tr:last-child td:last-child { border-bottom-right-radius: calc(var(--border-radius) - 2px); }
+`;
+
+export const RightAlignedTd = styled.td`
+  text-align: right;
+`;
+
+export const DesktopOnlyTd = styled.td`
+  text-align: right;
+  padding-right: 20px !important;
+  
+  @media (max-width: 1024px) {
     display: none;
   }
 `;
