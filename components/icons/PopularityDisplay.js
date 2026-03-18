@@ -16,7 +16,7 @@ export default function PopularityDisplay({ popularity }) {
       <ImageContainer>
         <NextImage
           src="/images/icons/besucher.jpg"
-          alt=={t("common:popularity")}
+          alt={t("common:popularity")}
           width={25}
           height={16}
           style={{ objectFit: 'contain' }}

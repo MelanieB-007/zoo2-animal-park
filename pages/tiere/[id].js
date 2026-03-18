@@ -1,49 +1,47 @@
 import { PrismaClient } from '@prisma/client';
 import PageWrapper from "../../components/page-structure/PageWrapper";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import HeaderCard from "../../components/TierDetails/HeaderCard";
+import styled from "styled-components";
+import { getAnimalById } from "../../services/AnimalService";
 
-const prisma = new PrismaClient();
+const prisma = global.prisma || new PrismaClient();
+if (process.env.NODE_ENV !== 'production') global.prisma = prisma;
 
 export default function TierDetail({ animal }) {
   if (!animal) return <div>Tier nicht gefunden...</div>;
 
   return (
     <PageWrapper>
-      <div style={{ padding: '20px' }}>
-        <h1 style={{ color: '#2d5a27' }}>{animal.name}</h1>
-        <p>ID: {animal.id}</p>
-
-        <div style={{
-          background: 'white',
-          padding: '15px',
-          borderRadius: '8px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-        }}>
-          <h3>Details:</h3>
-          <ul>
-            <li>Preis: {animal.preis}</li>
-            <li>Stalllevel: {animal.stalllevel}</li>
-            <li>Release: {animal.release}</li>
-          </ul>
-        </div>
-      </div>
+      <ContentWrapper>
+        <HeaderCard
+          animal={animal}
+        />
+      </ContentWrapper>
     </PageWrapper>
   );
 }
 
 export async function getServerSideProps({ params, locale }) { // 2. locale hinzufügen
   const { id } = params;
-  const animalData = await prisma.tiere.findUnique({
-    where: { id: parseInt(id) },
-  });
 
-  if (!animalData) return { notFound: true };
+  const animal = await getAnimalById(id);
+
+  if (!animal) return { notFound: true };
 
   return {
     props: {
-      animal: JSON.parse(JSON.stringify(animalData)),
-      // 3. Hier laden wir die Übersetzungs-Datei 'common.json'
-      ...(await serverSideTranslations(locale || 'de', ['common'])),
+      animal: JSON.parse(JSON.stringify(animal)),
+      ...(await serverSideTranslations(locale || 'de', ['common', 'animals'])),
     },
   };
 }
+
+const ContentWrapper = styled.div`
+  max-width: 1000px;
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;

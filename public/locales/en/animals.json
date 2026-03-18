@@ -31,5 +31,8 @@
     "uppySad": "Uppy is sad",
     "message": "Uppy searched everywhere but couldn't find anything.",
     "button": "Reset search"
-  }
+  },
+  "tablePrice": "Price",
+  "tableSell": "Sell",
+  "tableRelease": "Release"
 }

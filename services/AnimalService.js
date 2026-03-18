@@ -13,6 +13,32 @@ export async function getAllAnimals() {
     return [];
   }
 }
+
+export async function getAnimalById(id) {
+  try {
+    const animal = await prisma.tiere.findUnique({
+      where: {
+        id: parseInt(id)
+      },
+      include: {
+        variants: { include: { herkunft: true } },
+        gehege: true,
+        xp: true,
+        preisart: true,
+        tierherkunft: { include: { herkunft: true } },
+        tier_gehege_kapazitaet: { orderBy: { anzahlTiere: "asc" } }
+      }
+    });
+
+    if (!animal) return null;
+
+    return JSON.parse(JSON.stringify(animal));
+  } catch (error) {
+    console.error("Error fetching animal by ID:", error);
+    throw error;
+  }
+}
+
 export async function deleteAnimal(id) {
   try {
     const res = await fetch(`/api/tiere/${id}`, { method: "DELETE" });

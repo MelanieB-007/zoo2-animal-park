@@ -7,12 +7,18 @@ import PopularityDisplay from "../icons/PopularityDisplay";
 import StatBox from "../page-structure/Elements/StatBox";
 import GameIcon from "../icons/GameIcon";
 import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
-import BoxWithHeadline, { EnclosureArea } from "../page-structure/Elements/BoxWithHeadline";
+import BoxWithHeadline from "../page-structure/Elements/BoxWithHeadline";
 import OriginBadgeList from "../page-structure/Elements/OriginBadgeList";
 import XPIcon from "../icons/XPIcon";
+import { useTranslation } from "next-i18next";
 
-export default function HeaderCard({ animal, translationsAnimals, translationsCommon }) {
+export default function HeaderCard({ animal }) {
+  const { t } = /** @type {any} */ (
+    useTranslation(["animals", "common"])
+  );
+
   if (!animal) return null;
+  console.log("animal", animal);
 
   return (
     <CardContainer>
@@ -23,7 +29,7 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
           <TextContent>
             <h1>{animal.name}</h1>
             <ReleaseDate>
-              📅 Release: {animal.release}
+              📅 {t("common:release")}: {animal.release}
             </ReleaseDate>
           </TextContent>
 
@@ -36,7 +42,7 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
           {/* Spalte 1 & 2 für die Stats */}
           <StatsGroup>
             <StatBox>
-              <label>{translationsAnimals.tablePrice}</label>
+              <label>{t("animals:tablePrice")}</label>
               <PriceDisplay
                 value={animal.preis}
                 type={animal.preisart?.name.toLowerCase() || "gold"}
@@ -44,17 +50,16 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
             </StatBox>
 
             <StatBox>
-              <label>{translationsCommon.popularity}</label>
+              <label>{t("common:popularity")}</label>
               <PopularityDisplay
                 popularity={animal.popularitaet}
-                translation={translationsCommon}
               />
             </StatBox>
           </StatsGroup>
 
           <StatsGroup>
             <StatBox>
-              <label>{translationsAnimals.tableSell}</label>
+              <label>{t("animals:tableSell")}</label>
               <PriceDisplay
                 value={animal.preis}
                 type="zoodollar"
@@ -62,7 +67,7 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
             </StatBox>
 
             <StatBox>
-              <label>{translationsAnimals.tableRelease}</label>
+              <label>{t("animals:tableRelease")}</label>
                <XPIcon
                label={animal.auswildern}
                />
@@ -71,18 +76,21 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
           </StatsGroup>
 
           {/* Spalte 3 für die Gehege */}
-          <BoxWithHeadline label="Gehege">
+          <BoxWithHeadline label={t("common:enclosure")}>
               {/* Gehegeart */}
               <GameIcon
-                type="/gehege/"
-                fileName={`${animal.gehege.name}.webp`}
+                type={`gehege/${animal.gehege.name}/`}
+                fileName="Gehege.webp"
                 bordercolor="#4ca64c"
+                size={45}
               />
 
               {/* Stall */}
               <StallLevelBadge
                 level={animal.stalllevel}
                 habitat={animal.gehege.name}
+                size={45}
+                showTooltip={true}
               />
 
               {/* Spielgerät */}
@@ -108,7 +116,7 @@ const InfoSection = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Stellt sicher, dass alles links beginnt */
+  align-items: flex-start; 
   width: 100%;
 
   @media (max-width: 768px) {
@@ -119,7 +127,7 @@ const InfoSection = styled.div`
 const TitleRow = styled.div`
   display: flex;
   width: 100%;
-  justify-content: flex-start; /* Der Inhalt beginnt links am Bild */
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 20px;
   margin-bottom: 10px;
@@ -131,13 +139,12 @@ const TitleRow = styled.div`
   }
 `;
 
-// DAS sorgt für die Rechtsbündigkeit oben rechts
 const BadgeWrapper = styled.div`
   /* Auf Desktop: Schiebt sich so weit wie möglich nach rechts im Header */
   margin-left: auto; 
 
   @media (max-width: 768px) {
-    margin: 0; /* Auf Mobile wieder mittig */
+    margin: 0; 
     width: 100%;
     display: flex;
     justify-content: center;
@@ -178,10 +185,9 @@ const StatsGrid = styled.div`
 
   @media (min-width: 768px) {
     display: grid;
-    /* Spaltenbreiten verringert: 140px statt 160px */
-    grid-template-columns: repeat(2, 220px) minmax(220px, 1fr);
-    justify-content: start; /* Das gesamte Grid nach links zum Bild ziehen */
-    gap: 15px; /* Etwas kompakterer Abstand */
+     grid-template-columns: repeat(2, 220px) minmax(220px, 1fr);
+    justify-content: start; 
+    gap: 15px; 
   }
 `;
 
