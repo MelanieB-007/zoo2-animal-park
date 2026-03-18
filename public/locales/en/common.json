@@ -44,5 +44,6 @@
   "actions": "Actions",
   "scroll_to_top": "Back to top",
   "loading": "Loading...",
-  "popularity": "Popularity"
+  "popularity": "Popularity",
+  "description": "Description"
 }
