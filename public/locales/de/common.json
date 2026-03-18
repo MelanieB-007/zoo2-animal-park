@@ -32,6 +32,10 @@
     "show": "Angezeigt",
     "of": "von"
   },
+  "pagination": {
+    "prev": "Zurück",
+    "next": "Weiter"
+  },
   "actions": "Aktionen",
   "loading": "Wird geladen..."
 }

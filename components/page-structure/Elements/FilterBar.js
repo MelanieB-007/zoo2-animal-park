@@ -34,8 +34,8 @@ export default function FilterBar({
     }
   }
 
-  function handleLevel(e) {
-    setSelectedLevel(e.target.value);
+  function handleLevel(value) {
+    setSelectedLevel(value);
     if (setCurrentPage) {
       setCurrentPage(1);
     }

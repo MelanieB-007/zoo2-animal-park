@@ -4,7 +4,7 @@
   "results_unit": "animals found",
   "table": {
     "species": "Species",
-    "enclosure": "Enclosure",
+    "enclosure": "Biomes",
     "price": "Price",
     "stall": "Stall",
     "xp": "XP",
@@ -21,7 +21,7 @@
     "delete": "Delete animal"
   },
   "filter": {
-    "all_enclosures": "All Enclosures",
+    "all_enclosures": "All Biomes",
     "all_levels": "All Levels",
     "level_label": "Level"
   },

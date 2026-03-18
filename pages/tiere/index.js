@@ -78,10 +78,6 @@ export default function TiereUebersicht() {
     }
   }, [totalPages, currentPage]);
 
-  const handleNext = () =>
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
-
   if (loading) {
     return (
       <LoadingWrapper>
@@ -106,9 +102,21 @@ export default function TiereUebersicht() {
     setCurrentPage(1);
   }
 
+  function handleAnimalClick(id) {
+    router.push(`/tiere/${id}`);
+  }
+
+  function handleNextPage() {
+    setCurrentPage(function(prev) { return prev + 1; });
+  }
+
+  function handlePrevPage() {
+    setCurrentPage(function(prev) { return prev - 1; });
+  }
+
   return (
     <PageWrapper>
-      <PageHeader text="{t('animals.overview_title)}" />
+      <PageHeader text={t('animals:overview_title')} />
 
       <FilterBar
         searchTerm={searchTerm}
@@ -141,10 +149,8 @@ export default function TiereUebersicht() {
             {currentItems.map((animal) => (
               <AnimalMobileCard
                 key={animal.id}
-                tier={animal}
-                translations={translationsAnimals}
-                onClick={() =>
-                  router.push(`/tiere/${animal.id}`)}
+                animal={animal}
+                onClick={function() { handleAnimalClick(tier.id); }}
               />
             ))}
           </MobileView>
@@ -157,12 +163,20 @@ export default function TiereUebersicht() {
         <PaginationSignpost
           currentPage={currentPage}
           totalPages={totalPages}
-          onNext={handleNext}
-          onPrev={handlePrev}
+          onNext={handleNextPage}
+          onPrev={handlePrevPage}
         />
       )}
     </PageWrapper>
   );
+}
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "animals"])),
+    },
+  };
 }
 
 const MobileView = styled.div`
@@ -172,11 +186,3 @@ const MobileView = styled.div`
     padding: 0 10px;
   }
 `;
-
-export async function getStaticProps({ locale }) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["common", "animals"])),
-    },
-  };
-}

@@ -33,6 +33,10 @@
     "show": "Showing",
     "of": "of"
   },
+  "pagination": {
+    "prev": "Back",
+    "next": "Next"
+  },
   "actions": "Actions",
   "loading": "Loading..."
 }
