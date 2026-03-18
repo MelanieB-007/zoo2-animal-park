@@ -38,5 +38,6 @@
     "next": "Next"
   },
   "actions": "Actions",
+  "scroll_to_top": "Back to top",
   "loading": "Loading..."
 }

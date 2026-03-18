@@ -81,7 +81,7 @@ export default function TiereUebersicht() {
   if (loading) {
     return (
       <LoadingWrapper>
-        {t('animals.search_placeholder')} 🐾
+        {t('animals:search_placeholder')} 🐾
       </LoadingWrapper>
     );
   }

@@ -2,11 +2,12 @@ import styled from "styled-components";
 import GameIcon from "../../icons/GameIcon";
 
 export default function StallLevelBadge({ level, habitat }) {
+
   return (
     <StallContainer>
       <GameIcon
-        type="gehege/stall"
-        fileName={`${habitat?.toLowerCase() || "gras"}.png`}
+        fileName="Stall.png"
+        type={`gehege/${habitat?.toLowerCase() || "gras"}`}
       />
       <LevelBadgeCircle>{level}</LevelBadgeCircle>
     </StallContainer>

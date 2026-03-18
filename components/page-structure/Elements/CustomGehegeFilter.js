@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
 import GameIcon from "../../icons/GameIcon";
+import GehegeBadge from "./GehegeBadge";
 
 export default function CustomGehegeFilter({ animals, selectedGehege, onSelect }) {
-  const { t } =  /** @type {any} */(useTranslation('animals'));
+  const { t } =  /** @type {any} */(useTranslation(['animals', 'common']));
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -30,15 +31,12 @@ export default function CustomGehegeFilter({ animals, selectedGehege, onSelect }
       <SelectHeader onClick={() => setIsOpen(!isOpen)}>
         {selectedGehege === "Alle" ? (
           <span>
-            {t('animals:filter.all_enclosures')} ({animals.length})
+            {t('animals:filter.all_enclosures')}
           </span>
         ) : (
           <SelectedValue>
-            <GameIcon
-              type="gehege"
-              fileName={`${selectedGehege.toLowerCase()}.png`}
-              size={32}
-              bordercolor="var(--color-green)"
+            <GehegeBadge
+              type={selectedGehege.toLowerCase()}
             />
             <Label>
               {selectedGehege}
@@ -56,12 +54,9 @@ export default function CustomGehegeFilter({ animals, selectedGehege, onSelect }
 
           {uniqueGehege.map((name) => (
             <Option key={name} onClick={() => { onSelect(name); setIsOpen(false); }}>
-              <GameIcon
-                type="gehege"
-                fileName={`${name.toLowerCase()}.png`}
-                size={35}
-                bordercolor="transparent"
-              />
+              <GehegeBadge
+                type={name.toLowerCase()}
+                />
               <Label>{name}</Label>
             </Option>
           ))}

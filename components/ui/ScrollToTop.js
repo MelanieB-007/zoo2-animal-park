@@ -1,75 +1,88 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
+import { useTranslation } from "next-i18next";
+import Tooltip from "./Tooltip";
 
-export default function ScrollToTop() {
-    const [isVisible, setIsVisible] = useState(false);
-
-    useEffect(() => {
-        const toggleVisibility = () => {
-            if (window.scrollY > 300) {
-                setIsVisible(true);
-            } else {
-                setIsVisible(false);
-            }
-        };
-
-        window.addEventListener("scroll", toggleVisibility);
-        return () => window.removeEventListener("scroll", toggleVisibility);
-    }, []);
-
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
-
-    return (
-        <ScrollButton $visible={isVisible} onClick={scrollToTop} title="Nach oben">
-            🐾
-        </ScrollButton>
-    );
-}
-
+// Animation außerhalb, um den Call-Stack-Error zu vermeiden
 const popIn = keyframes`
   from { transform: scale(0) rotate(-45deg); opacity: 0; }
   to { transform: scale(1) rotate(0); opacity: 1; }
 `;
 
+export default function ScrollToTop() {
+    const { t } = /** @type {any} */ (useTranslation(["common"]));
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(function () {
+        function handleScroll() {
+            // Erscheint nach 400px Scroll-Weg
+            setIsVisible(window.scrollY > 400);
+        }
+        window.addEventListener("scroll", handleScroll);
+        return function () {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Wenn nicht sichtbar, wird absolut nichts gerendert -> keine Z-Index-Konflikte!
+    if (!isVisible) return null;
+
+    return (
+      <ScrollButton
+        onClick={scrollToTop}
+        title={t("common:scroll_to_top")}
+        type="button"
+      >
+          🐾
+      </ScrollButton>
+    );
+}
+
 const ScrollButton = styled.button`
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  background: var(--color-zoo-orange);
-  color: var(--color-green);
-  border: 3px solid var(--color-white);
-  border-radius: 50%;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 5000;
-  
-  box-shadow: 4px 4px 0 var(--color-black);
-  
-  /* Sichtbarkeit & Animation */
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  visibility: ${props => (props.$visible ? "visible" : "hidden")};
-  opacity: ${props => (props.$visible ? "1" : "0")};
-  transform: ${props => (props.$visible ? "scale(1)" : "scale(0) rotate(-45deg)")};
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999; 
 
-  &:hover {
-    transform: scale(1.1) translateY(-5px);
-    background: var(--color-orange-light);
-    box-shadow: 6px 6px 0 var(--color-black);
-  }
+    width: 56px;
+    height: 56px;
 
-  &:active {
-    transform: scale(0.9);
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--color-zoo-orange, #f39c12);
+    color: white;
+    border: 3px solid white;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+    /* Animation beim Erscheinen */
+    animation: ${popIn} 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.1) translateY(-3px);
+        background-color: var(--color-orange-light, #ffb347);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    &:active {
+        transform: scale(0.9);
+    }
+
+    @media (max-width: 768px) {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1.5rem;
+    }
 `;

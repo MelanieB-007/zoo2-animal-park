@@ -144,6 +144,7 @@ export default function AnimalDesktopTable({
                         </div>
                       </TierInfoCell>
                     </td>
+
                     <td>
                       <Tooltip
                         text={`${animal.gehege?.name} ${t("animals:table.enclosure")}`}
@@ -151,12 +152,14 @@ export default function AnimalDesktopTable({
                         <GehegeBadge type={animal.gehege?.name} />
                       </Tooltip>
                     </td>
+
                     <RightAlignedTd>
                       <PriceDisplay
                         value={animal.preis}
                         type={animal.preisart?.name.toLowerCase() || "gold"}
                       />
                     </RightAlignedTd>
+
                     <td>
                       <Tooltip
                         text={`${t("animals:tooltips.level")}: ${animal.stalllevel}`}
@@ -164,13 +167,15 @@ export default function AnimalDesktopTable({
                       >
                         <StallLevelBadge
                           level={animal.stalllevel}
-                          habitatName={animal.gehege?.name}
+                          habitat={animal.gehege?.name}
                         />
                       </Tooltip>
                     </td>
+
                     <DesktopOnlyTd>
                       <XPIcon label={calculateTotalXP(animal)} />
                     </DesktopOnlyTd>
+
                     <DesktopOnlyTd>
                       <ZoodollarIcon value={animal.verkaufswert} />
                     </DesktopOnlyTd>
