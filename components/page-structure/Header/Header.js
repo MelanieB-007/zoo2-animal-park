@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import styled from "styled-components";
-import { useTranslation } from "next-i18next";
 
 import Logo from "./Logo";
 import Navigation from "./Navigation";
@@ -9,8 +8,6 @@ import Login from "./Login";
 import { MobileNavigation } from "./MobileNavigation";
 
 export default function Header() {
-  const { t, ready } = useTranslation("common");
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 

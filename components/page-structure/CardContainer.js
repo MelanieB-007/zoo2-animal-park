@@ -17,8 +17,7 @@ const StyledCardContainer = styled.div`
   display: flex;
   gap: 25px; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-
-  /* DESKTOP-LOGIK */
+  
   flex-direction: row;
   justify-content: flex-start; 
   align-items: flex-start;

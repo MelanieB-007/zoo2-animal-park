@@ -9,6 +9,7 @@ import PriceDisplay from "../icons/PriceDisplay";
 import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
 import EditButton from "../icons/EditIcon";
 import DeleteButton from "../icons/DeleteIcon";
+import { getTranslatedName } from "../ui/AnimalHelper";
 
 export default function AnimalMobileCard({
   animal,
@@ -16,13 +17,13 @@ export default function AnimalMobileCard({
   onEdit,
   onDelete,
 }) {
-  const { i18n } = useTranslation();
+  const { t, i18n } = /** @type {any} */ (
+    useTranslation(["animals", "common"])
+  );
   const habitatId = animal.gehege?.name?.toLowerCase() || "standard";
 
   const displayName =
-    i18n.language === "en"
-      ? animal.nameEn || animal.name
-      : animal.name || animal.nameEn;
+    getTranslatedName(animal, i18n.language) || t("animals:unknown_animal");
 
   return (
     <CardContainer onClick={onClick}>
@@ -116,7 +117,7 @@ const ActionGroup = styled.div`
   button {
     background: none;
     border: none;
-    padding: 8px; 
+    padding: 8px;
     cursor: pointer;
   }
 `;

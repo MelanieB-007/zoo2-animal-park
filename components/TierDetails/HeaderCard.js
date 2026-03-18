@@ -71,7 +71,7 @@ export default function HeaderCard({ animal, translationsAnimals, translationsCo
           </StatsGroup>
 
           {/* Spalte 3 für die Gehege */}
-          <BoxWithHeadline translations={translationsAnimals}>
+          <BoxWithHeadline label="Gehege">
               {/* Gehegeart */}
               <GameIcon
                 type="/gehege/"

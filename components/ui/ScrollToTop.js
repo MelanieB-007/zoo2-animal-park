@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { useTranslation } from "next-i18next";
-import Tooltip from "./Tooltip";
 
 // Animation außerhalb, um den Call-Stack-Error zu vermeiden
 const popIn = keyframes`
@@ -28,8 +27,7 @@ export default function ScrollToTop() {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // Wenn nicht sichtbar, wird absolut nichts gerendert -> keine Z-Index-Konflikte!
-    if (!isVisible) return null;
+   if (!isVisible) return null;
 
     return (
       <ScrollButton
@@ -56,8 +54,8 @@ const ScrollButton = styled.button`
     justify-content: center;
 
     background-color: var(--color-zoo-orange, #f39c12);
-    color: white;
-    border: 3px solid white;
+    color: var(--color-white);
+    border: 3px solid var(--color-white);
     border-radius: 50%;
     font-size: 1.8rem;
     cursor: pointer;

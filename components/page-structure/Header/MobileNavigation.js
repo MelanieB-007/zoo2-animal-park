@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { IoChevronDown } from "react-icons/io5";
+
 import Login from "./Login";
 
 export const MobileNavigation = ({ isOpen, onClose }) => {
@@ -85,7 +86,8 @@ const MenuHeader = styled.div`
 
 const StyledChevron = styled(IoChevronDown)`
   transition: transform 0.3s ease;
-  transform: ${({ $isRotated }) => ($isRotated ? "rotate(180deg)" : "rotate(0deg)")};
+  transform: ${({ $isRotated }) => 
+          ($isRotated ? "rotate(180deg)" : "rotate(0deg)")};
 `;
 
 const SubMenu = styled.div`
@@ -116,7 +118,7 @@ const SubNavLink = styled(Link)`
 const MobileNavLink = styled(Link)`
   font-family: var(--font-headline);
   font-size: 1.6rem;
-  color: white;
+  color: var(--color-white);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 2px;

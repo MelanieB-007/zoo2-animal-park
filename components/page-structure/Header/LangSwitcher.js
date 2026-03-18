@@ -1,16 +1,15 @@
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { IoChevronDown } from "react-icons/io5";
-import { useRouter } from "next/router"; // 1. Router importieren
+import { useRouter } from "next/router";
 
 export default function LangSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
 
-  const router = useRouter(); // 2. Router initialisieren
+  const router = useRouter();
   const { pathname, asPath, query, locale } = router;
 
-  // 3. Funktion für den Sprachwechsel
   const handleLocaleChange = (newLocale) => {
     router.push({ pathname, query }, asPath, { locale: newLocale });
     setIsOpen(false);
@@ -26,10 +25,9 @@ export default function LangSwitcher() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Map für die Flaggen-Klassen basierend auf dem Locale
   const flagMap = {
     de: "fi-de",
-    en: "fi-gb", // EN nutzt meist GB oder US Flagge
+    en: "fi-gb",
     dk: "fi-dk",
     nl: "fi-nl",
     be: "fi-be"
@@ -38,7 +36,6 @@ export default function LangSwitcher() {
   return (
     <LangSwitcherContainer ref={wrapperRef}>
       <CurrentLanguage onClick={() => setIsOpen(!isOpen)} $isOpen={isOpen}>
-        {/* Hier wird die Flagge dynamisch angezeigt */}
         <span className={`fi ${flagMap[locale] || "fi-de"}`}></span>
         <StyledChevron $isOpen={isOpen} />
       </CurrentLanguage>
@@ -101,7 +98,7 @@ const LangDropdown = styled.div`
   position: absolute;
   top: 120%;
   right: 0;
-  background: white;
+  background: var(--color-white);
   border-radius: 10px;
   padding: 5px;
   box-shadow: var(--shadow-soft);

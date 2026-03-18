@@ -17,7 +17,7 @@ export default function EmptyState({ title, message, buttonText, onReset }) {
         <UppyPortraitFrame>
           <NextImage
             src="/images/uppy-traurig.png"
-            alt="Uppy ist traurig"
+            alt={t('animals:empty.uppySad')}
             width={240}
             height={320}
             style={{

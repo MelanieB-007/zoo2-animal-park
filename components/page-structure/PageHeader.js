@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default function PageHeader({text}) {
   return (
-    <StyledHeader className="page-header">
+    <StyledHeader>
       <Headline>
         {text}
       </Headline>

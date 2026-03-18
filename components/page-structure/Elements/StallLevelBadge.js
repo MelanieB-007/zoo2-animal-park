@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import GameIcon from "../../icons/GameIcon";
 import { useTranslation } from "next-i18next";
+
+import GameIcon from "../../icons/GameIcon";
 import Tooltip from "../../ui/Tooltip";
 
 export default function StallLevelBadge({ level, habitat }) {
@@ -49,13 +50,13 @@ const LevelBadgeCircle = styled.div`
   justify-content: center;
 
   background: #4ca64c;
-  border: 2px solid white;
+  border: 2px solid var(--color-white);
   border-radius: 50%;
 
-  color: white;
+  color: var(--color-white);
   font-weight: 900;
   font-size: 0.85rem;
-  font-family: "Arial", sans-serif;
+  font-family: var(--font-text), sans-serif;
 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   z-index: 2;

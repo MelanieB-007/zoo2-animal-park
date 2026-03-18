@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
-import GameIcon from "../../icons/GameIcon";
 import GehegeBadge from "./GehegeBadge";
 
 export default function CustomGehegeFilter({ animals, selectedGehege, onSelect }) {
@@ -10,7 +9,6 @@ export default function CustomGehegeFilter({ animals, selectedGehege, onSelect }
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
 
-  // Schließen beim Klick außerhalb
   useEffect(() => {
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -21,8 +19,9 @@ export default function CustomGehegeFilter({ animals, selectedGehege, onSelect }
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Einzigartige Gehege extrahieren
-  const uniqueGehege = [...new Set(animals.map((t) => t.gehege?.name))].filter(Boolean);
+
+  const uniqueGehege = [...new Set(animals.map((t) =>
+    t.gehege?.name))].filter(Boolean);
 
   return (
     <SelectWrapper
@@ -48,12 +47,15 @@ export default function CustomGehegeFilter({ animals, selectedGehege, onSelect }
 
       {isOpen && (
         <OptionsList>
-          <Option onClick={() => { onSelect("Alle"); setIsOpen(false); }}>
+          <Option onClick={() => {
+            onSelect("Alle"); setIsOpen(false); }
+          }>
             {t('filter.all_enclosures')}
           </Option>
 
           {uniqueGehege.map((name) => (
-            <Option key={name} onClick={() => { onSelect(name); setIsOpen(false); }}>
+            <Option key={name} onClick={() => {
+              onSelect(name); setIsOpen(false); }}>
               <GehegeBadge
                 type={name.toLowerCase()}
                 />
@@ -126,5 +128,5 @@ const Chevron = styled.span`
   font-size: 0.8rem;
   transition: transform 0.3s;
   transform: ${({ $isOpen }) => ($isOpen ? "rotate(180deg)" : "rotate(0)")};
-  color: #8dbd5b;
+  color: var(--color-green-lighter);
 `;

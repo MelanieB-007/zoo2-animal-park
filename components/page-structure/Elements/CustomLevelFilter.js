@@ -21,7 +21,6 @@ export default function CustomLevelFilter({ animals, selectedLevel, onSelect }) 
     };
   }, []);
 
-  // Einzigartige Level extrahieren
   const uniqueLevels = [...new Set(animals.map(function(t) { return t.stalllevel; }))]
     .filter(function(lvl) { return lvl !== undefined && lvl !== null; })
     .sort(function(a, b) { return a - b; });
@@ -53,7 +52,9 @@ export default function CustomLevelFilter({ animals, selectedLevel, onSelect }) 
           </Option>
           {uniqueLevels.map(function(lvl) {
             return (
-              <Option key={lvl} onClick={function() { onSelect(String(lvl)); setIsOpen(false); }}>
+              <Option
+                key={lvl}
+                onClick={function() { onSelect(String(lvl)); setIsOpen(false); }}>
                 <ScaledBadge>
                   <StallLevelBadge level={lvl} habitat="gras" />
                 </ScaledBadge>
@@ -96,7 +97,7 @@ const OptionsList = styled.div`
   top: 110%;
   left: 0;
   right: 0;
-  background: white;
+  background: var(--color-white);
   border: 2px solid var(--color-green);
   border-radius: var(--border-radius-icon);
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);

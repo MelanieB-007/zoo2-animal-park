@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import NextImage from "next/image";
+import { useTranslation } from "next-i18next";
+
 import { habitatColors } from "../../../utils/habitatConstants";
 import Tooltip from "../../ui/Tooltip";
-import { useTranslation } from "next-i18next";
 
 
 export default function GehegeBadge({ type, size=20 }) {

@@ -1,0 +1,23 @@
+{
+  "badge_community": "Community Project",
+  "stats": {
+    "animals": "Animals",
+    "variants": "Color Variants",
+    "habitats": "Habitat Types",
+    "regions": "Zoo Regions"
+  },
+  "cards": {
+    "lexicon": {
+      "title": "Animal Encyclopedia",
+      "text": "Prices, stable levels, and habitat info at a glance."
+    },
+    "variants": {
+      "title": "Color Variants",
+      "text": "Manage your breeding successes and rare variants."
+    },
+    "club": {
+      "title": "Club",
+      "text": "Be a member of our club and win amazing statues in the competitions."
+    }
+  }
+}

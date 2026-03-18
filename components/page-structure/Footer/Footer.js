@@ -10,7 +10,7 @@ export default function Footer() {
             <FooterContent>
                 <p>
                   © 2026 - Klub der tollen Tiere |
-                  <Link href="/impressum">
+                  <Link href="#">
                     {t('footer.imprint', 'Impressum')}
                   </Link>
                 </p>

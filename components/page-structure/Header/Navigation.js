@@ -145,7 +145,8 @@ const NavElementStyles = `
 
 const NavLink = styled(Link)`
   ${NavElementStyles}; 
-  color: ${props => props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
+  color: ${props => 
+          props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
 
   &::before {
     content: '🐾';
@@ -161,7 +162,8 @@ const NavLink = styled(Link)`
 
 const NavButton = styled.div`
   ${NavElementStyles};
-  color: ${props => props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
+  color: ${props => 
+          props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
   cursor: pointer;
 
   &::before {
@@ -207,9 +209,12 @@ const DropdownLink = styled(Link)`
   text-decoration: none;
   font-size: 0.9rem;
   font-family: var(--font-text);
-  background: ${({ $active }) => $active ? 'rgba(0,0,0,0.05)' : 'transparent'};
-  font-weight: ${props => props.$active ? '900' : '400'};
-  border-left: ${props => props.$active ? '4px solid var(--color-green)' : '4px solid transparent'};
+  background: ${({ $active }) => 
+          $active ? 'rgba(0,0,0,0.05)' : 'transparent'};
+  font-weight: ${props => 
+          props.$active ? '900' : '400'};
+  border-left: ${props =>
+          props.$active ? '4px solid var(--color-green)' : '4px solid transparent'};
 
   &:hover {
     background: #f5f5f5;

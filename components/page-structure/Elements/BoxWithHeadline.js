@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import StatBox from "./StatBox";
 
-export default function BoxWithHeadline({children, translations}){
+export default function BoxWithHeadline({children, label}){
   return (
     <EnclosureBox>
-      <label>{translations.tableEnclosure}</label>
+      <label>{label}</label>
       <IconRow>
         {children}
       </IconRow>
@@ -17,7 +17,7 @@ const EnclosureBox = styled(StatBox)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Auf Desktop soll sie die Höhe der zwei anderen Boxen einnehmen */
+
   @media (min-width: 768px) {
     height: 100%;
   }
@@ -33,7 +33,6 @@ const IconRow = styled.div`
   flex: 1;
   padding: 10px 0;
   
-  /* Verhindert das Verzerren der Bilder */
   & > * {
     flex-shrink: 0;
   }

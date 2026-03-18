@@ -18,6 +18,7 @@ import Table from "../page-structure/Table/Table";
 import LinkedRow from "../page-structure/Table/LinkedRow";
 import NoResult from "../page-structure/Table/NoResult";
 import AnimalThumbnail from "../icons/AnimalThumbnail";
+import { getTranslatedName } from "../ui/AnimalHelper";
 
 export default function AnimalDesktopTable({
   animals,
@@ -107,10 +108,8 @@ export default function AnimalDesktopTable({
       <tbody>
         {animals.length > 0 ? (
           animals.map((animal) => {
-            const displayName =
-              i18n.language === "en"
-                ? animal.nameEn || animal.name
-                : animal.name || animal.nameEn;
+            const displayName = getTranslatedName(animal, i18n.language) ||
+              t("animals:unknown_animal");
 
             return (
               <LinkedRow key={animal.id} path={`/tiere/${animal.id}`}>

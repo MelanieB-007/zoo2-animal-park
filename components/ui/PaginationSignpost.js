@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
+
 import Tooltip from "./Tooltip";
 
 export default function PaginationSignpost({ currentPage, totalPages, onNext, onPrev }) {

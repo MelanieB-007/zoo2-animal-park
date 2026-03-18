@@ -1,4 +1,16 @@
 import { createGlobalStyle } from "styled-components";
+import { DM_Sans, Playfair_Display, Sedgwick_Ave_Display } from "next/font/google";
+
+const sedgwick = Sedgwick_Ave_Display({ weight: "400", subsets: ["latin"] });
+const dmSans = DM_Sans({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+});
+
+const playfair = Playfair_Display({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+});
 
 export default createGlobalStyle`
 
@@ -55,6 +67,11 @@ export default createGlobalStyle`
     --shadow-footer-text-mobile: 0.8px 0.8px 0 var(--color-petrol);
     --shadow-header-button: 0 2px 8px var(--color-orange-dark-shadow);
     --shadow-header-button-hover: 0 4px 12px var(--color-orange-dark);
+
+    --font-club: ${sedgwick.style.fontFamily};
+    --font-text: ${dmSans.style.fontFamily};
+    --font-heading: ${playfair.style.fontFamily};
+    --font-comic: "Comic Sans MS", "Chalkboard SE", cursive
   }
 
   @media (max-width: 1200px) {

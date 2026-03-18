@@ -2,6 +2,7 @@
   "overview_title": "All Animals Overview",
   "search_placeholder": "Search for animals...",
   "results_unit": "animals found",
+  "unknown_animal": "Unknown Animal",
   "table": {
     "species": "Species",
     "enclosure": "Biomes",
@@ -27,6 +28,7 @@
   },
   "empty": {
     "title": "Oh no, no animals found!",
+    "uppySad": "Uppy is sad",
     "message": "Uppy searched everywhere but couldn't find anything.",
     "button": "Reset search"
   }
