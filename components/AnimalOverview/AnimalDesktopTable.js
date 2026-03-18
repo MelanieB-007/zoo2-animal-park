@@ -1,8 +1,6 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 
-import { TierThumbnail } from "../icons/TierThumbnail";
-import GameIcon from "../icons/GameIcon";
 import { NameDE } from "../page-structure/Elements/Name";
 import GehegeBadge from "../page-structure/Elements/GehegeBadge";
 import PriceDisplay from "../icons/PriceDisplay";
@@ -19,6 +17,7 @@ import InfoCell from "../page-structure/Table/InfoCell";
 import Table from "../page-structure/Table/Table";
 import LinkedRow from "../page-structure/Table/LinkedRow";
 import NoResult from "../page-structure/Table/NoResult";
+import AnimalThumbnail from "../icons/AnimalThumbnail";
 
 export default function AnimalDesktopTable({
   animals,
@@ -117,13 +116,7 @@ export default function AnimalDesktopTable({
               <LinkedRow key={animal.id} path={`/tiere/${animal.id}`}>
                 <td>
                   <InfoCell>
-                    <TierThumbnail $type={animal.gehege?.name}>
-                      <GameIcon
-                        type={`tiere/${(animal.gehege?.name || "standard").toLowerCase()}`}
-                        fileName={animal.bild || "default.jpg"}
-                        bordercolor="transparent"
-                      />
-                    </TierThumbnail>
+                    <AnimalThumbnail animal={animal} />
                     <div>
                       <NameDE>{displayName}</NameDE>
                     </div>
@@ -138,6 +131,8 @@ export default function AnimalDesktopTable({
                   <PriceDisplay
                     value={animal.preis}
                     type={animal.preisart?.name.toLowerCase() || "gold"}
+                    altTextDiamond={t("common:payment:diamonds")}
+                    altTextZoodollar={t("common:payment:zoodollar")}
                   />
                 </RightAlignedTd>
 
@@ -162,8 +157,12 @@ export default function AnimalDesktopTable({
 
                 <td>
                   <ActionGroupIcons
-                    onEdit={function() { onEdit(animal.id); }}
-                    onDelete={function() { onDelete(animal.id); }}
+                    onEdit={function () {
+                      onEdit(animal.id);
+                    }}
+                    onDelete={function () {
+                      onDelete(animal.id);
+                    }}
                   />
                 </td>
               </LinkedRow>

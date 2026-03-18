@@ -36,7 +36,13 @@
     "prev": "Zurück",
     "next": "Weiter"
   },
+  "payment": {
+    "diamonds": "Diamanten,",
+    "zoodollar": "Zoodollar"
+  },
+
   "scroll_to_top": "Nach oben",
   "actions": "Aktionen",
-  "loading": "Wird geladen..."
+  "loading": "Wird geladen...",
+  "popularity": "Popularität"
 }

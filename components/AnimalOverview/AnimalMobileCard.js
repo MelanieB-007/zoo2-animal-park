@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
+
 import GameIcon from "../icons/GameIcon";
 import { NameDE } from "../page-structure/Elements/Name";
 import GehegeBadge from "../page-structure/Elements/GehegeBadge";
@@ -23,10 +24,6 @@ export default function AnimalMobileCard({
       ? animal.nameEn || animal.name
       : animal.name || animal.nameEn;
 
-  function handleActionClick(e) {
-    e.stopPropagation();
-  }
-
   return (
     <CardContainer onClick={onClick}>
       <HeaderRow>
@@ -44,6 +41,8 @@ export default function AnimalMobileCard({
           <PriceDisplay
             value={animal.preis}
             type={animal.preisart?.name?.toLowerCase() || "gold"}
+            altTextDiamond={t("common:payment:diamonds")}
+            altTextZoodollar={t("common:payment:zoodollar")}
           />
         </PriceRow>
 

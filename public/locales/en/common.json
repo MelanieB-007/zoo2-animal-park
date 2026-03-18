@@ -37,7 +37,12 @@
     "prev": "Back",
     "next": "Next"
   },
+  "payment": {
+    "diamonds": "Diamonds,",
+    "zoodollar": "Zoodollar"
+  },
   "actions": "Actions",
   "scroll_to_top": "Back to top",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "popularity": "Popularity"
 }

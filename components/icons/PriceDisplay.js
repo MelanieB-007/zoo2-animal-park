@@ -1,15 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import DiamandIcon from './DiamandIcon';
+import DiamondIcon from './DiamondIcon';
 import ZoodollarIcon from "./ZoodollarIcon";
 
-export default function PriceDisplay({ value, type }) {
+export default function PriceDisplay({ value, type, altTextDiamond, altTextZoodollar }) {
   return (
     <PriceWrapper>
       {type === 'diamanten' ? (
-        <DiamandIcon value={value} />
+        <DiamondIcon
+          value={value}
+          altText={altTextDiamond}
+        />
       ) : (
-        <ZoodollarIcon value={value} />
+        <ZoodollarIcon
+          value={value}
+          altText={altTextZoodollar}
+        />
       )}
     </PriceWrapper>
   );

@@ -18,8 +18,8 @@ export default function GameIcon({ type, fileName, size = 50, bordercolor = "#4c
 
 
 const IconFrame = styled.div`
-  width: ${props => props.size}px;
-  height: ${props => props.size}px;
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
   background: #eee; 
   
   border: 2px solid ${props => props.bordercolor};

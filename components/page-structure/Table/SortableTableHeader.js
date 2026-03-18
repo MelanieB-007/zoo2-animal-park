@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { SortIcon } from "../../icons/SortIcon";
+import  SortIcon from "../../icons/SortIcon";
 import Tooltip from "../../ui/Tooltip";
 
 export default function SortableTableHeader(
