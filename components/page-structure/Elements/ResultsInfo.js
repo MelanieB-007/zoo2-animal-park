@@ -8,10 +8,10 @@ export default function ResultsInfo({ currentCount, totalCount }) {
 
   return (
     <StyledInfo>
-      {t('common:results.show')}
-      <strong>{currentCount}</strong>
-      {t('common:results.of')}
-      <strong> {totalCount}</strong>
+      {t('common:results.show')}{" "}
+      <strong>{currentCount}</strong>{" "}
+      {t('common:results.of')}{" "}
+      <strong>{totalCount}</strong>{" "}
       {t('animals:results_unit')}
     </StyledInfo>
   );
