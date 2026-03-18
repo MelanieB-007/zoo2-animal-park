@@ -6,8 +6,10 @@ import { habitatColors } from "../../../utils/habitatConstants";
 import Tooltip from "../../ui/Tooltip";
 import { getTranslatedName } from "../../ui/TranslationHelper";
 
-export default function GehegeBadge({ gehege, size = 20 }) {
+export default function GehegeBadge({ gehege, showTooltip, size = 20 }) {
   const { t, i18n } = useTranslation(["animals", "common"]);
+
+  const shouldShowTooltip = showTooltip !== false;
 
   const safeType = gehege?.name?.toLowerCase() || "default";
 
@@ -15,19 +17,23 @@ export default function GehegeBadge({ gehege, size = 20 }) {
     ? getTranslatedName(gehege, i18n.language)
     : gehege?.name;
 
-  return (
-    <Tooltip
-      text={`${displayName} ${t("animals:table.enclosure")}`}
-    >
-      <BadgeWrapper $type={safeType}>
-        <NextImage
-          src={`/images/gehege/icons/${safeType}.webp`}
-          alt={displayName}
-          width={size}
-          height={size}
-        />
-      </BadgeWrapper>
+  const BadgeContent = (
+    <BadgeWrapper $type={safeType}>
+      <NextImage
+        src={`/images/gehege/icons/${safeType}.webp`}
+        alt={displayName}
+        width={size}
+        height={size}
+      />
+    </BadgeWrapper>
+  );
+
+  return shouldShowTooltip ? (
+    <Tooltip text={`${displayName} ${t("animals:table.enclosure")}`}>
+      {BadgeContent}
     </Tooltip>
+  ) : (
+    BadgeContent
   );
 }
 

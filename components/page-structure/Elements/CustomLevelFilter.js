@@ -37,7 +37,11 @@ export default function CustomLevelFilter({ animals, selectedLevel, onSelect }) 
         ) : (
           <SelectedValue>
             <ScaledBadge>
-              <StallLevelBadge level={selectedLevel} habitat="gras" />
+              <StallLevelBadge
+                level={selectedLevel}
+                habitat="gras"
+                showTooltip={false}
+              />
             </ScaledBadge>
             <Label>{t('animals:filter.level_label')} {selectedLevel}</Label>
           </SelectedValue>
@@ -56,7 +60,11 @@ export default function CustomLevelFilter({ animals, selectedLevel, onSelect }) 
                 key={lvl}
                 onClick={function() { onSelect(String(lvl)); setIsOpen(false); }}>
                 <ScaledBadge>
-                  <StallLevelBadge level={lvl} habitat="gras" />
+                  <StallLevelBadge
+                    level={lvl}
+                    habitat="gras"
+                    showTooltip={false}
+                  />
                 </ScaledBadge>
                 <Label>{t('animals:filter.level_label')} {lvl}</Label>
               </Option>

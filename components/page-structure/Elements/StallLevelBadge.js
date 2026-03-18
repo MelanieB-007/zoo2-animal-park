@@ -4,21 +4,32 @@ import { useTranslation } from "next-i18next";
 import GameIcon from "../../icons/GameIcon";
 import Tooltip from "../../ui/Tooltip";
 
-export default function StallLevelBadge({ level, habitat }) {
+export default function StallLevelBadge({ level, habitat, showTooltip }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
 
+  // Das eigentliche Badge-Design
+  const BadgeContent = (
+    <StallContainer>
+      <GameIcon
+        fileName="Stall.png"
+        type={`gehege/${habitat?.toLowerCase() || "gras"}`}
+      />
+      <LevelBadgeCircle>{level}</LevelBadgeCircle>
+    </StallContainer>
+  );
+
+  // Wenn showTooltip explizit false ist, geben wir nur das Badge zurück
+  if (showTooltip === false) {
+    return BadgeContent;
+  }
+
+  // Standardmäßig mit Tooltip
   return (
     <Tooltip
       text={`${t("animals:tooltips.level")}: ${level}`}
       position="bottom"
     >
-      <StallContainer>
-        <GameIcon
-          fileName="Stall.png"
-          type={`gehege/${habitat?.toLowerCase() || "gras"}`}
-        />
-        <LevelBadgeCircle>{level}</LevelBadgeCircle>
-      </StallContainer>
+      {BadgeContent}
     </Tooltip>
   );
 }

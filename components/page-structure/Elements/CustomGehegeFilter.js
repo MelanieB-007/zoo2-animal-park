@@ -32,15 +32,21 @@ export default function CustomGehegeFilter({ animals = [], selectedGehege, onSel
     <SelectWrapper ref={wrapperRef}>
       <SelectHeader onClick={() => setIsOpen(!isOpen)}>
         {selectedGehege === "Alle" ? (
-          <span>{t('animals:filter.all_enclosures')}</span>
+          <span>{t("animals:filter.all_enclosures")}</span>
         ) : (
           <SelectedValue>
             <GehegeBadge
               type={selectedGehege}
-              gehege={uniqueGehegeObjects.find(g => g.name === selectedGehege)}
+              gehege={uniqueGehegeObjects.find(
+                (g) => g.name === selectedGehege
+              )}
+              showTooltip={false}
             />
             <Label>
-              {getTranslatedName(uniqueGehegeObjects.find(g => g.name === selectedGehege), i18n.language) || selectedGehege}
+              {getTranslatedName(
+                uniqueGehegeObjects.find((g) => g.name === selectedGehege),
+                i18n.language
+              ) || selectedGehege}
             </Label>
           </SelectedValue>
         )}
@@ -50,13 +56,24 @@ export default function CustomGehegeFilter({ animals = [], selectedGehege, onSel
       {/* Hier war der Fehler: isOpen muss innerhalb des Returns verfügbar sein */}
       {isOpen && (
         <OptionsList>
-          <Option onClick={() => { onSelect("Alle"); setIsOpen(false); }}>
-            {t('animals:filter.all_enclosures')}
+          <Option
+            onClick={() => {
+              onSelect("Alle");
+              setIsOpen(false);
+            }}
+          >
+            {t("animals:filter.all_enclosures")}
           </Option>
 
           {uniqueGehegeObjects.map((g) => (
-            <Option key={g.name} onClick={() => { onSelect(g.name); setIsOpen(false); }}>
-              <GehegeBadge type={g.name} gehege={g} />
+            <Option
+              key={g.name}
+              onClick={() => {
+                onSelect(g.name);
+                setIsOpen(false);
+              }}
+            >
+              <GehegeBadge type={g.name} gehege={g} showTooltip={false} />
               <Label>{getTranslatedName(g, i18n.language)}</Label>
             </Option>
           ))}
