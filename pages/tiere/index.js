@@ -1,26 +1,16 @@
-import React, { useEffect, useMemo, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-
-import PageHeader from "../../components/page-structure/PageHeader";
-import PageWrapper from "../../components/page-structure/PageWrapper";
 import LoadingWrapper from "../../components/page-structure/Elements/LoadingWrapper";
-import FilterBar from "../../components/page-structure/Elements/FilterBar";
-import EmptyState from "../../components/page-structure/Elements/EmptyState";
-import PaginationSignpost from "../../components/ui/PaginationSignpost";
-import ResultsInfo from "../../components/page-structure/Elements/ResultsInfo";
-import { AnimalService } from "../../services/AnimalService";
-import AnimalMobileCard from "../../components/AnimalOverview/AnimalMobileCard";
-import AnimalDesktopTable from "../../components/AnimalOverview/AnimalDesktopTable";
+import { filterAnimals, sortAnimals, paginate, deleteAnimal, getAllAnimals } from "../../services/AnimalService";
 import { useSort } from "../../hooks/useSort";
+import AnimalOverviewContent from "../../components/AnimalOverview/AnimalOverviewContent";
 
 export default function AnimalOverview() {
-  const { t, i18n } = /** @type {any} */ (useTranslation(['animals', 'common']));
+  const { t } = /** @type {any} */ (useTranslation(['animals', 'common']));
   const router = useRouter();
-  const currentLang = i18n.language; // 'de' oder 'en'
 
   const [animals, setAnimals] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,61 +18,37 @@ export default function AnimalOverview() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedGehege, setSelectedGehege] = useState("Alle");
   const [selectedLevel, setSelectedLevel] = useState("Alle");
-  const { sortBy, sortDirection, toggleSort, getSortIcon } = useSort("name");
+  const { sortBy, sortDirection, toggleSort } = useSort("name");
 
   const itemsPerPage = 10;
 
-  useEffect(() => {
-    fetch("/api/tiere")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setAnimals(data);
-        } else {
-          console.error("Erwartete Array, erhielt:", data);
-          setAnimals([]);
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Fehler beim Laden:", err);
-        setAnimals([]);
-        setLoading(false);
-      });
+  useEffect(function() {
+    async function loadData() {
+      setLoading(true);
+
+      const data = await getAllAnimals();
+
+      setAnimals(data);
+      setLoading(false);
+    }
+
+    loadData();
   }, []);
 
-  const filteredTiere = useMemo(() => {
-    return AnimalService.filterAnimals(animals, {
-      searchTerm,
-      selectedGehege,
-      selectedLevel,
-    });
-  }, [animals, searchTerm, selectedGehege, selectedLevel]);
+  const filteredTiere = filterAnimals(animals, {
+    searchTerm,
+    selectedGehege,
+    selectedLevel
+  });
 
-  const sortedTiere = useMemo(() => {
-    return AnimalService.sortAnimals(filteredTiere, { sortBy, sortDirection });
-  }, [filteredTiere, sortBy, sortDirection]);
+  const sortedTiere = sortAnimals(filteredTiere, {
+    sortBy,
+    sortDirection
+  });
 
-  const currentItems = useMemo(() => {
-    return AnimalService.paginate(sortedTiere, currentPage, itemsPerPage);
-  }, [sortedTiere, currentPage]);
-
+  const currentItems = paginate(sortedTiere, currentPage, itemsPerPage);
 
   const totalPages = Math.ceil(filteredTiere.length / itemsPerPage);
-
-  useEffect(() => {
-    if (currentPage > totalPages && totalPages > 0) {
-      setCurrentPage(totalPages);
-    }
-  }, [totalPages, currentPage]);
-
-  if (loading) {
-    return (
-      <LoadingWrapper>
-        {t('animals:search_placeholder')} 🐾
-      </LoadingWrapper>
-    );
-  }
 
   function handleResetFilters() {
     setSearchTerm("");
@@ -92,71 +58,50 @@ export default function AnimalOverview() {
   }
 
   function handleAnimalClick(id) {
-    router.push(`/tiere/${id}`);
+    router.push("/tiere/" + id);
   }
 
-  function handleNextPage() {
-    setCurrentPage(function(prev) { return prev + 1; });
+  function handleEdit(id) {
+    router.push("/tiere/edit/" + id);
   }
 
-  function handlePrevPage() {
-    setCurrentPage(function(prev) { return prev - 1; });
+  async function handleDelete(id) {
+    if (!window.confirm(t("animals:confirm_delete"))) return;
+    const success = await deleteAnimal(id);
+    if (success) {
+      setAnimals(function(prev) { return prev.filter(function(a) { return a.id !== id; }); });
+    }
+  }
+
+  if (loading) {
+    return <LoadingWrapper>{t('animals:search_placeholder')} 🐾</LoadingWrapper>;
   }
 
   return (
-    <PageWrapper>
-      <PageHeader text={t('animals:overview_title')} />
-
-      <FilterBar
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        selectedGehege={selectedGehege}
-        setSelectedGehege={setSelectedGehege}
-        selectedLevel={selectedLevel}
-        setSelectedLevel={setSelectedLevel}
-        setCurrentPage={setCurrentPage}
-        animals={animals}
-      />
-
-      <ResultsInfo
-        currentCount={currentItems.length}
-        totalCount={filteredTiere.length}
-      />
-
-      {currentItems.length > 0 ? (
-        <>
-          {/* DESKTOP TABELLE */}
-          <AnimalDesktopTable
-            animals={currentItems}
-            sortBy={sortBy}
-            sortDirection={sortDirection}
-            onSort={toggleSort}
-          />
-
-          {/* MOBILE CARDS */}
-          <MobileView>
-            {currentItems.map((animal) => (
-              <AnimalMobileCard
-                key={animal.id}
-                animal={animal}
-                onClick={function() { handleAnimalClick(tier.id); }}
-              />
-            ))}
-          </MobileView>
-        </>
-      ) : (
-        <EmptyState onReset={handleResetFilters} />
-      )}
-
-      {totalPages > 1 && (
-        <PaginationSignpost
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onNext={handleNextPage}
-          onPrev={handlePrevPage}
-        />
-      )}
-    </PageWrapper>
+    <AnimalOverviewContent
+      t={t}
+      animals={animals}
+      currentItems={currentItems}
+      filteredCount={filteredTiere.length}
+      searchTerm={searchTerm}
+      setSearchTerm={setSearchTerm}
+      selectedGehege={selectedGehege}
+      setSelectedGehege={setSelectedGehege}
+      selectedLevel={selectedLevel}
+      setSelectedLevel={setSelectedLevel}
+      setCurrentPage={setCurrentPage}
+      sortBy={sortBy}
+      sortDirection={sortDirection}
+      toggleSort={toggleSort}
+      handleEdit={handleEdit}
+      handleDelete={handleDelete}
+      handleAnimalClick={handleAnimalClick}
+      handleResetFilters={handleResetFilters}
+      totalPages={totalPages}
+      currentPage={currentPage}
+      handleNextPage={function() { setCurrentPage(prev => prev + 1); }}
+      handlePrevPage={function() { setCurrentPage(prev => prev - 1); }}
+    />
   );
 }
 
@@ -167,11 +112,3 @@ export async function getStaticProps({ locale }) {
     },
   };
 }
-
-const MobileView = styled.div`
-  display: none;
-  @media (max-width: 768px) {
-    display: block;
-    padding: 0 10px;
-  }
-`;

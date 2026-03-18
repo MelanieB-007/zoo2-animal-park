@@ -1,11 +1,14 @@
+import React from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
-export default function LinkedRow({children, key, path}){
+
+export default function LinkedRow({ children, path }) {
+  const router = useRouter();
+
   return (
     <StyledLinkedRow
-      key={key}
-      onClick={() => router.push({path})}
-      style={{ cursor: "pointer" }}
+      onClick={() => router.push(path)}
     >
       {children}
     </StyledLinkedRow>
@@ -14,11 +17,12 @@ export default function LinkedRow({children, key, path}){
 
 const StyledLinkedRow = styled.tr`
   border-bottom: 1px solid #eee;
+  cursor: pointer; 
 
   &:hover {
     background: #f0fff0;
   }
-
+  
   td {
     padding: 12px 15px;
   }

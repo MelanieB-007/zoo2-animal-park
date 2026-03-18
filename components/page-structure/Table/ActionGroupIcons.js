@@ -1,17 +1,25 @@
 import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "next-i18next";
 
 import EditButton from "../../icons/EditIcon";
 import DeleteButton from "../../icons/DeleteIcon";
 
-export default function ActionGroupIcons(){
+export default function ActionGroupIcons({ onEdit, onDelete }) {
+  const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
+
   return (
-    <ActionGroup
-      onClick={(e) => e.stopPropagation()}>
-      <EditButton tooltip={t("animals:tooltips.edit")} />
+    <ActionGroup onClick={(e) => e.stopPropagation()}>
+      <EditButton
+        tooltip={t("animals:tooltips.edit")}
+        onClick={onEdit}
+        aria-label={t("animals:tooltips.edit")}
+      />
       <DeleteButton
         tooltip={t("animals:tooltips.delete")}
         align="left"
+        onClick={onDelete}
+        aria-label={t("animals:tooltips.delete")}
       />
     </ActionGroup>
   );
@@ -20,4 +28,6 @@ export default function ActionGroupIcons(){
 const ActionGroup = styled.div`
   display: flex;
   gap: 10px;
+  flex-wrap: nowrap;
+  align-items: center;
 `;

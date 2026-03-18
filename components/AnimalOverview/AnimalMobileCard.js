@@ -9,14 +9,19 @@ import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
 import EditButton from "../icons/EditIcon";
 import DeleteButton from "../icons/DeleteIcon";
 
-
-export default function AnimalMobileCard({ animal, onClick }) {
+export default function AnimalMobileCard({
+  animal,
+  onClick,
+  onEdit,
+  onDelete,
+}) {
   const { i18n } = useTranslation();
   const habitatId = animal.gehege?.name?.toLowerCase() || "standard";
 
-  const displayName = i18n.language === "en"
-    ? (animal.name_en || animal.name)
-    : (animal.name || animal.name_en);
+  const displayName =
+    i18n.language === "en"
+      ? animal.nameEn || animal.name
+      : animal.name || animal.nameEn;
 
   function handleActionClick(e) {
     e.stopPropagation();
@@ -26,9 +31,9 @@ export default function AnimalMobileCard({ animal, onClick }) {
     <CardContainer onClick={onClick}>
       <HeaderRow>
         <NameDE>{displayName}</NameDE>
-        <ActionGroup onClick={handleActionClick}>
-          <EditButton />
-          <DeleteButton />
+        <ActionGroup onClick={(e) => e.stopPropagation()}>
+          <EditButton onClick={onEdit} />
+          <DeleteButton onClick={onDelete} />
         </ActionGroup>
       </HeaderRow>
 
@@ -49,10 +54,7 @@ export default function AnimalMobileCard({ animal, onClick }) {
             size={50}
           />
 
-          <GehegeBadge
-            type={animal.gehege?.name}
-            size={35}
-          />
+          <GehegeBadge type={animal.gehege?.name} size={35} />
 
           <StallLevelBadge
             level={animal.stalllevel}
@@ -63,7 +65,6 @@ export default function AnimalMobileCard({ animal, onClick }) {
     </CardContainer>
   );
 }
-
 
 const CardContainer = styled.div`
   background: var(--color-white);
@@ -111,10 +112,12 @@ const IconsRow = styled.div`
 
 const ActionGroup = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 16px;
 
-  svg {
-    width: 20px;
-    height: 20px;
+  button {
+    background: none;
+    border: none;
+    padding: 8px; 
+    cursor: pointer;
   }
 `;

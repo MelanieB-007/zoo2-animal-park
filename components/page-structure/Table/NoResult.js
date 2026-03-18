@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function NoResult(text){
+export default function NoResult({ text }) {
   return (
     <tr>
-      <StyledNoResult colSpan="8">
+      <StyledNoResult>
         {text}
       </StyledNoResult>
     </tr>
