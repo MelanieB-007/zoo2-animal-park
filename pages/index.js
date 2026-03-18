@@ -60,7 +60,7 @@ export default function IndexPage({ stats }) {
             </StatsBar>
 
             <ActionGrid>
-              <Link href="/tiere" passHref legacyBehavior>
+              <Link href="/AnimalOverview" passHref legacyBehavior>
                 <MenuCard $color="#4ca64c">
                   <Icon>🐾</Icon>
                   <h3>Tier-Lexikon</h3>

@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import NextImage from "next/image";
 import { habitatColors } from "../../../utils/habitatConstants";
+import Tooltip from "../../ui/Tooltip";
+import { useTranslation } from "next-i18next";
 
 
 export default function GehegeBadge({ type, size=20 }) {
   const safeType = type?.toLowerCase() || "default";
+  const { t } =  /** @type {any} */(useTranslation(["animals", "common"]));
+
   return (
+    <Tooltip
+      text={`type ${t("animals:table.enclosure")}`}
+    >
     <BadgeWrapper $type={safeType}>
       <NextImage
         src={`/images/gehege/icons/${safeType}.webp`}
@@ -14,6 +21,7 @@ export default function GehegeBadge({ type, size=20 }) {
         height={size}
       />
     </BadgeWrapper>
+    </Tooltip>
   );
 }
 

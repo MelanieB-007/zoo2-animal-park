@@ -15,14 +15,12 @@ import ResultsInfo from "../../components/page-structure/Elements/ResultsInfo";
 import { AnimalService } from "../../services/AnimalService";
 import AnimalMobileCard from "../../components/AnimalOverview/AnimalMobileCard";
 import AnimalDesktopTable from "../../components/AnimalOverview/AnimalDesktopTable";
+import { useSort } from "../../hooks/useSort";
 
-export default function TiereUebersicht() {
+export default function AnimalOverview() {
   const { t, i18n } = /** @type {any} */ (useTranslation(['animals', 'common']));
   const router = useRouter();
   const currentLang = i18n.language; // 'de' oder 'en'
-
-  const [sortBy, setSortBy] = useState("name");
-  const [sortDirection, setSortDirection] = useState("asc");
 
   const [animals, setAnimals] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -30,6 +28,7 @@ export default function TiereUebersicht() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedGehege, setSelectedGehege] = useState("Alle");
   const [selectedLevel, setSelectedLevel] = useState("Alle");
+  const { sortBy, sortDirection, toggleSort, getSortIcon } = useSort("name");
 
   const itemsPerPage = 10;
 
@@ -68,7 +67,6 @@ export default function TiereUebersicht() {
     return AnimalService.paginate(sortedTiere, currentPage, itemsPerPage);
   }, [sortedTiere, currentPage]);
 
-  const animalName = currentLang === 'en' ? currentItems.name_en : currentItems.name;
 
   const totalPages = Math.ceil(filteredTiere.length / itemsPerPage);
 
@@ -85,15 +83,6 @@ export default function TiereUebersicht() {
       </LoadingWrapper>
     );
   }
-
-  const toggleSort = (key) => {
-    if (sortBy === key) {
-      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
-    } else {
-      setSortBy(key);
-      setSortDirection("asc");
-    }
-  };
 
   function handleResetFilters() {
     setSearchTerm("");

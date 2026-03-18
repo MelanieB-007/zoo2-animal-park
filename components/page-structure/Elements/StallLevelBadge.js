@@ -1,19 +1,26 @@
 import styled from "styled-components";
 import GameIcon from "../../icons/GameIcon";
+import { useTranslation } from "next-i18next";
+import Tooltip from "../../ui/Tooltip";
 
 export default function StallLevelBadge({ level, habitat }) {
+  const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
 
   return (
-    <StallContainer>
-      <GameIcon
-        fileName="Stall.png"
-        type={`gehege/${habitat?.toLowerCase() || "gras"}`}
-      />
-      <LevelBadgeCircle>{level}</LevelBadgeCircle>
-    </StallContainer>
+    <Tooltip
+      text={`${t("animals:tooltips.level")}: ${level}`}
+      position="bottom"
+    >
+      <StallContainer>
+        <GameIcon
+          fileName="Stall.png"
+          type={`gehege/${habitat?.toLowerCase() || "gras"}`}
+        />
+        <LevelBadgeCircle>{level}</LevelBadgeCircle>
+      </StallContainer>
+    </Tooltip>
   );
 }
-
 
 const StallContainer = styled.div`
   position: relative;
