@@ -41,6 +41,7 @@ export default function CustomLevelFilter({ animals, selectedLevel, onSelect }) 
                 level={selectedLevel}
                 habitat="gras"
                 showTooltip={false}
+                size={60}
               />
             </ScaledBadge>
             <Label>{t('animals:filter.level_label')} {selectedLevel}</Label>
@@ -64,6 +65,7 @@ export default function CustomLevelFilter({ animals, selectedLevel, onSelect }) 
                     level={lvl}
                     habitat="gras"
                     showTooltip={false}
+                    size={60}
                   />
                 </ScaledBadge>
                 <Label>{t('animals:filter.level_label')} {lvl}</Label>
@@ -84,7 +86,9 @@ const SelectWrapper = styled.div`
 `;
 
 const SelectHeader = styled.div`
-  padding: 4px 16px;
+  padding: 0 16px;
+  overflow: hidden;
+  height: 48px;
   border: 2px solid #e0e7d5;
   border-radius: 12px;
   background: var(--color-white);
@@ -92,7 +96,6 @@ const SelectHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 60px;
 `;
 
 const ScaledBadge = styled.div`

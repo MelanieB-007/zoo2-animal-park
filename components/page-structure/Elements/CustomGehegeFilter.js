@@ -115,7 +115,8 @@ const SelectWrapper = styled.div`
 `;
 
 const SelectHeader = styled.div`
-  padding: 12px 16px;
+  padding: 0 16px;
+  height: 48px;
   border: 2px solid #e0e7d5;
   border-radius: 12px;
   background: var(--color-white);
