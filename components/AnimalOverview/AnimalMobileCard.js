@@ -9,7 +9,7 @@ import PriceDisplay from "../icons/PriceDisplay";
 import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
 import EditButton from "../icons/EditIcon";
 import DeleteButton from "../icons/DeleteIcon";
-import { getTranslatedName } from "../ui/AnimalHelper";
+import { getTranslatedName } from "../ui/TranslationHelper";
 
 export default function AnimalMobileCard({
   animal,
@@ -54,7 +54,7 @@ export default function AnimalMobileCard({
             size={50}
           />
 
-          <GehegeBadge type={animal.gehege?.name} size={35} />
+          <GehegeBadge gehege={animal.gehege} size={35} />
 
           <StallLevelBadge
             level={animal.stalllevel}

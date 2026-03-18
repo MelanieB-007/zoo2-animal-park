@@ -4,7 +4,7 @@ import GameIcon from "./GameIcon";
 import Tooltip from "../ui/Tooltip";
 import { habitatColors } from "../../utils/habitatConstants";
 import { useTranslation } from "next-i18next";
-import { getTranslatedName } from "../ui/AnimalHelper";
+import { getTranslatedName } from "../ui/TranslationHelper";
 
 export default function AnimalThumbnail({ animal, size = 55 }) {
   const { t, i18n } = /** @type {any} */ (

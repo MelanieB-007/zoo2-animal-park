@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
-
 import GehegeBadge from "./GehegeBadge";
+import { getTranslatedName } from "../../ui/TranslationHelper";
 
-export default function CustomGehegeFilter({ animals, selectedGehege, onSelect }) {
-  const { t } =  /** @type {any} */(useTranslation(['animals', 'common']));
+export default function CustomGehegeFilter({ animals = [], selectedGehege, onSelect }) {
+  const { t, i18n } = useTranslation(['animals', 'common']);
+
+  // Diese beiden Zeilen MÜSSEN am Anfang der Komponente stehen:
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -19,47 +21,43 @@ export default function CustomGehegeFilter({ animals, selectedGehege, onSelect }
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-
-  const uniqueGehege = [...new Set(animals.map((t) =>
-    t.gehege?.name))].filter(Boolean);
+  // Einzigartige Gehege aus den Tieren extrahieren
+  const uniqueGehegeObjects = animals
+    .map((a) => a.gehege)
+    .filter((g, index, self) =>
+      g && self.findIndex(t => t?.name === g.name) === index
+    );
 
   return (
-    <SelectWrapper
-      ref={wrapperRef}
-    >
+    <SelectWrapper ref={wrapperRef}>
       <SelectHeader onClick={() => setIsOpen(!isOpen)}>
         {selectedGehege === "Alle" ? (
-          <span>
-            {t('animals:filter.all_enclosures')}
-          </span>
+          <span>{t('animals:filter.all_enclosures')}</span>
         ) : (
           <SelectedValue>
             <GehegeBadge
-              type={selectedGehege.toLowerCase()}
+              type={selectedGehege}
+              gehege={uniqueGehegeObjects.find(g => g.name === selectedGehege)}
             />
             <Label>
-              {selectedGehege}
+              {getTranslatedName(uniqueGehegeObjects.find(g => g.name === selectedGehege), i18n.language) || selectedGehege}
             </Label>
           </SelectedValue>
         )}
         <Chevron $isOpen={isOpen}>▼</Chevron>
       </SelectHeader>
 
+      {/* Hier war der Fehler: isOpen muss innerhalb des Returns verfügbar sein */}
       {isOpen && (
         <OptionsList>
-          <Option onClick={() => {
-            onSelect("Alle"); setIsOpen(false); }
-          }>
-            {t('filter.all_enclosures')}
+          <Option onClick={() => { onSelect("Alle"); setIsOpen(false); }}>
+            {t('animals:filter.all_enclosures')}
           </Option>
 
-          {uniqueGehege.map((name) => (
-            <Option key={name} onClick={() => {
-              onSelect(name); setIsOpen(false); }}>
-              <GehegeBadge
-                type={name.toLowerCase()}
-                />
-              <Label>{name}</Label>
+          {uniqueGehegeObjects.map((g) => (
+            <Option key={g.name} onClick={() => { onSelect(g.name); setIsOpen(false); }}>
+              <GehegeBadge type={g.name} gehege={g} />
+              <Label>{getTranslatedName(g, i18n.language)}</Label>
             </Option>
           ))}
         </OptionsList>

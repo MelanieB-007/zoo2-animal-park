@@ -18,7 +18,7 @@ import Table from "../page-structure/Table/Table";
 import LinkedRow from "../page-structure/Table/LinkedRow";
 import NoResult from "../page-structure/Table/NoResult";
 import AnimalThumbnail from "../icons/AnimalThumbnail";
-import { getTranslatedName } from "../ui/AnimalHelper";
+import { getTranslatedName } from "../ui/TranslationHelper";
 
 export default function AnimalDesktopTable({
   animals,
@@ -123,7 +123,9 @@ export default function AnimalDesktopTable({
                 </td>
 
                 <td>
-                  <GehegeBadge type={animal.gehege?.name} />
+                  <GehegeBadge
+                    gehege={animal.gehege}
+                  />
                 </td>
 
                 <RightAlignedTd>
