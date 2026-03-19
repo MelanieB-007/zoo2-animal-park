@@ -1,19 +1,28 @@
 import styled from "styled-components";
 import NextImage from "next/image";
+import Tooltip from "../../ui/Tooltip";
 
 export default function OriginBadgeList({ animal }) {
+  if (!animal?.tierherkunft) return null;
 
   return (
     <StyledOriginBadgeList>
       {animal.tierherkunft.map((entry, index) => (
-        <StyledImage
+        <Tooltip
           key={entry.herkunft?.id || index}
-          src={`/images/herkunft/${entry.herkunft?.bild}`}
-          alt={entry.herkunft?.name}
-          title={entry.herkunft?.name}
-          width={50}
-          height={50}
-        />
+          text={entry.herkunft?.name}
+          position="top"
+        >
+          <BadgeWrapper>
+            <StyledImage
+              key={entry.herkunft?.id || index}
+              src={`/images/herkunft/${entry.herkunft?.bild}`}
+              alt={entry.herkunft?.name}
+              width={50}
+              height={50}
+            />
+          </BadgeWrapper>
+        </Tooltip>
       ))}
     </StyledOriginBadgeList>
   );
@@ -23,6 +32,12 @@ const StyledOriginBadgeList = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
+`;
+
+const BadgeWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: help;
 `;
 
 const StyledImage = styled(NextImage)`
