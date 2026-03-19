@@ -1,0 +1,52 @@
+{
+  "overview_title": "All Animals Overview",
+  "search_placeholder": "Search for animals...",
+  "results_unit": "animals found",
+  "unknown_animal": "Unknown Animal",
+  "table": {
+    "species": "Species",
+    "enclosure": "Biomes",
+    "price": "Price",
+    "stall": "Shelter",
+    "xp": "XP",
+    "sell": "Sell",
+    "release": "Release",
+    "actions": "Actions"
+  },
+  "tooltips": {
+    "level": "Required Habitat Level",
+    "xp": "Total XP Yield",
+    "sell": "Sale value in Zoodollars",
+    "release": "XP when released",
+    "edit": "Edit animal",
+    "delete": "Delete animal"
+  },
+  "filter": {
+    "all_enclosures": "All Biomes",
+    "all_levels": "All Levels",
+    "level_label": "Level"
+  },
+  "empty": {
+    "title": "Oh no, no animals found!",
+    "uppySad": "Uppy is sad",
+    "message": "Uppy searched everywhere but couldn't find anything.",
+    "button": "Reset search"
+  },
+  "actions": {
+    "feed": "Feeding",
+    "play": "Playing",
+    "clean": "Cleaning"
+  },
+  "breeding": {
+    "xpAndActions": "XP and Actions",
+    "breeding": "Breeding",
+    "breedingChance": "Breeding chance"
+  },
+  "tablePrice": "Price",
+  "tableSell": "Sell",
+  "tableRelease": "Release",
+  "biomesCapacity": "Biome Capacity",
+  "animalCount": "Animal Count",
+  "biomeSize": "Biome size",
+  "colorVariants": "Color variants"
+}

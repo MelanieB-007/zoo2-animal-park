@@ -1,18 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
+import FormattedNumber from "../ui/FormattedNumber";
 
-/**
- * Eine spezifische Komponente NUR für den Zoo 2 XP-Stern.
- * @param {string|number} label - Der XP-Wert, der neben dem Stern angezeigt wird.
- * @param {number} size - Optionale Größe (Standard: 20px).
- */
-export default function XPIcon({ label, size = 20 }) {
+export default function XPIcon({ label: value, size = 20 }) {
   return (
     <XPWrapper>
-      {label && <XPValue>{label.toLocaleString()}</XPValue>}
+      {value &&
+        <XPValue>
+          <FormattedNumber value={value} />
+        </XPValue>}
       <StarImage
         src="/images/icons/star.png"
-        alt="XP-Sterne"
+        alt="XP-Stars"
         width={size}
         height={size}
       />

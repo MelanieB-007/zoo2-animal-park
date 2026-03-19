@@ -1,4 +1,16 @@
 import { createGlobalStyle } from "styled-components";
+import { DM_Sans, Playfair_Display, Sedgwick_Ave_Display } from "next/font/google";
+
+const sedgwick = Sedgwick_Ave_Display({ weight: "400", subsets: ["latin"] });
+const dmSans = DM_Sans({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+});
+
+const playfair = Playfair_Display({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+});
 
 export default createGlobalStyle`
 
@@ -6,6 +18,7 @@ export default createGlobalStyle`
     --width-page: 1200px;
     --glass-blur: blur(10px);
     --border-radius: 20px;
+    --border-radius-icon: 10px;
 
     --glass-border: 2pt solid var(--color-glass-border);
 
@@ -30,12 +43,14 @@ export default createGlobalStyle`
     --color-orange-dark-shadow: rgba(255, 140, 0, 0.3);
     --color-red-orange: #ff6b35;
     --color-lime: #d6efc0; //for PageWrapper
+    --color-green-lighter: #8dbd5b;
     --color-green: #68B300;
     --color-green-darker: rgba(104, 179, 0, 0.7);
     --color-khaki-green: rgba(104, 179, 0, 0.25);
     --color-petrol: #0e7a4a;
     --color-petrol-dark: #056d42;
     --color-petrol-darker: #004d4d;
+    --color-petrol-green-dark: #1a4332;
     --color-grey-light: rgba(255, 255, 255, 0.4);
     --color-grey: rgba(255, 255, 255, 0.3);
     --color-grey-0-25: rgba(255, 255, 255, 0.25);
@@ -52,6 +67,11 @@ export default createGlobalStyle`
     --shadow-footer-text-mobile: 0.8px 0.8px 0 var(--color-petrol);
     --shadow-header-button: 0 2px 8px var(--color-orange-dark-shadow);
     --shadow-header-button-hover: 0 4px 12px var(--color-orange-dark);
+
+    --font-club: ${sedgwick.style.fontFamily};
+    --font-text: ${dmSans.style.fontFamily};
+    --font-heading: ${playfair.style.fontFamily};
+    --font-comic: "Comic Sans MS", "Chalkboard SE", cursive
   }
 
   @media (max-width: 1200px) {

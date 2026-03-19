@@ -1,0 +1,17 @@
+{
+  "test": "Hallo Welt",
+  "zoo_title": "KLUB DER TOLLEN TIERE",
+  "navigation": {
+    "home": "Home",
+    "zoo": "Zoo",
+    "zoo_areas": "Zoo Areas",
+    "zoo_enclosures": "Zoo Biomes",
+    "animals": "Animals",
+    "animal_overview": "Animal Overview",
+    "animal_create": "Create Animal",
+    "animal_variants": "Color Variants",
+    "club": "Club",
+    "club_members": "Members",
+    "club_contests": "Contents"
+  }
+}

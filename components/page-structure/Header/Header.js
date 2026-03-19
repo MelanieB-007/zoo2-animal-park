@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 import styled from "styled-components";
 
@@ -8,44 +8,42 @@ import Login from "./Login";
 import { MobileNavigation } from "./MobileNavigation";
 
 export default function Header() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-    useEffect(() => {
-        if (isMenuOpen) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "auto";
-        }
-    }, [isMenuOpen]);
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isMenuOpen]);
 
-    return (
-        <StyledHeader>
-            <LogoWrapper>
-                <Logo />
-            </LogoWrapper>
+  return (
+    <StyledHeader>
+      <LogoWrapper>
+        <Logo />
+      </LogoWrapper>
 
-            <TitleSection>
-                <MainTitle>
-                    Klub der tollen Tiere
-                </MainTitle>
-            </TitleSection>
+      <TitleSection>
+        <MainTitle>Klub der tollen Tiere</MainTitle>
+      </TitleSection>
 
-            <MobileMenuButton onClick={toggleMenu}>
-                {isMenuOpen ? <IoClose size={32} /> : <IoMenu size={32} />}
-            </MobileMenuButton>
+      <MobileMenuButton onClick={toggleMenu}>
+        {isMenuOpen ? <IoClose size={32} /> : <IoMenu size={32} />}
+      </MobileMenuButton>
 
-            <MobileNavigation isOpen={isMenuOpen} onClose={toggleMenu} />
+      <MobileNavigation isOpen={isMenuOpen} onClose={toggleMenu} />
 
-            <NavSection>
-                <Navigation />
-            </NavSection>
+      <NavSection>
+        <Navigation />
+      </NavSection>
 
-            <RightSection>
-                <Login />
-            </RightSection>
-        </StyledHeader>
-    );
+      <RightSection>
+        <Login />
+      </RightSection>
+    </StyledHeader>
+  );
 }
 
 const StyledHeader = styled.header`
@@ -86,8 +84,9 @@ const LogoWrapper = styled.div`
 
   @media (max-width: 768px) {
     grid-row: 1;
-    
-    & svg, & img {
+
+    & svg,
+    & img {
       width: 60px;
       height: auto;
     }
@@ -104,24 +103,24 @@ const TitleSection = styled.div`
 
 const MainTitle = styled.h1`
   font-family: var(--font-club);
-  font-size: clamp(1.2rem, 5vw, 2.4rem); 
+  font-size: clamp(1.2rem, 5vw, 2.4rem);
   color: var(--color-green);
   margin: 0;
   line-height: 1.1;
-  
+
   text-shadow:
-          2px 2px 0 var(--color-petrol),
-          4px 4px 0 var(--color-petrol-dark),
-          6px 6px 0 var(--color-black);
-  
+    2px 2px 0 var(--color-petrol),
+    4px 4px 0 var(--color-petrol-dark),
+    6px 6px 0 var(--color-black);
+
   letter-spacing: 0.15em;
   white-space: nowrap;
 
   @media (max-width: 768px) {
     letter-spacing: 0.05em;
-    text-shadow: 
-            1px 1px 0 var(--color-petrol), 
-            2px 2px 0 --color-black;
+    text-shadow:
+      1px 1px 0 var(--color-petrol),
+      2px 2px 0 --color-black;
   }
 `;
 

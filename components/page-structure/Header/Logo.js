@@ -5,7 +5,10 @@ export default function Logo() {
   return (
     <Link href="/" passHref style={{ textDecoration: "none" }}>
       <LogoWrapper>
-        <StyledImage src="/images/logo.png" alt="Klub der tollen Tiere Logo" />
+        <StyledImage
+          src="/images/logo.png"
+          alt="Klub der tollen Tiere Logo"
+        />
       </LogoWrapper>
     </Link>
   );

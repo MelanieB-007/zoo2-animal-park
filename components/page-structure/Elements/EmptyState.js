@@ -1,20 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import NextImage from "next/image";
+import { useTranslation } from "next-i18next";
 
 export default function EmptyState({ title, message, buttonText, onReset }) {
+  const { t } = /** @type {any} */(useTranslation(["animals", "common"]));
+
   return (
     <OuterContainer>
       <Container>
         <SpeechBubble>
-          <h3>{title || "Oje, kein Tier da!"}</h3>
-          <p>{message || "Uppy hat überall gesucht, konnte aber nichts finden."}</p>
+          <h3>{title || t('animals:empty.title')}</h3>
+          <p>{message || t('animals:empty.message')}</p>
         </SpeechBubble>
 
         <UppyPortraitFrame>
           <NextImage
             src="/images/uppy-traurig.png"
-            alt="Uppy ist traurig"
+            alt={t('animals:empty.uppySad')}
             width={240}
             height={320}
             style={{
@@ -25,7 +28,7 @@ export default function EmptyState({ title, message, buttonText, onReset }) {
 
         {onReset && (
           <ResetButton onClick={onReset}>
-            🐾 {buttonText || "Suche neu starten"}
+            🐾 {buttonText || t('animals:empty.button')}
           </ResetButton>
         )}
       </Container>
@@ -44,7 +47,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding: 80px 20px 60px; 
-  background: white;
+  background: var(--color-white);
   border: 2px solid #4ca64c;
   border-radius: var(--border-radius);
   margin-top: 40px;
@@ -55,7 +58,7 @@ const SpeechBubble = styled.div`
   position: relative;
   background: white;
   border: 3px solid #4ca64c;
-  border-radius: 20px;
+  border-radius:var(--border-radius);
   padding: 20px 30px;
   margin-bottom: 40px;
   max-width: 400px;
@@ -112,7 +115,7 @@ const UppyPortraitFrame = styled.div`
 
 const ResetButton = styled.button`
   background-color: #4ca64c; 
-  color: white;
+  color: var(--color-white);
   border: none;
   padding: 14px 28px;
   font-size: 1rem;

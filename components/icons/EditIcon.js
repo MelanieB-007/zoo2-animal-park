@@ -3,16 +3,13 @@ import styled from "styled-components";
 import NextImage from "next/image";
 import Tooltip from "../ui/Tooltip";
 
-export default function EditButton({ tooltip, align }) {
+export default function EditButton({ tooltip, align, altText }) {
   return (
-    <Tooltip
-      text={tooltip}
-      align={align}
-    >
+    <Tooltip text={tooltip} align={align}>
       <StyledButton>
         <NextImage
           src="/images/icons/edit.webp"
-          alt="Editieren"
+          alt={altText || "Edit"}
           width={24}
           height={24}
         />

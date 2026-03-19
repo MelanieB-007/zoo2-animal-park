@@ -1,5 +1,7 @@
+import React from "react";
 import styled from "styled-components";
-import { TierThumbnail } from "../icons/TierThumbnail";
+import { useTranslation } from "next-i18next";
+
 import GameIcon from "../icons/GameIcon";
 import { NameDE } from "../page-structure/Elements/Name";
 import GehegeBadge from "../page-structure/Elements/GehegeBadge";
@@ -7,55 +9,65 @@ import PriceDisplay from "../icons/PriceDisplay";
 import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
 import EditButton from "../icons/EditIcon";
 import DeleteButton from "../icons/DeleteIcon";
+import { getTranslatedName } from "../ui/TranslationHelper";
 
-export default function AnimalMobileCard({ tier, translations, onClick }) {
-  const habitatId = tier.gehege?.name?.toLowerCase() || "standard";
+export default function AnimalMobileCard({
+  animal,
+  onClick,
+  onEdit,
+  onDelete,
+}) {
+  const { t, i18n } = /** @type {any} */ (
+    useTranslation(["animals", "common"])
+  );
+  const habitatId = animal.gehege?.name?.toLowerCase() || "standard";
+
+  const displayName =
+    getTranslatedName(animal, i18n.language) || t("animals:unknown_animal");
 
   return (
     <CardContainer onClick={onClick}>
       <HeaderRow>
-        <NameDE style={{ fontSize: '1.15rem', margin: 0 }}>{tier.name}</NameDE>
+        <NameDE>{displayName}</NameDE>
         <ActionGroup onClick={(e) => e.stopPropagation()}>
-          <EditButton />
-          <DeleteButton />
+          <EditButton onClick={onEdit} />
+          <DeleteButton onClick={onDelete} />
         </ActionGroup>
       </HeaderRow>
 
       <Divider />
 
       <StatsRow>
-      <PriceRow>
-        <PriceDisplay
-          value={tier.preis}
-          type={tier.preisart?.name?.toLowerCase()}
-        />
-      </PriceRow>
+        <PriceRow>
+          <PriceDisplay
+            value={animal.preis}
+            type={animal.preisart?.name?.toLowerCase() || "gold"}
+            altTextDiamond={t("common:payment:diamonds")}
+            altTextZoodollar={t("common:payment:zoodollar")}
+          />
+        </PriceRow>
 
-      {/* Zeile 2: Die visuellen Merkmale */}
-      <IconsRow>
-        <GameIcon
-          type={`tiere/${habitatId}`}
-          fileName={tier.bild || "default.jpg"}
-          size={50}
-        />
+        <IconsRow>
+          <GameIcon
+            type={`tiere/${habitatId}`}
+            fileName={animal.bild || "default.jpg"}
+            size={50}
+          />
 
-        <GehegeBadge
-          type={tier.gehege?.name}
-          size={35}
-        />
+          <GehegeBadge gehege={animal.gehege} size={35} />
 
-        <StallLevelBadge
-          level={tier.stalllevel}
-          habitatName={tier.gehege?.name}
-        />
-      </IconsRow>
-    </StatsRow>
+          <StallLevelBadge
+            level={animal.stalllevel}
+            habitat={animal.gehege?.name}
+          />
+        </IconsRow>
+      </StatsRow>
     </CardContainer>
   );
 }
 
 const CardContainer = styled.div`
-  background: white;
+  background: var(--color-white);
   border-radius: 12px;
   padding: 12px 16px;
   margin-bottom: 12px;
@@ -80,30 +92,32 @@ const Divider = styled.div`
 
 const StatsRow = styled.div`
   display: flex;
-  flex-direction: column; // Wir stapeln Preis und Icons
+  flex-direction: column;
   gap: 8px;
   width: 100%;
 `;
 
 const PriceRow = styled.div`
   display: flex;
-  justify-content: flex-end; // Preis klebt rechts unter der Linie
+  justify-content: flex-end;
   padding-right: 4px;
 `;
 
 const IconsRow = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between; // Bild, Gehege und Stall verteilen sich
+  justify-content: space-between;
   width: 100%;
 `;
 
 const ActionGroup = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 16px;
 
-  svg {
-    width: 20px;
-    height: 20px;
+  button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
   }
 `;

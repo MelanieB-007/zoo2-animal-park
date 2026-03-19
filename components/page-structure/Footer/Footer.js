@@ -1,10 +1,19 @@
 import styled from "styled-components";
+import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 export default function Footer() {
+  const { t } = /** @type {any} */ (useTranslation("common"));
+
     return (
         <StyledFooter>
             <FooterContent>
-                <p>© 2026 - Klub der tollen Tiere | <a href="#">Impressum</a></p>
+                <p>
+                  © 2026 - Klub der tollen Tiere |
+                  <Link href="#">
+                    {t('footer.imprint', 'Impressum')}
+                  </Link>
+                </p>
             </FooterContent>
         </StyledFooter>
     );
@@ -24,7 +33,7 @@ const StyledFooter = styled.footer`
   
   background-color: var(--color-header);
   box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
-  border-top: 2px solid rgba(255,255,255,0.2);
+  border-top: 2px solid var(--color-grey-0-2);
   
   backdrop-filter: var(--glass-blur);
   border: var(--glass-border);

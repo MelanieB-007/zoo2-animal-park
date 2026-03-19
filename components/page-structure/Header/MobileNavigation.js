@@ -1,22 +1,57 @@
+import { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
+import { IoChevronDown } from "react-icons/io5";
 
 import Login from "./Login";
 
 export const MobileNavigation = ({ isOpen, onClose }) => {
+  const { t } = /** @type {any} */ (useTranslation("common"));
+  const [openSubMenu, setOpenSubMenu] = useState(null);
+
+  const toggleSubMenu = (menu) => {
+    setOpenSubMenu(openSubMenu === menu ? null : menu);
+  };
+
   return (
     <Overlay $isOpen={isOpen}>
       <MenuContent>
-        <MobileNavLink href="/zoo" onClick={onClose}>
-          Zoo
-        </MobileNavLink>
+        {/* ZOO SECTION */}
+        <MobileMenuWrapper>
+          <MenuHeader onClick={() => toggleSubMenu("zoo")}>
+            {t("navigation.zoo")}
+            <StyledChevron $isRotated={openSubMenu === "zoo"} />
+          </MenuHeader>
+          <SubMenu $isOpen={openSubMenu === "zoo"}>
+            <SubNavLink href="/zoo/areas" onClick={onClose}>
+              {t("navigation.zoo_areas")}
+            </SubNavLink>
+            <SubNavLink href="/zoo/biomes" onClick={onClose}>
+              {t("navigation.zoo_enclosures")}
+            </SubNavLink>
+          </SubMenu>
+        </MobileMenuWrapper>
 
-        <MobileNavLink href="/tiere" onClick={onClose}>
-          Tiere
-        </MobileNavLink>
+        {/* TIERE SECTION */}
+        <MobileMenuWrapper>
+          <MenuHeader onClick={() => toggleSubMenu("animals")}>
+            {t("navigation.animals")}
+            <StyledChevron $isRotated={openSubMenu === "animals"} />
+          </MenuHeader>
+          <SubMenu $isOpen={openSubMenu === "animals"}>
+            <SubNavLink href="/animals" onClick={onClose}>
+              {t("navigation.animal_overview")}
+            </SubNavLink>
+            <SubNavLink href="/animals/varianten" onClick={onClose}>
+              {t("navigation.animal_variants")}
+            </SubNavLink>
+          </SubMenu>
+        </MobileMenuWrapper>
 
-        <MobileNavLink href="/klub" onClick={onClose}>
-          Klub
+        {/* KLUB */}
+        <MobileNavLink href="/club" onClick={onClose}>
+          {t("navigation.club")}
         </MobileNavLink>
 
         <Divider />
@@ -29,20 +64,65 @@ export const MobileNavigation = ({ isOpen, onClose }) => {
   );
 };
 
+const MobileMenuWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+const MenuHeader = styled.div`
+  font-family: var(--font-headline);
+  font-size: 1.6rem;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.5rem;
+`;
+
+const StyledChevron = styled(IoChevronDown)`
+  transition: transform 0.3s ease;
+  transform: ${({ $isRotated }) => 
+          ($isRotated ? "rotate(180deg)" : "rotate(0deg)")};
+`;
+
+const SubMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  max-height: ${({ $isOpen }) => ($isOpen ? "200px" : "0")};
+  transition: max-height 0.3s ease-in-out;
+  background: rgba(255, 255, 255, 0.05);
+  width: 100%;
+  padding: ${({ $isOpen }) => ($isOpen ? "10px 0" : "0")};
+`;
+
+const SubNavLink = styled(Link)`
+  font-family: var(--font-text);
+  font-size: 1.1rem;
+  color: var(--color-zoo-orange);
+  text-decoration: none;
+  padding: 10px 0;
+  font-weight: bold;
+  
+  &:active {
+    color: var(--color-white);
+  }
+`;
+
 const MobileNavLink = styled(Link)`
   font-family: var(--font-headline);
-  font-size: 1.6rem; 
-  color: white;
+  font-size: 1.6rem;
+  color: var(--color-white);
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 2px 2px 4px var(--color-black);
-  margin-bottom: 1.5rem;
-  transition: color 0.3s ease;
-
-  &:active {
-    color: var(--color-zoo-orange); 
-  }
+  margin: 1rem 0;
 `;
 
 const LoginContainer = styled.div`
@@ -101,6 +181,6 @@ const MenuContent = styled.div`
   flex-direction: column;
   gap: 2rem;
   align-items: center;
-  padding: 100px 0 80px 0; 
+  padding: 100px 0 120px 0; 
   width: 100%;
 `;

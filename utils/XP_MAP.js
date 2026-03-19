@@ -1,5 +1,5 @@
 export const XP_MAP = {
-  0: { label: "Füttern", icon: "/images/icons/feed.png", key: "fuettern" },
-  1: { label: "Spielen", icon: "/images/icons/play.png", key: "spielen" },
-  2: { label: "Putzen", icon: "/images/icons/clean.png", key: "putzen" },
+  0: { key: "feed", icon: "/images/icons/feed.png" },
+  1: { key: "play", icon: "/images/icons/play.png" },
+  2: { key: "clean", icon: "/images/icons/clean.png" },
 };

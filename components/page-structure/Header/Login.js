@@ -1,12 +1,16 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import styled, { keyframes } from "styled-components";
-
 import LangSwitcher from "./LangSwitcher";
 import { useEffect, useRef, useState } from "react";
 import RoleBadge from "./RoleBadge";
+import { useTranslation } from "next-i18next";
 
 export default function Login() {
   const { data: session } = useSession();
+  const user = session?.user;
+  const userRole = user ? /** @type {any} */ (user).role : null;
+
+  const { t } = /** @type {any} */ (useTranslation("common"));
   const [showLogout, setShowLogout] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -22,42 +26,44 @@ export default function Login() {
   }, []);
 
   return (
-      <LoginWrapper>
-        <TopRow>
-          <LangSwitcher />
-          {session && (
-              <AvatarContainer>
-                <UserWrapper onClick={() => setShowLogout(!showLogout)}>
-                  <UserImage src={session.user.image} alt="Profil" />
-                  {!showLogout && (
-                      <AvatarTooltip className="avatar-tooltip">
-                        Menü öffnen 🐾
-                      </AvatarTooltip>
-                  )}
-                </UserWrapper>
-                {showLogout && (
-                    <LogoutBadge onClick={() => signOut()}>
-                      Abmelden 👋
-                    </LogoutBadge>
-                )}
-              </AvatarContainer>
-          )}
-          {!session && (
-              <HeaderButton onClick={() => signIn("discord")}>Login</HeaderButton>
-          )}
-        </TopRow>
-
+    <LoginWrapper>
+      <TopRow>
+        <LangSwitcher />
         {session && (
-            <BottomRow>
-              <FlexContainer>
-                <RoleBadge role={session.user.role} />
-                <WelcomeText>
-                  Hej, {session.user.name.split(" ")[0]}!
-                </WelcomeText>
-              </FlexContainer>
-            </BottomRow>
+          <AvatarContainer>
+            <UserWrapper onClick={() => setShowLogout(!showLogout)}>
+              <UserImage src={session.user.image} alt="Profil" />
+              {!showLogout && (
+                <AvatarTooltip className="avatar-tooltip">
+                  {t("login.open_menu", "Menü öffnen 🐾")}
+                </AvatarTooltip>
+              )}
+            </UserWrapper>
+            {showLogout && (
+              <LogoutBadge onClick={() => signOut()}>
+                {t("login.logout", "Abmelden 👋")}
+              </LogoutBadge>
+            )}
+          </AvatarContainer>
         )}
-      </LoginWrapper>
+        {!session && (
+          <HeaderButton onClick={() => signIn("discord")}>
+            {t("login.login_button", "Login")}
+          </HeaderButton>
+        )}
+      </TopRow>
+
+      {session && (
+        <BottomRow>
+          <FlexContainer>
+            <RoleBadge role={userRole} />
+            <WelcomeText>
+               {t("login.welcome", "Hej")}, {session.user.name.split(" ")[0]}!
+            </WelcomeText>
+          </FlexContainer>
+        </BottomRow>
+      )}
+    </LoginWrapper>
   );
 }
 
@@ -115,11 +121,10 @@ const LogoutBadge = styled.div`
 const TopRow = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px; /* Platz zwischen Flagge und Avatar */
+  gap: 20px; 
 `;
 
 const BottomRow = styled.div`
-  /* Hier landet die Rolle und das "Hej, Melanie!" */
   display: flex;
   justify-content: center;
 `;
@@ -127,11 +132,11 @@ const BottomRow = styled.div`
 const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Desktop: rechtsbündig */
+  align-items: flex-end; 
 
   @media (max-width: 768px) {
-    align-items: center;   /* Mobile: alles zentriert */
-    gap: 15px;            /* Abstand zwischen den Zeilen */
+    align-items: center;  
+    gap: 15px;           
   }
 `;
 
@@ -247,7 +252,7 @@ const FlexContainer = styled.div`
   white-space: nowrap; 
   
   @media (max-width: 768px) {
-    background: rgba(255, 255, 255, 0.1); /* Ganz leichter Schimmer-Hintergrund */
+    background: rgba(255, 255, 255, 0.1); 
     padding: 5px 15px;
     border-radius: 20px;
   }

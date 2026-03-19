@@ -1,0 +1,51 @@
+{
+  "test": "Hello World",
+  "zoo_title": "KLUB DER TOLLEN TIERE",
+  "navigation": {
+    "home": "Home",
+    "zoo": "Zoo",
+    "zoo_areas": "Zoo Areas",
+    "zoo_enclosures": "Zoo Biomes",
+    "animals": "Animals",
+    "animal_overview": "Animal Overview",
+    "animal_create": "Create Animal",
+    "animal_variants": "Color Variants",
+    "club": "Club",
+    "club_members": "Members",
+    "club_contests": "Contents"
+  },
+  "login": {
+    "open_menu": "Open menu 🐾",
+    "logout": "Logout 👋",
+    "login_button": "Login",
+    "welcome": "Hello"
+  },
+  "roles": {
+    "Direktor": "Director",
+    "Guide": "Guide",
+    "Besucher": "Visitor"
+  },
+  "footer": {
+    "title": "Great Animals Club",
+    "imprint": "Imprint"
+  },
+  "results": {
+    "show": "Showing",
+    "of": "of"
+  },
+  "pagination": {
+    "prev": "Back",
+    "next": "Next"
+  },
+  "payment": {
+    "diamonds": "Diamonds,",
+    "zoodollar": "Zoodollar"
+  },
+  "actions": "Actions",
+  "scroll_to_top": "Back to top",
+  "loading": "Loading...",
+  "popularity": "Popularity",
+  "description": "Description",
+  "costs": "Costs",
+  "time": "Time"
+}

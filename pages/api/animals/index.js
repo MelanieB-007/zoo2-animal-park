@@ -9,7 +9,8 @@ export default async function handler(req, res) {
     const alleTiere = await prisma.tiere.findMany({
       include: {
         gehege: true,
-        preisart: true
+        preisart: true,
+        xp: true,
       },
       orderBy: {
         name: 'asc',

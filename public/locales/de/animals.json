@@ -1,0 +1,53 @@
+{
+  "overview_title": "Übersicht über alle Tiere",
+  "search_placeholder": "Suche nach Tieren...",
+  "results_unit": "Tiere gefunden",
+  "unknown_animal": "Unbekanntes Tier",
+  "table": {
+    "species": "Art",
+    "enclosure": "Gehege",
+    "price": "Preis",
+    "stall": "Stall",
+    "xp": "XP",
+    "sell": "Verkauf",
+    "release": "Auswildern",
+    "actions": "Aktionen"
+  },
+  "tooltips": {
+    "level": "Benötigtes Stall-Level",
+    "xp": "Gesamt-XP Ertrag",
+    "sell": "Verkaufswert in Zoodollar",
+    "release": "XP beim Auswildern",
+    "edit": "Tier bearbeiten",
+    "delete": "Tier löschen"
+  },
+  "filter": {
+    "all_enclosures": "Alle Gehege",
+    "all_levels": "Alle Level",
+    "level_label": "Level"
+  },
+  "empty": {
+    "title": "Oje, kein Tier da!",
+    "uppySad": "Uppy ist traurig",
+    "message": "Uppy hat überall gesucht, konnte aber nichts finden.",
+    "button": "Suche neu starten"
+  },
+  "breeding": {
+    "xpAndActions": "XP und Aktionen",
+    "breeding": "Zucht",
+    "breedingChance": "Zuchtchance"
+  },
+  "actions": {
+    "feed": "Füttern",
+    "play": "Spielen",
+    "clean": "Säubern"
+  },
+  "tablePrice": "Kaufpreis",
+  "tableSell": "Verkaufswert",
+  "tableRelease": "Auswildern",
+  "biomesCapacity": "Gehegekapazität",
+  "animalCount": "Anzahl Tiere",
+  "biomeSize": "Gehegegröße",
+  "colorVariants": "Farbvarianten"
+
+}

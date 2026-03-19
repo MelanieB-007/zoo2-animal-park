@@ -1,0 +1,54 @@
+{
+  "zoo_title": "KLUB DER TOLLEN TIERE",
+  "navigation": {
+    "home": "Home",
+    "zoo": "Zoo",
+    "zoo_areas": "Zoo Gebiete",
+    "zoo_enclosures": "Zoo Gehege",
+    "animals": "Tiere",
+    "animal_overview": "Tierübersicht",
+    "animal_create": "Tier anlegen",
+    "animal_variants": "Farbvarianten",
+    "club": "Klub",
+    "club_members": "Mitglieder",
+    "club_contests": "Wettbewerbe"
+  },
+  "login": {
+    "open_menu": "Menü öffnen 🐾",
+    "logout": "Abmelden 👋",
+    "login_button": "Login",
+    "welcome": "Hej"
+  },
+  "roles": {
+    "Direktor": "Direktor",
+    "Guide": "Guide",
+    "Besucher": "Besucher"
+  },
+  "footer": {
+    "title": "Klub der tollen Tiere",
+    "imprint": "Impressum"
+  },
+  "results": {
+    "show": "Angezeigt",
+    "of": "von"
+  },
+  "pagination": {
+    "prev": "Zurück",
+    "next": "Weiter"
+  },
+  "payment": {
+    "diamonds": "Diamanten,",
+    "zoodollar": "Zoodollar"
+  },
+  "release": "Release",
+  "enclosure": "Gehege",
+
+  "scroll_to_top": "Nach oben",
+  "actions": "Aktionen",
+  "loading": "Wird geladen...",
+  "popularity": "Popularität",
+  "description": "Beschreibung",
+  "costs": "Kosten",
+  "time": "Zeit",
+  "action": "Aktion"
+}

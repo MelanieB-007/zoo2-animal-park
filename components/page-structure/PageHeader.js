@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export default function PageHeader() {
+export default function PageHeader({text}) {
   return (
-    <StyledHeader className="page-header">
+    <StyledHeader>
       <Headline>
-        Übersicht über alle Tiere
+        {text}
       </Headline>
     </StyledHeader>
   );
@@ -18,9 +18,9 @@ const StyledHeader = styled.header`
 `;
 
 const Headline = styled.h1`
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-heading), serif;
   font-size: clamp(2rem, 5vw, 3rem);
-  color: #1a4332;
+  color: var( --color-petrol-green-dark);
   letter-spacing: -0.02em;
   margin: 0;
   
@@ -29,7 +29,7 @@ const Headline = styled.h1`
     display: block;
     width: 60px;
     height: 3px;
-    background-color: #8dbd5b; 
+    background-color: var(--color-green-lighter); 
     margin: 15px auto 0;
     border-radius: 2px;
   }

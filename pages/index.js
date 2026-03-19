@@ -2,85 +2,81 @@ import styled from "styled-components";
 import Link from "next/link";
 import { PrismaClient } from '@prisma/client';
 import PageWrapper from "../components/page-structure/PageWrapper";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const prisma = new PrismaClient();
 
-  // STATS abfragen
   const tierCount = await prisma.tiere.count();
   const variantsCount = await prisma.farbvarianten?.count() || 0;
   const habitatCount = await prisma.gehege.count();
 
-  // ZULETZT HINZUGEFÜGTE abfragen
-  const latestAnimals = await prisma.tiere.findMany({
-    take: 3,
-    orderBy: { id: 'desc' }, // Geht davon aus, dass höhere IDs neuere Einträge sind
-    include: { gehege: true }
-  });
-
   return {
     props: {
+      ...(await serverSideTranslations(locale, ["common", "home", "animals"])),
       stats: {
         tiere: tierCount,
         varianten: variantsCount,
         gehege: habitatCount
-      },
-      latestAnimals: JSON.parse(JSON.stringify(latestAnimals))
+      }
     },
-    revalidate: 3600 // Stündlich aktualisieren
+    revalidate: 3600
   };
 }
 
 export default function IndexPage({ stats }) {
+  const { t } = useTranslation(["home", "common"]);
+
   return (
     <PageWrapper>
       <FullPageContainer>
         <HeroSection>
           <ContentWrapper>
-            <Badge>Community Projekt</Badge>
+            <Badge>{t("home:badge_community")}</Badge>
             <h1>Zoo 2: Animal Park <span>Manager</span></h1>
 
             <StatsBar>
               <StatItem>
                 <div className="number">{stats.tiere}</div>
-                <div className="label">Tiere</div>
+                <div className="label">{t("home:stats.animals")}</div>
               </StatItem>
               <StatItem>
                 <div className="number">{stats.varianten}</div>
-                <div className="label">Varianten</div>
+                <div className="label">{t("home:stats.variants")}</div>
               </StatItem>
               <StatItem>
                 <div className="number">{stats.gehege}</div>
-                <div className="label">Gehegearten</div>
+                <div className="label">{t("home:stats.habitats")}</div>
               </StatItem>
               <StatItem>
                 <div className="number">6</div>
-                <div className="label">Zooregionen</div>
+                <div className="label">{t("home:stats.regions")}</div>
               </StatItem>
             </StatsBar>
 
             <ActionGrid>
-              <Link href="/tiere" passHref legacyBehavior>
+              <Link href="/AnimalOverview" passHref legacyBehavior>
                 <MenuCard $color="#4ca64c">
                   <Icon>🐾</Icon>
-                  <h3>Tier-Lexikon</h3>
-                  <p>Preise, Stall-Level und Gehege-Infos auf einen Blick.</p>
+                  <h3>{t("home:cards.lexicon.title")}</h3>
+                  <p>{t("home:cards.lexicon.text")}</p>
                 </MenuCard>
               </Link>
 
               <Link href="/varianten" passHref legacyBehavior>
                 <MenuCard $color="#3498db">
                   <Icon>🎨</Icon>
-                  <h3>Farbvarianten</h3>
-                  <p>Verwalte deine Zuchterfolge und seltenen Varianten.</p>
+                  <h3>{t("home:cards.variants.title")}</h3>
+                  <p>{t("home:cards.variants.text")}</p>
                 </MenuCard>
               </Link>
 
               <Link href="/klub" passHref legacyBehavior>
                 <MenuCard $color="#f39c12">
                   <Icon>🏆</Icon>
-                  <h3>Klub</h3>
-                  <p>Sei ein Mitglied unseres Klubs und gewinne tolle Statuen bei den Wettbewerben.</p>
+                  <h3>{t("home:cards.club.title")}</h3>
+                  <p>{t("home:cards.club.text")}</p>
                 </MenuCard>
               </Link>
             </ActionGrid>
@@ -92,7 +88,6 @@ export default function IndexPage({ stats }) {
 }
 
 
-// --- HAUPT-CONTAINER ---
 const FullPageContainer = styled.div`
   width: 100%;
   // Auf Desktop fixieren wir die Höhe, auf Mobile lassen wir Wachstum zu
