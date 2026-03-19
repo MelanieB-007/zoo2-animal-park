@@ -16,7 +16,6 @@ const DetailBox = styled.div`
   border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 1.5rem;
-  margin-bottom: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   
   height: auto;          
@@ -26,6 +25,7 @@ const DetailBox = styled.div`
     line-height: 1.6;   
     margin: 0;          
     color: #333;
+    white-space: pre-wrap;
   }
 
   h3 {

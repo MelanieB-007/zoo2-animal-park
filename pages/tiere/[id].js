@@ -25,29 +25,55 @@ export default function TierDetail({ animal }) {
   return (
     <PageWrapper>
       <ContentWrapper>
-        <HeaderCard
-          animal={animal}
-        />
+        {/* Der Header steht meist über die volle Breite oder als Startpunkt */}
+        <HeaderCard animal={animal} />
 
-        <TwoColumnGrid>
-          <section>
+        <MainGrid>
+          {/* Linke Spalte: Beschreibung & Varianten */}
+          <PrimaryColumn>
             <Textarea
               label={t("common:description")}
-              text={animal.beschreibung}
+              text={animal.beschreibung || t("common:no_description_available")}
             />
-            <VariantArea
-            animal={animal}
-              />
-          </section>
 
-          <AccordionCard
-            animal={animal}
-          />
-        </TwoColumnGrid>
+            <VariantArea animal={animal} />
+          </PrimaryColumn>
+
+          {/* Rechte Spalte: Sidebar mit Accordions */}
+          <SecondaryColumn>
+            <AccordionCard animal={animal} />
+          </SecondaryColumn>
+        </MainGrid>
       </ContentWrapper>
     </PageWrapper>
   );
 }
+
+const MainGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  width: 100%;
+  margin-top: 20px;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1.8fr 1.2fr; 
+    align-items: start;
+  }
+`;
+
+const PrimaryColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
+
+const SecondaryColumn = styled.div`
+  @media (min-width: 1024px) {
+    position: sticky;
+    top: 20px;
+  }
+`;
 
 export async function getServerSideProps({ params, locale }) { // 2. locale hinzufügen
   const { id } = params;
@@ -63,3 +89,4 @@ export async function getServerSideProps({ params, locale }) { // 2. locale hinz
     },
   };
 }
+

@@ -33,7 +33,6 @@ const VariantGrid = styled.div`
   grid-template-columns: 1fr;
   gap: 15px; 
   width: 100%;
-  margin-top: 20px;
  
   @media (min-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -56,8 +55,8 @@ const SectionHeadline = styled.h2`
   font-size: 1.3rem;
   font-weight: 600;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
-  
-  margin: 35px 0 20px 5px;
+
+  margin: 25px 0 0 5px;
   
   &::after {
     @media (min-width: 769px) {
