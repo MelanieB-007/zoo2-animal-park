@@ -11,6 +11,7 @@ import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
 import BoxWithHeadline from "../page-structure/Elements/BoxWithHeadline";
 import OriginBadgeList from "../page-structure/Elements/OriginBadgeList";
 import XPIcon from "../icons/XPIcon";
+import FormattedDate from "../ui/FormattedDate";
 
 
 export default function HeaderCard({ animal }) {
@@ -29,7 +30,11 @@ export default function HeaderCard({ animal }) {
           <TextContent>
             <h1>{animal.name}</h1>
             <ReleaseDate>
-              📅 {t("common:release")}: {animal.release}
+              📅 {t("common:release")}:
+              <FormattedDate
+                date={animal.release}
+                options={{ month: "long", day: "numeric" }}
+              />
             </ReleaseDate>
           </TextContent>
 

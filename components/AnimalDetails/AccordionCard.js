@@ -5,7 +5,7 @@ import InfoAccordion from "./InfoAccordion";
 import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
 import PriceDisplay from "../icons/PriceDisplay";
 import XPIcon from "../icons/XPIcon";
-import { formatMinutes } from "../ui/DateFormat";
+import { formatMinutes } from "../ui/XpDateFormat";
 import { XP_MAP } from "../../utils/XP_MAP";
 import { useTranslation } from "next-i18next";
 
