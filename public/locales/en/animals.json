@@ -42,6 +42,11 @@
     "breeding": "Breeding",
     "breedingChance": "Breeding chance"
   },
+  "form": {
+    "animalCount": "Animal Count",
+    "enclosureSize": "Biomes size",
+    "createAnimal": "Create new animal"
+  },
   "tablePrice": "Price",
   "tableSell": "Sell",
   "tableRelease": "Release",

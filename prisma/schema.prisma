@@ -9,32 +9,50 @@ datasource db {
 }
 
 model tiere {
-  id            Int     @id @unique(map: "tiereindex")
-  name          String  @db.VarChar(50)
-  nameEn        String? @db.VarChar(50)
-  beschreibung  String?  @db.Text
-  gehegeId      Int
-  gehege        gehege  @relation(fields: [gehegeId], references: [id])
-  spielgeraetId Int?
-  stalllevel    Int?
+  id            Int     @id @default(autoincrement())
+  release       String? @db.VarChar(10)
   preis         Int?
   preisartId    Int?
   preisart      preisart? @relation(fields: [preisartId], references: [id])
+  verkaufswert  Int?
+  popularitaet  Int?
+  auswildern    Int?
+  bild          String? @db.VarChar(255)
+
+  // Gehege (Biome) & Platz
+  gehegeId      Int
+  gehege        gehege  @relation(fields: [gehegeId], references: [id])
+  platzbedarf   Int?
+  spielgeraetId Int?
+
+  // Zucht & Stall
+  stalllevel    Int?
   zuchtkosten   Int?
   zuchtdauer    Int?
   startprozent  Int?
-  platzbedarf   Int?
-  anzahlbasis   Int?
-  anzahlmax     Int?
-  popularitaet  Int?
-  verkaufswert  Int?
-  auswildern    Int?
-  release       String? @db.VarChar(10)
-  bild          String? @db.VarChar(255)
+
+  // --- NEU: Dynamische Relationen ---
+  texte         tier_texte[] // Hier landen Namen & Beschreibungen
   tierherkunft  tierherkunft[]
   variants      farbvarianten[]
   tier_gehege_kapazitaet tier_gehege_kapazitaet[]
   xp            xp[]
+}
+
+model tier_texte {
+  id           Int    @id @default(autoincrement())
+  tierId       Int
+  tier         tiere  @relation(fields: [tierId], references: [id], onDelete: Cascade)
+  spracheCode  String @db.VarChar(5) // z.B. "de", "en"
+  name         String @db.VarChar(255)
+  beschreibung String? @db.Text
+
+  @@unique([tierId, spracheCode]) // Verhindert doppelte Sprachen pro Tier
+}
+
+model sprachen {
+  code String @id @db.VarChar(5) // "de", "en", "dk"
+  name String @db.VarChar(50) // "Deutsch", "English"
 }
 
 model gehege {

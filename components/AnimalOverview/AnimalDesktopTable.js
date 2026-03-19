@@ -6,7 +6,7 @@ import GehegeBadge from "../page-structure/Elements/GehegeBadge";
 import PriceDisplay from "../icons/PriceDisplay";
 import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
 import XPIcon from "../icons/XPIcon";
-import { calculateTotalXP } from "../../services/AnimalService";
+import { calculateTotalXP } from "../../services/AnimalHelper";
 import ZoodollarIcon from "../icons/ZoodollarIcon";
 import SortableTableHeader from "../page-structure/Table/SortableTableHeader";
 import ActionsHeadline from "../page-structure/Table/ActionsHeadline";

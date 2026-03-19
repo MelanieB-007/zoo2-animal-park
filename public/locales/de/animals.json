@@ -42,6 +42,11 @@
     "play": "Spielen",
     "clean": "Säubern"
   },
+  "form": {
+    "animalCount": "Anzahl Tiere",
+    "enclosureSize": "Benötigte Gehegegröße",
+    "createAnimal": "Neues Tier anlegen"
+  },
   "tablePrice": "Kaufpreis",
   "tableSell": "Verkaufswert",
   "tableRelease": "Auswildern",
@@ -49,5 +54,4 @@
   "animalCount": "Anzahl Tiere",
   "biomeSize": "Gehegegröße",
   "colorVariants": "Farbvarianten"
-
 }

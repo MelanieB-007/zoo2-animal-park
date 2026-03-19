@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import useSWR from "swr";
 
-import LoadingWrapper from "../../components/page-structure/Elements/LoadingWrapper";
-import { filterAnimals, sortAnimals, paginate, deleteAnimal, getAllAnimals } from "../../services/AnimalService";
+import { filterAnimals, sortAnimals, paginate } from "../../services/AnimalHelper";
 import { useSort } from "../../hooks/useSort";
 import AnimalOverviewContent from "../../components/AnimalOverview/AnimalOverviewContent";
+import { deleteAnimalFromDB, getAllAnimals } from "../../services/AnimalService";
 
-export default function AnimalOverview() {
-  const { t } = /** @type {any} */ (useTranslation(['animals', 'common']));
+
+export default function AnimalOverview({ fallbackData }) {
+  const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
   const router = useRouter();
 
-  const [animals, setAnimals] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { data: animals, mutate } = useSWR('/api/animals', {
+    fallbackData
+  });
+
+  const currentAnimals = animals || [];
+
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedGehege, setSelectedGehege] = useState("Alle");
@@ -22,33 +28,26 @@ export default function AnimalOverview() {
 
   const itemsPerPage = 10;
 
-  useEffect(function() {
-    async function loadData() {
-      setLoading(true);
-
-      const data = await getAllAnimals();
-
-      setAnimals(data);
-      setLoading(false);
-    }
-
-    loadData();
-  }, []);
-
-  const filteredTiere = filterAnimals(animals, {
+  // Logik (Filterung/Sortierung)
+  const filteredTiere = filterAnimals(currentAnimals, {
     searchTerm,
     selectedGehege,
-    selectedLevel
+    selectedLevel,
   });
-
-  const sortedTiere = sortAnimals(filteredTiere, {
-    sortBy,
-    sortDirection
-  });
-
+  const sortedTiere = sortAnimals(filteredTiere, { sortBy, sortDirection });
   const currentItems = paginate(sortedTiere, currentPage, itemsPerPage);
-
   const totalPages = Math.ceil(filteredTiere.length / itemsPerPage);
+
+  const handleDelete = async (id) => {
+    if (!window.confirm(t("animals:confirm_delete"))) return;
+    const success = await deleteAnimalFromDB(id);
+    if (success) {
+      await mutate(
+        animals.filter((a) => a.id !== id),
+        false
+      );
+    }
+  };
 
   function handleResetFilters() {
     setSearchTerm("");
@@ -58,23 +57,11 @@ export default function AnimalOverview() {
   }
 
   function handleAnimalClick(id) {
-    router.push("/animals/" + id);
+    router.push(`/animals/${id}`);
   }
 
   function handleEdit(id) {
-    router.push("/animals/edit/" + id);
-  }
-
-  async function handleDelete(id) {
-    if (!window.confirm(t("animals:confirm_delete"))) return;
-    const success = await deleteAnimal(id);
-    if (success) {
-      setAnimals(function(prev) { return prev.filter(function(a) { return a.id !== id; }); });
-    }
-  }
-
-  if (loading) {
-    return <LoadingWrapper>{t('animals:search_placeholder')} 🐾</LoadingWrapper>;
+    router.push(`/animals/edit/${id}`);
   }
 
   return (
@@ -99,16 +86,20 @@ export default function AnimalOverview() {
       handleResetFilters={handleResetFilters}
       totalPages={totalPages}
       currentPage={currentPage}
-      handleNextPage={function() { setCurrentPage(prev => prev + 1); }}
-      handlePrevPage={function() { setCurrentPage(prev => prev - 1); }}
+      handleNextPage={() => setCurrentPage((prev) => prev + 1)}
+      handlePrevPage={() => setCurrentPage((prev) => prev - 1)}
     />
   );
 }
 
 export async function getStaticProps({ locale }) {
+  const initialAnimals = await getAllAnimals();
+
   return {
     props: {
+      fallbackData: initialAnimals,
       ...(await serverSideTranslations(locale, ["common", "animals"])),
     },
+    revalidate: 60,
   };
 }
