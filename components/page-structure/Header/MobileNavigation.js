@@ -24,10 +24,10 @@ export const MobileNavigation = ({ isOpen, onClose }) => {
             <StyledChevron $isRotated={openSubMenu === "zoo"} />
           </MenuHeader>
           <SubMenu $isOpen={openSubMenu === "zoo"}>
-            <SubNavLink href="/zoo/bereiche" onClick={onClose}>
+            <SubNavLink href="/zoo/areas" onClick={onClose}>
               {t("navigation.zoo_areas")}
             </SubNavLink>
-            <SubNavLink href="/zoo/gehege" onClick={onClose}>
+            <SubNavLink href="/zoo/biomes" onClick={onClose}>
               {t("navigation.zoo_enclosures")}
             </SubNavLink>
           </SubMenu>
@@ -35,22 +35,22 @@ export const MobileNavigation = ({ isOpen, onClose }) => {
 
         {/* TIERE SECTION */}
         <MobileMenuWrapper>
-          <MenuHeader onClick={() => toggleSubMenu("tiere")}>
+          <MenuHeader onClick={() => toggleSubMenu("animals")}>
             {t("navigation.animals")}
-            <StyledChevron $isRotated={openSubMenu === "tiere"} />
+            <StyledChevron $isRotated={openSubMenu === "animals"} />
           </MenuHeader>
-          <SubMenu $isOpen={openSubMenu === "tiere"}>
-            <SubNavLink href="/tiere" onClick={onClose}>
+          <SubMenu $isOpen={openSubMenu === "animals"}>
+            <SubNavLink href="/animals" onClick={onClose}>
               {t("navigation.animal_overview")}
             </SubNavLink>
-            <SubNavLink href="/tiere/varianten" onClick={onClose}>
+            <SubNavLink href="/animals/varianten" onClick={onClose}>
               {t("navigation.animal_variants")}
             </SubNavLink>
           </SubMenu>
         </MobileMenuWrapper>
 
         {/* KLUB */}
-        <MobileNavLink href="/klub" onClick={onClose}>
+        <MobileNavLink href="/club" onClick={onClose}>
           {t("navigation.club")}
         </MobileNavLink>
 

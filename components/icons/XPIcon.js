@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import FormattedNumber from "../ui/FormattedNumber";
 
 export default function XPIcon({ label: value, size = 20 }) {
   return (
     <XPWrapper>
-      {value && <XPValue>{value.toLocaleString()}</XPValue>}
+      {value &&
+        <XPValue>
+          <FormattedNumber value={value} />
+        </XPValue>}
       <StarImage
         src="/images/icons/star.png"
         alt="XP-Stars"

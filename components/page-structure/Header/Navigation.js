@@ -28,12 +28,12 @@ export default function Navigation() {
           </NavButton>
           <Dropdown>
             <li>
-              <DropdownLink href="/zoo/gebiete" $active={pathname === "/zoo/gebiete"}>
+              <DropdownLink href="/zoo/areas" $active={pathname === "/zoo/areas"}>
                 {t("navigation.zoo_areas", "Zoo Gebiete")}
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink href="/zoo/gehege" $active={pathname === "/zoo/gehege"}>
+              <DropdownLink href="/zoo/biomes" $active={pathname === "/zoo/biomes"}>
                 {t("navigation.zoo_enclosures", "Zoo Gehege")}
               </DropdownLink>
             </li>
@@ -41,22 +41,22 @@ export default function Navigation() {
         </NavItem>
 
         <NavItem>
-          <NavButton $active={isActive("/tiere")}>
+          <NavButton $active={isActive("/animals")}>
             {t("navigation.animals", "Tiere")} <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
-              <DropdownLink href="/tiere" $active={pathname === "/tiere"}>
+              <DropdownLink href="/animals" $active={pathname === "/animals"}>
                 {t("navigation.animal_overview", "Tierübersicht")}
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink href="/tiere/anlegen" $active={pathname === "/tiere/anlegen"}>
+              <DropdownLink href="/animals/anlegen" $active={pathname === "/animals/anlegen"}>
                 {t("navigation.animal_create", "Tier anlegen")}
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink href="/tiere/farbvarianten" $active={pathname === "/tiere/farbvarianten"}>
+              <DropdownLink href="/animals/farbvarianten" $active={pathname === "/animals/farbvarianten"}>
                 {t("navigation.animal_variants", "Farbvarianten")}
               </DropdownLink>
             </li>
@@ -69,12 +69,12 @@ export default function Navigation() {
           </NavButton>
           <Dropdown>
             <li>
-              <DropdownLink href="/klub/mitglieder" $active={pathname === "/klub/mitglieder"}>
+              <DropdownLink href="/club/mitglieder" $active={pathname === "/club/mitglieder"}>
                 {t("navigation.club_members", "Mitglieder")}
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink href="/klub/wettbewerbe" $active={pathname === "/klub/wettbewerbe"}>
+              <DropdownLink href="/club/wettbewerbe" $active={pathname === "/club/wettbewerbe"}>
                 {t("navigation.club_contests", "Wettbewerbe")}
               </DropdownLink>
             </li>

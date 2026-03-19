@@ -58,11 +58,11 @@ export default function AnimalOverview() {
   }
 
   function handleAnimalClick(id) {
-    router.push("/tiere/" + id);
+    router.push("/animals/" + id);
   }
 
   function handleEdit(id) {
-    router.push("/tiere/edit/" + id);
+    router.push("/animals/edit/" + id);
   }
 
   async function handleDelete(id) {

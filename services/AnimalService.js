@@ -7,7 +7,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 export async function getAllAnimals() {
   try {
-    const res = await fetch("/api/tiere");
+    const res = await fetch("/api/animals");
 
     if (!res.ok) {
       throw new Error("Fehler beim Laden der Tiere");
@@ -48,7 +48,7 @@ export async function getAnimalById(id) {
 
 export async function deleteAnimal(id) {
   try {
-    const res = await fetch(`/api/tiere/${id}`, { method: "DELETE" });
+    const res = await fetch(`/api/animals/${id}`, { method: "DELETE" });
     return res.ok;
   } catch (err) {
     console.error("Delete error:", err);

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import NextImage from 'next/image';
+import FormattedNumber from "../ui/FormattedNumber";
 
 export default function DiamondIcon({ value, altText, size = 20 }) {
 
@@ -10,7 +11,7 @@ export default function DiamondIcon({ value, altText, size = 20 }) {
     <DiamondWrapper>
       {hasValue && (
         <DiamondValue>
-          {value.toLocaleString()}
+          <FormattedNumber value={value} />
         </DiamondValue>
       )}
       <NextImage

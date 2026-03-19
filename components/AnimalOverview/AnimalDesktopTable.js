@@ -112,7 +112,7 @@ export default function AnimalDesktopTable({
               t("animals:unknown_animal");
 
             return (
-              <LinkedRow key={animal.id} path={`/tiere/${animal.id}`}>
+              <LinkedRow key={animal.id} path={`/animals/${animal.id}`}>
                 <td>
                   <InfoCell>
                     <AnimalThumbnail animal={animal} />
