@@ -12,8 +12,18 @@ export default function TierDetail({ animal: fallbackData }) {
     `/api/animals/${fallbackData.id}`,
     null,
     {
-      fallbackData,
-      revalidateOnFocus: true // Aktualisiert Daten, wenn man den Tab wechselt
+      fallbackData,// 1. Kein automatisches Update, wenn man das Fenster wieder anklickt
+      revalidateOnFocus: false,
+
+      // 2. Daten gelten für 5 Minuten als "frisch" (300.000 ms)
+      // SWR fragt in dieser Zeit nicht erneut im Hintergrund nach
+      dedupingInterval: 300000,
+
+      // 3. Nur updaten, wenn man die Seite wirklich neu lädt
+      revalidateOnMount: false,
+
+      // 4. Bei einem Fehler nicht sofort 10x neu probieren
+      errorRetryCount: 2
     }
   );
 
