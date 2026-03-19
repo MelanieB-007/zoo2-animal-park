@@ -18,7 +18,6 @@ export default function HeaderCard({ animal }) {
   );
 
   if (!animal) return null;
-  console.log("animal", animal);
 
   return (
     <CardContainer>
@@ -140,7 +139,6 @@ const TitleRow = styled.div`
 `;
 
 const BadgeWrapper = styled.div`
-  /* Auf Desktop: Schiebt sich so weit wie möglich nach rechts im Header */
   margin-left: auto; 
 
   @media (max-width: 768px) {
@@ -202,41 +200,6 @@ const StatsGroup = styled.div`
   }
 
   @media (min-width: 768px) {
-    /* Desktop: Untereinander innerhalb der Grid-Spalte */
     flex-direction: column;
-  }
-`;
-
-
-// Diesen Style kannst du in deine Datei kopieren, wo die Farbvarianten sind
-const SectionHeadline = styled.h2`
-  display: flex;
-  align-items: center;
-  gap: 12px;                  /* Abstand zwischen Icon/Emoji und Text */
-  
-  /* HINTERGRUND & FORM */
-  background: #fdfdfd;         /* Heller Hintergrund, wie die Boxen oben */
-  border: 1.5px solid #d1e2a5; /* Grüner Rand, passend zum Theme */
-  border-radius: 30px;         /* Stark abgerundet für den Plaketten-Look */
-  padding: 8px 24px;          /* Innenabstand, damit der Text Luft hat */
-  width: fit-content;          /* Die Box wird nur so breit wie der Text */
-  
-  /* TEXT-STYLING */
-  color: #2d5a27;             /* Dunkles Zoo-Grün */
-  font-size: 1.3rem;          /* Etwas kleiner als die Hauptüberschrift oben */
-  font-weight: 600;
-  
-  /* POSITIONIERUNG */
-  margin: 35px 0 20px 5px;    /* Abstand nach oben (35px), unten (20px) und links (5px) */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03); /* Ganz dezenter Schatten für Tiefe */
-
-  /* Kleiner visueller Akzent, um sie mit der Sektion darunter zu verbinden */
-  &::after {
-    content: "";
-    flex: 1;
-    height: 1.5px;
-    background-color: #d1e2a5;
-    margin-left: 20px;
-    opacity: 0.5;
   }
 `;
