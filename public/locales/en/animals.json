@@ -7,7 +7,7 @@
     "species": "Species",
     "enclosure": "Biomes",
     "price": "Price",
-    "stall": "Stall",
+    "stall": "Shelter",
     "xp": "XP",
     "sell": "Sell",
     "release": "Release",
@@ -32,7 +32,21 @@
     "message": "Uppy searched everywhere but couldn't find anything.",
     "button": "Reset search"
   },
+  "actions": {
+    "feed": "Feeding",
+    "play": "Playing",
+    "clean": "Cleaning"
+  },
+  "breeding": {
+    "xpAndActions": "XP and Actions",
+    "breeding": "Breeding",
+    "breedingChance": "Breeding chance"
+  },
   "tablePrice": "Price",
   "tableSell": "Sell",
-  "tableRelease": "Release"
+  "tableRelease": "Release",
+  "biomesCapacity": "Biome Capacity",
+  "animalCount": "Animal Count",
+  "biomeSize": "Biome size",
+  "colorVariants": "Color variants"
 }

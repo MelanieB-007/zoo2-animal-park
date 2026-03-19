@@ -45,5 +45,7 @@
   "scroll_to_top": "Back to top",
   "loading": "Loading...",
   "popularity": "Popularity",
-  "description": "Description"
+  "description": "Description",
+  "costs": "Costs",
+  "time": "Time"
 }

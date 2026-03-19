@@ -9,6 +9,8 @@ import { getAnimalById } from "../../services/AnimalService";
 import TwoColumnGrid from "../../components/page-structure/Elements/TwoColumnGrid";
 import Textarea from "../../components/page-structure/Elements/Textarea";
 import VariantArea from "../../components/TierDetails/VariantArea";
+import AccordionCard from "../../components/TierDetails/AccordionCard";
+import ContentWrapper from "../../components/page-structure/ContentWrapper";
 
 const prisma = global.prisma || new PrismaClient();
 if (process.env.NODE_ENV !== 'production') global.prisma = prisma;
@@ -37,6 +39,10 @@ export default function TierDetail({ animal }) {
             animal={animal}
               />
           </section>
+
+          <AccordionCard
+            animal={animal}
+          />
         </TwoColumnGrid>
       </ContentWrapper>
     </PageWrapper>
@@ -57,12 +63,3 @@ export async function getServerSideProps({ params, locale }) { // 2. locale hinz
     },
   };
 }
-
-const ContentWrapper = styled.div`
-  max-width: 1000px;
-  width: 100%;
-  padding: 0 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useTranslation } from "next-i18next";
 
 import CardContainer from "../page-structure/CardContainer";
 import MainImage from "../page-structure/Elements/MainImage";
@@ -10,7 +11,7 @@ import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
 import BoxWithHeadline from "../page-structure/Elements/BoxWithHeadline";
 import OriginBadgeList from "../page-structure/Elements/OriginBadgeList";
 import XPIcon from "../icons/XPIcon";
-import { useTranslation } from "next-i18next";
+
 
 export default function HeaderCard({ animal }) {
   const { t } = /** @type {any} */ (

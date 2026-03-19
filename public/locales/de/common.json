@@ -47,5 +47,8 @@
   "actions": "Aktionen",
   "loading": "Wird geladen...",
   "popularity": "Popularität",
-  "description": "Beschreibung"
+  "description": "Beschreibung",
+  "costs": "Kosten",
+  "time": "Zeit",
+  "action": "Aktion"
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function XPIcon({ label, size = 20 }) {
+export default function XPIcon({ label: value, size = 20 }) {
   return (
     <XPWrapper>
-      {label && <XPValue>{label.toLocaleString()}</XPValue>}
+      {value && <XPValue>{value.toLocaleString()}</XPValue>}
       <StarImage
         src="/images/icons/star.png"
-        alt="XP-Sterne"
+        alt="XP-Stars"
         width={size}
         height={size}
       />

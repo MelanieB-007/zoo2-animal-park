@@ -1,142 +1,151 @@
 import styled from "styled-components";
+import NextImage from "next/image";
+
 import InfoAccordion from "./InfoAccordion";
 import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
 import PriceDisplay from "../icons/PriceDisplay";
-import NextImage from "next/image";
 import XPIcon from "../icons/XPIcon";
 import { formatMinutes } from "../ui/DateFormat";
 import { XP_MAP } from "../../utils/XP_MAP";
+import { useTranslation } from "next-i18next";
 
 const actionOrder = ["fuettern", "spielen", "putzen"];
 
 export default function AccordionCard({ translationsAnimals, animal }) {
-  // 1. Die Daten aus animal.xp ziehen (oder leeres Array falls nicht vorhanden)
+  const { t } = /** @type {any} */ (
+    useTranslation(["animals", "common"])
+  );
+
   const xpData = animal.xp || [];
-
-  // 2. hasData definieren (Prüfen, ob Kapazitäts-Daten vorhanden sind)
   const capacityData = animal.tier_gehege_kapazitaet || [];
-  const hasData = capacityData.length > 0;
+  const hasCapacity = capacityData.length > 0;
 
-  // 3. Sortierung basierend auf deinem actionOrder-Array
-  // Wir mappen die Keys aus actionOrder auf die IDs (0=fuettern, 1=spielen, 2=putzen)
+  // 3. Sortierung
   const sortedXp = [...xpData].sort((a, b) => {
     const orderA = actionOrder.indexOf(XP_MAP[a.xpart]?.key);
     const orderB = actionOrder.indexOf(XP_MAP[b.xpart]?.key);
     return orderA - orderB;
   });
 
-  {
-    sortedXp.map((item) => {
-      const action = XP_MAP[item.xpart];
-
-      return (
-        <tr key={item.id}>
-          <td>
-            {action?.icon} {action?.label}
-          </td>
-          <td>{formatMinutes(item.zeit)}</td>
-          <td>
-            {item.wert} <span className="xp-star">★</span>
-          </td>
-        </tr>
-      );
-    });
-  }
-
   return (
     <aside>
       {/* Zucht Accordion */}
       <InfoAccordion
-        title={translationsAnimals.breeding}
+        title={t("animals:breeding.breeding")}
         icon="/images/icons/breeding.png"
       >
         <InfoRow>
-          <span>{translationsAnimals.tableStall}</span>
+          <span>{t("animals:table.stall")}</span>
           <StallLevelBadge
             level={animal.stalllevel}
-            habitat={animal.gehege.name}
+            habitat={animal.gehege?.name}
+            size={35}
+            showTooltip={false}
           />
         </InfoRow>
 
         <InfoRow>
-          <span>{translationsAnimals.costs}</span>
-          <PriceDisplay value={animal.zuchtkosten} type="Zoodollar" />
+          <span>{t("common:costs")}</span>
+          <PriceDisplay value={animal.zuchtkosten} type="zoodollar" />
         </InfoRow>
 
         <InfoRow>
-          <span>{translationsAnimals.time}</span>
-          {animal.zuchtdauer} h
+          <span>{t("common:time")}</span>
+          <strong>{animal.zuchtdauer} h</strong>
         </InfoRow>
+
         <InfoRow>
-          <span>Startprozentsatz</span>
-          {animal.startprozent} %
+          <span>{t("animals:breeding.breedingChance") || "Startprozentsatz"}</span>
+          <strong>{animal.startprozent} %</strong>
         </InfoRow>
       </InfoAccordion>
 
       {/* XP & Aktionen Accordion */}
       <InfoAccordion
-        title={translationsAnimals.xpAndActions}
+        title={t("animals:breeding.xpAndActions")}
         icon="/images/icons/star.png"
       >
         <XpTable>
           <thead>
-            <tr>
-              <th>{translationsAnimals.action}</th>
-              <th>{translationsAnimals.time}</th>
-              <THRechts>XP</THRechts>
-            </tr>
+          <tr>
+            <th style={{ textAlign: 'left' }}>{t("common:action")}</th>
+            <th>{t("common:time")}</th>
+            <THRechts>XP</THRechts>
+          </tr>
           </thead>
           <tbody>
-            {sortedXp.map((item) => {
-              const actionInfo = XP_MAP[item.xpart];
-              return (
-                <tr key={item.id}>
-                  <td>
-                    <NextImage
-                      src={actionInfo?.icon}
-                      alt="XP"
-                      width={25}
-                      height={25}
-                    />
-                  </td>
-                  <td>
-                    {formatMinutes(item.zeit)}
-                  </td>
-                  <td>
-                    <XPIcon label={item.wert} />
-                  </td>
-                </tr>
-              );
-            })}
+          {sortedXp.map((item) => {
+            const actionInfo = XP_MAP[item.xpart];
+            return (
+              <tr key={item.id}>
+                <td>
+                  <ActionWrapper>
+                    {actionInfo?.icon && (
+                      <NextImage
+                        src={actionInfo.icon}
+                        alt={actionInfo.key}
+                        width={20}
+                        height={20}
+                      />
+                    )}
+                    <span>{t(`animals:actions.${actionInfo?.key}`)}</span>
+                  </ActionWrapper>
+                </td>
+                <td style={{ textAlign: 'center' }}>
+                  {formatMinutes(item.zeit)}
+                </td>
+                <td>
+                  <XPIcon label={item.wert} />
+                </td>
+              </tr>
+            );
+          })}
           </tbody>
         </XpTable>
       </InfoAccordion>
 
-      <InfoAccordion title="Anzahl Tiere pro Gehege" icon="/images/icons/pfote.png">
-        {hasData ? (
+      {/* Kapazität Accordion */}
+      <InfoAccordion
+        title={t("animals:biomesCapacity") || "Anzahl Tiere pro Gehege"}
+        icon="/images/icons/pfote.png"
+      >
+        {hasCapacity ? (
           <XpTable>
             <thead>
-              <tr>
-                <TableHeader>Anzahl Tiere</TableHeader>
-                <TableHeader>Gehegegröße (Felder)</TableHeader>
-              </tr>
+            <tr>
+              <TableHeader>
+                {t("animals:animalCount") || "Anzahl Tiere"}
+              </TableHeader>
+              <TableHeader>
+                {t("animals:biomeSize") || "Gehegegröße (Felder)"}
+              </TableHeader>
+            </tr>
             </thead>
             <tbody>
-              {animal.tier_gehege_kapazitaet.map((kap) => (
-                <tr key={kap.anzahlTiere}>
-                  <TableCell>{kap.anzahlTiere}</TableCell>
-                  <TableCell>{kap.felder}</TableCell>
-                </tr>
-              ))}
+            {capacityData.map((kap) => (
+              <tr key={kap.anzahlTiere}>
+                <TableCell>{kap.anzahlTiere}</TableCell>
+                <TableCell>{kap.felder}</TableCell>
+              </tr>
+            ))}
             </tbody>
           </XpTable>
         ) : (
-          <EmptyState>Daten werden gerade vom System erfasst...</EmptyState>
+          <EmptyState>
+            {t("common:loading_data") || "Daten werden gerade vom System erfasst..."}
+          </EmptyState>
         )}
       </InfoAccordion>
     </aside>
   );
 }
+
+const ActionWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: capitalize;
+`;
 
 const InfoRow = styled.div`
   display: flex;
