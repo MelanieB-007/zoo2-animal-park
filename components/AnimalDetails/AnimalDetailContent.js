@@ -12,26 +12,36 @@ export default function AnimalDetailContent({ animal }) {
   if (!animal) return <div>{t("common:not_found")}</div>;
 
   return (
-    <MainGrid>
-      {/* Linke Spalte: Beschreibung & Varianten */}
-      <PrimaryColumn>
-        <HeaderCard animal={animal} />
+    <Wrapper>
+      {/* 1. Header über die volle Breite */}
+      <HeaderCard animal={animal} />
 
-        <Textarea
-          label={t("common:description")}
-          text={animal.beschreibung || t("common:no_description_available")}
-        />
+      <MainGrid>
+        {/* Linke Spalte: Beschreibung & Varianten */}
+        <PrimaryColumn>
+          <Textarea
+            label={t("common:description")}
+            text={animal.beschreibung || t("common:no_description_available")}
+          />
 
-        <VariantArea animal={animal} />
-      </PrimaryColumn>
+          <VariantArea animal={animal} />
+        </PrimaryColumn>
 
-      {/* Rechte Spalte: Sidebar mit Accordions */}
-      <SecondaryColumn>
-        <AccordionCard animal={animal} />
-      </SecondaryColumn>
-    </MainGrid>
+        {/* Rechte Spalte: Sidebar mit Accordions */}
+        <SecondaryColumn>
+          <AccordionCard animal={animal} />
+        </SecondaryColumn>
+      </MainGrid>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Abstand zwischen HeaderCard und dem Rest */
+  width: 100%;
+`;
 
 const MainGrid = styled.div`
   display: grid;
@@ -49,7 +59,7 @@ const MainGrid = styled.div`
 const PrimaryColumn = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 15px; 
+  gap: 15px;
 `;
 
 const SecondaryColumn = styled.div`
