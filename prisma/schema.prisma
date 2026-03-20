@@ -53,6 +53,7 @@ model tier_texte {
 model sprachen {
   code String @id @db.VarChar(5) // "de", "en", "dk"
   name String @db.VarChar(50) // "Deutsch", "English"
+  flagge String? // Optional ein Emoji oder Icon-Pfad
 }
 
 model gehege {

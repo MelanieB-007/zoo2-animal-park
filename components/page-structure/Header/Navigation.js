@@ -51,7 +51,7 @@ export default function Navigation() {
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink href="/animals/anlegen" $active={pathname === "/animals/anlegen"}>
+              <DropdownLink href="/animals/create" $active={pathname === "/animals/create"}>
                 {t("navigation.animal_create", "Tier anlegen")}
               </DropdownLink>
             </li>
