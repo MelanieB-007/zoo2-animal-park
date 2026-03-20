@@ -2,7 +2,7 @@ import styled from "styled-components";
 import NextImage from "next/image";
 
 import InfoAccordion from "../page-structure/Elements/InfoAccordion";
-import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
+import StallLevelBadge from "../ui/StallLevelBadge";
 import PriceDisplay from "../icons/PriceDisplay";
 import XPIcon from "../icons/XPIcon";
 import { formatMinutes } from "../ui/XpDateFormat";

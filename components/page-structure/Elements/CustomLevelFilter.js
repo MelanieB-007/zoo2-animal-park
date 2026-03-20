@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
-import StallLevelBadge from "./StallLevelBadge";
+import StallLevelBadge from "../../ui/StallLevelBadge";
 
 export default function CustomLevelFilter({ animals, selectedLevel, onSelect }) {
   const { t } =  /** @type {any} */(useTranslation('animals'));

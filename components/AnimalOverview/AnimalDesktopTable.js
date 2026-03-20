@@ -2,9 +2,9 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 
 import { NameDE } from "../page-structure/Elements/Name";
-import GehegeBadge from "../page-structure/Elements/GehegeBadge";
+import GehegeBadge from "../ui/GehegeBadge";
 import PriceDisplay from "../icons/PriceDisplay";
-import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
+import StallLevelBadge from "../ui/StallLevelBadge";
 import XPIcon from "../icons/XPIcon";
 import { calculateTotalXP } from "../../services/AnimalHelper";
 import ZoodollarIcon from "../icons/ZoodollarIcon";

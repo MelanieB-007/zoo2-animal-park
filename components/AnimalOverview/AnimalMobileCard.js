@@ -4,9 +4,9 @@ import { useTranslation } from "next-i18next";
 
 import GameIcon from "../icons/GameIcon";
 import { NameDE } from "../page-structure/Elements/Name";
-import GehegeBadge from "../page-structure/Elements/GehegeBadge";
+import GehegeBadge from "../ui/GehegeBadge";
 import PriceDisplay from "../icons/PriceDisplay";
-import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
+import StallLevelBadge from "../ui/StallLevelBadge";
 import EditButton from "../icons/EditIcon";
 import DeleteButton from "../icons/DeleteIcon";
 import { getTranslatedName } from "../ui/TranslationHelper";
