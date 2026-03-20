@@ -14,6 +14,7 @@ import XpActionSection from "./XpActionSection";
 import EnclosureCapacitySection from "./EnclosureCapacitySection";
 import EnclosureTypeSection from "./EnclosureTypeSection";
 import OriginSection from "./OriginSection";
+import ImageSection from "./ImageSection";
 
 
 export default function AnimalForm({ initialData }) {
@@ -46,6 +47,11 @@ export default function AnimalForm({ initialData }) {
     console.log("Sende an API:", payload);
     // Hier dann: const res = await fetch('/api/animals', { method: 'POST', ... })
   };
+
+  const [uploadFiles, setUploadFiles] = useState({
+    icon: null,
+    image: null,
+  });
 
   // --- hält alle Felder aus deinen 3 Screenshots zusammen
   const [formData, setFormData] = useState(
@@ -82,6 +88,11 @@ export default function AnimalForm({ initialData }) {
       <FormGrid>
         {/* --- LINKE SPALTE: Texte & Infos --- */}
         <Column>
+          <ImageSection
+            setUploadFiles={setUploadFiles} // Wir übergeben den Setter
+            initialIcon={formData.iconPath} // Falls wir ein Tier bearbeiten
+            initialImage={formData.imagePath}
+          />
 
           <BasicInfoSection
             formData={formData}

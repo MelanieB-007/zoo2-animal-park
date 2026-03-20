@@ -30,7 +30,7 @@ export default function EnclosureTypeSection({ formData, onChange }) {
             name="enclosureType"
             value={formData.enclosureType}
             onChange={onChange}
-            options={data}
+            options={biomes}
             $width="100%"
           />
         </Wrapper>
