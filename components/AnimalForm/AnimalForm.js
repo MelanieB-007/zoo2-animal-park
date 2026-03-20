@@ -3,19 +3,31 @@ import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import useSWR from "swr";
 
-import DynamicRowInput from "./DynamicRowInput";
+import DynamicRowInput from "../page-structure/Elements/DynamicRowInput";
 import ActionRow from "./ActionRow";
 import OriginTransfer from "../AnimalDetails/OriginTransfer";
+import LanguageSection from "../page-structure/Elements/LanguageSection";
+import PageHeader from "../page-structure/PageHeader";
+import InfoAccordion from "../page-structure/Elements/InfoAccordion";
+import InfoAccordionRow from "../page-structure/Elements/InfoAccordionRow";
+import PriceDisplay from "../icons/PriceDisplay";
+import DataRow from "../ui/DataRow";
+import InputGroup from "../ui/InputGroup";
+import { FormInput } from "../ui/FormInput";
+import FormSelect from "../ui/FormSelect";
+import BreedingSection from "./BreedingSection";
+import PriceSection from "./PriceSection";
+import BasicInfoSection from "./BasicInfoSection";
 
 
 export default function AnimalForm({ initialData }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
 
-
-  // --- 1. SWR DATEN & HERKUNFT LOGIK ---
+  // --- 1. SWR DATEN LADEN ---
   const { data: origins } = useSWR('/api/origins');
-  const { data: biome } = useSWR('/api/biomes');
+  const { data: biomes } = useSWR('/api/biomes');
 
+  // ... dein restlicher Code (useState, handlers etc.)
   const [selectedOrigins, setSelectedOrigins] = useState(initialData?.origins || []);
 
   // Wir prüfen mit Array.isArray(), ob wir wirklich eine Liste haben
@@ -34,7 +46,24 @@ export default function AnimalForm({ initialData }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Speichere:", { ...formData, selectedOrigins });
+
+    // Wir bauen das "texte"-Array für die Datenbank zusammen
+    const allTexts = [
+      { spracheCode: 'de', name: formData.nameDe },
+      ...(formData.translations || []).map(t => ({
+        spracheCode: t.spracheCode,
+        name: t.name
+      }))
+    ];
+
+    const payload = {
+      ...formData,
+      allTexts, // Das schicken wir an die API
+      selectedOrigins // Herkunft aus dem Transfer-Tool
+    };
+
+    console.log("Sende an API:", payload);
+    // Hier dann: const res = await fetch('/api/animals', { method: 'POST', ... })
   };
 
   // --- 3. LOGIK FÜR DYNAMISCHE GEHEGE-ZEILEN ---
@@ -79,7 +108,7 @@ export default function AnimalForm({ initialData }) {
   const [formData, setFormData] = useState(
     initialData || {
       nameDe: "",
-      nameEn: "",
+      translations: [],
       releaseDate: "",
       description: "",
       price: 0,
@@ -101,214 +130,94 @@ export default function AnimalForm({ initialData }) {
 
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
-      {/* SEKTION 1: GRUNDINFORMATIONEN */}
-      <Section>
-        <h3>📋 Grundinformationen</h3>
-        <Row>
-          <Field>
-            <label>Deutscher Name *</label>
-            <input
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="z.B. Achal-Tekkiner"
-            />
-          </Field>
-          <Field>
-            <label>Release-Datum</label>
-            <input
-              type="date"
-              name="release"
-              value={formData.release}
-              onChange={handleChange}
-            />
-          </Field>
-        </Row>
-        <Field>
-          <label>Englischer Name</label>
-          <input
-            name="nameEn"
-            value={formData.nameEn}
+    <form onSubmit={handleSubmit}>
+      <PageHeader text={t("animal:createAnimal")} />
+
+      <FormGrid>
+        {/* --- LINKE SPALTE: Texte & Infos --- */}
+        <Column>
+
+          <BasicInfoSection
+            formData={formData}
             onChange={handleChange}
           />
-        </Field>
-      </Section>
 
-      {/* SEKTION 2: Herkunft */}
-      <Section>
-        <h3>🌍 Herkunft</h3>
-        <OriginTransfer
-          available={availableOrigins}
-          selected={selectedOrigins}
-          onMoveRight={moveRight}
-          onMoveLeft={moveLeft}
-        />
-      </Section>
+          <LanguageSection
+            translations={formData.translations}
+            setFormData={setFormData}
+          />
 
-      {/* SEKTION 3: Beschreibung */}
-      <section>
-        <h3>Beschreibung</h3>
-      </section>
+          <CollapsibleSection title="✍️ Beschreibung (DE)" defaultOpen={true}>
+            {/* Hier kommt die deutsche Hauptbeschreibung rein */}
+          </CollapsibleSection>
 
-      {/* SEKTION 4: Tierbild */}
-      <section>
-        <h3>Tierbikd</h3>
-      </section>
+        </Column>
 
-      {/* SEKTION 5: PREISE & WERTE */}
-      <Section>
-        <h3>💰 Preise & Werte</h3>
-        <Row>
-          <Field>
-            <label>Kaufpreis</label>
-            <input type="number" name="price" onChange={handleChange} />
-          </Field>
-          <Field>
-            <label>Währung</label>
-            <select name="priceType" onChange={handleChange}>
-              <option value="Diamanten">Diamanten</option>
-              <option value="Zoodollar">Zoodollar</option>
-            </select>
-          </Field>
-        </Row>
-      </Section>
+        {/* --- RECHTE SPALTE: Werte & Mechaniken --- */}
+        <Column>
 
-      {/* SEKTION 6: Gehege */}
-      <section>
-        <h3>Gehege</h3>
+          <PriceSection
+            formData={formData}
+            onChange={handleChange}
+          />
 
-        <DynamicRowInput
-          label={t("form.sections.enclosure")}
-          rows={formData.enclosureSizes}
-          columns={enclosureColumns}
-          onAdd={addRow}
-          onRemove={removeRow}
-          onChange={handleEnclosureChange}
-        />
-      </section>
+          <BreedingSection
+            formData={formData}
+            onChange={handleChange}
+          />
 
-      {/* SEKTION 7: Zucht */}
-      <section>
-        <h3>Zucht</h3>
-      </section>
+          <CollapsibleSection title="🌟 XP und Aktionen" defaultOpen={false}>
+            {/* Füttern, Spielen, Pflegen */}
+          </CollapsibleSection>
 
-      {/* SEKTION 8: XP und Aktionen */}
-      <Section>
-        <h3>⭐ {t("form.sections.xpActions")}</h3>
+          <CollapsibleSection title="🏠 Gehegekapazität" defaultOpen={false}>
+            {/* Anzahl Tiere pro Gehege-Level */}
+          </CollapsibleSection>
 
-        <TableHeader>
-          <span className="label">{t("form.column.action")}</span>
-          <span className="duration">{t("form.column.duration")}</span>
-          <span className="xp">{t("form.column.xp")}</span>
-        </TableHeader>
+        </Column>
+      </FormGrid>
 
-        <ActionRow
-          icon="🍎"
-          label={t("actions.feed")}
-          values={formData.actions.feed}
-          onChange={(field, val) => handleActionChange("feed", field, val)}
-        />
-        <ActionRow
-          icon="🎮"
-          label={t("actions.play")}
-          values={formData.actions.play}
-          onChange={(field, val) => handleActionChange("play", field, val)}
-        />
-        <ActionRow
-          icon="🧹"
-          label={t("actions.clean")}
-          values={formData.actions.clean}
-          onChange={(field, val) => handleActionChange("clean", field, val)}
-        />
-      </Section>
-
-      <SubmitButton type="submit">
-        {initialData ? "Änderungen speichern" : "Tier anlegen"}
-      </SubmitButton>
-    </FormContainer>
+      {/* --- FOOTER: Herkunft & Submit --- */}
+      <FooterSection>
+        {/* Hier platzieren wir die Herkunft, da sie oft breit ist */}
+        <SubmitButton type="submit">Tier im System speichern</SubmitButton>
+      </FooterSection>
+    </form>
   );
 }
 
-// Styled Components für das Layout (vereinfacht)
-const TableHeader = styled.div`
-  display: flex;
-  padding: 5px 0;
-  margin-bottom: 5px;
-  font-size: 11px;
-  font-weight: bold;
-  color: #88a04d;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  gap: 15px; /* Damit der Abstand zu den Inputs in der ActionRow passt */
+const FormGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
 
-  .label {
-    flex: 1;
-  }
-
-  .duration {
-    flex: 2;
-    padding-left: 5px;
-  }
-
-  .xp {
-    flex: 2;
-    padding-left: 5px;
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
   }
 `;
 
-const FormContainer = styled.form`
+const Column = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+`;
+
+const FooterSection = styled.div`
+  margin-top: 30px;
   padding: 20px;
-  background: #f4f9e9; /* Dein hellgrüner Ton */
-  border-radius: 15px;
-`;
-
-const Section = styled.div`
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px solid #d1e2a5;
-`;
-
-const Row = styled.div`
-  display: flex;
-  gap: 15px;
-  margin-bottom: 10px;
-`;
-
-const Field = styled.div`
-  flex: 1;
+  border-top: 1px solid #e0ecd0;
   display: flex;
   flex-direction: column;
-
-  label {
-    font-weight: bold;
-    font-size: 12px;
-    margin-bottom: 5px;
-    color: #88a04d;
-  }
-
-  input,
-  select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+  gap: 20px;
 `;
 
-const SubmitButton = styled.button`
-  background: #76b041;
-  color: white;
-  padding: 15px;
-  border: none;
-  border-radius: 10px;
+const SelectInput = styled.select`
+  padding: 4px 8px;
+  border: 1px solid #e0ecd0;
+  border-radius: 6px;
+  background: white;
+  font-size: 0.9rem;
   cursor: pointer;
-  font-weight: bold;
-
-  &:hover {
-    background: #649635;
-  }
 `;
