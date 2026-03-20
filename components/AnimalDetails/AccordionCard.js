@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import NextImage from "next/image";
 
-import InfoAccordion from "./InfoAccordion";
+import InfoAccordion from "../page-structure/Elements/InfoAccordion";
 import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
 import PriceDisplay from "../icons/PriceDisplay";
 import XPIcon from "../icons/XPIcon";
 import { formatMinutes } from "../ui/XpDateFormat";
 import { XP_MAP } from "../../utils/XP_MAP";
 import { useTranslation } from "next-i18next";
+import InfoAccordionRow from "../page-structure/Elements/InfoAccordionRow";
+import DataRow from "../ui/DataRow";
 
 const actionOrder = ["fuettern", "spielen", "putzen"];
 
@@ -29,35 +31,30 @@ export default function AccordionCard({ translationsAnimals, animal }) {
 
   return (
     <aside>
-      {/* Zucht Accordion */}
       <InfoAccordion
         title={t("animals:breeding.breeding")}
         icon="/images/icons/breeding.png"
       >
-        <InfoRow>
-          <span>{t("animals:table.stall")}</span>
-          <StallLevelBadge
-            level={animal.stalllevel}
-            habitat={animal.gehege?.name}
-            size={35}
-            showTooltip={false}
-          />
-        </InfoRow>
+          <DataRow label={t("nimals:table.stall")}>
+            <StallLevelBadge
+              level={animal.stalllevel}
+              habitat={animal.gehege?.name}
+              size={35}
+              showTooltip={false}
+            />
+          </DataRow>
 
-        <InfoRow>
-          <span>{t("common:costs")}</span>
-          <PriceDisplay value={animal.zuchtkosten} type="zoodollar" />
-        </InfoRow>
+          <DataRow label={t("common:costs")}>
+            <PriceDisplay value={animal.zuchtkosten} type="zoodollar" />
+          </DataRow>
 
-        <InfoRow>
-          <span>{t("common:time")}</span>
-          <strong>{animal.zuchtdauer} h</strong>
-        </InfoRow>
+          <DataRow label={t("common:time")}>
+            <strong>{animal.zuchtdauer} h</strong>
+          </DataRow>
 
-        <InfoRow>
-          <span>{t("animals:breeding.breedingChance") || "Startprozentsatz"}</span>
-          <strong>{animal.startprozent} %</strong>
-        </InfoRow>
+          <DataRow label={t("animals:breeding.breedingChance")}>
+            <strong>{animal.startprozent} %</strong>
+          </DataRow>
       </InfoAccordion>
 
       {/* XP & Aktionen Accordion */}
@@ -145,17 +142,6 @@ const ActionWrapper = styled.div`
   align-items: center;
   gap: 8px;
   text-transform: capitalize;
-`;
-
-const InfoRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid #f5f5f5;
-
-  &:last-child {
-    border-bottom: none;
-  }
 `;
 
 const XpTable = styled.table`
