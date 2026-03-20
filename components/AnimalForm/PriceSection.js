@@ -1,9 +1,11 @@
+import { useTranslation } from "next-i18next";
+
 import InfoAccordion from "../page-structure/Elements/InfoAccordion";
 import DataRow from "../ui/DataRow";
 import InputGroup from "../ui/InputGroup";
-import { FormInput } from "../ui/FormInput";
+import FormInput from "../ui/FormInput";
 import FormSelect from "../ui/FormSelect";
-import { useTranslation } from "next-i18next";
+
 
 export default function PriceSection({ formData, onChange }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));

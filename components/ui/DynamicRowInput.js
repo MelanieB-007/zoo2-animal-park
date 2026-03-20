@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import FormInput from "./FormInput";
+import FormSelect from "./FormSelect";
+import FormTextarea from "./FormTextarea";
 
 export default function DynamicRowInput({
   label,
@@ -15,48 +18,46 @@ export default function DynamicRowInput({
 
       <Header>
         {columns.map((col) => (
-          <span key={col.key} style={{ flex: col.flex || 1 }}>
+          <HeaderCell key={col.key} $flex={col.flex}>
             {col.label}
-          </span>
+          </HeaderCell>
         ))}
-        <div style={{ width: "30px" }} />
-        {/* Platzhalter für Delete-Icon */}
+        <DeletePlaceholder />
       </Header>
 
       {rows.map((row) => (
         <Row key={row.id}>
           {columns.map((col) => (
-            <div key={col.key} style={{ flex: col.flex || 1 }}>
+            <Cell key={col.key} $flex={col.flex}>
               {col.type === "select" ? (
-                <select
+                <FormSelect
                   value={row[col.key]}
                   onChange={(e) => onChange(row.id, col.key, e.target.value)}
-                >
-                  {col.options
-                    // DAS IST NEU: Filtert Optionen, die in anderen Zeilen schon gewählt sind
-                    .filter((opt) => {
-                      const otherRows = rows.filter((r) => r.id !== row.id);
-                      const usedValues = otherRows.map((r) => r[col.key]);
-                      return (
-                        !usedValues.includes(opt.value) ||
-                        opt.value === row[col.key]
-                      );
-                    })
-                    .map((opt) => (
-                      <option key={opt.value} value={opt.value}>
-                        {opt.label}
-                      </option>
-                    ))}
-                </select>
+                  options={col.options.filter((opt) => {
+                    const otherRows = rows.filter((r) => r.id !== row.id);
+                    const usedValues = otherRows.map((r) => r[col.key]);
+                    return (
+                      !usedValues.includes(opt.value) ||
+                      opt.value === row[col.key]
+                    );
+                  })}
+                />
+              ) : col.type === "textarea" ? (
+                <FormTextarea
+                  $minHeight="60px"
+                  placeholder={col.placeholder}
+                  value={row[col.key] || ""}
+                  onChange={(e) => onChange(row.id, col.key, e.target.value)}
+                />
               ) : (
-                <input
+                <FormInput
                   type={col.type || "text"}
                   placeholder={col.placeholder}
                   value={row[col.key] || ""}
                   onChange={(e) => onChange(row.id, col.key, e.target.value)}
                 />
               )}
-            </div>
+            </Cell>
           ))}
           <DeleteBtn
             onClick={() => onRemove(row.id)}
@@ -68,11 +69,7 @@ export default function DynamicRowInput({
         </Row>
       ))}
 
-      <AddBtn
-        onClick={onAdd}
-        type="button"
-        disabled={disabledAdd}
-      >
+      <AddBtn onClick={onAdd} type="button" disabled={disabledAdd}>
         {disabledAdd ? "Alle Sprachen hinzugefügt" : "+ Zeile hinzufügen"}
       </AddBtn>
     </Container>
@@ -99,48 +96,33 @@ const Header = styled.div`
   font-weight: bold;
   margin-bottom: 5px;
   padding: 0 5px;
+`;
 
-  span {
-    /* Flex wird inline über die Props gesteuert */
-  }
+const HeaderCell = styled.span`
+  flex: ${(props) => props.$flex || 1};
+`;
+
+const DeletePlaceholder = styled.div`
+  width: 30px;
 `;
 
 const Row = styled.div`
   display: flex;
   gap: 10px;
-  margin-bottom: 8px;
-  align-items: center;
+  margin-bottom: 12px;
+  align-items: flex-start; /* Hält Select/Input oben, wenn Textarea wächst */
+`;
 
-  div {
-    display: flex;
-  }
-
-  input,
-  select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #d1e2a5;
-    border-radius: 5px;
-    font-size: 14px;
-    outline: none;
-
-    &:focus {
-      border-color: #88a04d;
-      box-shadow: 0 0 0 2px rgba(136, 160, 77, 0.1);
-    }
-  }
-
-  select {
-    cursor: pointer;
-    background-color: white;
-  }
+const Cell = styled.div`
+  display: flex;
+  flex: ${(props) => props.$flex || 1};
 `;
 
 const AddBtn = styled.button`
   background: #fdfdfd;
   border: 1px dashed #b5ce7e;
   color: #5a7024;
-  padding: 8px;
+  padding: 10px;
   width: 100%;
   cursor: pointer;
   border-radius: 8px;
@@ -148,17 +130,17 @@ const AddBtn = styled.button`
   margin-top: 5px;
   transition: all 0.2s;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: #f4f9e9;
     border-color: #88a04d;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   }
 
   &:disabled {
-    background: #f0f0f0;
-    border-color: #ccc;
+    background: #f5f5f5;
     color: #999;
+    border-color: #ddd;
     cursor: not-allowed;
-    opacity: 0.7;
   }
 `;
 
@@ -167,13 +149,16 @@ const DeleteBtn = styled.button`
   border: none;
   cursor: pointer;
   font-size: 16px;
-  opacity: 0.6;
-  transition: opacity 0.2s;
+  opacity: 0.5;
+  transition: all 0.2s;
   width: 30px;
+  height: 38px; /* Zentriert das Icon optisch neben einzeiligen Inputs */
   display: flex;
   justify-content: center;
+  align-items: center;
 
   &:hover {
     opacity: 1;
+    transform: scale(1.1);
   }
 `;

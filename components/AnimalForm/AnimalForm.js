@@ -1,44 +1,25 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
-import useSWR from "swr";
 
-import DynamicRowInput from "../page-structure/Elements/DynamicRowInput";
-import ActionRow from "./ActionRow";
-import OriginTransfer from "../AnimalDetails/OriginTransfer";
-import LanguageSection from "../page-structure/Elements/LanguageSection";
+import TranslationNameSection from "./TranslationNameSection";
 import PageHeader from "../page-structure/PageHeader";
-import InfoAccordion from "../page-structure/Elements/InfoAccordion";
-import InfoAccordionRow from "../page-structure/Elements/InfoAccordionRow";
-import PriceDisplay from "../icons/PriceDisplay";
-import DataRow from "../ui/DataRow";
-import InputGroup from "../ui/InputGroup";
-import { FormInput } from "../ui/FormInput";
-import FormSelect from "../ui/FormSelect";
+
 import BreedingSection from "./BreedingSection";
 import PriceSection from "./PriceSection";
 import BasicInfoSection from "./BasicInfoSection";
+import DescriptionSection from "./DescriptionSection";
+import TranslationDescriptionSection from "./TranslationDescriptionSection";
+import XpActionSection from "./XpActionSection";
+import EnclosureCapacitySection from "./EnclosureCapacitySection";
+import EnclosureTypeSection from "./EnclosureTypeSection";
+import OriginSection from "./OriginSection";
 
 
 export default function AnimalForm({ initialData }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
 
-  // --- 1. SWR DATEN LADEN ---
-  const { data: origins } = useSWR('/api/origins');
-  const { data: biomes } = useSWR('/api/biomes');
-
-  // ... dein restlicher Code (useState, handlers etc.)
-  const [selectedOrigins, setSelectedOrigins] = useState(initialData?.origins || []);
-
-  // Wir prüfen mit Array.isArray(), ob wir wirklich eine Liste haben
-  const availableOrigins = Array.isArray(origins)
-    ? origins.filter((o) => !selectedOrigins.find((s) => s.id === o.id))
-    : [];
-
-  const moveRight = (item) => setSelectedOrigins([...selectedOrigins, item]);
-  const moveLeft = (item) => setSelectedOrigins(selectedOrigins.filter(o => o.id !== item.id));
-
-// --- 2. HANDLER FÜR EINFACHE FELDER ---
+// ---  HANDLER FÜR EINFACHE FELDER ---
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -66,45 +47,7 @@ export default function AnimalForm({ initialData }) {
     // Hier dann: const res = await fetch('/api/animals', { method: 'POST', ... })
   };
 
-  // --- 3. LOGIK FÜR DYNAMISCHE GEHEGE-ZEILEN ---
-  const enclosureColumns = [
-    { key: "animalCount", label: t("form.animalCount"), type: "number" },
-    { key: "size", label: t("form.enclosureSize"), type: "number" },
-  ];
-
-  const addRow = () => {
-    setFormData(prev => ({
-      ...prev,
-      enclosureSizes: [...prev.enclosureSizes, { id: Date.now(), animalCount: prev.enclosureSizes.length + 1, size: "" }]
-    }));
-  };
-
-  const removeRow = (id) => {
-    setFormData(prev => ({
-      ...prev,
-      enclosureSizes: prev.enclosureSizes.filter(row => row.id !== id)
-    }));
-  };
-
-  const handleEnclosureChange = (id, field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      enclosureSizes: prev.enclosureSizes.map(row => row.id === id ? { ...row, [field]: value } : row)
-    }));
-  };
-
-  // --- 4. LOGIK FÜR XP-AKTIONEN ---
-  const handleActionChange = (actionType, field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      actions: {
-        ...prev.actions,
-        [actionType]: { ...prev.actions[actionType], [field]: value }
-      }
-    }));
-  };
-
-  // --- 5. State hält alle Felder aus deinen 3 Screenshots zusammen
+  // --- hält alle Felder aus deinen 3 Screenshots zusammen
   const [formData, setFormData] = useState(
     initialData || {
       nameDe: "",
@@ -119,7 +62,10 @@ export default function AnimalForm({ initialData }) {
       enclosureType: "",
       toy: "",
       enclosureSizes: [{ animalCount: 1, size: 10 }],
-      breeding: { level: 1, costs: 0, duration: "", chance: 0 },
+      breedingLevel: 1,
+      breedingCosts: 0,
+      breedingDuration: "",
+      breedingChance: 0,
       actions: {
         feed: { duration: "", xp: 0 },
         play: { duration: "", xp: 0 },
@@ -142,14 +88,20 @@ export default function AnimalForm({ initialData }) {
             onChange={handleChange}
           />
 
-          <LanguageSection
+          <TranslationNameSection
             translations={formData.translations}
             setFormData={setFormData}
           />
 
-          <CollapsibleSection title="✍️ Beschreibung (DE)" defaultOpen={true}>
-            {/* Hier kommt die deutsche Hauptbeschreibung rein */}
-          </CollapsibleSection>
+          <DescriptionSection
+            value={formData.descriptionDe}
+            onChange={handleChange}
+          />
+
+          <TranslationDescriptionSection
+            translations={formData.translations}
+            setFormData={setFormData}
+          />
 
         </Column>
 
@@ -166,20 +118,30 @@ export default function AnimalForm({ initialData }) {
             onChange={handleChange}
           />
 
-          <CollapsibleSection title="🌟 XP und Aktionen" defaultOpen={false}>
-            {/* Füttern, Spielen, Pflegen */}
-          </CollapsibleSection>
+          <XpActionSection
+            formData={formData}
+            setFormData={setFormData} // Braucht setFormData für das Deep-Update
+          />
 
-          <CollapsibleSection title="🏠 Gehegekapazität" defaultOpen={false}>
-            {/* Anzahl Tiere pro Gehege-Level */}
-          </CollapsibleSection>
+          <EnclosureTypeSection
+            formData={formData}
+            onChange={handleChange}
+          />
+
+          <EnclosureCapacitySection
+            enclosureSizes={formData.enclosureSizes}
+            setFormData={setFormData}
+          />
 
         </Column>
       </FormGrid>
 
       {/* --- FOOTER: Herkunft & Submit --- */}
       <FooterSection>
-        {/* Hier platzieren wir die Herkunft, da sie oft breit ist */}
+        <OriginSection
+          initialData={formData.origins}
+          setFormData={setFormData}
+        />
         <SubmitButton type="submit">Tier im System speichern</SubmitButton>
       </FooterSection>
     </form>
@@ -213,11 +175,62 @@ const FooterSection = styled.div`
   gap: 20px;
 `;
 
-const SelectInput = styled.select`
-  padding: 4px 8px;
-  border: 1px solid #e0ecd0;
-  border-radius: 6px;
-  background: white;
-  font-size: 0.9rem;
+const SubmitButton = styled.button`
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 30px;
+  padding: 16px 32px;
+
+  /* Typografie */
+  font-family: var(--font-text), sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: white;
+
+  /* Styling */
+  background: linear-gradient(180deg, #88a04d 0%, #5d7a2a 100%);
+  border: none;
+  border-radius: 12px;
+  border-bottom: 4px solid #3e521c; /* Tiefe-Effekt */
+  
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+
+  &:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(180deg, #96b05a 0%, #688931 100%);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(2px);
+    border-bottom-width: 0;
+    margin-bottom: 4px; /* Ausgleich für die fehlende Border */
+  }
+
+  &:disabled {
+    background: #ccc;
+    border-bottom-color: #999;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Kleiner Glanz-Effekt oben */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+  }
 `;
