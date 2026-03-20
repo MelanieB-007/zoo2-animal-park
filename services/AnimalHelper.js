@@ -4,16 +4,24 @@ export function filterAnimals(
 ) {
   if (!animals) return [];
 
+  const searchLower = searchTerm.toLowerCase();
+
   return animals.filter((tier) => {
-    const searchLower = searchTerm.toLowerCase();
+    // 1. Suche in den neuen übersetzten Texten (Array)
+    const matchesSearch = !searchTerm || (
+      tier.texte?.some(t =>
+        t.name?.toLowerCase().includes(searchLower)
+      ) ||
+      // Sicherheits-Fallback, falls noch alte Datenreste vorhanden sind
+      tier.name?.toLowerCase().includes(searchLower) ||
+      tier.nameEn?.toLowerCase().includes(searchLower)
+    );
 
-    const matchesSearch =
-      tier.name.toLowerCase().includes(searchLower) ||
-      (tier.nameEn && tier.nameEn.toLowerCase().includes(searchLower));
-
+    // 2. Filter nach Gehege
     const matchesGehege =
       selectedGehege === "Alle" || tier.gehege?.name === selectedGehege;
 
+    // 3. Filter nach Level
     const matchesLevel =
       selectedLevel === "Alle" || String(tier.stalllevel) === selectedLevel;
 

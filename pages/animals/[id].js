@@ -37,7 +37,7 @@ export default function TierDetail({ animal: fallbackData }) {
 }
 export async function getServerSideProps({ params, locale }) { // 2. locale hinzufügen
   const { id } = params;
-  const animal = await getAnimalById(id);
+  const animal = await getAnimalById(id, locale);
 
   if (!animal) return { notFound: true };
 

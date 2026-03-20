@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import prisma from "../lib/prisma";
 
 const prisma = global.prisma || new PrismaClient();
 
@@ -48,10 +47,14 @@ export async function createAnimal(data) {
   });
 }
 
-export async function getAnimalById(id) {
+export async function getAnimalById(id, locale = 'de') {
+
   const animal = await prisma.tiere.findUnique({
     where: { id: parseInt(id) },
     include: {
+      texte: {
+        where: { spracheCode: locale },
+      },
       variants: { include: { herkunft: true } },
       gehege: true,
       xp: true,
@@ -62,8 +65,22 @@ export async function getAnimalById(id) {
   });
 
   if (!animal) return null;
+
+  // Mapping: Wir ziehen Name und Beschreibung auf die oberste Ebene
+  const translation = animal.texte[0] || {};
+
+  const flatAnimal = {
+    ...animal,
+    // Wir nehmen den übersetzten Namen, oder den internen als Backup
+    name: translation.name || animal.internalName || "Unbekannt",
+    beschreibung: translation.beschreibung || null,
+  };
+
+  // Wir löschen das originale "texte" Array, damit das Objekt flach bleibt
+  delete flatAnimal.texte;
+
   // Wichtig für Next.js: Dates und komplexe Objekte für JSON serialisieren
-  return JSON.parse(JSON.stringify(animal));
+  return JSON.parse(JSON.stringify(flatAnimal));
 }
 
 export async function deleteAnimalFromDB(id) {
