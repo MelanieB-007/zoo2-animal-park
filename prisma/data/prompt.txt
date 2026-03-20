@@ -1,0 +1,8 @@
+"Ich lade dir hier das JSON mit den deutschen Beschreibungen hoch.
+Bitte führe folgende Schritte aus:
+Behalte die Felder id, nameDe und beschreibungDe exakt so bei, wie sie sind.
+Füge für jedes Objekt ein neues Feld hinzu: "beschreibungEn" (die englische Übersetzung der Beschreibung).
+Achte darauf, dass die englischen Texte den gleichen charmanten Tonfall wie die deutschen haben. Wenn das Feld so schon vorhanden
+ist "beschreibungEn": "Translation pending for ID 202" dann ersetze diese Zeile.
+Gib mir das Ergebnis wieder als vollständigen JSON-Codeblock zurück."
+
