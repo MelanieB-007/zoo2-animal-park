@@ -13,9 +13,12 @@ import { deleteAnimalFromDB, getAllAnimals } from "../../services/AnimalService"
 export default function AnimalOverview({ fallbackData }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
   const router = useRouter();
+  const { locale } = router;
 
-  const { data: animals, mutate } = useSWR('/api/animals', {
-    fallbackData
+  const { data: animals, mutate } = useSWR(`/api/animals?lang=${locale}`, {
+    fallbackData,
+    revalidateOnFocus: false,
+    revalidateOnMount: false // Wichtig, damit er die fallbackData vom Server nicht sofort überschreibt
   });
 
   const currentAnimals = animals || [];
@@ -93,7 +96,7 @@ export default function AnimalOverview({ fallbackData }) {
 }
 
 export async function getStaticProps({ locale }) {
-  const initialAnimals = await getAllAnimals();
+  const initialAnimals = await getAllAnimals(locale);
 
   return {
     props: {

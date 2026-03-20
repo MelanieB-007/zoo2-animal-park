@@ -1,11 +1,13 @@
 import { getAllAnimals, createAnimal } from "../../../services/AnimalService";
 
 export default async function handler(req, res) {
+  const { lang } = req.query;
+
   // --- FALL 1: DATEN LADEN ---
   if (req.method === 'GET') {
     try {
-      const alleTiere = await getAllAnimals();
-      return res.status(200).json(alleTiere || []);
+      const allAnimals = await getAllAnimals(lang);
+      return res.status(200).json(allAnimals || []);
     } catch (error) {
       console.error("API Fehler bei GET tiere:", error);
       return res.status(500).json([]);
@@ -17,7 +19,6 @@ export default async function handler(req, res) {
     try {
       const formData = req.body;
 
-      // Kurzer Check, ob Daten da sind
       if (!formData || !formData.names) {
         return res.status(400).json({ message: 'Ungültige Daten gesendet' });
       }

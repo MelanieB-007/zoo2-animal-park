@@ -6,17 +6,33 @@ if (process.env.NODE_ENV !== 'production') {
   global.prisma = prisma;
 }
 
-export async function getAllAnimals() {
-  return prisma.tiere.findMany({
+export async function getAllAnimals(locale = 'de') {
+  const animals = await prisma.tiere.findMany({
     include: {
-      texte: true, // Damit die Namen in allen Sprachen mitkommen
+      texte: {
+        where: { spracheCode: locale },
+      },
       gehege: true,
     },
     orderBy: { id: 'asc' }
   });
+
+  return animals.map(animal => {
+    const translation = animal.texte?.[0] || {};
+
+    const flatAnimal = {
+      ...animal,
+      name: translation.name || "Unbekannt",
+      beschreibung: translation.beschreibung || null,
+    };
+
+    delete flatAnimal.texte;
+
+    return flatAnimal;
+  });
 }
 
-// Die neue Speicher-Funktion
+
 export async function createAnimal(data) {
   return prisma.tiere.create({
     data: {

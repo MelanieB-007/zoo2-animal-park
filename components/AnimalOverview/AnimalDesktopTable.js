@@ -108,16 +108,14 @@ export default function AnimalDesktopTable({
       <tbody>
         {animals.length > 0 ? (
           animals.map((animal) => {
-            const displayName = getTranslatedName(animal, i18n.language) ||
-              t("animals:unknown_animal");
-
+            console.log("animal", animal);
             return (
               <LinkedRow key={animal.id} path={`/animals/${animal.id}`}>
                 <td>
                   <InfoCell>
                     <AnimalThumbnail animal={animal} />
                     <div>
-                      <NameDE>{displayName}</NameDE>
+                      <NameDE>{animal.name}</NameDE>
                     </div>
                   </InfoCell>
                 </td>
