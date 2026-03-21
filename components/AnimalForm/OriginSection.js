@@ -35,13 +35,13 @@ export default function OriginSection({ initialData, setFormData }) {
 
   return (
     <InfoAccordion
-      title={t("animals:obtainment_title") || "Erhältlichkeit"}
-      icon="/images/icons/chest.png"
+      title={t("animals:originSection.originTitle")}
+      icon="/images/herkunft/shop.webp"
       defaultOpen={false}
     >
       <StyledContent>
         <p className="description">
-          {t("animals:obtainment_description") || "Woher bekommt man dieses Tier?"}
+          {t("animals:originSection.originDescription")}
         </p>
 
         <OriginTransfer

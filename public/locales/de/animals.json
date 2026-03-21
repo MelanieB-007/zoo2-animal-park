@@ -45,7 +45,51 @@
   "form": {
     "animalCount": "Anzahl Tiere",
     "enclosureSize": "Benötigte Gehegegröße",
-    "createAnimal": "Neues Tier anlegen"
+    "createAnimal": "Neues Tier anlegen",
+    "saveAnimal": "Tier speichern"
+  },
+  "imageSection": {
+    "image_title": "Tierfoto & Icon",
+    "image_helper": "Lade ein Bild hoch, das sowohl als Icon im Shop als auch in der Detailansicht genutzt wird.",
+    "image_upload_btn": "Bild auswählen",
+    "image_replace_btn": "Bild ändern",
+    "image_delete": "Löschen",
+    "preview_icon": "Vorschau Icon",
+    "preview_detail": "Vorschau Detailansicht"
+  },
+  "basicInfoSection": {
+    "basicInfo": "Grundinformationen",
+    "fields": {
+      "name" : "Name",
+      "releaseDate" : "Release"
+    }
+  },
+  "translationNameSection": {
+    "otherLanguages": "Andere Sprachen",
+    "fields": {
+      "name" : "Name",
+      "releaseDate" : "Release"
+    }
+  },
+  "translationDescriptionSection": {
+    "descriptionIntl":  "Beschreibungen (International)",
+    "fields": {
+      "name" : "Name",
+      "releaseDate" : "Release"
+    }
+  },
+  "descriptionSection": {
+    "descriptionPlaceholder": "Beschreibe das Tier..."
+  },
+  "priceSection": {
+    "pricesAndValues": "Preise und Werte"
+  },
+  "xpSection": {
+    "actionsXp": "Aktionen & EP"
+  },
+  "originSection": {
+    "originTitle": "Herkunft",
+    "originDescription": "Woher bekommt man dieses Tier?"
   },
   "tablePrice": "Kaufpreis",
   "tableSell": "Verkaufswert",
@@ -53,5 +97,11 @@
   "biomesCapacity": "Gehegekapazität",
   "animalCount": "Anzahl Tiere",
   "biomeSize": "Gehegegröße",
-  "colorVariants": "Farbvarianten"
+  "colorVariants": "Farbvarianten",
+  "toy": "Spielgerät",
+  "toyPlaceholder": "Spielgerät",
+  "biomeCapacity": "Gehegekapazität",
+  "capacityTableLabel": "Anzahl Tiere vs. Gehegeplatz",
+  "requiredSize": "Benötigte Fläche"
+
 }

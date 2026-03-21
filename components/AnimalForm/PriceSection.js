@@ -12,18 +12,18 @@ export default function PriceSection({ formData, onChange }) {
 
 
   const currencyOptions = [
-    { value: "Zoodollar", label: "🪙 Zoodollar" },
-    { value: "Diamonds", label: "💎 Diamanten" },
+    { value: "Zoodollar", label: "/images/currency/zoodollar.webp" },
+    { value: "Diamonds", label: "/images/currency/diamant.webp" },
   ];
 
   return (
     <InfoAccordion
-      title={t("animals:prices_and_values") || "Preise & Werte"}
-      icon="/images/icons/money.png" // Falls du ein passendes Icon hast
+      title={t("animals:priceSection.pricesAndValues")}
+      icon="/images/currency/zoodollar.webp"
       defaultOpen={true}
     >
       {/* Kaufpreis & Währung kombiniert */}
-      <DataRow label={t("common:buyPrice") || "Kaufpreis"}>
+      <DataRow label={t("common:payment.price")}>
         <InputGroup>
           <FormInput
             type="number"
@@ -43,7 +43,7 @@ export default function PriceSection({ formData, onChange }) {
       </DataRow>
 
       {/* Beliebtheit */}
-      <DataRow label={t("animals:popularity") || "Beliebtheit"}>
+      <DataRow label={t("common:popularity") || "Beliebtheit"}>
         <InputGroup icon="/images/icons/besucher.jpg">
           <FormInput
             type="number"
@@ -56,7 +56,7 @@ export default function PriceSection({ formData, onChange }) {
       </DataRow>
 
       {/* Verkaufspreis  */}
-      <DataRow label={t("common:sellPrice") || "Verkaufspreis"}>
+      <DataRow label={t("common:payment.sellPrice")}>
         <InputGroup icon="/images/currency/zoodollar.webp">
           <FormInput
             type="number"
@@ -69,7 +69,7 @@ export default function PriceSection({ formData, onChange }) {
       </DataRow>
 
       {/* Auswildern  */}
-      <DataRow label={t("common:release") || "Auswildern"}>
+      <DataRow label={t("animals:table.release")}>
         <InputGroup icon="/images/icons/star.png">
           <FormInput
             type="number"

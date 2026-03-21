@@ -9,15 +9,15 @@ export default function DescriptionSection({ value, onChange }) {
 
   return (
     <InfoAccordion
-      title={t("animals:description") || "Beschreibung (DE)"}
-      icon="/images/icons/text.png"
+      title={t("common:description") || "Beschreibung (DE)"}
+      icon="/images/icons/Holztafel.png"
       defaultOpen={true}
     >
       <FormTextarea
         id="descriptionDe"
         name="descriptionDe"
-        label={t("common:description_label") || "Hauptbeschreibung"}
-        placeholder={t("common:description_placeholder") || "Beschreibe das Tier..."}
+        label={t("common:description")}
+        placeholder={t("animals:descriptionSection.descriptionPlaceholder")}
         value={value}
         onChange={onChange}
         $minHeight="160px"

@@ -14,6 +14,7 @@ export default function BreedingSection({ formData, onChange }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
 
   const stallOptions = [
+    { value: 0, label: "Level 0" },
     { value: 1, label: "Level 1" },
     { value: 2, label: "Level 2" },
     { value: 3, label: "Level 3" },
@@ -25,16 +26,6 @@ export default function BreedingSection({ formData, onChange }) {
       icon="/images/icons/breeding.png"
     >
       <SectionLayout>
-        {/* Visuelle Anzeige des Stall-Levels */}
-        <BadgeWrapper>
-          <StallLevelBadge
-            level={formData.breedingLevel}
-            habitat={formData.enclosureType} // Reagiert auf die Auswahl in der EnclosureTypeSection
-            size={80}
-            showTooltip={false}
-          />
-        </BadgeWrapper>
-
         <FieldsGrid>
           {/* Stall-Level Auswahl */}
           <Wrapper>
@@ -50,7 +41,7 @@ export default function BreedingSection({ formData, onChange }) {
           {/* Zuchtkosten */}
           <Wrapper>
             <label>{t("common:costs")}</label>
-            <InputGroup icon={<PriceDisplay type="zoodollar" size={18} />}>
+            <InputGroup icon="/images/currency/zoodollar.webp">
               <FormInput
                 name="breedingCosts"
                 type="number"

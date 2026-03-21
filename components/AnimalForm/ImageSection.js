@@ -29,8 +29,8 @@ export default function ImageSection({ setUploadFiles, initialImage }) {
 
   return (
     <InfoAccordion
-      title={t("animals:images_title") || "Tierfoto"}
-      icon="/images/icons/camera.png"
+      title={t("animals:imageSection.image_title") || "Tierfoto"}
+      icon="/images/icons/foto.png"
       defaultOpen={true}
     >
       <MainWrapper>
@@ -43,11 +43,13 @@ export default function ImageSection({ setUploadFiles, initialImage }) {
           />
           <UploadLabel htmlFor="animal-upload">
             <Upload size={20} />
-            {preview ? "Bild ersetzen" : "Bild hochladen"}
+            {preview
+              ? t("animals:imageSection.image_replace_btn")
+              : t("animals:imageSection.image_upload_btn")}
           </UploadLabel>
           {preview && (
             <DeleteButton onClick={clearFile} type="button">
-              <Trash2 size={16} /> Löschen
+              <Trash2 size={16} /> {t("animals:imageSection.image_delete")}
             </DeleteButton>
           )}
         </UploadZone>
@@ -55,17 +57,27 @@ export default function ImageSection({ setUploadFiles, initialImage }) {
         <PreviewGrid>
           {/* Vorschau 1: Das runde Icon (wie im Shop/Gehege-Info) */}
           <PreviewColumn>
-            <LabelText>Vorschau Icon</LabelText>
+            <LabelText>{t("animals:imageSection.preview_icon")}</LabelText>
             <IconCircle>
-              {preview ? <img src={preview} alt="Icon" /> : <Upload size={24} opacity={0.3} />}
+              {preview ? (
+                <img src={preview} alt="Icon" />
+              ) : (
+                <Upload size={24} opacity={0.3} />
+              )}
             </IconCircle>
           </PreviewColumn>
 
           {/* Vorschau 2: Das große Bild (Detailansicht) */}
           <PreviewColumn>
-            <LabelText>Vorschau Detailansicht</LabelText>
+            <LabelText>
+              {t("animals:imageSection.preview_detail")}
+            </LabelText>
             <BigPreview>
-              {preview ? <img src={preview} alt="Detail" /> : <Upload size={32} opacity={0.3} />}
+              {preview ? (
+                <img src={preview} alt="Detail" />
+              ) : (
+                <Upload size={32} opacity={0.3} />
+              )}
             </BigPreview>
           </PreviewColumn>
         </PreviewGrid>
@@ -74,7 +86,6 @@ export default function ImageSection({ setUploadFiles, initialImage }) {
   );
 }
 
-// --- STYLED COMPONENTS ---
 
 const MainWrapper = styled.div`
   display: flex;
@@ -152,7 +163,7 @@ const UploadLabel = styled.label`
   gap: 8px;
   padding: 10px 20px;
   background: #5d7a2a;
-  color: white;
+  color: var(--color-white);
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;

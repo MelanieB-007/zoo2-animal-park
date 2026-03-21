@@ -42,25 +42,25 @@ export default function EnclosureCapacitySection({ enclosureSizes = [], setFormD
 
   return (
     <InfoAccordion
-      title={t("animals:enclosure_capacity") || "🏠 Gehegekapazität"}
-      icon="/images/icons/enclosure_size.png"
+      title={t("animals:biomeCapacity")}
+      icon="/images/icons/gehegeVergroesserung.png"
       defaultOpen={false}
     >
       <StyledWrapper>
         <DynamicRowInput
-          label={t("animals:capacity_table_label") || "Anzahl Tiere vs. Gehegeplatz"}
+          label={t("animals:capacityTableLabel")}
           rows={enclosureSizes}
           columns={[
             {
               key: "animalCount",
-              label: t("animals:animal_count") || "Anzahl Tiere",
+              label: t("animals:animalCount"),
               type: "number",
               $flex: 1,
               placeholder: "1"
             },
             {
               key: "size",
-              label: t("animals:required_size") || "Benötigte Fläche",
+              label: t("animals:requiredSize"),
               type: "number",
               $flex: 1,
               placeholder: "z.B. 10"

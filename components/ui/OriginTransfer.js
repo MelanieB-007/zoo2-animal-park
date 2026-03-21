@@ -1,13 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { ChevronRight, ChevronLeft } from "lucide-react";
+import { useTranslation } from "next-i18next";
 
 export default function OriginTransfer({ available, selected, onMoveRight, onMoveLeft }) {
+  const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
+
   return (
     <TransferContainer>
       {/* Linke Seite: Verfügbar */}
       <Column>
-        <ColumnTitle>Verfügbar</ColumnTitle>
+        <ColumnTitle>{t("common:available")}</ColumnTitle>
         <List>
           {available.length > 0 ? (
             available.map((item) => (
@@ -17,14 +20,14 @@ export default function OriginTransfer({ available, selected, onMoveRight, onMov
               </Item>
             ))
           ) : (
-            <EmptyNote>Keine weiteren Quellen</EmptyNote>
+            <EmptyNote>{t("common:notAvailable")}</EmptyNote>
           )}
         </List>
       </Column>
 
       {/* Rechte Seite: Ausgewählt */}
       <Column $highlight>
-        <ColumnTitle>Ausgewählt</ColumnTitle>
+        <ColumnTitle>{t("common:chosen")}</ColumnTitle>
         <List>
           {selected.length > 0 ? (
             selected.map((item) => (
@@ -34,7 +37,7 @@ export default function OriginTransfer({ available, selected, onMoveRight, onMov
               </Item>
             ))
           ) : (
-            <EmptyNote>Bitte wählen...</EmptyNote>
+            <EmptyNote>{t("common:pleaseChoose")}</EmptyNote>
           )}
         </List>
       </Column>

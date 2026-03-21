@@ -56,13 +56,13 @@ export default function TranslationNameSection({ translations = [], setFormData 
 
   return (
     <InfoAccordion
-      title={t("animals:other_languages") || "Weitere Sprachen"}
-      icon="/images/icons/languages.png"
+      title={t("animals:translationNameSection.otherLanguages") || "Weitere Sprachen"}
+      icon="/images/icons/globus.png"
       defaultOpen={false}
     >
       <StyledDynamicWrapper>
         <DynamicRowInput
-          label={t("common:names_intl") || "Namen in anderen Sprachen"}
+          label={t("common:namesIntl") || "Namen in anderen Sprachen"}
           rows={translations}
           columns={[
             {

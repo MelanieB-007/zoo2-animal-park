@@ -38,10 +38,13 @@
   },
   "payment": {
     "diamonds": "Diamanten,",
-    "zoodollar": "Zoodollar"
+    "zoodollar": "Zoodollar",
+    "price": "Preis",
+    "sellPrice": "Verkaufspreis"
   },
   "release": "Release",
   "enclosure": "Gehege",
+  "enclosureTyp": "Gehegetyp",
 
   "scroll_to_top": "Nach oben",
   "actions": "Aktionen",
@@ -50,5 +53,13 @@
   "description": "Beschreibung",
   "costs": "Kosten",
   "time": "Zeit",
-  "action": "Aktion"
+  "action": "Aktion",
+  "namesIntl": "Namen in anderen Sprachen",
+  "language": "Sprache",
+  "allLanguages": "Alle Sprachen hinzugefügt",
+  "addRow": "+ Zeile hinzufügen",
+  "available": "Verfügbar",
+  "notAvailable": "Keine weiteren Quellen",
+  "chosen": "Ausgewählt",
+  "pleaseChoose" : "Bitte Wählen ..."
 }

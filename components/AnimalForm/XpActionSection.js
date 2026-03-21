@@ -23,15 +23,15 @@ export default function XpActionSection({ formData, onChange }) {
 
   // Definition der festen Aktionen
   const actions = [
-    { key: "feed", label: t("animals:actions.feed") || "Füttern", icon: "/images/icons/feed.png" },
-    { key: "play", label: t("animals:actions.play") || "Spielen", icon: "/images/icons/play.png" },
-    { key: "clean", label: t("animals:actions.clean") || "Putzen", icon: "/images/icons/clean.png" },
+    { key: "feed", label: t("animals:actions.feed"), icon: "/images/icons/feed.png" },
+    { key: "play", label: t("animals:actions.play") , icon: "/images/icons/play.png" },
+    { key: "clean", label: t("animals:actions.clean"), icon: "/images/icons/clean.png" },
   ];
 
   return (
     <InfoAccordion
-      title={t("animals:actions_xp") || "Aktionen & EP"}
-      icon="/images/icons/xp_star.png"
+      title={t("animals:xpSection.actionsXp") || "Aktionen & EP"}
+      icon="/images/icons/star.png"
       defaultOpen={false}
     >
       <ActionGrid>
@@ -45,7 +45,7 @@ export default function XpActionSection({ formData, onChange }) {
             <InputsContainer>
               {/* EP Feld */}
               <Wrapper>
-                <label htmlFor={`${action.key}_xp`}>EP</label>
+                <label htmlFor={`${action.key}_xp`}>XP</label>
                 <InputGroup icon="/images/icons/star.png">
                   <FormInput
                     id={`${action.key}_xp`}
@@ -61,12 +61,14 @@ export default function XpActionSection({ formData, onChange }) {
 
               {/* Zeit Feld */}
               <Wrapper>
-                <label htmlFor={`${action.key}_time`}>{t("common:time")}</label>
+                <label htmlFor={`${action.key}_time`}>
+                  {t("common:time")}
+                </label>
                 <InputGroup unit="h">
                   <FormInput
                     id={`${action.key}_time`}
                     type="number"
-                    name={`${action.key}_time`} // z.B. feed_time
+                    name={`${action.key}_time`}
                     value={formData[`${action.key}_time`] || ""}
                     onChange={(e) => handleActionChange(action.key, "duration", e.target.value)}
                     $width="120px"

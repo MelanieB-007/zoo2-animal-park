@@ -17,14 +17,14 @@ export default function EnclosureTypeSection({ formData, onChange }) {
 
   return (
     <InfoAccordion
-      title={t("animals:enclosure_toy_title") || "Lebensraum & Unterhaltung"}
-      icon="/images/icons/habitat.png"
+      title={t("common:enclosure")}
+      icon="/images/gehege/gras/Gehege.webp"
       defaultOpen={false}
     >
       <FlexContainer>
         {/* Gehegetyp */}
         <Wrapper>
-          <label htmlFor="enclosureType">{t("animals:enclosure_type") || "Gehegetyp"}</label>
+          <label htmlFor="enclosureType">{t("common:enclosureType")}</label>
           <FormSelect
             id="enclosureType"
             name="enclosureType"
@@ -37,15 +37,15 @@ export default function EnclosureTypeSection({ formData, onChange }) {
 
         {/* Spielzeug */}
         <Wrapper>
-          <label htmlFor="toy">{t("animals:toy") || "Spielzeug"}</label>
-          <InputGroup icon="🎾">
+          <label htmlFor="toy">{t("animals:toy")}</label>
+          <InputGroup icon="">
             <FormInput
               id="toy"
               name="toy"
               type="text"
               value={formData.toy}
               onChange={onChange}
-              placeholder={t("animals:toy_placeholder") || "z.B. Gummiball"}
+              placeholder={t("animals:toyPlaceholder")}
               $width="100%"
             />
           </InputGroup>

@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
 import TranslationNameSection from "./TranslationNameSection";
-import PageHeader from "../page-structure/PageHeader";
-
 import BreedingSection from "./BreedingSection";
 import PriceSection from "./PriceSection";
 import BasicInfoSection from "./BasicInfoSection";
@@ -152,7 +150,7 @@ export default function AnimalForm({ initialData }) {
           initialData={formData.origins}
           setFormData={setFormData}
         />
-        <SubmitButton type="submit">Tier im System speichern</SubmitButton>
+        <SubmitButton type="submit">{t("animals:form.saveAnimal")}</SubmitButton>
       </FooterSection>
     </form>
   );

@@ -1,11 +1,22 @@
 import styled from "styled-components";
+import NextImage from "next/image";
+import React from "react";
 
 export default function InputGroup({ children, unit, icon }) {
   return (
     <GroupWrapper>
       {children}
       {unit && <Unit>{unit}</Unit>}
-      {icon && <IconWrapper>{icon}</IconWrapper>}
+      {icon && <IconWrapper>
+          <NextImage
+            src={icon}
+            alt=""
+            width={25}
+            height={16}
+            style={{ objectFit: 'contain' }}
+          />
+
+      </IconWrapper>}
     </GroupWrapper>
   );
 }

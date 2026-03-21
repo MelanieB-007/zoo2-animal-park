@@ -1,83 +1,100 @@
 import React from "react";
+import useSWR from "swr";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
-import useSWR from "swr";
 
+import DynamicRowInput from "../ui/DynamicRowInput";
 import InfoAccordion from "../page-structure/Elements/InfoAccordion";
-import FormTextarea from "../ui/FormTextarea";
-
 
 export default function TranslationDescriptionSection({ translations = [], setFormData }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
   const { data: dbLanguages } = useSWR('/api/languages');
 
-  // Hilfsfunktion, um den vollen Namen der Sprache zu finden (z.B. "en" -> "Englisch")
-  const getLanguageName = (code) => {
-    if (!dbLanguages) return code.toUpperCase();
-    const lang = dbLanguages.find((l) => l.code === code);
-    return lang ? lang.name : code.toUpperCase();
+  // Wie bei den Namen filtern wir Deutsch aus (da DE meist in der Hauptsektion steht)
+  const languageOptions = Array.isArray(dbLanguages)
+    ? dbLanguages
+      .filter(lang => lang.code !== 'de')
+      .map(lang => ({ value: lang.code, label: lang.name }))
+    : [];
+
+  const allLanguagesUsed = languageOptions.length > 0 &&
+    translations.length >= languageOptions.length;
+
+  // WICHTIG: Die onAdd Funktion muss identisch zur Name-Sektion sein,
+  // damit das Objekt im Array alle nötigen Keys (name & description) hat.
+  const onAdd = () => {
+    const usedCodes = translations.map(t => t.spracheCode);
+    const nextAvailable = languageOptions.find(opt => !usedCodes.includes(opt.value));
+
+    if (nextAvailable) {
+      setFormData(prev => ({
+        ...prev,
+        translations: [
+          ...prev.translations,
+          {
+            id: Date.now(),
+            spracheCode: nextAvailable.value,
+            name: "", // Initialwert für Namen
+            description: "" // Initialwert für Beschreibung
+          }
+        ]
+      }));
+    }
   };
 
-  const handleDescChange = (id, value) => {
-    setFormData((prev) => ({
+  const onRemove = (id) => {
+    setFormData(prev => ({
       ...prev,
-      translations: prev.translations.map((tr) =>
-        tr.id === id ? { ...tr, description: value } : tr
-      ),
+      translations: prev.translations.filter(t => t.id !== id)
     }));
   };
 
-  // Wir rendern die Sektion nur, wenn überhaupt Sprachen hinzugefügt wurden
-  if (translations.length === 0) return null;
+  const onChange = (id, field, val) => {
+    setFormData(prev => ({
+      ...prev,
+      translations: prev.translations.map(t => t.id === id ? { ...t, [field]: val } : t)
+    }));
+  };
 
   return (
     <InfoAccordion
-      title={t("animals:descriptions_intl") || "Beschreibungen (International)"}
-      icon="/images/icons/description_intl.png"
-      defaultOpen={true}
+      title={t("animals:translationDescriptionSection.descriptionIntl")}
+      icon="/images/icons/globus.png"
+      defaultOpen={false}
     >
-      <ContentWrapper>
-        {translations.map((tr) => (
-          <Wrapper key={tr.id}>
-            <label htmlFor={`desc-${tr.id}`}>
-              {t("common:description")} ({getLanguageName(tr.spracheCode)})
-            </label>
-            <FormTextarea
-              id={`desc-${tr.id}`}
-              value={tr.description || ""}
-              onChange={(e) => handleDescChange(tr.id, e.target.value)}
-              placeholder={`${t("common:description")}...`}
-              $minHeight="120px"
-            />
-          </Wrapper>
-        ))}
-      </ContentWrapper>
+      <StyledDynamicWrapper>
+        <DynamicRowInput
+          label={t("animals:translationDescriptionSection.descriptionIntl")}
+          rows={translations}
+          columns={[
+            {
+              key: "spracheCode",
+              label: t("common:language") || "Sprache",
+              type: "select",
+              $flex: 0.6,
+              options: languageOptions
+            },
+            {
+              key: "description",
+              label: t("common:description") || "Beschreibung",
+              type: "textarea", // Hier nutzen wir die Textarea für längere Texte
+              $flex: 1.4,
+              placeholder: t("common:descriptionPlaceholder") || "Beschreibung eingeben..."
+            }
+          ]}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onChange={onChange}
+          disabledAdd={allLanguagesUsed}
+        />
+      </StyledDynamicWrapper>
     </InfoAccordion>
   );
 }
 
-const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 10px 0;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #5d7a2a;
-    display: flex;
-    align-items: center;
-    &::before {
-      content: "•";
-      margin-right: 6px;
-      color: #b5ce7e;
-    }
+const StyledDynamicWrapper = styled.div`
+  padding-top: 5px;
+  h4 {
+    display: none;
   }
 `;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import FormInput from "./FormInput";
 import FormSelect from "./FormSelect";
 import FormTextarea from "./FormTextarea";
+import { useTranslation } from "next-i18next";
 
 export default function DynamicRowInput({
   label,
@@ -12,6 +13,8 @@ export default function DynamicRowInput({
   onChange,
   columns,
 }) {
+  const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
+
   return (
     <Container>
       {label && <Label>{label}</Label>}
@@ -70,7 +73,7 @@ export default function DynamicRowInput({
       ))}
 
       <AddBtn onClick={onAdd} type="button" disabled={disabledAdd}>
-        {disabledAdd ? "Alle Sprachen hinzugefügt" : "+ Zeile hinzufügen"}
+        {disabledAdd ? t("common:allLanguages") : t("common:addRow")}
       </AddBtn>
     </Container>
   );
