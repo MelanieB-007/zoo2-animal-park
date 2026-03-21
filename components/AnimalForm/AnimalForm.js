@@ -83,14 +83,13 @@ export default function AnimalForm({ initialData }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <PageHeader text={t("animals:form.createAnimal")} />
 
       <FormGrid>
         {/* --- LINKE SPALTE: Texte & Infos --- */}
         <Column>
           <ImageSection
-            setUploadFiles={setUploadFiles} // Wir übergeben den Setter
-            initialIcon={formData.iconPath} // Falls wir ein Tier bearbeiten
+            setUploadFiles={setUploadFiles}
+            initialIcon={formData.iconPath}
             initialImage={formData.imagePath}
           />
 
@@ -208,7 +207,7 @@ const SubmitButton = styled.button`
   background: linear-gradient(180deg, #88a04d 0%, #5d7a2a 100%);
   border: none;
   border-radius: 12px;
-  border-bottom: 4px solid #3e521c; /* Tiefe-Effekt */
+  border-bottom: 4px solid #3e521c; 
   
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -223,7 +222,7 @@ const SubmitButton = styled.button`
   &:active {
     transform: translateY(2px);
     border-bottom-width: 0;
-    margin-bottom: 4px; /* Ausgleich für die fehlende Border */
+    margin-bottom: 4px; 
   }
 
   &:disabled {

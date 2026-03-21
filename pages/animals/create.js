@@ -5,6 +5,7 @@ import styled from "styled-components";
 import PageWrapper from "../../components/page-structure/PageWrapper";
 import ContentWrapper from "../../components/page-structure/ContentWrapper";
 import AnimalForm from "../../components/AnimalForm/AnimalForm";
+import PageHeader from "../../components/page-structure/PageHeader";
 
 export default function AddAnimalPage() {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
@@ -12,9 +13,7 @@ export default function AddAnimalPage() {
   return (
     <PageWrapper>
       <ContentWrapper>
-        <Headline>
-          {t("animals:form.createAnimal")}
-        </Headline>
+        <PageHeader text={t("animals:form.createAnimal")} />
 
         <AnimalForm />
       </ContentWrapper>
@@ -29,8 +28,3 @@ export async function getStaticProps({ locale }) {
     },
   };
 }
-
-const Headline = styled.h2`
-  color: #5a7024; 
-  margin-bottom: 20px;
-`;
