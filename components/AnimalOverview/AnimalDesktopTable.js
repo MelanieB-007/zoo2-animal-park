@@ -18,7 +18,6 @@ import Table from "../page-structure/Table/Table";
 import LinkedRow from "../page-structure/Table/LinkedRow";
 import NoResult from "../page-structure/Table/NoResult";
 import AnimalThumbnail from "../icons/AnimalThumbnail";
-import { getTranslatedName } from "../ui/TranslationHelper";
 
 export default function AnimalDesktopTable({
   animals,
@@ -108,7 +107,6 @@ export default function AnimalDesktopTable({
       <tbody>
         {animals.length > 0 ? (
           animals.map((animal) => {
-            console.log("animal", animal);
             return (
               <LinkedRow key={animal.id} path={`/animals/${animal.id}`}>
                 <td>

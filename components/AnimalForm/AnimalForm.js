@@ -83,7 +83,7 @@ export default function AnimalForm({ initialData }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <PageHeader text={t("animal:createAnimal")} />
+      <PageHeader text={t("animals:form.createAnimal")} />
 
       <FormGrid>
         {/* --- LINKE SPALTE: Texte & Infos --- */}
