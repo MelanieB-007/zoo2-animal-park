@@ -35,7 +35,7 @@ export default function AccordionCard({ translationsAnimals, animal }) {
         title={t("animals:breeding.breeding")}
         icon="/images/icons/breeding.png"
       >
-          <DataRow label={t("nimals:table.stall")}>
+          <DataRow label={t("animals:table.stall")}>
             <StallLevelBadge
               level={animal.stalllevel}
               habitat={animal.gehege?.name}
@@ -85,7 +85,6 @@ export default function AccordionCard({ translationsAnimals, animal }) {
                         height={20}
                       />
                     )}
-                    <span>{t(`animals:actions.${actionInfo?.key}`)}</span>
                   </ActionWrapper>
                 </td>
                 <td style={{ textAlign: 'center' }}>

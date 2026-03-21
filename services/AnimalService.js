@@ -13,22 +13,33 @@ export async function getAllAnimals(locale = 'de') {
         where: { spracheCode: locale },
       },
       gehege: true,
+      preisart: true,
+      xp: true,
     },
     orderBy: { id: 'asc' }
   });
 
   return animals.map(animal => {
     const translation = animal.texte?.[0] || {};
-
-    const flatAnimal = {
-      ...animal,
+    return {
+      id: animal.id,
+      release: animal.release,
+      preis: animal.preis,
+      preisartId: animal.preisartId,
+      // WICHTIG: Die Relation muss mit ins Return-Objekt!
+      preisart: animal.preisart,
+      verkaufswert: animal.verkaufswert,
+      popularitaet: animal.popularitaet,
+      auswildern: animal.auswildern,
+      bild: animal.bild || "/images/tiere/placeholder.png", // Fallback für das Tierbild
+      gehegeId: animal.gehegeId,
+      // WICHTIG: Das Gehege-Objekt für das GehegeBadge
+      gehege: animal.gehege || { name: "Unbekannt" },
+      stalllevel: animal.stalllevel || 1,
+      xp: animal.xp || [],
       name: translation.name || "Unbekannt",
       beschreibung: translation.beschreibung || null,
     };
-
-    delete flatAnimal.texte;
-
-    return flatAnimal;
   });
 }
 
@@ -36,28 +47,73 @@ export async function getAllAnimals(locale = 'de') {
 export async function createAnimal(data) {
   return prisma.tiere.create({
     data: {
-      release: data.releaseDate,
+      release: data.releaseDate || null,
       preis: parseInt(data.price) || 0,
-      preisartId: data.priceType ? parseInt(data.priceType) : null,
-      popularitaet: parseInt(data.popularity) || 0,
+      // Mapping deiner Preisart (Check, ob Diamonds 1 oder 2 ist)
+      preisartId: data.priceType === "Diamanten" ? 2 : 1,
       verkaufswert: parseInt(data.sellValue) || 0,
-      gehegeId: parseInt(data.gehegeId),
+      popularitaet: parseInt(data.popularity) || 0,
+      auswildern: parseInt(data.release) || 0,
+      gehegeId: parseInt(data.enclosureType) || 1,
+      stalllevel: parseInt(data.breedingLevel) || 1,
+      zuchtkosten: parseInt(data.breedingCosts) || 0,
+      zuchtdauer: parseInt(data.breedingDuration) || "0",
+      startprozent: parseInt(data.breedingChance) || 0,
 
-      // Relationen: Dynamische Sprachen
+      // Das Bild-Feld (falls es 'bild' in deiner DB heißt)
+      bild: data.imagePath || "placeholder.png",
+
+      // 1. TEXTE & BESCHREIBUNG
       texte: {
-        create: data.names.map(n => ({
-          spracheCode: n.languageId,
-          name: n.name,
-          beschreibung: data.description || ""
+        create: [
+          {
+            spracheCode: "de",
+            name: data.nameDe || "Unbenanntes Tier",
+            // Hier greifen wir auf die Beschreibung aus dem Formular zu
+            beschreibung: data.description || data.descriptionDe || ""
+          },
+          ...(data.translations || []).map(t => ({
+            spracheCode: t.spracheCode,
+            name: t.name || "Unbenannt",
+            beschreibung: t.description || ""
+          }))
+        ]
+      },
+
+      // 2. XP (Aktionen: Füttern, Spielen, Putzen)
+      // Wir mappen das 'actions' Objekt aus deinem Frontend in die XP-Tabelle
+      xp: {
+        create: Object.entries(data.actions || {}).map(([key, action]) => {
+          // Wir holen beide Werte aus dem action-Objekt
+          const h = parseInt(action.durationHours) || 0;
+          const m = parseInt(action.durationMinutes) || 0;
+
+          // Umrechnung in die Gesamtzahl der Minuten für das DB-Feld 'zeit'
+          const gesamtMinuten = (h * 60) + m;
+
+          return {
+            xpart: key,            // 'feed', 'play' oder 'clean'
+            wert: parseInt(action.xp) || 0,
+            zeit: gesamtMinuten    // Das berechnete Ergebnis
+          };
+        })
+      },
+
+      // 3. HERKUNFT (m:n Verknüpfung)
+      // Wir verbinden das Tier mit den IDs der gewählten Herkunftsorte
+      tierherkunft: {
+        create: (data.origins || []).map(id => ({
+          // Hier musst du prüfen, wie das Feld in der Tabelle 'tierherkunft' heißt.
+          // Meistens ist es 'herkunftId'
+          herkunftId: parseInt(id.id || id)
         }))
       },
 
-      // Relationen: Gehege-Kapazitäten (falls vorhanden)
       tier_gehege_kapazitaet: {
-        create: data.enclosureSizes?.map(size => ({
-          anzahl: parseInt(size.animalCount),
-          kapazitaet: parseInt(size.size)
-        })) || []
+        create: (data.enclosureSizes || []).map(size => ({
+          anzahlTiere: parseInt(size.animalCount) || 1,
+          felder: parseInt(size.size) || 1
+        }))
       }
     }
   });
@@ -116,7 +172,7 @@ export async function deleteAnimalFromDB(id) {
 }
 
 export async function getAllOrigins() {
-  return await prisma.origin.findMany({
+  return await prisma.herkunft.findMany({
     orderBy: {
       name: 'asc'
     }

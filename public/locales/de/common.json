@@ -44,11 +44,12 @@
   },
   "release": "Release",
   "enclosure": "Gehege",
-  "enclosureTyp": "Gehegetyp",
+  "enclosureType": "Gehegetyp",
 
   "scroll_to_top": "Nach oben",
   "actions": "Aktionen",
   "loading": "Wird geladen...",
+  "saving": "Wird gespeichert...",
   "popularity": "Popularität",
   "description": "Beschreibung",
   "costs": "Kosten",
@@ -62,5 +63,6 @@
   "notAvailable": "Keine weiteren Quellen",
   "chosen": "Ausgewählt",
   "pleaseChoose" : "Bitte Wählen ...",
-  "descriptionPlaceholder": "Beschreibung eingeben..."
+  "descriptionPlaceholder": "Beschreibung eingeben...",
+  "noDescriptionAvailable": "Keine Beschreibung vorhanden"
 }

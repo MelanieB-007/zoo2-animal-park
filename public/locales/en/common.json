@@ -44,10 +44,11 @@
   },
   "release": "Release",
   "enclosure": "Enclosure",
-  "enclosureTyp": "Enclosure Type",
+  "enclosureType": "Enclosure Type",
   "scroll_to_top": "Scroll to top",
   "actions": "Actions",
   "loading": "Loading...",
+  "saving": "Saving...",
   "popularity": "Popularity",
   "description": "Description",
   "costs": "Costs",
@@ -61,5 +62,6 @@
   "notAvailable": "No further sources",
   "chosen": "Selected",
   "pleaseChoose": "Please choose...",
-  "descriptionPlaceholder": "Insert description..."
+  "descriptionPlaceholder": "Insert description...",
+  "noDescriptionAvailable": "No description available"
 }

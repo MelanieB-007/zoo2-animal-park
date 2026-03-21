@@ -19,7 +19,7 @@ export default function AnimalDetailContent({ animal }) {
         <PrimaryColumn>
           <Textarea
             label={t("common:description")}
-            text={animal.beschreibung ?? t("common:no_description_available")}
+            text={animal.beschreibung ?? t("common:noDescriptionAvailable")}
           />
 
           <VariantArea animal={animal} />

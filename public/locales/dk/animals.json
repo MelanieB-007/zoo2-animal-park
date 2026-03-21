@@ -1,106 +1,106 @@
 {
-  "overview_title": "Overview of all animals",
-  "search_placeholder": "Search for animals...",
-  "results_unit": "Animals found",
-  "unknown_animal": "Unknown animal",
+  "overview_title": "Oversigt over alle dyr",
+  "search_placeholder": "Søg efter dyr...",
+  "results_unit": "dyr fundet",
+  "unknown_animal": "Ukendt dyr",
   "table": {
-    "species": "Species",
-    "enclosure": "Enclosure",
-    "price": "Price",
-    "stall": "Stall",
+    "species": "Art",
+    "enclosure": "Indhegning",
+    "price": "Pris",
+    "stall": "Stald",
     "xp": "XP",
-    "sell": "Sell",
-    "release": "Release",
-    "actions": "Actions"
+    "sell": "Salg",
+    "release": "Sæt fri",
+    "actions": "Handlinger"
   },
   "tooltips": {
-    "level": "Required stall level",
-    "xp": "Total XP yield",
-    "sell": "Selling price in Zoodollars",
-    "release": "XP when releasing",
-    "edit": "Edit animal",
-    "delete": "Delete animal"
+    "level": "Påkrævet stald-niveau",
+    "xp": "Samlet XP udbytte",
+    "sell": "Salgspris i Zoodollar",
+    "release": "XP ved udsætning",
+    "edit": "Rediger dyr",
+    "delete": "Slet dyr"
   },
   "filter": {
-    "all_enclosures": "All enclosures",
-    "all_levels": "All levels",
-    "level_label": "Level"
+    "all_enclosures": "Alle indhegninger",
+    "all_levels": "Alle niveauer",
+    "level_label": "Niveau"
   },
   "empty": {
-    "title": "Oh no, no animals here!",
-    "uppySad": "Uppy is sad",
-    "message": "Uppy searched everywhere but couldn't find anything.",
-    "button": "Restart search"
+    "title": "Åh nej, ingen dyr her!",
+    "uppySad": "Uppy er ked af det",
+    "message": "Uppy har søgt overalt, men kunne ikke finde noget.",
+    "button": "Start søgning forfra"
   },
   "breeding": {
-    "xpAndActions": "XP and Actions",
-    "breeding": "Breeding",
-    "breedingChance": "Breeding chance"
+    "xpAndActions": "XP og handlinger",
+    "breeding": "Avl",
+    "breedingChance": "Avlshance"
   },
   "actions": {
-    "feed": "Feed",
-    "play": "Play",
-    "clean": "Clean"
+    "feed": "Fodre",
+    "play": "Lege",
+    "clean": "Rengøre"
   },
   "form": {
-    "animalCount": "Number of animals",
-    "enclosureSize": "Required enclosure size",
-    "createAnimal": "Create new animal",
-    "saveAnimal": "Save animal"
+    "animalCount": "Antal dyr",
+    "enclosureSize": "Påkrævet indhegningsstørrelse",
+    "createAnimal": "Opret nyt dyr",
+    "saveAnimal": "Gem dyr"
   },
   "imageSection": {
-    "image_title": "Animal Photo & Icon",
-    "image_helper": "Upload an image to be used both as a shop icon and in the detail view.",
-    "image_upload_btn": "Select image",
-    "image_replace_btn": "Change image",
-    "image_delete": "Delete",
-    "preview_icon": "Icon Preview",
-    "preview_detail": "Detail View Preview"
+    "image_title": "Dyre-foto & ikon",
+    "image_helper": "Upload et billede, der bruges både som ikon i shoppen og i detaljevisningen.",
+    "image_upload_btn": "Vælg billede",
+    "image_replace_btn": "Skift billede",
+    "image_delete": "Slet",
+    "preview_icon": "Forhåndsvisning ikon",
+    "preview_detail": "Forhåndsvisning detaljer"
   },
   "basicInfoSection": {
-    "basicInfo": "Basic Information",
+    "basicInfo": "Grundlæggende information",
     "fields": {
-      "name" : "Name",
-      "releaseDate" : "Release"
+      "name" : "Navn",
+      "releaseDate" : "Udgivelse"
     }
   },
   "translationNameSection": {
-    "otherLanguages": "Other Languages",
+    "otherLanguages": "Andre sprog",
     "fields": {
-      "name" : "Name",
-      "releaseDate" : "Release"
+      "name" : "Navn",
+      "releaseDate" : "Udgivelse"
     }
   },
   "translationDescriptionSection": {
-    "descriptionIntl":  "Descriptions (International)",
+    "descriptionIntl":  "Beskrivelser (International)",
     "fields": {
-      "name" : "Name",
-      "releaseDate" : "Release"
+      "name" : "Navn",
+      "releaseDate" : "Udgivelse"
     }
   },
   "descriptionSection": {
-    "descriptionPlaceholder": "Describe the animal..."
+    "descriptionPlaceholder": "Beskriv dyret..."
   },
   "priceSection": {
-    "pricesAndValues": "Prices and Values"
+    "pricesAndValues": "Priser og værdier"
   },
   "xpSection": {
-    "actionsXp": "Actions & XP"
+    "actionsXp": "Handlinger & XP"
   },
   "originSection": {
-    "originTitle": "Origin",
-    "originDescription": "Where to get this animal?"
+    "originTitle": "Oprindelse",
+    "originDescription": "Hvor får man dette dyr fra?"
   },
-  "tablePrice": "Purchase Price",
-  "tableSell": "Selling Price",
-  "tableRelease": "Release",
-  "biomesCapacity": "Enclosure Capacity",
-  "animalCount": "Number of Animals",
-  "biomeSize": "Enclosure Size",
-  "colorVariants": "Color Variants",
-  "toy": "Toy",
-  "toyPlaceholder": "Toy",
-  "biomeCapacity": "Enclosure Capacity",
-  "capacityTableLabel": "Number of Animals vs. Enclosure Space",
-  "requiredSize": "Required Area"
+  "tablePrice": "Købspris",
+  "tableSell": "Salgspris",
+  "tableRelease": "Sæt fri",
+  "biomesCapacity": "Indhegningskapacitet",
+  "animalCount": "Antal dyr",
+  "biomeSize": "Indhegningsstørrelse",
+  "colorVariants": "Farvevarianter",
+  "toy": "Legetøj",
+  "toyPlaceholder": "Legetøj",
+  "biomeCapacity": "Indhegningskapacitet",
+  "capacityTableLabel": "Antal dyr vs. plads i indhegningen",
+  "requiredSize": "Påkrævet areal"
 }

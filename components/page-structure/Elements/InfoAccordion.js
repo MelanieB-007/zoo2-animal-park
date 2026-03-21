@@ -7,7 +7,7 @@ export default function InfoAccordion({ title, icon, children, defaultOpen = fal
 
   return (
     <AccordionWrapper>
-      <AccordionHeader onClick={() => setIsOpen(!isOpen)}>
+      <AccordionHeader type="button" onClick={() => setIsOpen(!isOpen)}>
         <HeaderIcon>
           <NextImage
           src={icon}

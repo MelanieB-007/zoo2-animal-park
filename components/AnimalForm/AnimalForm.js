@@ -18,6 +18,8 @@ import ImageSection from "./ImageSection";
 export default function AnimalForm({ initialData }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
 // ---  HANDLER FÜR EINFACHE FELDER ---
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,25 +28,49 @@ export default function AnimalForm({ initialData }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return; // Verhindert Doppel-Klicks
 
-    // Wir bauen das "texte"-Array für die Datenbank zusammen
-    const allTexts = [
-      { spracheCode: 'de', name: formData.nameDe },
-      ...(formData.translations || []).map(t => ({
-        spracheCode: t.spracheCode,
-        name: t.name
-      }))
-    ];
+    if (!formData.enclosureType || formData.enclosureType === "") {
+      alert("Bitte wähle ein Gehege aus!");
+      return;
+    }
 
+    setIsSubmitting(true);
+
+    // Wir bereiten den Payload vor (Mapping zwischen Frontend & Backend Service)
     const payload = {
       ...formData,
-      allTexts, // Das schicken wir an die API
-      selectedOrigins // Herkunft aus dem Transfer-Tool
+      enclosureType: parseInt(formData.enclosureType),
+      selectedOrigins: formData.origins || []
     };
 
-    console.log("Sende an API:", payload);
-    // Hier dann: const res = await fetch('/api/animals', { method: 'POST', ... })
+    try {
+      const response = await fetch("/api/animals", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Erfolg! Das Tier wurde im Zoo-Manager gespeichert.");
+        // Optional: Formular zurücksetzen oder zur Liste springen
+        // window.location.href = "/animals";
+      } else {
+        // Fehlermeldung vom Server anzeigen
+        alert(`Fehler beim Speichern: ${result.error || "Unbekannter Fehler"}`);
+      }
+    } catch (error) {
+      console.error("Fetch Error:", error);
+      alert("Netzwerkfehler: Konnte keine Verbindung zur API herstellen.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
 
   const [uploadFiles, setUploadFiles] = useState({
     icon: null,
@@ -54,7 +80,7 @@ export default function AnimalForm({ initialData }) {
   // --- hält alle Felder aus deinen 3 Screenshots zusammen
   const [formData, setFormData] = useState(
     initialData || {
-      nameDe: "",
+      name: "",
       translations: [],
       releaseDate: "",
       description: "",
@@ -62,7 +88,7 @@ export default function AnimalForm({ initialData }) {
       priceType: "Diamanten", // oder 'Zoodollar'
       sellValue: 0,
       popularity: 0,
-      wildlifeXp: 0,
+      release: 0,
       enclosureType: "",
       toy: "",
       enclosureSizes: [{ animalCount: 1, size: 10 }],
@@ -71,9 +97,9 @@ export default function AnimalForm({ initialData }) {
       breedingDuration: "",
       breedingChance: 0,
       actions: {
-        feed: { duration: "", xp: 0 },
-        play: { duration: "", xp: 0 },
-        clean: { duration: "", xp: 0 },
+        feed: { durationHours: "", durationMinutes: "", xp: 0 },
+        play: { durationHours: "", durationMinutes: "", xp: 0 },
+        clean: { durationHours: "", durationMinutes: "", xp: 0 },
       },
     }
   );
@@ -150,7 +176,11 @@ export default function AnimalForm({ initialData }) {
           initialData={formData.origins}
           setFormData={setFormData}
         />
-        <SubmitButton type="submit">{t("animals:form.saveAnimal")}</SubmitButton>
+        <SubmitButton type="submit" disabled={isSubmitting}>
+          {isSubmitting ?
+            t("common:saving") :
+            t("animals:form.saveAnimal")}
+        </SubmitButton>
       </FooterSection>
     </form>
   );

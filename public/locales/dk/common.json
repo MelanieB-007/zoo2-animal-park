@@ -1,65 +1,68 @@
 {
-  "zoo_title": "CLUB OF GREAT ANIMALS",
+  "zoo_title": "KLUBBEN FOR DE FANTASTISKE DYR",
   "navigation": {
-    "home": "Home",
+    "home": "Hjem",
     "zoo": "Zoo",
-    "zoo_areas": "Zoo Areas",
-    "zoo_enclosures": "Zoo Enclosures",
-    "animals": "Animals",
-    "animal_overview": "Animal Overview",
-    "animal_create": "Create Animal",
-    "animal_variants": "Color Variants",
-    "club": "Club",
-    "club_members": "Members",
-    "club_contests": "Contests"
+    "zoo_areas": "Zoo områder",
+    "zoo_enclosures": "Zoo indhegninger",
+    "animals": "Dyr",
+    "animal_overview": "Dyreoversigt",
+    "animal_create": "Opret dyr",
+    "animal_variants": "Farvevarianter",
+    "club": "Klub",
+    "club_members": "Medlemmer",
+    "club_contests": "Konkurrencer"
   },
   "login": {
-    "open_menu": "Open Menu 🐾",
-    "logout": "Logout 👋",
-    "login_button": "Login",
-    "welcome": "Hello"
+    "open_menu": "Åbn menu 🐾",
+    "logout": "Log ud 👋",
+    "login_button": "Log ind",
+    "welcome": "Hej"
   },
   "roles": {
-    "Direktor": "Director",
+    "Direktor": "Direktør",
     "Guide": "Guide",
-    "Besucher": "Visitor"
+    "Besucher": "Besøgende"
   },
   "footer": {
-    "title": "Club of Great Animals",
-    "imprint": "Imprint"
+    "title": "Klubben for de fantastiske dyr",
+    "imprint": "Impressum"
   },
   "results": {
-    "show": "Showing",
-    "of": "of"
+    "show": "Viser",
+    "of": "af"
   },
   "pagination": {
-    "prev": "Previous",
-    "next": "Next"
+    "prev": "Forrige",
+    "next": "Næste"
   },
   "payment": {
-    "diamonds": "Diamonds",
-    "zoodollar": "Zoodollars",
-    "price": "Price",
-    "sellPrice": "Selling Price"
+    "diamonds": "Diamanter",
+    "zoodollar": "Zoodollar",
+    "price": "Pris",
+    "sellPrice": "Salgspris"
   },
-  "release": "Release",
-  "enclosure": "Enclosure",
-  "enclosureTyp": "Enclosure Type",
-  "scroll_to_top": "Scroll to top",
-  "actions": "Actions",
-  "loading": "Loading...",
-  "popularity": "Popularity",
-  "description": "Description",
-  "costs": "Costs",
-  "time": "Time",
-  "action": "Action",
-  "namesIntl": "Names in other languages",
-  "language": "Language",
-  "allLanguages": "All languages added",
-  "addRow": "+ Add row",
-  "available": "Available",
-  "notAvailable": "No further sources",
-  "chosen": "Selected",
-  "pleaseChoose": "Please choose...",
-  "descriptionPlaceholder": "Indtast beskrivelse..."
+  "release": "Udgivelse",
+  "enclosure": "Indhegning",
+  "enclosureType": "Indhegningstype",
+
+  "scroll_to_top": "Til toppen",
+  "actions": "Handlinger",
+  "loading": "Indlæser...",
+  "saving": "Gemmer...",
+  "popularity": "Popularitet",
+  "description": "Beskrivelse",
+  "costs": "Omkostninger",
+  "time": "Tid",
+  "action": "Handling",
+  "namesIntl": "Navne på andre sprog",
+  "language": "Sprog",
+  "allLanguages": "Alle sprog er tilføjet",
+  "addRow": "+ Tilføj række",
+  "available": "Tilgængelig",
+  "notAvailable": "Ingen yderligere kilder",
+  "chosen": "Valgt",
+  "pleaseChoose": "Vælg venligst ...",
+  "descriptionPlaceholder": "Indtast beskrivelse...",
+  "noDescriptionAvailable": "Ingen beskrivelse tilgængelig"
 }

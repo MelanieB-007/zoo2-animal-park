@@ -5,7 +5,7 @@ import InfoAccordion from "../page-structure/Elements/InfoAccordion";
 import InputGroup from "../ui/InputGroup";
 import FormInput from "../ui/FormInput";
 
-export default function XpActionSection({ formData, onChange }) {
+export default function XpActionSection({ formData, setFormData }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
 
   const handleActionChange = (actionKey, field, value) => {
@@ -15,13 +15,13 @@ export default function XpActionSection({ formData, onChange }) {
         ...prev.actions,
         [actionKey]: {
           ...prev.actions[actionKey],
-          [field]: value
+          // Wir speichern die Werte als Zahlen (oder leeren String für das Input-Handling)
+          [field]: value === "" ? "" : parseInt(value)
         }
       }
     }));
   };
 
-  // Definition der festen Aktionen
   const actions = [
     { key: "feed", label: t("animals:actions.feed"), icon: "/images/icons/feed.png" },
     { key: "play", label: t("animals:actions.play") , icon: "/images/icons/play.png" },
@@ -43,35 +43,43 @@ export default function XpActionSection({ formData, onChange }) {
             </ActionLabel>
 
             <InputsContainer>
-              {/* EP Feld */}
+              {/* XP Feld */}
               <Wrapper>
-                <label htmlFor={`${action.key}_xp`}>XP</label>
+                <label>XP</label>
                 <InputGroup icon="/images/icons/star.png">
                   <FormInput
-                    id={`${action.key}_xp`}
                     type="number"
-                    name={`${action.key}_xp`} // z.B. feed_xp
-                    value={formData[`${action.key}_xp`] || ""}
+                    value={formData.actions?.[action.key]?.xp ?? ""}
                     placeholder="0"
                     onChange={(e) => handleActionChange(action.key, "xp", e.target.value)}
-                    $width="80px"
+                    $width="70px"
                   />
                 </InputGroup>
               </Wrapper>
 
-              {/* Zeit Feld */}
+              {/* Stunden Feld */}
               <Wrapper>
-                <label htmlFor={`${action.key}_time`}>
-                  {t("common:time")}
-                </label>
+                <label>{t("common:hours") || "Std."}</label>
                 <InputGroup unit="h">
                   <FormInput
-                    id={`${action.key}_time`}
                     type="number"
-                    name={`${action.key}_time`}
-                    value={formData[`${action.key}_time`] || ""}
-                    onChange={(e) => handleActionChange(action.key, "duration", e.target.value)}
-                    $width="120px"
+                    value={formData.actions?.[action.key]?.durationHours ?? ""}
+                    onChange={(e) => handleActionChange(action.key, "durationHours", e.target.value)}
+                    $width="70px"
+                    placeholder="0"
+                  />
+                </InputGroup>
+              </Wrapper>
+
+              {/* Minuten Feld */}
+              <Wrapper>
+                <label>{t("common:minutes") || "Min."}</label>
+                <InputGroup unit="m">
+                  <FormInput
+                    type="number"
+                    value={formData.actions?.[action.key]?.durationMinutes ?? ""}
+                    onChange={(e) => handleActionChange(action.key, "durationMinutes", e.target.value)}
+                    $width="70px"
                     placeholder="0"
                   />
                 </InputGroup>
@@ -84,7 +92,7 @@ export default function XpActionSection({ formData, onChange }) {
   );
 }
 
-
+// Styled Components (nur InputsContainer leicht angepasst für 3 Spalten)
 const ActionGrid = styled.div`
   display: flex;
   flex-direction: column;
@@ -98,10 +106,7 @@ const ActionRow = styled.div`
   gap: 10px;
   padding-bottom: 15px;
   border-bottom: 1px solid #f0f4e8;
-
-  &:last-child {
-    border-bottom: none;
-  }
+  &:last-child { border-bottom: none; }
 `;
 
 const ActionLabel = styled.div`
@@ -111,25 +116,21 @@ const ActionLabel = styled.div`
   font-weight: bold;
   color: #5d7a2a;
   font-size: 0.95rem;
-
-  img {
-    object-fit: contain;
-  }
 `;
 
 const InputsContainer = styled.div`
   display: flex;
-  gap: 20px;
-  padding-left: 30px; /* Einrückung unter das Icon/Label */
+  flex-wrap: wrap; // Falls es auf kleinen Bildschirmen zu eng wird
+  gap: 15px;
+  padding-left: 30px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 6px;
-
+  gap: 4px;
   label {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: #88a04d;
   }

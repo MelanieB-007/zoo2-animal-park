@@ -12,7 +12,6 @@ import BoxWithHeadline from "../page-structure/Elements/BoxWithHeadline";
 import OriginBadgeList from "../page-structure/Elements/OriginBadgeList";
 import XPIcon from "../icons/XPIcon";
 import FormattedDate from "../ui/FormattedDate";
-import { getTranslatedName } from "../ui/TranslationHelper";
 
 
 export default function HeaderCard({ animal }) {

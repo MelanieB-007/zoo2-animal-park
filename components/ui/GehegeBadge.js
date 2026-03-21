@@ -17,7 +17,8 @@ export default function GehegeBadge({ gehege, showTooltip, size = 20 }) {
     <BadgeWrapper $type={safeType}>
       <NextImage
         src={`/images/gehege/icons/${safeType}.webp`}
-        alt={gehege?.name}
+        // Ein Fallback-String ("Gehege") verhindert die Fehlermeldung
+        alt={gehege?.name || t("common:enclosure") || "Gehege"}
         width={size}
         height={size}
       />

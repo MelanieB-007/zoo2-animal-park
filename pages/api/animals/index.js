@@ -1,4 +1,4 @@
-import { getAllAnimals, createAnimal } from "../../../services/AnimalService";
+import { getAllAnimals, createAnimal, getAnimalById } from "../../../services/AnimalService";
 
 export default async function handler(req, res) {
   const { lang } = req.query;
@@ -14,22 +14,24 @@ export default async function handler(req, res) {
     }
   }
 
-  // --- FALL 2: NEUES TIER SPEICHERN ---
-  if (req.method === 'POST') {
+  if (req.method === "POST") {
     try {
-      const formData = req.body;
+      // 1. Das Tier in der DB erstellen (Prisma standard return)
+      const rawNewAnimal = await createAnimal(req.body);
 
-      if (!formData || !formData.names) {
-        return res.status(400).json({ message: 'Ungültige Daten gesendet' });
-      }
+      // 2. WICHTIG: Das Tier erneut abrufen, aber inkl. aller Relationen & Mapping
+      // Wir nutzen 'de', da das Formular ja gerade auf Deutsch ausgefüllt wurde.
+      const completeAnimal = await getAnimalById(rawNewAnimal.id, 'de');
 
-      const newAnimal = await createAnimal(formData);
-      return res.status(201).json(newAnimal);
+      // 3. Das vollständige, flache Objekt an das Frontend zurückgeben
+      return res.status(201).json(completeAnimal);
     } catch (error) {
-      console.error("API Fehler bei POST tiere:", error);
-      return res.status(500).json({ message: 'Fehler beim Speichern in der Datenbank' });
+      console.error("API Error:", error);
+      return res.status(500).json({ error: error.message });
     }
   }
+
+
 
   // Falls jemand DELETE oder PUT an diese URL schickt
   res.setHeader('Allow', ['GET', 'POST']);
