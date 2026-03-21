@@ -15,6 +15,13 @@ export default function EnclosureTypeSection({ formData, onChange }) {
   // Typische Gehegetypen aus Zoo 2
   const { data: biomes } = useSWR('/api/biomes');
 
+  const biomeOptions = Array.isArray(biomes)
+    ? biomes.map(b => ({
+      value: b.id,      // oder b.code, je nachdem was in die DB soll
+      label: b.name     // Das, was der User im Dropdown sieht
+    }))
+    : [];
+
   return (
     <InfoAccordion
       title={t("common:enclosure")}
@@ -30,8 +37,9 @@ export default function EnclosureTypeSection({ formData, onChange }) {
             name="enclosureType"
             value={formData.enclosureType}
             onChange={onChange}
-            options={biomes}
+            options={biomeOptions} // Hier die gemappten Optionen nutzen
             $width="100%"
+            placeholder={!biomes ? "Lade Gehegetypen..." : "Bitte wählen..."}
           />
         </Wrapper>
 

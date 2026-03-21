@@ -79,8 +79,7 @@ export default function TranslationDescriptionSection({ translations = [], setFo
               label: t("common:description") || "Beschreibung",
               type: "textarea", // Hier nutzen wir die Textarea für längere Texte
               $flex: 1.4,
-              placeholder: t("common:descriptionPlaceholder") || "Beschreibung eingeben..."
-            }
+              placeholder: t("common:descriptionPlaceholder") }
           ]}
           onAdd={onAdd}
           onRemove={onRemove}

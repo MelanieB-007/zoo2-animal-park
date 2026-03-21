@@ -1,0 +1,23 @@
+{
+  "badge_community": "Community Projekt",
+  "stats": {
+    "animals": "Dyr",
+    "variants": "Varianter",
+    "habitats": "Indhegningstyper",
+    "regions": "Zoo regioner"
+  },
+  "cards": {
+    "lexicon": {
+      "title": "Dyreleksikon",
+      "text": "Priser, stald-niveauer og info om indhegninger på et øjeblik."
+    },
+    "variants": {
+      "title": "Farvevarianter",
+      "text": "Administrer din avlssucces og sjældne varianter."
+    },
+    "club": {
+      "title": "Klub",
+      "text": "Vær medlem af vores klub og vind flotte statuer i konkurrencerne."
+    }
+  }
+}

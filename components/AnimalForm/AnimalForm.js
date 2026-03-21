@@ -96,14 +96,14 @@ export default function AnimalForm({ initialData }) {
             onChange={handleChange}
           />
 
-          <TranslationNameSection
-            translations={formData.translations}
-            setFormData={setFormData}
-          />
-
           <DescriptionSection
             value={formData.descriptionDe}
             onChange={handleChange}
+          />
+
+          <TranslationNameSection
+            translations={formData.translations}
+            setFormData={setFormData}
           />
 
           <TranslationDescriptionSection

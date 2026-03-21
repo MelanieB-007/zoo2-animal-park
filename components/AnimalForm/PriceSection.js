@@ -12,8 +12,8 @@ export default function PriceSection({ formData, onChange }) {
 
 
   const currencyOptions = [
-    { value: "Zoodollar", label: "/images/currency/zoodollar.webp" },
-    { value: "Diamonds", label: "/images/currency/diamant.webp" },
+    { value: "Zoodollar", label: "zoodollar" },
+    { value: "Diamonds", label: "diamant" },
   ];
 
   return (
