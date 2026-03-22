@@ -2,10 +2,17 @@ import styled from "styled-components";
 import NextImage from "next/image";
 
 export default function MainImage({animal}){
+  let imagePath = animal.bild === "placeholder.png"
+    ? `/images/placeholder.jpg`
+    : `/images/tiere/${animal.gehege.name}/${animal.bild}`;
+
+  // 2. Sicherheits-Check: Doppelte Slashes (außer bei http://) zu einfachen Slashes machen
+  const cleanPath = imagePath.replace(/([^:]\/)\/+/g, "$1");
+
   return (
     <ImageContainer>
       <StyledMainImage
-        src={`/images/tiere/${animal.gehege.name}/${animal.bild}`}
+        src={cleanPath}
         alt={animal.name}
         width={400}
         height={400}

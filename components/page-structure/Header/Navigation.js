@@ -23,7 +23,7 @@ export default function Navigation() {
           </NavLink>
         </NavItem>
 
-        <NavItem>
+       {/* <NavItem>
           <NavButton $active={isActive("/zoo")}>
             {t("navigation.zoo", "Zoo")} <IoChevronDown className="arrow" />
           </NavButton>
@@ -39,7 +39,7 @@ export default function Navigation() {
               </DropdownLink>
             </li>
           </Dropdown>
-        </NavItem>
+        </NavItem>*/}
 
         <NavItem>
           <NavButton $active={isActive("/animals")}>
@@ -66,7 +66,7 @@ export default function Navigation() {
           </Dropdown>
         </NavItem>
 
-        <NavItem>
+       {/* <NavItem>
           <NavButton $active={isActive("/klub")}>
             {t("navigation.club", "Klub")} <IoChevronDown className="arrow" />
           </NavButton>
@@ -82,7 +82,7 @@ export default function Navigation() {
               </DropdownLink>
             </li>
           </Dropdown>
-        </NavItem>
+        </NavItem>*/}
       </NavList>
     </NavContainer>
   );

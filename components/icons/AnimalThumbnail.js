@@ -21,7 +21,7 @@ export default function AnimalThumbnail({ animal, size = 55 }) {
       <StyledThumbnail $habitat={habitatKey} $size={size}>
         <GameIcon
           type={iconPath}
-          fileName={animal.bild || "images/placeholder.jpg"}
+          fileName={animal.bild}
           size={size - 10}
           bordercolor="transparent"
         />

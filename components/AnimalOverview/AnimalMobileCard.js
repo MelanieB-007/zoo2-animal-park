@@ -50,7 +50,7 @@ export default function AnimalMobileCard({
         <IconsRow>
           <GameIcon
             type={`tiere/${habitatId}`}
-            fileName={animal.bild || "default.jpg"}
+            fileName={animal.bild}
             size={50}
           />
 
