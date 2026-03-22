@@ -67,7 +67,7 @@ export default function HeaderCard({ animal }) {
             <StatBox>
               <label>{t("animals:tableSell")}</label>
               <PriceDisplay
-                value={animal.preis}
+                value={animal.verkaufswert}
                 type="zoodollar"
               />
             </StatBox>
