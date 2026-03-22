@@ -44,19 +44,19 @@ export default function LangSwitcher() {
         <LangOption onClick={() => handleLocaleChange("de")}>
           <span className="fi fi-de"></span> DE
         </LangOption>
-        <LangOption onClick={() => handleLocaleChange("dk")}>
+        {/*<LangOption onClick={() => handleLocaleChange("dk")}>
           <span className="fi fi-dk"></span> DK
-        </LangOption>
+        </LangOption>*/}
         <LangOption onClick={() => handleLocaleChange("en")}>
           <span className="fi fi-gb"></span> EN
         </LangOption>
-        <LangOption onClick={() => handleLocaleChange("nl")}>
+       {/* <LangOption onClick={() => handleLocaleChange("nl")}>
           <span className="fi fi-nl"></span> NL
         </LangOption>
-        {/* Falls du BE (Belgien) wirklich als Sprache hast: */}
+         Falls du BE (Belgien) wirklich als Sprache hast:
         <LangOption onClick={() => handleLocaleChange("be")}>
           <span className="fi fi-be"></span> BE
-        </LangOption>
+        </LangOption>*/}
       </LangDropdown>
     </LangSwitcherContainer>
   );

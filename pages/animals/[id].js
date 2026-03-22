@@ -2,9 +2,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useSWR from "swr";
 
 import PageWrapper from "../../components/page-structure/PageWrapper";
-import { getAnimalById } from "../../services/AnimalService";
 import ContentWrapper from "../../components/page-structure/ContentWrapper";
 import AnimalDetailContent from "../../components/AnimalDetails/AnimalDetailContent";
+import { getAnimalById } from "../../services/AnimalService";
 
 
 export default function TierDetail({ animal: fallbackData }) {
@@ -37,7 +37,7 @@ export default function TierDetail({ animal: fallbackData }) {
 }
 export async function getServerSideProps({ params, locale }) { // 2. locale hinzufügen
   const { id } = params;
-  const animal = await getAnimalById(id);
+  const animal = await getAnimalById(id, locale);
 
   if (!animal) return { notFound: true };
 

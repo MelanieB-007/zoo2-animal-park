@@ -7,7 +7,7 @@ import PriceDisplay from "../icons/PriceDisplay";
 import PopularityDisplay from "../icons/PopularityDisplay";
 import StatBox from "../page-structure/Elements/StatBox";
 import GameIcon from "../icons/GameIcon";
-import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
+import StallLevelBadge from "../ui/StallLevelBadge";
 import BoxWithHeadline from "../page-structure/Elements/BoxWithHeadline";
 import OriginBadgeList from "../page-structure/Elements/OriginBadgeList";
 import XPIcon from "../icons/XPIcon";
@@ -15,9 +15,10 @@ import FormattedDate from "../ui/FormattedDate";
 
 
 export default function HeaderCard({ animal }) {
-  const { t } = /** @type {any} */ (
+  const { t, i18n } = /** @type {any} */ (
     useTranslation(["animals", "common"])
   );
+
 
   if (!animal) return null;
 
@@ -66,7 +67,7 @@ export default function HeaderCard({ animal }) {
             <StatBox>
               <label>{t("animals:tableSell")}</label>
               <PriceDisplay
-                value={animal.preis}
+                value={animal.verkaufswert}
                 type="zoodollar"
               />
             </StatBox>

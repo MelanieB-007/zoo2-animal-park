@@ -26,7 +26,7 @@ export default function Login() {
   }, []);
 
   return (
-    <LoginWrapper>
+    <LoginWrapper ref={wrapperRef}>
       <TopRow>
         <LangSwitcher />
         {session && (
@@ -40,7 +40,7 @@ export default function Login() {
               )}
             </UserWrapper>
             {showLogout && (
-              <LogoutBadge onClick={() => signOut()}>
+              <LogoutBadge onClick={() => signOut({ callbackUrl: "/" })}>
                 {t("login.logout", "Abmelden 👋")}
               </LogoutBadge>
             )}

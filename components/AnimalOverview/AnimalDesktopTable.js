@@ -2,11 +2,11 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 
 import { NameDE } from "../page-structure/Elements/Name";
-import GehegeBadge from "../page-structure/Elements/GehegeBadge";
+import GehegeBadge from "../ui/GehegeBadge";
 import PriceDisplay from "../icons/PriceDisplay";
-import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
+import StallLevelBadge from "../ui/StallLevelBadge";
 import XPIcon from "../icons/XPIcon";
-import { calculateTotalXP } from "../../services/AnimalService";
+import { calculateTotalXP } from "../../services/AnimalHelper";
 import ZoodollarIcon from "../icons/ZoodollarIcon";
 import SortableTableHeader from "../page-structure/Table/SortableTableHeader";
 import ActionsHeadline from "../page-structure/Table/ActionsHeadline";
@@ -18,7 +18,6 @@ import Table from "../page-structure/Table/Table";
 import LinkedRow from "../page-structure/Table/LinkedRow";
 import NoResult from "../page-structure/Table/NoResult";
 import AnimalThumbnail from "../icons/AnimalThumbnail";
-import { getTranslatedName } from "../ui/TranslationHelper";
 
 export default function AnimalDesktopTable({
   animals,
@@ -102,22 +101,19 @@ export default function AnimalDesktopTable({
             align="right"
           />
 
-          <ActionsHeadline text={t("common:actions")} />
+          {/*<ActionsHeadline text={t("common:actions")} />*/}
         </tr>
       </thead>
       <tbody>
         {animals.length > 0 ? (
           animals.map((animal) => {
-            const displayName = getTranslatedName(animal, i18n.language) ||
-              t("animals:unknown_animal");
-
             return (
               <LinkedRow key={animal.id} path={`/animals/${animal.id}`}>
                 <td>
                   <InfoCell>
                     <AnimalThumbnail animal={animal} />
                     <div>
-                      <NameDE>{displayName}</NameDE>
+                      <NameDE>{animal.name}</NameDE>
                     </div>
                   </InfoCell>
                 </td>
@@ -156,7 +152,7 @@ export default function AnimalDesktopTable({
                   <XPIcon label={animal.auswildern} />
                 </DesktopOnlyTd>
 
-                <td>
+                {/*<td>
                   <ActionGroupIcons
                     onEdit={function () {
                       onEdit(animal.id);
@@ -165,7 +161,7 @@ export default function AnimalDesktopTable({
                       onDelete(animal.id);
                     }}
                   />
-                </td>
+                </td>*/}
               </LinkedRow>
             );
           })

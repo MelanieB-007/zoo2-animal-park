@@ -1,0 +1,1933 @@
+[
+{
+"id": 101,
+"nameDe": "Achal-Tekkiner",
+"beschreibungDe": "Der Achal-Tekkiner gilt als eine der elegantesten Pferderassen der Welt und ist für sein metallisch schimmerndes Fell bekannt. Diese aus Turkmenistan stammenden Pferde sind ausdauernd, schnell und extrem widerstandsfähig. In deinem Zoo traben sie stolz durch das Gehege und ziehen mit ihrem edlen Erscheinungsbild alle Blicke auf sich."
+},
+{
+"id": 102,
+"nameDe": "Angorakaninchen",
+"beschreibungDe": "Das Angorakaninchen trägt ein besonders langes und flauschiges Fell, das es aussehen lässt wie eine laufende Wolke. Ursprünglich wurde seine Wolle zur Herstellung feiner Garne genutzt, doch im Zoo darf es einfach nur kuschelig sein. Besucher beobachten gerne, wie es gemütlich knabbert und zwischendurch in seinem weichen Pelz verschwindet."
+},
+{
+"id": 103,
+"nameDe": "Biber",
+"beschreibungDe": "Der Biber ist ein wahrer Baumeister und nutzt seine starken Zähne, um Bäume zu fällen und Dämme zu errichten. In der Natur gestaltet er ganze Flusslandschaften um und schafft neue Lebensräume für viele andere Arten. In deinem Zoo begeistert er die Gäste, wenn er Zweige schleppt, untertaucht und an seinem Bau arbeitet."
+},
+{
+"id": 104,
+"nameDe": "Blaufußtölpel",
+"beschreibungDe": "Der Blaufußtölpel ist vor allem für seine auffälligen, leuchtend blauen Füße bekannt, mit denen er bei der Balz richtige Tanzshows aufführt. Er lebt normalerweise an den Küsten des Pazifiks und ist ein geschickter Taucher, der Fische aus großer Höhe ins Wasser stürzend jagt. Im Zoo sorgt sein watschelnder Gang und das stolze Präsentieren seiner bunten Füße für viele lächelnde Gesichter."
+},
+{
+"id": 105,
+"nameDe": "Damhirsch",
+"beschreibungDe": "Der Damhirsch ist ein eleganter Waldbewohner mit einem charakteristischen, schaufelförmigen Geweih. Seine gefleckte Decke erinnert an Sonnenflecken im Wald und bietet ihm in der Natur gute Tarnung. In deinem Zoo zieht er ruhig durchs Gehege, schnuppert an Gräsern und beeindruckt die Besucher mit seinem majestätischen Auftreten."
+},
+{
+"id": 106,
+"nameDe": "Großer Pampashase",
+"beschreibungDe": "Der Große Pampashase, auch Mara genannt, sieht aus wie eine Mischung aus Kaninchen und kleinem Reh. Er stammt aus den Graslandschaften Südamerikas und bewegt sich oft in Paaren durchs Gelände. Im Zoo flitzt er neugierig umher oder ruht entspannt in der Sonne, immer bereit für den nächsten Sprint."
+},
+{
+"id": 107,
+"nameDe": "Großer Panda",
+"beschreibungDe": "Der Große Panda ist mit seinem schwarz-weißen Fell eines der bekanntesten Symbole für den Artenschutz. Trotz seiner Größe ernährt er sich hauptsächlich von Bambus und verbringt viele Stunden am Tag mit gemütlichem Knabbern. In deinem Zoo sitzt er oft entspannt herum, hält eine Bambusstange in den Pfoten und verzaubert die Besucher mit seinem friedlichen Wesen."
+},
+{
+"id": 108,
+"nameDe": "Hase",
+"beschreibungDe": "Der Hase ist ein schneller Fluchtspezialist mit langen Hinterbeinen und großen Lauscherohren. Er lebt in offenen Landschaften und verlässt sich auf seine Schnelligkeit und Wachsamkeit, um Gefahren zu entkommen. Im Zoo hoppelt er flink durchs Gehege, putzt sich ausgiebig und sorgt bei Kindern für viele „Oh wie süß!“-Momente."
+},
+{
+"id": 109,
+"nameDe": "Hausschwein",
+"beschreibungDe": "Das Hausschwein ist ein intelligentes und neugieriges Tier, das gerne mit seiner feinen Schnauze den Boden nach Leckereien durchwühlt. In der Landwirtschaft wird es seit Jahrhunderten gehalten, doch im Zoo darf es einfach Schwein sein. Besucher beobachten gerne, wie es schmatzend im Schlamm wühlt oder zufrieden Seite an Seite mit seinen Artgenossen döst."
+},
+{
+"id": 110,
+"nameDe": "Hausziege",
+"beschreibungDe": "Die Hausziege ist eine kletterfreudige Genießerin, die fast alles probiert, was ihr vor die Schnauze kommt. Seit langer Zeit liefert sie den Menschen Milch, Fleisch und Wolle, ist aber auch als Charaktertier beliebt. In deinem Zoo springt sie auf Felsen, kratzt sich an Pfosten und meckert die Besucher freundlich an."
+},
+{
+"id": 111,
+"nameDe": "Husarenaffe",
+"beschreibungDe": "Der Husarenaffe ist einer der schnellsten Primaten der Welt und kann auf der Flucht beeindruckende Geschwindigkeiten erreichen. Mit seinem rötlichen Fell und dem hellen Gesicht ist er leicht zu erkennen und wirkt immer ein wenig ernst. Im Zoo ist er meist in Bewegung, klettert, rennt und beobachtet neugierig, was seine Besucher so treiben."
+},
+{
+"id": 112,
+"nameDe": "Jaguarundi",
+"beschreibungDe": "Der Jaguarundi ist eine schlanke, klein wirkende Wildkatze mit ungewöhnlich langem Körper und kurzem Fell. Er lebt vor allem in Mittel- und Südamerika und ist ein geschickter Jäger, der sowohl am Boden als auch in Büschen unterwegs ist. In deinem Zoo schleicht er lautlos durchs Gehege, taucht zwischen Pflanzen auf und verschwindet fast geräuschlos wieder."
+},
+{
+"id": 113,
+"nameDe": "Klunkerkranich",
+"beschreibungDe": "Der Klunkerkranich trägt seinen Namen wegen der auffälligen Schmuckfedern und Hautlappen an Kopf und Hals. Wie alle Kraniche ist er ein eleganter Tänzer, der mit Flügelschlägen und Sprüngen imponiert. Im Zoo stolzieren die Tiere durch das Gehege und lassen sich beim Putzen ihres prachtvollen Gefieders gerne bestaunen."
+},
+{
+"id": 114,
+"nameDe": "Kurzschnabeligel",
+"beschreibungDe": "Der Kurzschnabeligel ist ein stacheliger Insektenfresser aus Australien, der ein wenig an einen stacheligen Ameisenbär erinnert. Mit seiner langen Zunge spürt er Ameisen und Termiten in ihren Nestern auf. In deinem Zoo schnüffelt er neugierig durch das Gehege, gräbt kleine Löcher und rollt sich bei Gefahr zu einer piksigen Kugel zusammen."
+},
+{
+"id": 115,
+"nameDe": "Lippenbär",
+"beschreibungDe": "Der Lippenbär hat ein zottiges Fell und eine lange, bewegliche Schnauze, mit der er Insekten aus ihren Nestern saugt. Er ist vor allem in Indien zuhause und liebt Termitenhügel und süße Früchte. Im Zoo kann man ihn dabei beobachten, wie er mit den Lippen schmatzend die Nahrung einsaugt und dabei fröhlich schnauft."
+},
+{
+"id": 116,
+"nameDe": "Löffler",
+"beschreibungDe": "Der Löffler ist ein eleganter Watvogel mit einem charakteristischen löffelförmigen Schnabel. Mit diesem durchkämmt er flache Gewässer, um kleine Fische und Wirbellose aufzuspüren. In deinem Zoo schreitet er gemächlich durchs Wasserbecken und lässt seinen ungewöhnlichen Schnabel sanft hin und her pendeln."
+},
+{
+"id": 117,
+"nameDe": "Mähnenwolf",
+"beschreibungDe": "Der Mähnenwolf ist kein echter Wolf, sondern eine eigene Wildhundart mit sehr langen Beinen und leuchtend rotem Fell. Er lebt in den Graslandschaften Südamerikas und ist ein eher scheuer Einzelgänger. Im Zoo schleicht er elegant durch sein Revier, schnuppert an Gräsern und lauscht aufmerksam auf jedes Geräusch."
+},
+{
+"id": 118,
+"nameDe": "Mandschurenkranich",
+"beschreibungDe": "Der Mandschurenkranich ist ein majestätischer Vogel mit weiß-schwarzem Gefieder und einem roten Fleck auf dem Kopf. In vielen asiatischen Kulturen gilt er als Symbol für Glück und ein langes Leben. In deinem Zoo zeigt er seine anmutigen Tänze und beeindruckt Besucher mit seinen weiten Flügelschlägen."
+},
+{
+"id": 119,
+"nameDe": "Nasenbär",
+"beschreibungDe": "Der Nasenbär ist mit seiner langen, beweglichen Schnauze ein neugieriger Akrobat im Gehege. Er ist in Mittel- und Südamerika zuhause und ständig auf der Suche nach Insekten, Früchten und kleinen Leckerbissen. Im Zoo klettert er geschickt auf Äste, schnüffelt überall herum und sorgt mit seinem geselligen Wesen für viel Unterhaltung."
+},
+{
+"id": 120,
+"nameDe": "Nilgauantilope",
+"beschreibungDe": "Die Nilgauantilope ist die größte Antilopenart Asiens und erinnert mit ihrem kräftigen Körperbau fast an ein kleines Pferd. Männchen tragen ein graublaues Fell, während Weibchen eher braun gefärbt sind. In deinem Zoo grasen sie ruhig im Gehege und lassen sich von Besuchern gerne beim Wiederkäuen beobachten."
+},
+{
+"id": 121,
+"nameDe": "Nilwaran",
+"beschreibungDe": "Der Nilwaran ist eine große, kräftige Echse, die entlang afrikanischer Gewässer lebt. Mit seiner gespaltenen Zunge spürt er Beute auf und ist sowohl an Land als auch im Wasser ein guter Jäger. Im Zoo liegt er gerne träge in der Sonne, um dann plötzlich erstaunlich schnell loszulaufen."
+},
+{
+"id": 122,
+"nameDe": "Östliche Graseule",
+"beschreibungDe": "Die Östliche Graseule ist ein unscheinbarer Nachtfalter, der vor allem nachts aktiv wird. Sie lebt in Graslandschaften und Feldern und ist ein wichtiger Teil der Nahrungskette. In deinem Zoo flattert sie leise durch die Abendluft und sorgt als kleiner, besonderer Gast für ein stimmungsvolles Ambiente."
+},
+{
+"id": 123,
+"nameDe": "Panzernashorn",
+"beschreibungDe": "Das Panzernashorn trägt seinen Namen wegen der dicken, in Platten wirkenden Hautfalten, die wie eine Rüstung aussehen. Es stammt aus Asien und verbringt viel Zeit in Schlamm- und Wasserlöchern. In deinem Zoo stapft es gemächlich durchs Gehege, schubbert sich an Bäumen und genießt ein erfrischendes Schlamm-Bad."
+},
+{
+"id": 124,
+"nameDe": "Pferd",
+"beschreibungDe": "Das Pferd begleitet den Menschen seit Jahrtausenden als Reit-, Arbeits- und Freundschaftstier. Es ist ein ausdauernder Läufer mit feinem Gespür für Stimmungen. In deinem Zoo galoppiert es über die Koppel, spielt mit Artgenossen oder lässt sich genüsslich den Rücken von der Sonne wärmen."
+},
+{
+"id": 125,
+"nameDe": "Poitou-Esel",
+"beschreibungDe": "Der Poitou-Esel ist an seinem langen, zotteligen Fell und den großen Ohren leicht zu erkennen. Er stammt aus Frankreich und gehört zu den ältesten und seltensten Eselrassen der Welt. Im Zoo begeistert er mit seinem gemütlichen Wesen und seinem etwas strubbeligen Charme."
+},
+{
+"id": 126,
+"nameDe": "Riesenkaninchen",
+"beschreibungDe": "Das Riesenkaninchen macht seinem Namen alle Ehre und bringt deutlich mehr Gewicht auf die Waage als seine kleineren Verwandten. Trotz seiner Größe ist es meist sanftmütig und liebt gemütliche Ruheplätze. In deinem Zoo sitzt es gerne entspannt im Stroh und knabbert sich langsam durch große Portionen Gemüse."
+},
+{
+"id": 127,
+"nameDe": "Rohrkatze",
+"beschreibungDe": "Die Rohrkatze ist eine scheue Wildkatze, die bevorzugt in Schilfgebieten und an Gewässerrändern lebt. Ihr Fell ist meist einfarbig und bietet gute Tarnung im hohen Gras. Im Zoo bewegt sie sich ruhig und vorsichtig, lauscht aufmerksam und zeigt sich Besuchern oft erst nach etwas Geduld."
+},
+{
+"id": 128,
+"nameDe": "Schaf",
+"beschreibungDe": "Das Schaf ist ein klassisches Nutztier, das vor allem für seine Wolle, Milch und sein Fleisch gehalten wird. In Herden fühlt es sich besonders wohl und folgt gerne einem Leittier. In deinem Zoo blökt es freundlich, lässt sich den Wind durch die Wolle pusten und freut sich über frisches Heu."
+},
+{
+"id": 129,
+"nameDe": "Schnappschildkröte",
+"beschreibungDe": "Die Schnappschildkröte ist eine beeindruckend große Süßwasserschildkröte mit kräftigem Kiefer. Sie wirkt träge, kann aber blitzschnell zuschnappen, wenn Beute in Reichweite kommt. Im Zoo liegt sie oft am Beckenboden oder sonnt sich auf einem Stein, während Besucher ihren urzeitlichen Look bestaunen."
+},
+{
+"id": 130,
+"nameDe": "Schottisches Hochlandrind",
+"beschreibungDe": "Das Schottische Hochlandrind ist mit seinem langen Fell und den mächtigen Hörnern ein echter Hingucker. Es stammt aus den rauen Regionen Schottlands und ist an Wind und Wetter bestens angepasst. In deinem Zoo wirkt es gemütlich und friedlich, während es langsam das Gras abweidet und sein Fell im Wind weht."
+},
+{
+"id": 131,
+"nameDe": "Schuhschnabel",
+"beschreibungDe": "Der Schuhschnabel verdankt seinen Namen seinem riesigen, schuhförmigen Schnabel, der ihm ein fast urzeitliches Aussehen verleiht. Er lebt in afrikanischen Sümpfen und lauert dort geduldig auf Fische und andere Beute. Im Zoo steht er oft regungslos im Wasser und verblüfft Besucher mit seiner stoischen Ruhe."
+},
+{
+"id": 132,
+"nameDe": "Schwan",
+"beschreibungDe": "Der Schwan ist ein Symbol für Eleganz und Anmut und gleitet scheinbar mühelos über das Wasser. Mit seinem langen Hals und dem weißen Gefieder zieht er überall die Blicke auf sich. In deinem Zoo bildet er auf dem Teich eine malerische Kulisse und sorgt für ruhige, romantische Momente."
+},
+{
+"id": 133,
+"nameDe": "Shetlandpony",
+"beschreibungDe": "Das Shetlandpony ist klein, robust und erstaunlich kräftig für seine Größe. Es stammt von den windigen Shetlandinseln und hat ein dichtes Fell, das es gut schützt. Im Zoo freut es sich über streichelnde Kinderhände und trabt munter durch sein Gehege."
+},
+{
+"id": 134,
+"nameDe": "Stachelibis",
+"beschreibungDe": "Der Stachelibis ist ein eigenwillig aussehender Vogel mit nacktem Kopf und glänzend dunklem Gefieder. Früher war er in Europa weit verbreitet, heute ist er selten geworden und steht unter Schutz. In deinem Zoo zeigt er sich gerne auf Felsen sitzend und lässt seine Federn in der Sonne schimmern."
+},
+{
+"id": 135,
+"nameDe": "Suedafrika-Kronenkranich",
+"beschreibungDe": "Der Südafrika-Kronenkranich trägt eine auffällige goldene Federkrone auf dem Kopf, die ihn besonders edel wirken lässt. Er lebt in Feuchtgebieten und Graslandschaften und führt zur Balz beeindruckende Tänze auf. In deinem Zoo marschiert er stolz durchs Gehege und zeigt immer wieder kleine Tanzschritte für seine Zuschauer."
+},
+{
+"id": 136,
+"nameDe": "Tapir",
+"beschreibungDe": "Der Tapir wirkt wie eine Mischung aus Schwein und kleiner Nase mit seinem kurzen Rüssel. Er lebt in tropischen Wäldern und liebt Badepausen in Flüssen und Tümpeln. Im Zoo schlendert er gemütlich durch sein Gelände, knabbert Blätter und genießt ausgiebige Schlammbäder."
+},
+{
+"id": 137,
+"nameDe": "Waldrapp",
+"beschreibungDe": "Der Waldrapp ist ein selten gewordener Ibis mit glänzend schwarzem Gefieder und kahlem Kopf. Früher lebte er auch in Europa, heute wird er durch Zuchtprogramme wieder angesiedelt. In deinem Zoo sitzt er gerne auf erhöhten Plätzen und zeigt seinen Gästen seine markanten Konturen."
+},
+{
+"id": 138,
+"nameDe": "Waschbär",
+"beschreibungDe": "Der Waschbär ist ein cleverer Kleinräuber, der durch seine „Maske“ im Gesicht sofort auffällt. In der Natur durchsucht er Flüsse, Mülltonnen und alles, was nach Futter aussieht. Im Zoo entert er geschickt Kletterbäume und Futterspielzeuge und beeindruckt die Besucher mit seiner Geschicklichkeit."
+},
+{
+"id": 139,
+"nameDe": "Weißstorch",
+"beschreibungDe": "Der Weißstorch ist vielen als Glücksbringer bekannt, der angeblich Babys bringt. Er brütet gerne auf hohen Dächern und Schornsteinen und kehrt Jahr für Jahr an seine Nester zurück. In deinem Zoo stakst er durch das Gehege, klappert mit dem Schnabel und hält nach Leckerbissen Ausschau."
+},
+{
+"id": 140,
+"nameDe": "Wasserkudu",
+"beschreibungDe": "Der Wasserkudu ist eine große Antilopenart, die Feuchtgebiete und dichte Vegetation bevorzugt. Seine gedrehten Hörner und das gestreifte Fell machen ihn besonders auffällig. Im Zoo bewegt er sich ruhig und wachsam durch sein Revier und sorgt mit seiner majestätischen Erscheinung für Staunen."
+},
+{
+"id": 201,
+"nameDe": "Adlerbussard",
+"beschreibungDe": "Der Adlerbussard ist ein kräftiger Greifvogel, der mit seinen breiten Flügeln majestätisch am Himmel kreist. Er bewohnt offene Landschaften und Gebirge und hält aufmerksam Ausschau nach Beute. In deinem Zoo beeindruckt er mit durchdringendem Blick und eindrucksvoller Spannweite bei Trainingsflügen."
+},
+{
+"id": 202,
+"nameDe": "Amerikanischer Bison",
+"beschreibungDe": "Der Amerikanische Bison war einst in riesigen Herden in den Prärien Nordamerikas unterwegs. Mit seinem massigen Körper und dem dichten Fell trotzt er Wind und Wetter. Im Zoo stapft er kraftvoll durch das Gehege, wälzt sich im Staub und zeigt, wie imposant Herdentiere sein können."
+},
+{
+"id": 203,
+"nameDe": "Andenfuchs",
+"beschreibungDe": "Der Andenfuchs lebt in den Höhenlagen Südamerikas und ist perfekt an das raue Klima angepasst. Sein dichtes Fell schützt ihn vor Kälte, und er ist sowohl Jäger als auch Aasfresser. In deinem Zoo streift er neugierig durch das Gehege und beobachtet alles mit wachen, klugen Augen."
+},
+{
+"id": 204,
+"nameDe": "Angoraziege",
+"beschreibungDe": "Die Angoraziege ist für ihr langes, lockiges Fell bekannt, aus dem die edle Mohair-Wolle gewonnen wird. Sie stammt ursprünglich aus der Türkei und liebt karge, trockene Landschaften. Im Zoo wirkt sie mit ihrer Wuschelfrisur besonders sympathisch und genießt entspanntes Wiederkäuen in der Sonne."
+},
+{
+"id": 205,
+"nameDe": "Bongo Antilope",
+"beschreibungDe": "Die Bongo-Antilope ist eine der größten und farbenprächtigsten Antilopen Afrikas. Ihr rotbraunes Fell mit weißen Streifen hilft ihr, sich im dichten Wald zu tarnen. In deinem Zoo zieht sie ruhig ihre Runden und beeindruckt mit ihren langen Hörnern und der edlen Zeichnung."
+},
+{
+"id": 206,
+"nameDe": "Capybara",
+"beschreibungDe": "Das Capybara ist das größte Nagetier der Welt und ein echter Wassersportfan. Es lebt in Südamerika und verbringt viel Zeit planschend in Flüssen und Sümpfen. In deinem Zoo döst es gerne halbnass am Ufer und lässt sich von nichts aus der Ruhe bringen."
+},
+{
+"id": 207,
+"nameDe": "Dikdik",
+"beschreibungDe": "Das Dikdik ist eine winzige Antilopenart mit großen Augen und einer leicht verlängerten Schnauze. Es lebt in den Buschlandschaften Afrikas und bleibt am liebsten im Schatten niedriger Büsche. In deinem Zoo huscht es flink durchs Unterholz und lässt die Herzen der Besucher im Nu dahinschmelzen."
+},
+{
+"id": 208,
+"nameDe": "Emu",
+"beschreibungDe": "Der Emu ist der zweitgrößte Vogel der Welt und ein naher Verwandter des Straußes. In Australien streift er durch offene Landschaften und kann erstaunlich schnell laufen. Im Zoo marschiert er neugierig am Zaun entlang und beobachtet seine Besucher mit wachen Augen."
+},
+{
+"id": 209,
+"nameDe": "Erdwolf",
+"beschreibungDe": "Der Erdwolf sieht ein bisschen aus wie eine kleine Hyäne, frisst aber vor allem Termiten. Mit seiner langen Zunge leckt er die Insekten aus ihren Bauten und ist damit ein ganz besonderer Spezialist. In deinem Zoo schnuppert er aufmerksam am Boden und freut sich über jedes Futterversteck."
+},
+{
+"id": 210,
+"nameDe": "Ferkelskunk",
+"beschreibungDe": "Der Ferkelskunk verdankt seinen Namen seiner leicht schweineartigen Schnauze, kombiniert mit der typischen Skunk-Zeichnung. Er ist nachtaktiv und verlässt sich bei Gefahr auf seinen berühmten Duftverteidigungs-Trick. Im Zoo zeigt er sich meist in den Abendstunden und sorgt mit seinem tapsigen Gang für viel Interesse."
+},
+{
+"id": 211,
+"nameDe": "Flamingo",
+"beschreibungDe": "Der Flamingo ist mit seinem rosa Gefieder und den langen Beinen ein echter Star unter den Wasservögeln. Seine Farbe erhält er aus den Farbstoffen seiner Nahrung, etwa kleinen Krebstieren. In deinem Zoo steht er gerne auf einem Bein im Wasser und sorgt mit seiner bunten Kolonie für Urlaubsstimmung."
+},
+{
+"id": 212,
+"nameDe": "Gabelbock",
+"beschreibungDe": "Der Gabelbock ist ein typischer Bewohner der nordamerikanischen Prärien und kann enorme Geschwindigkeiten erreichen. Seine Hörner verzweigen sich wie eine Gabel, was ihm seinen Namen eingebracht hat. In deinem Zoo läuft er mit Leichtigkeit über die Anlage und zeigt, wie viel Energie in ihm steckt."
+},
+{
+"id": 213,
+"nameDe": "Gepard",
+"beschreibungDe": "Der Gepard ist das schnellste Landtier der Welt und erreicht in kurzer Zeit beeindruckende Spitzengeschwindigkeiten. Sein schlanker Körper und die langen Beine sind perfekt auf den Sprint ausgelegt. Im Zoo sieht man ihn oft ruhig ruhen, doch seine wachsamen Augen verraten, dass jederzeit ein Sprint möglich wäre."
+},
+{
+"id": 214,
+"nameDe": "Goldfasan",
+"beschreibungDe": "Der Goldfasan beeindruckt mit seinem bunten Gefieder und dem goldenen Schopf auf dem Kopf. Ursprünglich stammt er aus den Wäldern Chinas, ist aber heute weltweit in Parks und Zoos zu sehen. In deinem Zoo stolziert er wie ein kleiner König durch das Gehege und zeigt seine schillernden Farben."
+},
+{
+"id": 215,
+"nameDe": "Grevyzebra",
+"beschreibungDe": "Das Grevyzebra ist das größte aller Zebras und hat besonders feine, dicht stehende Streifen. Es lebt in trockenen Regionen Ostafrikas und ist perfekt an das Leben mit wenig Wasser angepasst. In deinem Zoo zieht es mit seinem markanten Muster und dem stolzen Auftreten alle Blicke auf sich."
+},
+{
+"id": 216,
+"nameDe": "Gürteltier",
+"beschreibungDe": "Das Gürteltier trägt eine knöcherne Panzerung, die es wie ein kleines lebendes Schild aussehen lässt. Einige Arten können sich bei Gefahr sogar zu einer Kugel zusammenrollen. Im Zoo trippelt es auf kurzen Beinchen durchs Gehege und gräbt neugierig nach Futter im Boden."
+},
+{
+"id": 217,
+"nameDe": "Halsbandpekari",
+"beschreibungDe": "Der Halsbandpekari ist ein wildschweinähnliches Tier aus Nord- und Südamerika. Seinen Namen verdankt er dem helleren Fellring um den Hals. In deinem Zoo durchstöbert er in Gruppen das Gehege und kommuniziert mit knurrenden und grunzenden Lauten."
+},
+{
+"id": 218,
+"nameDe": "Hirschziegenantilope",
+"beschreibungDe": "Die Hirschziegenantilope ist eine flinke Antilope aus den offenen Landschaften Indiens. Männchen tragen ein dunkles Fell und auffällige, gedrehte Hörner, während Weibchen eher hell gefärbt sind. In deinem Zoo flitzen sie bei guter Laune über die Anlage und liefern sich kleine Wettrennen."
+},
+{
+"id": 219,
+"nameDe": "Karakal",
+"beschreibungDe": "Der Karakal ist eine elegante Wildkatze mit markanten, schwarzen Pinselohren. Er kann mit beeindruckenden Sprüngen Vögel im Flug fangen. In deinem Zoo schleicht er leise durchs Gehege, klettert geschickt und präsentiert immer wieder stolz seine Ohrpinsel."
+},
+{
+"id": 220,
+"nameDe": "Katzenfrett",
+"beschreibungDe": "Das Katzenfrett gehört zur Familie der Schleichkatzen und erinnert ein wenig an eine Mischung aus Katze und Marder. Es ist nachtaktiv und schätzt dichte Vegetation zum Verstecken. Im Zoo zeigt es sich gerne in der Dämmerung und erkundet neugierig jede Ecke seines Geheges."
+},
+{
+"id": 221,
+"nameDe": "Lama",
+"beschreibungDe": "Das Lama ist ein typischer Bewohner der Anden und seit Jahrhunderten ein Lasttier der dortigen Bevölkerung. Es ist bekannt für sein weiches Fell – und für das gelegentliche Spucken, wenn es sich gestört fühlt. In deinem Zoo sorgt es mit seiner neugierigen Art und der lustigen Frisur immer wieder für Lacher."
+},
+{
+"id": 222,
+"nameDe": "Massai-Giraffe",
+"beschreibungDe": "Die Massai-Giraffe ist die größte Giraffenunterart und besitzt ein unregelmäßiges, netzartiges Fleckenmuster. Mit ihrem langen Hals erreicht sie selbst die höchsten Blätter der Bäume. In deinem Zoo schaut sie über alle anderen Tiere hinweg und knabbert entspannt an den Baumkronen."
+},
+{
+"id": 223,
+"nameDe": "Oryxantilope",
+"beschreibungDe": "Die Oryxantilope ist mit ihren langen, geraden Hörnern und dem hellen Fell perfekt an Wüsten und Halbwüsten angepasst. Sie kann lange Zeit ohne Wasser auskommen und nutzt ihren Körper sehr sparsam. In deinem Zoo wirkt sie mit ihrer klaren Zeichnung besonders edel und ruht gerne im Schatten."
+},
+{
+"id": 224,
+"nameDe": "Pfau",
+"beschreibungDe": "Der Pfau ist weltberühmt für sein prächtiges Rad, mit dem das Männchen um die Gunst der Weibchen wirbt. Sein schillerndes Gefieder leuchtet in Blau- und Grüntönen und ist mit Augenflecken geschmückt. In deinem Zoo erfreut er die Besucher, wenn er sein Rad schlägt und stolz durch das Gehege schreitet."
+},
+{
+"id": 225,
+"nameDe": "Quokka",
+"beschreibungDe": "Das Quokka ist ein kleines Känguru aus Australien, das durch sein scheinbar lächelndes Gesicht berühmt wurde. Es ist neugierig, meist freundlich und für Selfies fast schon berüchtigt. In deinem Zoo hüpft es fröhlich umher und bringt mit seinem Charme alle Herzen zum Schmelzen."
+},
+{
+"id": 226,
+"nameDe": "Rentier",
+"beschreibungDe": "Das Rentier ist perfekt an kalte Regionen angepasst und spielt in vielen Wintergeschichten eine Hauptrolle. Sowohl Männchen als auch Weibchen tragen Geweihe, was bei Hirschen ungewöhnlich ist. In deinem Zoo trottet es gemächlich durchs Gehege, schüttelt den Schnee aus dem Fell und versetzt Besucher in Winterstimmung."
+},
+{
+"id": 227,
+"nameDe": "Riesenschildkröte",
+"beschreibungDe": "Die Riesenschildkröte kann extrem alt werden und ist für ihr ruhiges, gemächliches Wesen bekannt. Sie lebt auf Inseln wie den Galapagos-Inseln und bewegt sich in ihrem eigenen, sehr gemütlichen Tempo. In deinem Zoo stapft sie langsam durch ihr Reich und zeigt, dass man es im Leben auch mal ruhig angehen darf."
+},
+{
+"id": 228,
+"nameDe": "Rosada-Drusenkopf",
+"beschreibungDe": "Der Rosada-Drusenkopf ist eine auffällig gefärbte Echse mit leuchtenden Hautbereichen. Er liebt sonnige Plätze, auf denen er seine Körpertemperatur regulieren kann. In deinem Zoo sitzt er gerne auf warmen Steinen und beobachtet das Treiben mit stoischer Ruhe."
+},
+{
+"id": 229,
+"nameDe": "Rotes Riesenkänguru",
+"beschreibungDe": "Das Rote Riesenkänguru ist das größte aller Kängurus und ein Symbol für Australiens Tierwelt. Es bewegt sich mit kräftigen Sprüngen fort und nutzt seinen Schwanz als Balancehilfe. Im Zoo ruht es gerne im Schatten, um dann wieder in weiten Sprüngen durchs Gehege zu hüpfen."
+},
+{
+"id": 230,
+"nameDe": "Saigaantilope",
+"beschreibungDe": "Die Saigaantilope erkennt man sofort an ihrer ungewöhnlich großen, wulstigen Nase. Diese hilft ihr, Staub zu filtern und Luft zu erwärmen – perfekt für die Steppen Zentralasiens. In deinem Zoo fällt sie mit ihrem besonderen Profil sofort auf und fasziniert durch ihre Seltenheit."
+},
+{
+"id": 231,
+"nameDe": "Schwarzfußkatze",
+"beschreibungDe": "Die Schwarzfußkatze gehört zu den kleinsten Wildkatzen Afrikas und ist trotzdem eine sehr erfolgreiche Jägerin. Sie ist nachtaktiv und bewegt sich leise durch Gras und Buschwerk. In deinem Zoo zeigt sie sich vor allem in der Dämmerung und begeistert durch ihre Mischung aus Niedlichkeit und Wildheit."
+},
+{
+"id": 232,
+"nameDe": "Sekretär",
+"beschreibungDe": "Der Sekretär ist ein großer Greifvogel, der anders als viele Verwandte meist am Boden unterwegs ist. Mit seinen langen Beinen schreitet er durch die Savanne und jagt Schlangen und andere Kleintiere. Im Zoo sorgt seine stolze Haltung und die „Federkrone“ am Hinterkopf für viel Bewunderung."
+},
+{
+"id": 233,
+"nameDe": "Serval",
+"beschreibungDe": "Der Serval ist eine schlanke, hochbeinige Wildkatze mit großen Ohren und geflecktem Fell. Er kann mit beeindruckenden Sprüngen Vögel aus der Luft schlagen und lauscht feinsten Geräuschen im Gras. In deinem Zoo schleicht er aufmerksam durchs Gehege, springt auf erhöhte Plätze und beobachtet alles ganz genau."
+},
+{
+"id": 234,
+"nameDe": "Silberdachs",
+"beschreibungDe": "Der Silberdachs ist ein kleiner, dachsartiger Räuber mit auffälliger Fellzeichnung. Er lebt zurückgezogen und ist meist in der Dämmerung aktiv. Im Zoo gräbt er eifrig im Boden und zeigt sich nur gelegentlich den geduldigen Besuchern."
+},
+{
+"id": 235,
+"nameDe": "Silberner Riesengalago",
+"beschreibungDe": "Der Silberne Riesengalago ist ein nachtaktiver Sprungakrobat mit großen Augen und langen Hinterbeinen. Er lebt in Bäumen und bewegt sich mit weiten Sprüngen von Ast zu Ast. In deinem Zoo ist er vor allem abends aktiv und sorgt mit seinen leisen Sprüngen für staunende Blicke."
+},
+{
+"id": 236,
+"nameDe": "Steppenschuppentier",
+"beschreibungDe": "Das Steppenschuppentier ist vollständig mit Hornschuppen bedeckt und sieht fast aus wie ein lebender Tannenzapfen. Bei Gefahr rollt es sich zu einer festen Kugel zusammen. In deinem Zoo schleicht es ruhig umher, schnüffelt nach Insekten und wirkt wie ein Wesen aus einer anderen Zeit."
+},
+{
+"id": 237,
+"nameDe": "Steppenzebra",
+"beschreibungDe": "Das Steppenzebra bewohnt die offenen Savannen Afrikas und ist durch sein Streifenmuster unverwechselbar. Jede Zebrazeichnung ist einzigartig, wie ein Fingerabdruck. In deinem Zoo traben sie im Familienverband durchs Gehege und bieten ein lebendiges Schwarz-Weiß-Schauspiel."
+},
+{
+"id": 238,
+"nameDe": "Streifenschakal",
+"beschreibungDe": "Der Streifenschakal ist ein mittelgroßer Wildhund mit charakteristischen Streifen an den Flanken. Er lebt in Afrika und nutzt jede Gelegenheit, um an Futter zu kommen, ob als Jäger oder Aasfresser. In deinem Zoo beobachtet er aufmerksam seine Umgebung und kommuniziert mit leisen Lauten mit seinen Artgenossen."
+},
+{
+"id": 239,
+"nameDe": "Tigeriltis",
+"beschreibungDe": "Der Tigeriltis ist ein kleiner Raubtierverwandter mit auffälliger, gefleckter Zeichnung. Er ist nachtaktiv und lebt versteckt in Höhlen und Erdbauen. Im Zoo zeigt er sich gerne in strukturreichen Gehegen, durchstöbert jeden Winkel und überrascht Besucher mit seiner Agilität."
+},
+{
+"id": 240,
+"nameDe": "Zwergflamingo",
+"beschreibungDe": "Der Zwergflamingo ist kleiner als seine berühmten Verwandten, dafür aber umso intensiver rosa gefärbt. Er lebt in großen Kolonien an salzhaltigen Seen Afrikas. In deinem Zoo bildet er einen wuseligen, farbenfrohen Teppich aus langen Beinen und gebogenen Hälsen."
+},
+{
+"id": 241,
+"nameDe": "Drusenkopf",
+"beschreibungDe": "Der Drusenkopf ist eine robuste Echse mit markantem Kopf und rauer Schuppenhaut. Er liebt warme, trockene Lebensräume und verbringt viel Zeit beim Sonnenbaden. In deinem Zoo liegt er gerne regungslos auf einem Ast und wirkt wie eine kleine, lebendige Statue."
+},
+{
+"id": 301,
+"nameDe": "Afrikanische Goldkatze",
+"beschreibungDe": "Die Afrikanische Goldkatze ist eine seltene Wildkatze aus den Regenwäldern Afrikas. Ihr Fell kann von rötlich bis grau variieren und bietet gute Tarnung im dichten Unterholz. In deinem Zoo bleibt sie oft im Schutz der Vegetation und zeigt sich neugierigen Besuchern nur kurz."
+},
+{
+"id": 302,
+"nameDe": "Australische Gespenstfledermaus",
+"beschreibungDe": "Die Australische Gespenstfledermaus hat lange, schmale Flügel und einen etwas geheimnisvollen Namen. Sie ist nachtaktiv und jagt Insekten mit großer Präzision im Flug. In deinem Zoo ist sie vor allem in der Dunkelheit unterwegs und sorgt im Fledermaushaus für leises Flattern."
+},
+{
+"id": 303,
+"nameDe": "Blauer Leguan",
+"beschreibungDe": "Der Blaue Leguan ist eine bedrohte Echsenart von den Kaimaninseln und fällt durch seine bläuliche Färbung auf. Er liebt felsige, sonnige Plätze und ernährt sich hauptsächlich pflanzlich. In deinem Zoo sitzt er gerne auf erhöhten Steinen und beobachtet seine Umgebung aus sicherer Position."
+},
+{
+"id": 304,
+"nameDe": "Blauschopf Krontaube",
+"beschreibungDe": "Die Blauschopf-Krontaube zählt zu den größten Taubenarten der Welt und trägt eine prächtige Federkrone. Sie stammt aus den Regenwäldern Neuguineas und bewegt sich meist ruhig am Boden. In deinem Zoo schreitet sie würdevoll durchs Gehege und zeigt stolz ihre elegante Kopfbedeckung."
+},
+{
+"id": 305,
+"nameDe": "Brillenbär",
+"beschreibungDe": "Der Brillenbär ist der einzige in Südamerika heimische Bär und trägt helle Zeichnungen um die Augen. Diese Muster erinnern an eine Brille und geben ihm ein freundliches Aussehen. In deinem Zoo klettert er gerne, spielt mit Baumstämmen und gönnt sich ausgiebige Ruhepausen."
+},
+{
+"id": 306,
+"nameDe": "Brillenschlange",
+"beschreibungDe": "Die Brillenschlange ist eine der bekanntesten Kobras und zeigt bei Bedrohung ihre typische Nackenhaube. Auf dieser Haube ist häufig ein musterähnlicher „Brillenfleck“ zu sehen. In deinem Zoo lebt sie hinter sicheren Scheiben und fasziniert Besucher mit ihrer eleganten, aber respektgebietenden Erscheinung."
+},
+{
+"id": 307,
+"nameDe": "Diamantfasan",
+"beschreibungDe": "Der Diamantfasan ist ein prachtvoll gefiederter Vogel mit auffälligen Farben und Mustern. Das Männchen trägt einen beeindruckenden Halskragen und langes Schwanzgefieder. In deinem Zoo präsentiert er sich gerne von seiner schönsten Seite und glitzert im Sonnenlicht fast wie ein kleiner Edelstein."
+},
+{
+"id": 308,
+"nameDe": "Elch",
+"beschreibungDe": "Der Elch ist das größte Mitglied der Hirschfamilie und an seinem breiten Schaufelgeweih leicht zu erkennen. Er lebt in nordischen Wäldern und liebt sumpfige Gebiete und Wasserstellen. In deinem Zoo wirkt er mit seiner Größe und Gelassenheit besonders beeindruckend."
+},
+{
+"id": 309,
+"nameDe": "Europäische Wildkatze",
+"beschreibungDe": "Die Europäische Wildkatze ähnelt stark einer Hauskatze, ist aber kräftiger gebaut und sehr scheu. Sie bewohnt Wälder und meidet meist den Kontakt zum Menschen. In deinem Zoo braucht sie viele Verstecke und revanchiert sich mit seltenen, dafür umso spannenderen Sichtungen."
+},
+{
+"id": 310,
+"nameDe": "Europäischer Dachs",
+"beschreibungDe": "Der Europäische Dachs ist ein nachtaktives Raubtier mit charakteristischer schwarz-weißer Kopfmusterung. Er lebt in weit verzweigten Bauen und ist ein fleißiger Gräber. In deinem Zoo kann man ihn beim Wühlen im Boden und beim gemütlichen Dösen in seinem Bau beobachten."
+},
+{
+"id": 311,
+"nameDe": "Europäisches Reh",
+"beschreibungDe": "Das Europäische Reh ist ein typischer Bewohner unserer Wälder und Felder. Es ist zierlich gebaut und immer aufmerksam, um Gefahren früh zu erkennen. In deinem Zoo wirkt es besonders sanft und lässt sich beim Äsen und Wiederkäuen gut beobachten."
+},
+{
+"id": 312,
+"nameDe": "Fischkatze",
+"beschreibungDe": "Die Fischkatze ist eine Wildkatze, die Wasser liebt und sogar gut schwimmen kann. Sie jagt Fische, indem sie geduldig am Ufer lauert und blitzschnell zupackt. Im Zoo nutzt sie Wasserbecken im Gehege gern zum Planschen und Jagen von Leckerbissen."
+},
+{
+"id": 313,
+"nameDe": "Fleckenroller",
+"beschreibungDe": "Der Fleckenroller gehört zu den Schleichkatzen und trägt ein auffälliges Fell mit Flecken und Streifen. Er ist meist nachtaktiv und bewegt sich geschickt durch Bäume und Büsche. In deinem Zoo ist er ein eher heimlicher Bewohner, den aufmerksame Besucher aber mit etwas Glück entdecken."
+},
+{
+"id": 314,
+"nameDe": "Gelbhauben Kakadu",
+"beschreibungDe": "Der Gelbhauben-Kakadu ist ein lebhafter Papagei mit weißem Gefieder und leuchtend gelber Federhaube. Er ist sehr gesellig, lautstark und ausgesprochen intelligent. In deinem Zoo sorgt er mit Rufen, Klettern und spielerischem Verhalten für beste Unterhaltung."
+},
+{
+"id": 315,
+"nameDe": "Ginsterkatze",
+"beschreibungDe": "Die Ginsterkatze ist ein schlankes, nachtaktives Raubtier mit langem Schwanz und schöner Fleckenzeichnung. Sie klettert hervorragend und streift nachts auf Nahrungssuche durch ihr Revier. In deinem Zoo braucht sie viele Verstecke und zeigt ihre Eleganz vor allem in den Abendstunden."
+},
+{
+"id": 316,
+"nameDe": "Goodfellow-Baumkänguru",
+"beschreibungDe": "Das Goodfellow-Baumkänguru lebt anders als seine Verwandten meist in den Bäumen. Es stammt aus den Regenwäldern Neuguineas und besitzt ein dichtes, rotbraunes Fell. In deinem Zoo klettert es geschickt von Ast zu Ast und wirkt fast wie ein Känguru im Klettermodus."
+},
+{
+"id": 317,
+"nameDe": "Großer Paradiesvogel",
+"beschreibungDe": "Der Große Paradiesvogel ist berühmt für sein spektakuläres Balzgefieder und kunstvolle Tänze. Er lebt in den Wäldern Neuguineas und zeigt zur Paarungszeit eine richtige Show. In deinem Zoo verzaubert er mit seinen Farben und eleganten Bewegungen alle, die ihn sehen."
+},
+{
+"id": 318,
+"nameDe": "Helmhornvogel",
+"beschreibungDe": "Der Helmhornvogel trägt einen auffälligen Hornaufsatz auf seinem Schnabel, der ihm seinen Namen gibt. Er lebt in tropischen Wäldern und ernährt sich von Früchten und kleinen Tieren. In deinem Zoo fliegt er mit kräftigen Flügelschlägen durchs Volierengehege und ruft laut in den Raum."
+},
+{
+"id": 319,
+"nameDe": "Hübschgesichtwallaby",
+"beschreibungDe": "Das Hübschgesichtwallaby ist ein kleines Känguru mit besonders sanftem Gesichtsausdruck. Es lebt in Australien und bevorzugt buschige Lebensräume. In deinem Zoo hüpft es leise durch das Gehege und schaut die Besucher mit großen Augen neugierig an."
+},
+{
+"id": 320,
+"nameDe": "Indische Sternschildkröte",
+"beschreibungDe": "Die Indische Sternschildkröte erkennt man an ihrem auffälligen, sternförmig gemusterten Panzer. Sie stammt aus trockenen Regionen Indiens und Sri Lankas. Im Zoo bewegt sie sich gemächlich, doch jeder Schritt präsentiert ihr kunstvolles Panzerdesign."
+},
+{
+"id": 321,
+"nameDe": "Kiwi",
+"beschreibungDe": "Der Kiwi ist ein flugunfähiger Vogel aus Neuseeland und Nationaltier des Landes. Er hat ein borstenartiges Gefieder und nutzt seinen langen Schnabel, um im Boden nach Nahrung zu stochern. In deinem Zoo lebt er in einem abgedunkelten Bereich und zeigt sich vor allem bei Nachtaktiv-Führungen."
+},
+{
+"id": 322,
+"nameDe": "Koala",
+"beschreibungDe": "Der Koala ist ein Beuteltier aus Australien, das die meiste Zeit in Eukalyptusbäumen verbringt. Er schläft bis zu 20 Stunden am Tag und wirkt dabei immer herrlich entspannt. In deinem Zoo hängt er gemütlich in Astgabeln, knabbert an Eukalyptusblättern und versprüht pure Gelassenheit."
+},
+{
+"id": 323,
+"nameDe": "Kusu",
+"beschreibungDe": "Der Kusu, auch Possum genannt, ist ein nachtaktives Beuteltier, das in Australien und Neuguinea zuhause ist. Er lebt meist in Bäumen und nutzt seinen Greifschwanz beim Klettern. In deinem Zoo ist er ein leiser Mitbewohner, der nachts neugierig durch sein Gehege streift."
+},
+{
+"id": 324,
+"nameDe": "Mondbär",
+"beschreibungDe": "Der Mondbär, auch Kragenbär genannt, trägt einen hellen Halbmondfleck auf der Brust. Er lebt in Asien und verbringt viel Zeit beim Klettern und nach Nahrung suchen. In deinem Zoo klettert er gern auf Plattformen und zeigt dabei immer wieder stolz seinen Brustmond."
+},
+{
+"id": 325,
+"nameDe": "Nordopossum",
+"beschreibungDe": "Das Nordopossum ist das einzige Beuteltier Nordamerikas und ein echter Überlebenskünstler. Es stellt sich bei Gefahr manchmal tot, um Feinde zu täuschen. In deinem Zoo durchstöbert es neugierig Futterverstecke und zeigt, wie vielseitig ein kleiner Beutler sein kann."
+},
+{
+"id": 326,
+"nameDe": "Okapi",
+"beschreibungDe": "Das Okapi ist ein naher Verwandter der Giraffe, auch wenn es eher wie eine Mischung aus Pferd und Zebra wirkt. Es lebt in den dichten Regenwäldern des Kongo und ist sehr scheu. In deinem Zoo schätzt es ruhige Rückzugsorte und überrascht Besucher mit seinen gestreiften Beinen."
+},
+{
+"id": 327,
+"nameDe": "Pinselohrschwein",
+"beschreibungDe": "Das Pinselohrschwein ist ein farbenfrohes Wildschwein aus Afrika mit auffälligen Gesichtszeichnungen. Seinen Namen verdankt es den langen Haarpinseln an den Ohren. In deinem Zoo suhlt es sich begeistert im Schlamm und durchstöbert mit der Schnauze jeden Winkel."
+},
+{
+"id": 328,
+"nameDe": "Roter Brüllaffe",
+"beschreibungDe": "Der Rote Brüllaffe ist für seine lauten Rufe bekannt, die weit durch den Regenwald hallen. Er lebt in Bäumen und ernährt sich vor allem von Blättern. In deinem Zoo lässt er seine tiefe Stimme erklingen und erinnert alle daran, dass ein Affengehege nie wirklich leise ist."
+},
+{
+"id": 329,
+"nameDe": "Roter Panda",
+"beschreibungDe": "Der Rote Panda ist ein kleiner, kletterfreudiger Bambusliebhaber mit flauschigem Schwanz. Er lebt in den Bergwäldern Asiens und ist vor allem in Bäumen unterwegs. In deinem Zoo turnt er geschickt auf Ästen herum und schläft eingerollt wie ein kuscheliges Fellknäuel."
+},
+{
+"id": 330,
+"nameDe": "Roter Vari",
+"beschreibungDe": "Der Rote Vari ist ein großer Lemur mit dichtem, rot-schwarzem Fell. Er stammt aus den Regenwäldern Madagaskars und lebt in sozialen Gruppen. In deinem Zoo sorgt er mit lauten Rufen und akrobatischen Klettereinlagen für viel Aufmerksamkeit."
+},
+{
+"id": 331,
+"nameDe": "Rotfuchs",
+"beschreibungDe": "Der Rotfuchs ist ein anpassungsfähiges Raubtier, das in Wäldern, Feldern und sogar Städten lebt. Mit seinem roten Fell und der buschigen Rute ist er leicht zu erkennen. In deinem Zoo zeigt er seine schlaue, neugierige Seite und beobachtet das Geschehen ganz genau."
+},
+{
+"id": 332,
+"nameDe": "Schimpanse",
+"beschreibungDe": "Der Schimpanse ist einer unserer nächsten Verwandten und beeindruckt durch seine Intelligenz. In Gruppen besitzt er eine komplexe Sozialstruktur und nutzt Werkzeuge im Alltag. In deinem Zoo klettert er, spielt, streitet und versöhnt sich – fast wie eine kleine Affenstadt."
+},
+{
+"id": 333,
+"nameDe": "Sumatra-Naßhorn",
+"beschreibungDe": "Das Sumatra-Nashorn ist das kleinste lebende Nashorn und stark bedroht. Es trägt meist zwei Hörner und lebt in dichten Regenwäldern. In deinem Zoo ist es ein echtes Highlight und Botschafter für den Schutz tropischer Lebensräume."
+},
+{
+"id": 334,
+"nameDe": "Tanuki",
+"beschreibungDe": "Der Tanuki, auch Marderhund genannt, stammt aus Ostasien und sieht aus wie eine Mischung aus Waschbär und Hund. In der japanischen Folklore gilt er als fröhlicher, schelmischer Gestaltwandler. In deinem Zoo zeigt er sich eher gemütlich, schnuppert neugierig und kuschelt gern mit Artgenossen."
+},
+{
+"id": 335,
+"nameDe": "Tasmanischer Teufel",
+"beschreibungDe": "Der Tasmanische Teufel ist ein kräftiges Beuteltier mit lautem Gebissknurren und beeindruckender Beißkraft. Er lebt in Tasmanien und frisst vor allem Aas, ist aber auch ein schneller Jäger. In deinem Zoo rollt er sich beim Fressen in echte Futterrausche, was bei Besuchern für staunende Gesichter sorgt."
+},
+{
+"id": 336,
+"nameDe": "Totenkopfäffchen",
+"beschreibungDe": "Das Totenkopfäffchen ist klein, flink und trägt eine Gesichtszeichnung, die an einen Schädel erinnert. Es lebt in mittel- und südamerikanischen Wäldern und ist selten allein unterwegs. In deinem Zoo saust es in der Gruppe durch das Gehege und ist ständig am Klettern, Springen und Quietschen."
+},
+{
+"id": 337,
+"nameDe": "Tundrawolf",
+"beschreibungDe": "Der Tundrawolf lebt in den kalten Regionen des Nordens und besitzt ein dichtes, helles Winterfell. Er jagt im Rudel und legt große Strecken in der Weite der Tundra zurück. In deinem Zoo zeigt er in der Gruppe seine sozialen Fähigkeiten und beeindruckt mit durchdringendem Heulen."
+},
+{
+"id": 338,
+"nameDe": "Urson",
+"beschreibungDe": "Der Urson ist ein nordamerikanisches Stachelschwein mit langen, spitzen Stacheln zur Verteidigung. Er bewegt sich eher langsam und verbringt viel Zeit in Bäumen. In deinem Zoo klettert er gemütlich auf Äste und lässt seine Stacheln im Licht schimmern – anfassen sollte man ihn aber lieber nicht."
+},
+{
+"id": 339,
+"nameDe": "Waldhund",
+"beschreibungDe": "Der Waldhund ist ein kleiner, stämmiger Wildhund aus Südamerika mit kurzen Beinen. Er jagt im Rudel und ist besonders an das Leben im dichten Wald angepasst. In deinem Zoo ist er fast immer in Bewegung und zeigt, wie viel Energie in einem kleinen Körper stecken kann."
+},
+{
+"id": 340,
+"nameDe": "Wildschwein",
+"beschreibungDe": "Das Wildschwein ist der wilde Verwandte unseres Hausschweins und fühlt sich in Wäldern und Feldern wohl. Es ist ein kräftiger Wühler und liebt Schlamm und feuchtes Erdreich. In deinem Zoo suhlt es sich vergnügt und grunzt zufrieden, wenn es leckere Wurzeln findet."
+},
+{
+"id": 341,
+"nameDe": "Zebraducker",
+"beschreibungDe": "Der Zebraducker ist eine seltene, waldlebende Antilope aus Afrika. Sein Name erinnert an Zwerge, und tatsächlich ist er eher klein und scheu. In deinem Zoo schätzt er dichte Bepflanzung und lässt sich nur mit etwas Glück blicken."
+},
+{
+"id": 342,
+"nameDe": "Amerikanischer Schwarzbär",
+"beschreibungDe": "Der Amerikanische Schwarzbär ist ein anpassungsfähiger Bär, der in Wäldern Nordamerikas lebt. Seine Fellfarbe reicht von tiefschwarz bis braun, trotz des Namens. In deinem Zoo klettert er, badet im Wasserbecken und zeigt, dass Bären echte Allrounder sind."
+},
+{
+"id": 343,
+"nameDe": "Schwarzstorch",
+"beschreibungDe": "Der Schwarzstorch ist scheuer als sein weißer Verwandter und lebt überwiegend in ungestörten Wäldern. Sein dunkles Gefieder schimmert in der Sonne metallisch. In deinem Zoo bewegt er sich ruhig und zurückhaltend, eine besondere Entdeckung für aufmerksame Besucher."
+},
+{
+"id": 401,
+"nameDe": "Afrikanischer Esel",
+"beschreibungDe": "Der Afrikanische Esel ist der wilde Vorfahr unserer Hausesel und an trockene Steppengebiete angepasst. Er besitzt oft ein graues Fell mit dunklen Beinen und Schulterstreifen. In deinem Zoo zeigt er seine robuste Seite und ruft gelegentlich mit kräftigem I-A über die Anlage."
+},
+{
+"id": 402,
+"nameDe": "Alpaka",
+"beschreibungDe": "Das Alpaka ist mit seinem flauschigen Fell und dem sanften Blick ein Liebling vieler Besucher. Es stammt aus den Anden und wird vor allem wegen seiner weichen Wolle gehalten. In deinem Zoo spaziert es neugierig durch das Gehege und lässt sich mit etwas Sicherheitsabstand gern fotografieren."
+},
+{
+"id": 403,
+"nameDe": "Alpenmurmeltier",
+"beschreibungDe": "Das Alpenmurmeltier lebt in den Gebirgsregionen Europas und verbringt den Winter im tiefen Winterschlaf. Es warnt seine Gruppe mit lauten Pfeiflauten vor Gefahren. In deinem Zoo ist es vor allem in der warmen Jahreszeit aktiv und sorgt mit seinen Pfiffen für Aufmerksamkeit."
+},
+{
+"id": 404,
+"nameDe": "Alpensteinbock",
+"beschreibungDe": "Der Alpensteinbock ist ein Kletterkünstler, der steile Felswände mühelos erklimmt. Seine mächtigen Hörner und der kräftige Körperbau machen ihn unverwechselbar. In deinem Zoo nutzt er Felsstrukturen mit Leichtigkeit und zeigt Besuchern, was Balance bedeutet."
+},
+{
+"id": 405,
+"nameDe": "Andenkondor",
+"beschreibungDe": "Der Andenkondor gehört zu den größten flugfähigen Vögeln der Welt und lebt in den südamerikanischen Anden. Er segelt stundenlang auf Luftströmen und sucht nach Aas. In deinem Zoo beeindruckt er mit seiner enormen Flügelspannweite, besonders bei Flugshows."
+},
+{
+"id": 406,
+"nameDe": "Argali",
+"beschreibungDe": "Der Argali ist das größte Wildschaf der Welt und bewohnt die Gebirge Zentralasiens. Seine eindrucksvollen, spiralig gedrehten Hörner können sehr groß werden. In deinem Zoo trottet er ruhig über felsige Gehegebereiche und zeigt stolz seine Hornpracht."
+},
+{
+"id": 407,
+"nameDe": "Äthiopischer Wolf",
+"beschreibungDe": "Der Äthiopische Wolf ist eine der seltensten Wildhundarten und lebt in hochgelegenen Regionen Afrikas. Sein rötliches Fell und der schlanke Körper erinnern an Füchse. In deinem Zoo ist er ein Botschafter für bedrohte Berglebensräume und beeindruckt durch seine Eleganz."
+},
+{
+"id": 408,
+"nameDe": "Bartgeier",
+"beschreibungDe": "Der Bartgeier ist ein mächtiger Greifvogel, der sich auf Knochen spezialisiert hat. Er lässt Knochen aus großer Höhe fallen, um an das nahrhafte Mark zu gelangen. In deinem Zoo segelt er in weiten Kreisen über die Voliere und zeigt seine imposante Silhouette."
+},
+{
+"id": 409,
+"nameDe": "Baumstachler",
+"beschreibungDe": "Der Baumstachler ist ein kletterndes Stachelschwein, das viel Zeit in Bäumen verbringt. Seine Stacheln dienen als effektiver Schutz gegen Feinde. In deinem Zoo erklimmt er Äste in gemächlichem Tempo und zieht neugierige Blicke auf sich."
+},
+{
+"id": 410,
+"nameDe": "Bergnyala",
+"beschreibungDe": "Die Bergnyala ist eine seltene Antilope aus den Hochlandregionen Äthiopiens. Sie besitzt ein dunkel gefärbtes Fell und auffällige weiße Markierungen. In deinem Zoo wirkt sie besonders elegant, wenn sie ruhig durch das Gehege schreitet."
+},
+{
+"id": 411,
+"nameDe": "Falklandkaraka",
+"beschreibungDe": "Der Falklandkaraka ist ein Vogel der Falklandinseln und an das raue Inselleben gewöhnt. Er ist neugierig und nutzt gerne vom Menschen geschaffene Strukturen. In deinem Zoo zeigt er sich als lebhaftes, kluges Tier mit viel Bewegungsdrang."
+},
+{
+"id": 412,
+"nameDe": "Fleckenskunk",
+"beschreibungDe": "Der Fleckenskunk ist kleiner als der Streifenskunk, dafür aber bunt gescheckt. Auch er besitzt die berühmte Duftverteidigung, die er nur im Notfall einsetzt. In deinem Zoo ist er meist nachtaktiv und lässt sich vor allem in den Abendstunden blicken."
+},
+{
+"id": 413,
+"nameDe": "Gewöhnliches Stachelschwein",
+"beschreibungDe": "Das Gewöhnliche Stachelschwein trägt eine eindrucksvolle Rüstung aus langen, spitzen Stacheln. Bei Gefahr stellt es diese auf und rasselt zur Warnung. In deinem Zoo zieht es dank seiner spektakulären Silhouette sofort die Aufmerksamkeit auf sich."
+},
+{
+"id": 414,
+"nameDe": "Goldstumpfnase",
+"beschreibungDe": "Die Goldstumpfnase ist ein seltener Affe aus den Bergwäldern Chinas mit auffälligem, goldenen Fell. Ihr kurzer, nach oben gerichteter Nasenstumpf verleiht ihr ein einzigartiges Gesicht. In deinem Zoo klettert sie in Gruppen durch das Gehege und sorgt mit ihrem Aussehen für Staunen."
+},
+{
+"id": 415,
+"nameDe": "Goldtakin",
+"beschreibungDe": "Der Goldtakin ist ein massiges Huftier aus dem Himalaya, dessen goldenes Fell besonders auffällt. Er wirkt wie eine Mischung aus Ziege und Gnu und ist perfekt an das Hochgebirge angepasst. In deinem Zoo steht er gerne auf erhöhten Plattformen und lässt sich den Wind durchs Fell wehen."
+},
+{
+"id": 416,
+"nameDe": "Hermelin",
+"beschreibungDe": "Das Hermelin ist ein kleines Raubtier, das im Winter oft ein schneeweißes Fell bekommt. In dieser Zeit galt es früher als Symbol für Reinheit und wurde sehr geschätzt. In deinem Zoo wechselt es im Jahresverlauf die Fellfarbe und zeigt, wie gut Tarnung funktionieren kann."
+},
+{
+"id": 417,
+"nameDe": "Katta",
+"beschreibungDe": "Der Katta ist ein Lemur aus Madagaskar und vor allem für seinen geringelten Schwanz bekannt. Er lebt in Gruppen und genießt gern Sonnenbäder mit ausgebreiteten Armen. In deinem Zoo springt er verspielt von Ast zu Ast und veranstaltet mit seiner Gruppe ein wahres Lemurentheater."
+},
+{
+"id": 418,
+"nameDe": "Kodiakbär",
+"beschreibungDe": "Der Kodiakbär ist einer der größten Braunbären der Welt und lebt auf den Kodiakinseln in Alaska. Er ernährt sich von Fischen, Beeren und anderem, was die Natur hergibt. In deinem Zoo beeindruckt er mit seiner massigen Statur und genießt besonders gern Wasserbecken und Futterspiele."
+},
+{
+"id": 419,
+"nameDe": "Leopard",
+"beschreibungDe": "Der Leopard ist ein geschickter Jäger, der Bäume gern als Ruheplatz und Ausguck nutzt. Sein geflecktes Fell ist eine perfekte Tarnung im Schattenspiel des Waldes. In deinem Zoo liegt er oft entspannt auf hohen Plattformen und beobachtet alles aus sicherer Höhe."
+},
+{
+"id": 420,
+"nameDe": "Luchs",
+"beschreibungDe": "Der Luchs ist die größte europäische Wildkatze und an seinen Pinselohren gut zu erkennen. Er ist ein lautloser Jäger, der meist in der Dämmerung unterwegs ist. In deinem Zoo braucht er Rückzugsräume und belohnt geduldige Besucher mit einem leisen Auftritt."
+},
+{
+"id": 421,
+"nameDe": "Manul",
+"beschreibungDe": "Der Manul, auch Pallaskatze genannt, hat ein besonders dichtes, plüschiges Fell und ein grimmiges Gesicht. Er lebt in kargen Steppen und Gebirgen Asiens und kommt mit extremen Temperaturen zurecht. In deinem Zoo wirkt er wie eine kleine, sehr flauschige Wildkatze mit großem Charakter."
+},
+{
+"id": 422,
+"nameDe": "Nacktnasenwombat",
+"beschreibungDe": "Der Nacktnasenwombat ist ein grabendes Beuteltier aus Australien mit unverkennbarer, nackter Nase. Er legt lange Tunnel an und verbringt viel Zeit unter der Erde. In deinem Zoo zeigt er seinen kräftigen Körperbau und sorgt mit seinem tapsigen Gang für Schmunzeln."
+},
+{
+"id": 423,
+"nameDe": "Ozelot",
+"beschreibungDe": "Der Ozelot ist eine mittelgroße Wildkatze mit wunderschön geflecktem Fell. Er lebt in den Wäldern Amerikas und ist ein geschickter Kletterer und Jäger. In deinem Zoo streift er elegant durch sein Gehege und zeigt immer wieder seine katzengleiche Anmut."
+},
+{
+"id": 424,
+"nameDe": "Pavian",
+"beschreibungDe": "Der Pavian ist ein sozialer Affe mit markantem Gesicht und teils auffälliger Hinterteilfärbung. Er lebt in großen Gruppen, in denen viel los ist – von Streit bis Spiel. In deinem Zoo ist das Pavianfelsen-Gehege meist voller Action und ein echter Publikumsmagnet."
+},
+{
+"id": 425,
+"nameDe": "Puma",
+"beschreibungDe": "Der Puma, auch Berglöwe genannt, bewohnt viele Lebensräume vom Regenwald bis in Hochgebirge. Er ist ein anpassungsfähiger Einzelgänger und ein kraftvoller Sprinter. In deinem Zoo bewegt er sich geschmeidig durch die Anlage und zeigt seine beeindruckende Athletik."
+},
+{
+"id": 426,
+"nameDe": "Riesenturako",
+"beschreibungDe": "Der Riesenturako ist ein farbenfroher Vogel Afrikas mit kräftigem Körper und lautem Ruf. Sein grünes und blaues Gefieder leuchtet im Sonnenlicht. In deinem Zoo springt er geschickt von Ast zu Ast und gibt seine markanten Rufe zum Besten."
+},
+{
+"id": 427,
+"nameDe": "Rothund",
+"beschreibungDe": "Der Rothund ist ein sozialer Wildhund aus Asien, der im Rudel jagt. Sein rostrotes Fell und die spitzen Ohren machen ihn leicht erkennbar. In deinem Zoo zeigt er seine Teamfähigkeit im Rudel und ist ständig in Bewegung."
+},
+{
+"id": 428,
+"nameDe": "Walliser Schwarznasenschaf",
+"beschreibungDe": "Das Walliser Schwarznasenschaf ist mit seiner schwarzen Gesichtszeichnung und dem weißen, lockigen Fell besonders auffällig. Es stammt aus den Schweizer Alpen und gilt als sehr robust. In deinem Zoo verzaubert es Besucher mit seinem freundlichen Blick und der plüschigen Erscheinung."
+},
+{
+"id": 429,
+"nameDe": "Wapiti",
+"beschreibungDe": "Das Wapiti ist ein nordamerikanischer Hirsch mit beeindruckendem Geweih. Zur Brunftzeit ertönt sein charakteristischer, heller Ruf weit durch die Wälder. In deinem Zoo beeindruckt er mit seiner Größe und seiner majestätischen Ausstrahlung."
+},
+{
+"id": 430,
+"nameDe": "Weißkopfseeadler",
+"beschreibungDe": "Der Weißkopfseeadler ist das Wappentier der USA und ein mächtiger Fischjäger. Mit seinem weißen Kopf und Schwanz hebt er sich deutlich vom dunklen Körper ab. In deinem Zoo zieht er mit seinen Flügen und seinem scharfen Blick alle Aufmerksamkeit auf sich."
+},
+{
+"id": 431,
+"nameDe": "Wolf",
+"beschreibungDe": "Der Wolf ist ein hochsoziales Rudeltier mit ausgeprägtem Jagdinstinkt. Er kommuniziert über Laute, Körpersprache und Gerüche. In deinem Zoo zeigt das Rudel eindrucksvoll, wie wichtig Zusammenhalt im Tierreich sein kann."
+},
+{
+"id": 501,
+"nameDe": "Afrikanische Zibetkatze",
+"beschreibungDe": "Die Afrikanische Zibetkatze ist ein nachtaktives Raubtier mit eigenwilligem Duft. Früher wurden ihre Duftstoffe sogar in der Parfümherstellung genutzt. In deinem Zoo streift sie leise durch die Nachtbereiche und hält sich meist im Halbdunkel."
+},
+{
+"id": 502,
+"nameDe": "Afrikanischer Elefant",
+"beschreibungDe": "Der Afrikanische Elefant ist das größte Landsäugetier der Welt. Seine riesigen Ohren und die imposanten Stoßzähne machen ihn unverwechselbar. In deinem Zoo ist er der sanfte Riese, der mit dem Rüssel spielt, badet und Besucher nachhaltig beeindruckt."
+},
+{
+"id": 503,
+"nameDe": "Afrikanischer Strauß",
+"beschreibungDe": "Der Afrikanische Strauß ist der größte lebende Vogel und ein schneller Läufer. Obwohl er nicht fliegen kann, erreicht er beeindruckende Geschwindigkeiten auf der Flucht. In deinem Zoo rennt er gerne über die Anlage und schaut neugierig über den Zaun."
+},
+{
+"id": 504,
+"nameDe": "Afrikanischer Weissrückengeier",
+"beschreibungDe": "Der Afrikanische Weißrückengeier ist ein Aasfresser, der eine wichtige Rolle im Ökosystem spielt. Er hält die Savanne sauber, indem er Kadaver schnell beseitigt. In deinem Zoo zeigt er eindrucksvoll, dass auch weniger beliebte Tiere echte Umwelthelfer sind."
+},
+{
+"id": 505,
+"nameDe": "Afrikanischer Wildhund",
+"beschreibungDe": "Der Afrikanische Wildhund ist ein hochsozialer Jäger mit auffälligem Fleckenfell. Im Rudel arbeitet er eng zusammen und teilt Beute mit seinen Mitgliedern. In deinem Zoo ist er ein dynamischer Eyecatcher, der fast immer in Bewegung ist."
+},
+{
+"id": 506,
+"nameDe": "Breitmaulnashorn",
+"beschreibungDe": "Das Breitmaulnashorn hat ein breites, quadratisches Maul, das ideal zum Grasen ist. Es lebt in Afrika und verbringt viel Zeit mit Fressen und Ruhen. In deinem Zoo ist es ein beeindruckender Gigant, der jedoch meist überraschend gelassen wirkt."
+},
+{
+"id": 507,
+"nameDe": "Chaco-Pekari",
+"beschreibungDe": "Das Chaco-Pekari ist eine seltene Pekari-Art aus Südamerika. Es lebt in trockenen Wäldern und Buschlandschaften und ist sehr anpassungsfähig. In deinem Zoo zieht es in kleinen Gruppen durch das Gehege und sucht eifrig nach Futter."
+},
+{
+"id": 508,
+"nameDe": "Dromedar",
+"beschreibungDe": "Das Dromedar ist ein Wüstentier mit nur einem Höcker, der als Fettspeicher dient. Es ist perfekt an Hitze und Trockenheit angepasst und kann lange ohne Wasser auskommen. In deinem Zoo schlendert es gemächlich durch das Sandgehege und wirkt immer ein wenig entspannt verschlafen."
+},
+{
+"id": 509,
+"nameDe": "Erdferkel",
+"beschreibungDe": "Das Erdferkel ist ein nachtaktiver Insektenfresser mit langem Rüssel und kräftigen Grabkrallen. Es liebt Termitenhügel und Ameisennester. In deinem Zoo gräbt es emsig im Boden und ist ein heimlicher Star der Nachtbereiche."
+},
+{
+"id": 510,
+"nameDe": "Erdmännchen",
+"beschreibungDe": "Das Erdmännchen ist ein kleiner Wachposten der Savanne, der gern aufrecht steht und Ausschau hält. Es lebt in Gruppen und teilt sich die Aufgaben bei der Nahrungssuche und Bewachung. In deinem Zoo sind die Erdmännchen mit ihren wuseligen Bewegungen und neugierigen Blicken echte Publikumslieblinge."
+},
+{
+"id": 511,
+"nameDe": "Fennek",
+"beschreibungDe": "Der Fennek ist ein Wüstenfuchs mit riesigen Ohren, die ihm beim Kühlen helfen. Er ist nachtaktiv und sehr an das Leben in trockenen Regionen angepasst. In deinem Zoo wirkt er mit seinem großen Ohr-Schmuck besonders niedlich und geheimnisvoll."
+},
+{
+"id": 512,
+"nameDe": "Flusspferd",
+"beschreibungDe": "Das Flusspferd verbringt den größten Teil des Tages im Wasser und kommt vor allem nachts zum Grasen an Land. Trotz seines gemütlichen Aussehens kann es sehr schnell und kraftvoll sein. In deinem Zoo blubbert es im Wasserbecken, gähnt beeindruckend weit und spritzt gern ein wenig."
+},
+{
+"id": 513,
+"nameDe": "Giraffengazelle",
+"beschreibungDe": "Die Giraffengazelle, auch Gerenuk genannt, hat einen besonders langen Hals und kann sich zum Fressen sogar aufrichten. Sie lebt in trockenen Gebieten Afrikas und kommt mit wenig Wasser aus. In deinem Zoo steht sie oft auf den Hinterbeinen, um an Blätter zu gelangen, und sorgt damit für staunende Blicke."
+},
+{
+"id": 514,
+"nameDe": "Großer Ameisenbär",
+"beschreibungDe": "Der Große Ameisenbär ist mit seiner langen Schnauze und der buschigen Schwanzfahne unverwechselbar. Seine Lieblingsspeisen sind Ameisen und Termiten, die er mit seiner klebrigen Zunge aufnimmt. In deinem Zoo stapft er gemächlich durchs Gehege und wirkt wie ein freundlicher, etwas ungewöhnlicher Besucher."
+},
+{
+"id": 515,
+"nameDe": "Honigdach",
+"beschreibungDe": "Der Honigdachs, auch Ratel genannt, gilt als sehr furchtlos und wehrhaft. Er ernährt sich von Honig, Insekten und sogar giftigen Schlangen. In deinem Zoo zeigt er seinen starken Charakter und ist ein kleiner, aber beeindruckender Räuber."
+},
+{
+"id": 516,
+"nameDe": "Impala",
+"beschreibungDe": "Das Impala ist eine elegante Antilope Afrikas, bekannt für ihre weiten Sprünge. In Herden unterwegs, nutzt es seine Schnelligkeit, um Fressfeinden zu entkommen. In deinem Zoo springt es leichtfüßig durch das Gehege und wirkt immer wachsam."
+},
+{
+"id": 517,
+"nameDe": "Kaffernbüffel",
+"beschreibungDe": "Der Kaffernbüffel ist ein mächtiges Rind Afrikas mit gewaltigen Hörnern. Er gilt als unberechenbar und wird von vielen Tieren respektiert. In deinem Zoo strahlt er Stärke aus, während er ruhig Gras frisst oder im Schlamm badet."
+},
+{
+"id": 518,
+"nameDe": "Kap-Großkudu",
+"beschreibungDe": "Der Kap-Großkudu ist eine beeindruckende Antilope mit meterlangen, spiralig gedrehten Hörnern. Seine gestreifte Flanke sorgt für zusätzliche Eleganz. In deinem Zoo zieht er mit seinem königlichen Aussehen sofort alle Blicke auf sich."
+},
+{
+"id": 519,
+"nameDe": "Löffelhund",
+"beschreibungDe": "Der Löffelhund ist ein kleiner Wildhund mit großen Ohren, die an Löffel erinnern. Er ernährt sich vor allem von Insekten und ist nachtaktiv. In deinem Zoo lauscht er mit seinen Riesenohr-Antennen in alle Richtungen und wirkt dabei besonders putzig."
+},
+{
+"id": 520,
+"nameDe": "Löwe",
+"beschreibungDe": "Der Löwe trägt nicht umsonst den Titel „König der Tiere“. In Rudeln lebend, ruht er viel, ist aber bei der Jagd unglaublich kraftvoll. In deinem Zoo liegen Löwen gerne in der Sonne, brüllen eindrucksvoll und zeigen ihre majestätische Präsenz."
+},
+{
+"id": 521,
+"nameDe": "Netzgiraffe",
+"beschreibungDe": "Die Netzgiraffe besitzt ein besonders feinmaschiges Fleckenmuster, das an ein Netz erinnert. Sie lebt in Afrika und nutzt ihren langen Hals, um Blätter hoch oben zu erreichen. In deinem Zoo ragt sie über alle anderen Tiere hinaus und lässt sich frische Zweige schmecken."
+},
+{
+"id": 522,
+"nameDe": "Riesen-Elenantilope",
+"beschreibungDe": "Die Riesen-Elenantilope ist die größte Antilopenart der Welt. Trotz ihrer Größe ist sie flink und kann beachtliche Sprünge machen. In deinem Zoo bewegt sie sich majestätisch durch das Gehege und beeindruckt mit ihrer sanften Kraft."
+},
+{
+"id": 523,
+"nameDe": "Rotschnabeltoko",
+"beschreibungDe": "Der Rotschnabeltoko ist ein kleiner Nashornvogel mit leuchtend rotem Schnabel. Er ist neugierig und nutzt seinen Schnabel geschickt beim Fressen. In deinem Zoo hüpft er von Ast zu Ast und lässt seine markanten Rufe hören."
+},
+{
+"id": 524,
+"nameDe": "Sandkatze",
+"beschreibungDe": "Die Sandkatze ist perfekt an das Leben in der Wüste angepasst und besitzt ein dichtes Fell an den Pfoten. So kann sie auch über heißen Sand laufen. In deinem Zoo wirkt sie wie eine kleine, edle Wüstenprinzessin, die gern im Sand lauert."
+},
+{
+"id": 525,
+"nameDe": "Schabrackenhyäne",
+"beschreibungDe": "Die Schabrackenhyäne trägt ein langes, struppiges Fell mit dunklen Streifen. Sie ist hauptsächlich Aasfresserin, frisst aber auch kleinere Beutetiere. In deinem Zoo streift sie gemächlich durch das Gehege und zeigt ihr wichtiges Talent als „Aufräumdienst“ der Natur."
+},
+{
+"id": 526,
+"nameDe": "Somalistrauß",
+"beschreibungDe": "Der Somalistrauß ist eine Unterart des Straußes mit bläulichen Beinen und Hals. Er lebt in den Trockengebieten am Horn von Afrika. In deinem Zoo flaniert er durch das Gehege und hält mit seinen großen Augen alles im Blick."
+},
+{
+"id": 527,
+"nameDe": "Spitzmaulnaßhorn",
+"beschreibungDe": "Das Spitzmaulnashorn hat ein spitz zulaufendes Oberlippenmaul, das beim Greifen von Blättern hilft. Es ist stark bedroht und steht im Mittelpunkt vieler Schutzprojekte. In deinem Zoo ist es ein eindrucksvoller Botschafter für den Artenschutz."
+},
+{
+"id": 528,
+"nameDe": "Trampeltier",
+"beschreibungDe": "Das Trampeltier ist ein Kamel mit zwei Höckern und lebt in kalten Wüsten und Steppen. Sein dichtes Fell schützt es vor extremen Temperaturen. In deinem Zoo präsentiert es stolz sein zotteliges Fell und trottet gemütlich durch das Gehege."
+},
+{
+"id": 529,
+"nameDe": "Tüpfelhyäne",
+"beschreibungDe": "Die Tüpfelhyäne ist ein sozialer Beutegreifer mit echtem Sinn fürs Lachen – zumindest klingt ihr Ruf so. Sie ist eine der erfolgreichsten Jägerinnen der Savanne. In deinem Zoo sorgt sie mit ihrer Lautsprache und ihrem temperamentvollen Verhalten für Spannung."
+},
+{
+"id": 530,
+"nameDe": "Warzenschwein",
+"beschreibungDe": "Das Warzenschwein trägt auffällige Hautwülste im Gesicht und beeindruckende Hauer. Es lebt in Afrika und ist ein guter Läufer mit viel Charakter. In deinem Zoo wühlt es fröhlich im Boden und räumt jeden Schlammplatz gründlich um."
+},
+{
+"id": 531,
+"nameDe": "Weissgesichtseule",
+"beschreibungDe": "Die Weißgesichtseule fällt durch ihr kontrastreiches Gesicht und die großen Augen auf. Sie ist ein lautloser Nachtjäger, der kleine Beutetiere überrascht. In deinem Zoo sitzt sie tagsüber gern versteckt und wird nachts zur lautlosen Jägerin."
+},
+{
+"id": 532,
+"nameDe": "Weissschwanzmanguste",
+"beschreibungDe": "Die Weißschwanzmanguste ist eine kleine Raubtierart mit hellem Schwanzende. Sie lebt in Gruppen und ist sehr aktiv. In deinem Zoo flitzt sie neugierig durch das Gehege und untersucht alles ganz genau."
+},
+{
+"id": 533,
+"nameDe": "Wollkopfgeier",
+"beschreibungDe": "Der Wollkopfgeier hat, wie der Name sagt, ein wollig wirkendes Kopfgefieder. Er ist ein wichtiger Aasfresser und sorgt für Sauberkeit in der Natur. In deinem Zoo kreist er über dem Gehege und zeigt, dass auch Geier beeindruckende Majestät ausstrahlen können."
+},
+{
+"id": 534,
+"nameDe": "Zebramanguste",
+"beschreibungDe": "Die Zebramanguste hat ein gestreiftes Fell, das ein wenig an ein Zebra erinnert. Sie lebt in Gruppen und ist ständig in Bewegung. In deinem Zoo rennt sie von Unterschlupf zu Unterschlupf und lässt kaum Langeweile aufkommen."
+},
+{
+"id": 535,
+"nameDe": "Riesen-Rappenantilope",
+"beschreibungDe": "Die Riesen-Rappenantilope ist eine seltene und sehr beeindruckende Antilope mit großen, geschwungenen Hörnern. Ihr dunkles Fell steht in starkem Kontrast zu den hellen Abzeichen. In deinem Zoo strahlt sie Würde und Kraft aus und ist ein echtes Highlight für Besucher."
+},
+{
+"id": 536,
+"nameDe": "Weissschwanzgnu",
+"beschreibungDe": "Das Weißschwanzgnu ist eine Gnuart mit auffällig hellem Schweif. Es lebt in afrikanischen Savannen und zieht oft in großen Herden umher. In deinem Zoo sorgt es mit seiner lebhaften Art und gelegentlichen Bocksprüngen für viel Dynamik."
+},
+{
+"id": 537,
+"nameDe": "Asiatischer Esel",
+"beschreibungDe": "Der Asiatische Esel lebt in trockenen Steppen und Halbwüsten Asiens. Er ist an ein Leben mit wenig Wasser und großer Hitze angepasst. In deinem Zoo wirkt er robust und wachsam, während er die Umgebung aufmerksam beobachtet."
+},
+{
+"id": 601,
+"nameDe": "Banteng",
+"beschreibungDe": "Der Banteng ist ein wilder Rindertyp aus Südostasien mit elegant geschwungenen Hörnern. Er lebt in Wäldern und offenen Landschaften. In deinem Zoo zeigt er seine kraftvolle Seite, bleibt aber meist ruhig und gelassen."
+},
+{
+"id": 602,
+"nameDe": "Bartschwein",
+"beschreibungDe": "Das Bartschwein trägt einen auffälligen „Bart“ aus langen Haaren an der Schnauze. Es lebt in den Wäldern Südostasiens und liebt feuchte Lebensräume. In deinem Zoo stöbert es neugierig und wühlt mit seinem bärtigen Gesicht im Boden."
+},
+{
+"id": 603,
+"nameDe": "Berggorilla",
+"beschreibungDe": "Der Berggorilla ist ein sanfter Riese, der in den Nebelwäldern Zentralafrikas lebt. Er ernährt sich hauptsächlich von Pflanzen und lebt in Familienverbänden. In deinem Zoo ist er ein eindrucksvoller Botschafter für den Regenwaldschutz."
+},
+{
+"id": 604,
+"nameDe": "Binturong",
+"beschreibungDe": "Der Binturong, auch Schuppentierkatze genannt, hat einen langen Greifschwanz und riecht angeblich nach frischem Popcorn. Er klettert gern und ist vor allem in Bäumen unterwegs. In deinem Zoo hängt er entspannt im Geäst und schnuppert neugierig in die Luft."
+},
+{
+"id": 605,
+"nameDe": "Blauaugenmaki",
+"beschreibungDe": "Der Blauaugenmaki ist ein Lemur mit auffallend blauen Augen – eine echte Besonderheit im Tierreich. Er stammt aus Madagaskar und ist stark bedroht. In deinem Zoo fasziniert er Besucher mit seinem intensiven Blick und lebhaften Kletterkünsten."
+},
+{
+"id": 606,
+"nameDe": "Borstenkopf",
+"beschreibungDe": "Der Borstenkopf ist ein Wildschweinverwandter mit auffälligen Borsten auf dem Kopf. Er lebt in Südostasien und bewegt sich gerne in dichten Wäldern. In deinem Zoo grunzt er fröhlich und zeigt seine borstige Haarpracht."
+},
+{
+"id": 607,
+"nameDe": "Brazzameerkatze",
+"beschreibungDe": "Die Brazzameerkatze trägt einen auffälligen weißen Schnurrbart und eine helle Stirn. Sie lebt in den Wäldern Afrikas und ist ein geschickter Kletterer. In deinem Zoo wirkt sie mit ihrem Gesichtsausdruck fast ein wenig weise."
+},
+{
+"id": 608,
+"nameDe": "Brillenflughund",
+"beschreibungDe": "Der Brillenflughund ist eine Fledermaus mit brilleähnlicher Zeichnung um die Augen. Er ernährt sich von Früchten und spielt eine wichtige Rolle bei der Bestäubung. In deinem Zoo hängt er kopfüber im Fledermausbereich und knabbert an süßen Früchten."
+},
+{
+"id": 609,
+"nameDe": "Faultier",
+"beschreibungDe": "Das Faultier ist berühmt für sein langsames Tempo und sein entspanntes Wesen. Es hängt die meiste Zeit kopfüber in Bäumen und bewegt sich nur, wenn nötig. In deinem Zoo zeigt es, dass man das Leben auch mal ganz langsam genießen darf."
+},
+{
+"id": 610,
+"nameDe": "Goldkronen-Flughund",
+"beschreibungDe": "Der Goldkronen-Flughund ist ein großer, fruchtfressender Flughund mit goldener Kopffärbung. Er stammt aus den Philippinen und ist stark bedroht. In deinem Zoo ist er ein wichtiger Hinweis auf den Schutz tropischer Wälder."
+},
+{
+"id": 611,
+"nameDe": "Große Anakonda",
+"beschreibungDe": "Die Große Anakonda ist eine der schwersten Schlangen der Welt und lebt in den Sümpfen Südamerikas. Sie ist eine geschickte Lauerjägerin, die im Wasser auf Beute wartet. In deinem Zoo zieht sie gemächlich durchs Wasserbecken und vermittelt echte Dschungelstimmung."
+},
+{
+"id": 612,
+"nameDe": "Große Otterspitzmaus",
+"beschreibungDe": "Die Große Otterspitzmaus ist ein kleines, semiaquatisches Säugetier mit stromlinienförmigem Körper. Sie jagt im Wasser nach Insekten und kleinen Beutetieren. In deinem Zoo flitzt sie geschmeidig durchs Wasser und sorgt für lebhafte Unterwasseraktionen."
+},
+{
+"id": 613,
+"nameDe": "Harpyie",
+"beschreibungDe": "Die Harpyie ist ein mächtiger Greifvogel aus den Regenwäldern Süd- und Mittelamerikas. Mit ihren kräftigen Krallen kann sie selbst größere Beutetiere packen. In deinem Zoo beeindruckt sie mit ihrer majestätischen Erscheinung und dem eindringlichen Blick."
+},
+{
+"id": 614,
+"nameDe": "Hellroter Ara",
+"beschreibungDe": "Der Hellrote Ara ist ein leuchtend bunter Papagei aus den Tropen Amerikas. Er ist intelligent, lautstark und lebt in lebenslangen Paarbindungen. In deinem Zoo fliegt er farbenfroh durch die Voliere und sorgt für echte Tropenatmosphäre."
+},
+{
+"id": 615,
+"nameDe": "Helmkasuar",
+"beschreibungDe": "Der Helmkasuar ist ein großer Laufvogel aus Australien und Neuguinea mit helmartigem Kopfschmuck. Er lebt in Regenwäldern und kann sehr kräftig zutreten. In deinem Zoo wirkt er mit seinen Farben und seinem eindrucksvollen Helm fast wie ein Fabelwesen."
+},
+{
+"id": 616,
+"nameDe": "Jentink-Ducker",
+"beschreibungDe": "Der Jentink-Ducker ist eine seltene, waldbewohnende Antilope Westafrikas. Er ist scheu und hält sich meist in dichter Vegetation auf. In deinem Zoo braucht er viele Verstecke und belohnt geduldige Zuschauer mit kurzen Auftritten."
+},
+{
+"id": 617,
+"nameDe": "Kaiserschnurrbarttamarin",
+"beschreibungDe": "Der Kaiserschnurrbarttamarin trägt einen beeindruckend langen, weißen Schnurrbart. Er lebt in südamerikanischen Regenwäldern und bewegt sich flink zwischen den Bäumen. In deinem Zoo springt er lebhaft durch das Gehege und präsentiert stolz seine kaiserliche Gesichtsfrisur."
+},
+{
+"id": 618,
+"nameDe": "Kakapo",
+"beschreibungDe": "Der Kakapo ist ein flugunfähiger Papagei aus Neuseeland und stark bedroht. Er ist nachtaktiv, neugierig und besitzt ein moosgrünes Tarngefieder. In deinem Zoo ist er ein ganz besonderer Gast und ein Sympathieträger für den Artenschutz."
+},
+{
+"id": 619,
+"nameDe": "Kleideraffe",
+"beschreibungDe": "Der Kleideraffe, auch Kleideraffe genannt, besitzt langes, kontrastreiches Fell. Er stammt aus den Wäldern Afrikas und lebt in sozialen Gruppen. In deinem Zoo schwingt er elegant von Ast zu Ast und zeigt seine auffällige „Kleidung“."
+},
+{
+"id": 620,
+"nameDe": "Köhlerschildkröte",
+"beschreibungDe": "Die Köhlerschildkröte ist eine tropische Landschildkröte mit dunklem Panzer und gelben Flecken. Sie lebt in Südamerika und frisst gerne Obst und Gemüse. In deinem Zoo bewegt sie sich gemütlich zwischen Pflanzen und Futterstellen."
+},
+{
+"id": 621,
+"nameDe": "Komodowaran",
+"beschreibungDe": "Der Komodowaran ist die größte lebende Echse der Welt und stammt von indonesischen Inseln. Er ist ein kraftvoller Jäger mit giftigem Speichel. In deinem Zoo ist er hinter sicheren Barrieren zu sehen – ein echter Drache in moderner Zeit."
+},
+{
+"id": 622,
+"nameDe": "Königstiger",
+"beschreibungDe": "Der Königstiger ist eine Unterart des Tigers und besonders kräftig gebaut. Mit seinem orange-schwarzen Streifenmuster ist er ein ikonischer Großkatzenvertreter. In deinem Zoo schleicht er majestätisch durchs Gehege und lässt manchmal ein tiefes Brüllen hören."
+},
+{
+"id": 623,
+"nameDe": "Krabbenwaschbär",
+"beschreibungDe": "Der Krabbenwaschbär ist ein naher Verwandter des Waschbären und liebt Wasser. Mit seinen geschickten Pfoten tastet er im Wasser nach Krabben und anderen Leckerbissen. In deinem Zoo plantscht er begeistert in Wasserbecken und durchsucht jedes Futterversteck."
+},
+{
+"id": 624,
+"nameDe": "Kurzohrfuchs",
+"beschreibungDe": "Der Kurzohrfuchs hat, wie der Name sagt, ungewöhnlich kurze Ohren für einen Fuchs. Er lebt in Südamerika und ist ein dämmerungsaktiver Jäger. In deinem Zoo schleicht er leise durchs Gehege und zeigt seine neugierige, vorsichtige Seite."
+},
+{
+"id": 625,
+"nameDe": "Löwenäffchen",
+"beschreibungDe": "Das Löwenäffchen ist ein kleiner Affe mit beeindruckender Mähne um das Gesicht. Sein goldenes oder rötliches Fell erinnert an einen winzigen Löwen. In deinem Zoo flitzt es durch das Geäst und ist ein besonders fotogenes Mitglied der Affenfamilie."
+},
+{
+"id": 626,
+"nameDe": "Maikong",
+"beschreibungDe": "Der Maikong, auch Krabbenfuchs genannt, ist ein kleiner Wildhund aus Südamerika. Er ist flexibel bei der Nahrungssuche und nutzt verschiedene Lebensräume. In deinem Zoo bewegt er sich leise und bleibt meist in der Nähe von Deckung."
+},
+{
+"id": 627,
+"nameDe": "Mandrill",
+"beschreibungDe": "Der Mandrill ist einer der buntesten Affen überhaupt, mit leuchtend blau-roter Schnauze. Er lebt in afrikanischen Regenwäldern und ist ein äußerst soziales Tier. In deinem Zoo ist er ein farbenfroher Star, der selten unbemerkt bleibt."
+},
+{
+"id": 628,
+"nameDe": "Mantelaffe",
+"beschreibungDe": "Der Mantelaffe besitzt ein langes, schwarz-weißes Fell mit wehendem Mantel. Er lebt in den Wäldern Afrikas und ernährt sich überwiegend von Blättern. In deinem Zoo springt er elegant von Ast zu Ast und lässt sein Fell wie einen Umhang hinter sich herwehen."
+},
+{
+"id": 629,
+"nameDe": "Matschie Baumkänguru",
+"beschreibungDe": "Das Matschie-Baumkänguru lebt in den Gebirgswäldern Neuguineas. Es ist an ein Leben in den Bäumen angepasst und klettert erstaunlich geschickt. In deinem Zoo zeigt es, dass Kängurus nicht nur hüpfen, sondern auch hervorragend klettern können."
+},
+{
+"id": 630,
+"nameDe": "Nasenaffe",
+"beschreibungDe": "Der Nasenaffe ist für seine große, hängende Nase berühmt. Er lebt in Mangrovenwäldern Südostasiens und verbringt viel Zeit in den Bäumen. In deinem Zoo sorgt sein markantes Profil regelmäßig für Schmunzeln und staunende Gesichter."
+},
+{
+"id": 631,
+"nameDe": "Nebelparder",
+"beschreibungDe": "Der Nebelparder ist eine mittelgroße Großkatze mit großen, nebelartigen Flecken. Er lebt in den Wäldern Asiens und ist ein hervorragender Kletterer. In deinem Zoo bewegt er sich geschickt im Geäst und wirkt dabei fast geisterhaft leise."
+},
+{
+"id": 632,
+"nameDe": "Nepaluhu",
+"beschreibungDe": "Der Nepaluhu ist eine Eulenart aus den bergigen Regionen Nepals. Mit seinen Federohren und dem durchdringenden Blick ist er ein typischer Nachtjäger. In deinem Zoo schläft er tagsüber und wird bei Einbruch der Dunkelheit munter."
+},
+{
+"id": 633,
+"nameDe": "Netzpython",
+"beschreibungDe": "Der Netzpython ist eine der längsten Schlangenarten der Welt. Sein Netz-Muster hilft ihm, im Dschungel gut getarnt zu bleiben. In deinem Zoo windet er sich langsam und majestätisch durch sein Terrarium."
+},
+{
+"id": 634,
+"nameDe": "Nilkrokodil",
+"beschreibungDe": "Das Nilkrokodil ist ein großer, furchteinflößender Flussräuber Afrikas. Es lauert oft regungslos im Wasser, bevor es blitzschnell zuschnappt. In deinem Zoo liegt es meist scheinbar träge am Ufer und zeigt dann überraschend schnelle Bewegungen."
+},
+{
+"id": 635,
+"nameDe": "Orang Utan",
+"beschreibungDe": "Der Orang-Utan ist ein hochintelligenter Menschenaffe, der in den Regenwäldern Borneos und Sumatras lebt. Sein Name bedeutet „Waldmensch“, und er verbringt fast sein ganzes Leben in den Bäumen. In deinem Zoo bastelt er sich Nester und löst geschickt knifflige Futterrätsel."
+},
+{
+"id": 636,
+"nameDe": "Pakarana",
+"beschreibungDe": "Das Pakarana ist ein seltenes, großes Nagetier aus Südamerika. Es bewegt sich eher langsam und lebt meist zurückgezogen. In deinem Zoo zeigt es eine ruhige, friedliche Seite und wird gern beim gemütlichen Knabbern beobachtet."
+},
+{
+"id": 637,
+"nameDe": "Panama-Kapuzineraffe",
+"beschreibungDe": "Der Panama-Kapuzineraffe ist ein intelligenter Neu­welt­affe mit kontrastreicher Schwarz-Weiß-Färbung. Er nutzt gerne seine geschickten Hände, um zu klettern, zu greifen und Werkzeuge einzusetzen. In deinem Zoo ist er immer in Bewegung und denkt sich kreative Wege aus, an Futter zu kommen."
+},
+{
+"id": 638,
+"nameDe": "Panter",
+"beschreibungDe": "Der Panter ist eine schwarz gefärbte Variante von Leoparden oder Jaguaren. Unter dem dunklen Fell sind die typischen Flecken noch erkennbar. In deinem Zoo wirkt er geheimnisvoll und gleitet lautlos durch Schatten und Licht."
+},
+{
+"id": 639,
+"nameDe": "Riesenkönigshörnchen",
+"beschreibungDe": "Das Riesenkönigshörnchen ist ein großes Hörnchen mit bunter Fellzeichnung. Es lebt in Bäumen und kann weite Sprünge zwischen Ästen schaffen. In deinem Zoo sorgt es mit seiner Farbigkeit und Agilität für viel Staunen."
+},
+{
+"id": 640,
+"nameDe": "Riesenotter",
+"beschreibungDe": "Der Riesenotter ist der größte Otter der Welt und lebt in den Flüssen Südamerikas. Er ist sehr sozial und jagt Fische im Team. In deinem Zoo planscht er ausgelassen im Wasser und kommuniziert mit vielen Lauten mit seiner Gruppe."
+},
+{
+"id": 641,
+"nameDe": "Riesentukan",
+"beschreibungDe": "Der Riesentukan ist ein tropischer Vogel mit riesigem, farbenprächtigem Schnabel. Er nutzt diesen, um Früchte zu greifen und sich abzukühlen. In deinem Zoo ist er mit seinem Schnabel ein echter Hingucker, wenn er auf Ästen sitzt."
+},
+{
+"id": 642,
+"nameDe": "Roter Uakari",
+"beschreibungDe": "Der Rote Uakari ist ein Affe mit leuchtend rotem Gesicht und kurzem Schwanz. Er lebt in den Überschwemmungswäldern Amazoniens. In deinem Zoo fällt er besonders durch sein intensives Gesicht auf, das wie geschminkt wirkt."
+},
+{
+"id": 643,
+"nameDe": "Rothalsfilander",
+"beschreibungDe": "Der Rothalsfilander ist ein mittelgroßes Känguru mit rötlicher Halsfärbung. Er lebt in Australien und bevorzugt felsige oder bewaldete Gebiete. In deinem Zoo hüpft er leichtfüßig und ruht sich gern in schattigen Ecken aus."
+},
+{
+"id": 644,
+"nameDe": "Saola",
+"beschreibungDe": "Die Saola ist eine sehr seltene, waldbewohnende Rinderart aus Vietnam und Laos. Sie wird manchmal „asiatisches Einhorn“ genannt, obwohl sie zwei Hörner trägt. In deinem Zoo steht sie stellvertretend für geheimnisvolle Waldbewohner, von denen wir noch viel lernen müssen."
+},
+{
+"id": 645,
+"nameDe": "Satansaffe",
+"beschreibungDe": "Der Satansaffe trägt seinen dramatischen Namen wegen seines dunklen Gesichtes und der intensiven Augen. Er ist ansonsten jedoch ein ganz normaler, sozial lebender Affe. In deinem Zoo zeigt er lebhaftes Sozialverhalten und beweist, dass sein Name Programm, aber nicht bösartig ist."
+},
+{
+"id": 647,
+"nameDe": "Sumatra-Tiger",
+"beschreibungDe": "Der Sumatra-Tiger ist die kleinste Tigerunterart und streng geschützt. Er lebt in den Regenwäldern Sumatras und ist ein Meister der Tarnung. In deinem Zoo steht er als Symbol für bedrohte Großkatzen und zieht Besucher mit seiner Präsenz in den Bann."
+},
+{
+"id": 648,
+"nameDe": "Tamandua",
+"beschreibungDe": "Der Tamandua ist ein kleinerer Verwandter des Großen Ameisenbären. Er klettert gut und nutzt seine lange Zunge, um Insekten aus Ritzen zu holen. In deinem Zoo erkundet er neugierig Kletterstrukturen und Futterverstecke."
+},
+{
+"id": 649,
+"nameDe": "Tamarau",
+"beschreibungDe": "Der Tamarau ist ein kleiner Büffel von der Philippineninsel Mindoro. Er ist stark bedroht und lebt in Wald- und Graslandschaften. In deinem Zoo ist er ein seltener Gast und macht auf die Wichtigkeit von Inselökosystemen aufmerksam."
+},
+{
+"id": 650,
+"nameDe": "Tüpfelkuskus",
+"beschreibungDe": "Der Tüpfelkuskus ist ein baumbewohnendes Beuteltier mit geflecktem Fell. Er lebt in Neuguinea und ernährt sich von Blättern und Früchten. In deinem Zoo klettert er langsam und bedacht durch das Geäst und schläft tagsüber gerne versteckt."
+},
+{
+"id": 651,
+"nameDe": "Weißhand-Gibbon",
+"beschreibungDe": "Der Weißhand-Gibbon ist ein akrobatischer Baumkletterer mit weißen Händen und Füßen. Er bewegt sich armhangelnd durch die Baumkronen und singt laute Duette. In deinem Zoo schwingt er elegant zwischen Seilen und Ästen und begleitet den Besuch mit seinen typischen Rufen."
+},
+{
+"id": 652,
+"nameDe": "Westlicher Flachlandgorilla",
+"beschreibungDe": "Der Westliche Flachlandgorilla ist eine der bekannten Gorilla-Unterarten und stark bedroht. Er lebt in den Regenwäldern Afrikas und ernährt sich vorwiegend von Pflanzen. In deinem Zoo ist er ein sanfter Gigant, der mit seiner Familie für viele bewegende Momente sorgt."
+},
+{
+"id": 653,
+"nameDe": "Wickelbär",
+"beschreibungDe": "Der Wickelbär, auch Kinkajou genannt, ist ein nachtaktives Baumtier mit Greifschwanz. Er liebt Früchte und Nektar und bewegt sich leise durch das Geäst. In deinem Zoo zeigt er seine geschickten Kletterkünste vor allem nachts."
+},
+{
+"id": 654,
+"nameDe": "Zwergflusspferd",
+"beschreibungDe": "Das Zwergflusspferd ist die kleinere, scheuere Verwandte des Flusspferds. Es lebt in den Wäldern Westafrikas und verbringt viel Zeit im Wasser. In deinem Zoo ist es ein eher ruhiger, aber sehr charmanter Wasserbewohner."
+},
+{
+"id": 655,
+"nameDe": "Scharlachsichler",
+"beschreibungDe": "Der Scharlachsichler ist ein leuchtend roter Vogel aus den Feuchtgebieten Südamerikas. Seine intensiven Farben erhält er durch die Nahrung. In deinem Zoo wirkt er wie ein kleiner roter Farbtupfer, der durchs Wasser watet."
+},
+{
+"id": 656,
+"nameDe": "Asiatischer Elefant",
+"beschreibungDe": "Der Asiatische Elefant ist etwas kleiner als sein afrikanischer Verwandter und hat kleinere Ohren. Er lebt in Wäldern und Graslandschaften Asiens. In deinem Zoo zeigt er seine Geschicklichkeit mit dem Rüssel und seine soziale Seite im Herdenverband."
+},
+{
+"id": 657,
+"nameDe": "Unbekannt",
+"beschreibungDe": "Dieses Tier ist im Spiel noch ein Geheimnis und trägt daher den Namen „Unbekannt“. Vielleicht wartet hier eine zukünftige Erweiterung auf neugierige Zoospieler. In deinem Zoo könnte an dieser Stelle eines Tages ein neues Highlight einziehen."
+},
+{
+"id": 658,
+"nameDe": "Unbekannt",
+"beschreibungDe": "Auch dieses Tier ist derzeit noch nicht genauer benannt und bleibt im Schatten der Geheimnisse. Es steht als Platzhalter für kommende Überraschungen im Zoo. Spieler können gespannt sein, welches Wesen sich dahinter einmal verbergen wird."
+},
+{
+"id": 701,
+"nameDe": "Adeliepinguin",
+"beschreibungDe": "Der Adeliepinguin ist ein Bewohner der antarktischen Küsten und ein geübter Schwimmer. An Land wirkt er tapsig, im Wasser jedoch elegant und wendig. In deinem Zoo sorgt er im Kältebereich für echtes Polarfeeling."
+},
+{
+"id": 702,
+"nameDe": "Arktischer Ziesel",
+"beschreibungDe": "Der Arktische Ziesel ist ein kleines Nagetier aus den kalten Regionen des Nordens. Er hält lange Winterschlaf und speichert zuvor ordentlich Reserven. In deinem Zoo wirkt er im Sommer besonders aktiv und flitzt emsig durch sein Gehege."
+},
+{
+"id": 703,
+"nameDe": "Eisbär",
+"beschreibungDe": "Der Eisbär ist der größte Landraubt der Arktis und ein ausgezeichneter Schwimmer. Sein weißes Fell tarnt ihn im Schnee, darunter verbirgt sich dunkle Haut. In deinem Zoo genießt er Kältebecken, Eisblöcke und ausgiebige Ruhepausen."
+},
+{
+"id": 704,
+"nameDe": "Glanzfasan",
+"beschreibungDe": "Der Glanzfasan ist für sein schillerndes Gefieder bekannt, das in den Bergen Asiens zu Hause ist. Er leuchtet in vielen Farben, besonders bei Sonneneinstrahlung. In deinem Zoo spaziert er stolz durch das Gehege und zeigt sich gern von seiner besten Seite."
+},
+{
+"id": 705,
+"nameDe": "Himalaya-Tahr",
+"beschreibungDe": "Der Himalaya-Tahr ist ein klettergewandtes Huftier aus den Bergen Asiens. Sein dichtes Fell schützt es vor Kälte und Wind. In deinem Zoo nutzt es jede Felsstruktur und beweist beeindruckende Trittsicherheit."
+},
+{
+"id": 706,
+"nameDe": "Jakuten-Pferd",
+"beschreibungDe": "Das Jakuten-Pferd lebt in extrem kalten Regionen Sibiriens und ist sehr robust. Sein dichtes Winterfell hält Temperaturen weit unter dem Gefrierpunkt stand. In deinem Zoo trotzt es auch kühleren Temperaturen gelassen und sieht dabei besonders plüschig aus."
+},
+{
+"id": 707,
+"nameDe": "Japanischer Serau",
+"beschreibungDe": "Der Japanische Serau ist ein ziegenähnliches Tier, das in Japans Bergwäldern lebt. Er klettert geschickt und hat ein dichtes Fell. In deinem Zoo zeigt er seine Kletterfähigkeiten auf felsigen Anlagen."
+},
+{
+"id": 708,
+"nameDe": "Japanmakak",
+"beschreibungDe": "Der Japanmakak ist bekannt als „Schneeaffe“, da er auch in kühlen Regionen lebt und heiße Quellen nutzt. Er besitzt dichtes Fell und ausgeprägte soziale Strukturen. In deinem Zoo spielt er im Winter gern im Schnee und kuschelt eng mit seiner Gruppe."
+},
+{
+"id": 709,
+"nameDe": "Kaiserpinguin",
+"beschreibungDe": "Der Kaiserpinguin ist der größte Pinguin der Welt und ein Bewohner der Antarktis. Er brütet auf dem Eis und trotzt extremen Temperaturen. In deinem Zoo steht er stellvertretend für die faszinierende Welt des ewigen Eises."
+},
+{
+"id": 710,
+"nameDe": "Kanadischer Luchs",
+"beschreibungDe": "Der Kanadische Luchs besitzt besonders große Pfoten, die wie Schneeschuhe wirken. Er lebt in nordischen Wäldern und jagt vor allem Schneehasen. In deinem Zoo wirkt er durch seine Pinselohren und das dichte Fell besonders anmutig."
+},
+{
+"id": 711,
+"nameDe": "Moschusochse",
+"beschreibungDe": "Der Moschusochse ist ein urtümlich wirkendes Tier mit langem, zottigem Fell. Er lebt in der arktischen Tundra und trotzt dort eisigen Winden. In deinem Zoo wirkt er wie ein Relikt aus der Eiszeit, das gelassen im Gehege steht."
+},
+{
+"id": 712,
+"nameDe": "Moschustier",
+"beschreibungDe": "Das Moschustier ist ein kleines, hirschähnliches Säugetier ohne Geweih. Früher wurde es für seinen Moschus gejagt. In deinem Zoo zeigt es sich zurückhaltend und bleibt lieber in der Nähe von Deckung."
+},
+{
+"id": 713,
+"nameDe": "Polarfuchs",
+"beschreibungDe": "Der Polarfuchs wechselt je nach Jahreszeit die Fellfarbe von weiß zu braun. Er ist perfekt an arktische Bedingungen angepasst. In deinem Zoo glänzt er mit flauschigem Winterfell und flinkem Wesen."
+},
+{
+"id": 714,
+"nameDe": "Polarwolf ",
+"beschreibungDe": "Der Polarwolf ist an die Kälte des hohen Nordens angepasst und trägt ein dichtes, weißes Fell. Er lebt in Rudeln und jagt gemeinsam. In deinem Zoo zeigt er seine soziale Seite und bewegt sich elegant durch den Schnee."
+},
+{
+"id": 715,
+"nameDe": "Schneeeule",
+"beschreibungDe": "Die Schneeeule ist mit ihrem weißen Gefieder bestens im Schnee getarnt. Sie jagt im offenen Gelände nach Kleinsäugern. In deinem Zoo sitzt sie oft ruhig auf erhöhten Plätzen und beobachtet alles mit gelben Augen."
+},
+{
+"id": 716,
+"nameDe": "Schneegans",
+"beschreibungDe": "Die Schneegans ist ein Zugvogel mit hellem Gefieder. Sie brütet in arktischen Regionen und überwintert weiter südlich. In deinem Zoo sorgt sie auf Wasserflächen für winterliche Stimmung."
+},
+{
+"id": 717,
+"nameDe": "Schneehase",
+"beschreibungDe": "Der Schneehase wechselt sein Fell zwischen Sommer und Winter von braun zu weiß. So ist er das ganze Jahr über gut getarnt. In deinem Zoo hoppelt er flink durch Schneegehege und fügt sich perfekt in die Winterlandschaft ein."
+},
+{
+"id": 718,
+"nameDe": "Schneeleopard",
+"beschreibungDe": "Der Schneeleopard lebt in den Hochgebirgen Asiens und besitzt ein dichtes, geflecktes Fell. Sein langer Schwanz dient als Balancierhilfe und Kuscheldecke. In deinem Zoo bewegt er sich elegant über Felsen und wirkt wie ein Geist des Gebirges."
+},
+{
+"id": 719,
+"nameDe": "Schneeziege",
+"beschreibungDe": "Die Schneeziege ist ein Bergtier Nordamerikas mit dichtem, weißem Fell. Sie klettert sicher an steilen Hängen. In deinem Zoo zeigt sie ihre Kletterkünste auf felsigen Strukturen und behält von dort alles im Blick."
+},
+{
+"id": 720,
+"nameDe": "Sibirischer Tiger",
+"beschreibungDe": "Der Sibirische Tiger ist die größte Tigerunterart und lebt in den Wäldern Russlands. Sein dichtes Fell schützt ihn vor Kälte. In deinem Zoo wirkt er besonders imposant, wenn er durch verschneite Gehege schreitet."
+},
+{
+"id": 721,
+"nameDe": "Tibetfuchs",
+"beschreibungDe": "Der Tibetfuchs hat einen charakteristisch kantigen Kopf und lebt in Hochlandregionen. Sein dichtes Fell schützt ihn vor Wind und Kälte. In deinem Zoo fällt er durch sein besonderes Gesicht und seine ruhige Art auf."
+},
+{
+"id": 722,
+"nameDe": "Vielfraß",
+"beschreibungDe": "Der Vielfraß ist ein kräftiger Marder mit beeindruckender Ausdauer. Er durchstreift große Gebiete und ist ein geschickter Aasfresser und Jäger. In deinem Zoo zeigt er, dass viel Temperament in einem relativ kleinen Körper stecken kann."
+},
+{
+"id": 723,
+"nameDe": "Weißwangengans",
+"beschreibungDe": "Die Weißwangengans hat eine markante, schwarz-weiße Kopfzeichnung. Sie brütet im hohen Norden und überwintert weiter südlich. In deinem Zoo bildet sie in Teichanlagen eine lebhafte, schnatternde Gruppe."
+},
+{
+"id": 724,
+"nameDe": "Yak",
+"beschreibungDe": "Das Yak ist ein Rind aus den Hochlagen Asiens mit dichtem, langem Fell. Es ist perfekt an dünne Luft und Kälte angepasst. In deinem Zoo wirkt es wie ein gemütlicher Fellberg, der ruhig über das Gehege zieht."
+},
+{
+"id": 725,
+"nameDe": "Zobel",
+"beschreibungDe": "Der Zobel ist ein kleiner Marder mit sehr weichem, begehrtem Fell. Er lebt in nordischen Wäldern und ist ein geschickter Jäger. In deinem Zoo bewegt er sich flink und neugierig, meist in der Nähe von Verstecken."
+},
+{
+"id": 726,
+"nameDe": "Unbekannt",
+"beschreibungDe": "Dieses Tier ist derzeit noch als „Unbekannt“ vermerkt und könnte später ergänzt werden. Es symbolisiert Platz für neue Arten im Zoo. Spieler dürfen gespannt sein, welches Tier eines Tages hier auftaucht."
+},
+{
+"id": 727,
+"nameDe": "Unbekannt",
+"beschreibungDe": "Hinter diesem Eintrag verbirgt sich noch ein unbenanntes Tier. Vielleicht wartet hier eine kommende Erweiterung oder ein besonderes Event. Dein Zoo hat damit einen spannenden Platzhalter für zukünftige Überraschungen."
+},
+{
+"id": 728,
+"nameDe": "Unbekannt",
+"beschreibungDe": "Auch dieses Tier ist noch geheimnisvoll und trägt keinen festen Namen. Es steht für die lebendige Entwicklung deines Zoos. Wer weiß, welches seltene Tier hier einmal einzieht?"
+},
+{
+"id": 729,
+"nameDe": "Unbekannt",
+"beschreibungDe": "Dieser Slot ist reserviert für ein zukünftiges Tierabenteuer. Noch ist der Name „Unbekannt“, doch die Neugier ist geweckt. Dein Zoo bleibt so immer ein Stück weit im Wandel."
+},
+{
+"id": 730,
+"nameDe": "Unbekannt",
+"beschreibungDe": "Ein weiteres Tier, das noch auf seine Enthüllung wartet. Der Platzhalter „Unbekannt“ lädt zum Spekulieren ein. Vielleicht wird hier einmal ein besonders exotischer Gast einziehen."
+},
+{
+"id": 731,
+"nameDe": "Unbekannt",
+"beschreibungDe": "Hier versteckt sich noch ein unbeschriebenes Blatt im Tierkatalog. Der Name „Unbekannt“ hält die Spannung hoch. In deinem Zoo ist so immer noch Raum für neue Ideen."
+},
+{
+"id": 732,
+"nameDe": "Unbekannt",
+"beschreibungDe": "Dieses Tier ist aktuell nur als „Unbekannt“ gelistet. Es könnte für kommende Updates oder besondere Aktionen vorgesehen sein. Dein Zoo bleibt damit flexibel für zukünftige Überraschungsgäste."
+},
+{
+"id": 801,
+"nameDe": "Amazonas Delfin",
+"beschreibungDe": "Der Amazonas-Delfin, auch Boto genannt, besitzt eine rosa Färbung im trüben Flusswasser. Er lebt in den Flüssen des Amazonasbeckens. In deinem Zoo verzaubert er Besucher mit seiner verspielten Art und den besonderen Farbnuancen."
+},
+{
+"id": 802,
+"nameDe": "Bandrobbe",
+"beschreibungDe": "Die Bandrobbe trägt einen hellen Ring um den Körper, der ihr den Namen gibt. Sie lebt in arktischen Meeren und nutzt Eisflächen zum Ruhen. In deinem Zoo schwimmt sie elegant durchs Becken und ruht sich gern auf kühlen Felsen aus."
+},
+{
+"id": 803,
+"nameDe": "Belugawal",
+"beschreibungDe": "Der Belugawal ist ein weißer Wal aus dem arktischen Meer. Er kann mit einer Vielzahl von Lauten kommunizieren und wird manchmal „Kanarienvogel der Meere“ genannt. In deinem Zoo fasziniert er mit seiner sanften Erscheinung und den freundlichen Gesichtszügen."
+},
+{
+"id": 804,
+"nameDe": "Brillenpelikan",
+"beschreibungDe": "Der Brillenpelikan hat eine helle Zeichnung um die Augen, die an eine Brille erinnert. Er ist ein geschickter Fischer und nutzt seinen Kehlsack zum Beute fangen. In deinem Zoo beeindruckt er beim Fischen im Wasserbecken."
+},
+{
+"id": 805,
+"nameDe": "Brillenpinguin",
+"beschreibungDe": "Der Brillenpinguin verdankt seinen Namen einer hellen Zeichnung um die Augen. Er lebt an den Küsten Südafrikas. In deinem Zoo sorgt er mit seinen watschelnden Bewegungen und eleganten Tauchgängen für gute Laune."
+},
+{
+"id": 806,
+"nameDe": "Buckelwal",
+"beschreibungDe": "Der Buckelwal ist bekannt für seine spektakulären Sprünge und Gesänge. Er wandert weite Strecken zwischen Nahrungs- und Fortpflanzungsgebieten. In deinem Zoo steht er stellvertretend für die Faszination der großen Ozeane."
+},
+{
+"id": 807,
+"nameDe": "Commerson-Delphin",
+"beschreibungDe": "Der Commerson-Delfin ist klein, wendig und schwarz-weiß gefärbt. Er lebt in den kühlen Küstengewässern der Südhalbkugel. In deinem Zoo flitzt er quirlig durch das Becken und zieht mit seiner kontrastreichen Färbung alle Blicke auf sich."
+},
+{
+"id": 808,
+"nameDe": "Dugong",
+"beschreibungDe": "Der Dugong wird auch als „Seekuh“ bezeichnet und ernährt sich von Seegras. Er lebt in warmen Küstengewässern. In deinem Zoo gleitet er ruhig durchs Wasser und verbreitet eine friedliche Stimmung."
+},
+{
+"id": 809,
+"nameDe": "Echte Karrettschildkröte",
+"beschreibungDe": "Die Echte Karettschildkröte ist eine Meeresschildkröte mit elegantem Panzer. Sie lebt in tropischen Meeren und ist leider bedroht. In deinem Zoo ist sie eine Botschafterin für den Schutz der Ozeane."
+},
+{
+"id": 810,
+"nameDe": "Felsenpinguin",
+"nameDe": "Felsenpinguin",
+"beschreibungDe": "Der Felsenpinguin ist an seiner gelben Augenbrauenfeder erkennbar. Er lebt an sturmgepeitschten Felsküsten. In deinem Zoo hüpft er geschickt über Felsen und zeigt echte Felsenkletterkunst für Pinguine."
+},
+{
+"id": 811,
+"nameDe": "Fransenschildkröte",
+"beschreibungDe": "Die Fransenschildkröte hat einen flachen Körper und fransige Hautlappen. Sie ist hervorragend getarnt und lebt im Süßwasser. In deinem Zoo wirkt sie wie ein lebendes Blatt, das im Wasser schwebt."
+},
+{
+"id": 812,
+"nameDe": "Gangesgavial",
+"beschreibungDe": "Der Gangesgavial ist ein Fischfresser mit langem, schmalem Schnabel voller Zähne. Er lebt in Flüssen des indischen Subkontinents. In deinem Zoo schwimmt er ruhig und zeigt dabei sein beeindruckendes Gebiss."
+},
+{
+"id": 813,
+"nameDe": "Großer Tümmler",
+"beschreibungDe": "Der Große Tümmler ist der wohl bekannteste Delfin und für seine Intelligenz berühmt. Er lebt in vielen Meeren der Welt. In deinem Zoo zeigt er Sprünge, Spiele und die typische Delfinfröhlichkeit."
+},
+{
+"id": 814,
+"nameDe": "Hammerhai",
+"beschreibungDe": "Der Hammerhai besitzt einen charakteristisch verbreiterten Kopf mit seitlich versetzten Augen. Diese Form hilft ihm bei der Orientierung und Beutesuche. In deinem Zoo zieht er majestätisch seine Kreise und sorgt für Gänsehautmomente."
+},
+{
+"id": 815,
+"nameDe": "Irawadidelfin",
+"beschreibungDe": "Der Irawadidelfin hat einen rundlichen Kopf und lebt in Flussmündungen und Küstengewässern Asiens. Er ist eher scheu und selten. In deinem Zoo ist er ein stiller, aber sehr besonderer Meeresbewohner."
+},
+{
+"id": 816,
+"nameDe": "Kalifornischer Schweinswal",
+"beschreibungDe": "Der Kalifornische Schweinswal ist einer der kleinsten Wale und lebt an der Westküste Nordamerikas. Er ist unauffällig und bleibt oft in Küstennähe. In deinem Zoo zieht er leise seine Bahnen und zeigt, dass Großes nicht immer groß sein muss."
+},
+{
+"id": 817,
+"nameDe": "Klappmütze",
+"beschreibungDe": "Die Klappmütze ist eine Robbenart, bei der Männchen eine aufblasbare Kopfwulst besitzen. Diese nutzen sie bei der Balz als beeindruckende Showeinlage. In deinem Zoo sorgt dieses besondere Feature für viele erstaunte Gesichter."
+},
+{
+"id": 818,
+"nameDe": "Mähnenrobbe",
+"beschreibungDe": "Die Mähnenrobbe hat einen dichten Fellkragen, der wie eine Mähne wirkt. Sie lebt an den Küsten der Südhalbkugel. In deinem Zoo ruht sie gern in der Sonne und zeigt bei Fütterungen ihre Wendigkeit im Wasser."
+},
+{
+"id": 819,
+"nameDe": "Mandarinente",
+"beschreibungDe": "Die Mandarinente ist eine der buntesten Entenarten der Welt. Das Männchen trägt zur Balzzeit ein spektakuläres Federkleid. In deinem Zoo wirkt sie wie ein kleiner, lebender Farbkasten auf dem Wasser."
+},
+{
+"id": 820,
+"nameDe": "Mississippi-Aligator",
+"beschreibungDe": "Der Mississippi-Alligator ist ein großer Krokodilier aus Nordamerika. Er lebt in Sümpfen und Flüssen und kann sehr alt werden. In deinem Zoo liegt er gern scheinbar träge im Wasser – aber immer bereit für schnelle Bewegungen."
+},
+{
+"id": 821,
+"nameDe": "Narwal",
+"beschreibungDe": "Der Narwal wird oft als „Einhorn der Meere“ bezeichnet, weil Männchen einen langen Stoßzahn tragen. Er lebt in arktischen Gewässern. In deinem Zoo ist er ein märchenhafter Vertreter der Wale."
+},
+{
+"id": 822,
+"nameDe": "Orca",
+"beschreibungDe": "Der Orca, auch Schwertwal genannt, ist ein intelligenter Spitzenprädator der Ozeane. Er lebt in Familienverbänden und jagt im Team. In deinem Zoo beeindruckt er mit kraftvollen Schwimmbewegungen und kluger Verspieltheit."
+},
+{
+"id": 823,
+"nameDe": "Papageintaucher",
+"beschreibungDe": "Der Papageitaucher ist ein kleiner Meeresvogel mit buntem Schnabel. Er brütet in Erdhöhlen an steilen Küsten. In deinem Zoo wirkt er mit seinem farbigen Schnabel fast wie ein Comic-Vogel."
+},
+{
+"id": 824,
+"nameDe": "Prachteiderente",
+"beschreibungDe": "Die Prachteiderente trägt beim Männchen ein spektakuläres, buntes Federkleid am Kopf. Sie brütet in arktischen Regionen. In deinem Zoo bringt sie mit ihrem kuriosen Aussehen viel Farbe in kalte Becken."
+},
+{
+"id": 825,
+"nameDe": "Riemenfisch",
+"beschreibungDe": "Der Riemenfisch ist ein sehr langer, bandförmiger Tiefseefisch. Er wird selten gesehen und sorgt für viele Meereslegenden. In deinem Zoo zeigt er, wie geheimnisvoll die Tiefsee sein kann."
+},
+{
+"id": 826,
+"nameDe": "Riesenmanta",
+"beschreibungDe": "Der Riesenmanta ist ein großer Rochen mit majestätischer Spannweite. Er filtert Plankton aus dem Wasser. In deinem Zoo gleitet er schwebend durch das Becken und wirkt wie ein Unterwassersegelflugzeug."
+},
+{
+"id": 827,
+"nameDe": "Riesen-Süßwasserstechrochen",
+"beschreibungDe": "Der Riesen-Süßwasserstechrochen lebt in großen Flüssen Asiens. Er kann enorme Größen erreichen und ist dennoch oft schwer zu entdecken. In deinem Zoo ist er ein beeindruckender, aber ruhiger Riese."
+},
+{
+"id": 828,
+"nameDe": "Riffmanta",
+"beschreibungDe": "Der Riffmanta ist kleiner als der Riesenmanta, aber ebenso elegant. Er lebt an Korallenriffen und filtert Plankton. In deinem Zoo zieht er elegante Kreise und verleiht dem Aquarium tropisches Flair."
+},
+{
+"id": 829,
+"nameDe": "Rote Riesenkrake",
+"beschreibungDe": "Die Rote Riesenkrake ist ein großes Kopffüßer mit acht Armen. Sie ist intelligent und neugierig. In deinem Zoo nutzt sie gerne Futterrätsel und zeigt, wie geschickt Tentakel sein können."
+},
+{
+"id": 830,
+"nameDe": "Rundschwanzseekuh",
+"beschreibungDe": "Die Rundschwanzseekuh ist eine friedliche Pflanzenfresserin der Flachgewässer. Sie gleitet langsam durchs Wasser und wirkt sehr gelassen. In deinem Zoo ist sie ein ruhiger, sympathischer Unterwasserbewohner."
+},
+{
+"id": 831,
+"nameDe": "Sägerochen",
+"beschreibungDe": "Der Sägerochen hat eine lange Schnauze mit seitlichen Zahnreihen, die an eine Säge erinnert. Er nutzt sie, um Beute aufzuschrecken. In deinem Zoo fällt er mit diesem ungewöhnlichen „Werkzeug“ sofort ins Auge."
+},
+{
+"id": 832,
+"nameDe": "Salmaa-Ringelrobbe",
+"beschreibungDe": "Die Salmaa-Ringelrobbe ist eine kleine Robbenart mit ringförmigen Mustern im Fell. Sie lebt in arktischen Gewässern. In deinem Zoo zeigt sie, wie vielfältig die Robbenwelt ist."
+},
+{
+"id": 833,
+"nameDe": "Schnabeltier",
+"beschreibungDe": "Das Schnabeltier ist ein einzigartiger Eierleger unter den Säugetieren. Es besitzt Entenschnabel, Biberschwanz und Schwimmhäute. In deinem Zoo ist es ein echter Exot und Lieblingsrätsel vieler Besucher."
+},
+{
+"id": 834,
+"nameDe": "Schwarzhalsschwan",
+"beschreibungDe": "Der Schwarzhalsschwan hat, wie der Name sagt, einen schwarzen Hals und weißen Körper. Er lebt in Südamerika. In deinem Zoo bildet er einen eleganten Kontrast zu weißen Schwänen."
+},
+{
+"id": 835,
+"nameDe": "See-Elefant",
+"beschreibungDe": "Der See-Elefant ist die größte Robbenart und hat beim Männchen einen rüsselartigen Nasenaufsatz. Er lebt an kühlen Küsten und kann tief tauchen. In deinem Zoo wirkt er mit seiner Größe und den lauten Rufen besonders beeindruckend."
+},
+{
+"id": 836,
+"nameDe": "Seeleopard",
+"beschreibungDe": "Der Seeleopard ist ein großer, räuberischer Robbenverwandter der Antarktis. Er hat ein geflecktes Fell, das an Leoparden erinnert. In deinem Zoo zeigt er die wilde Seite der Polarmeere."
+},
+{
+"id": 837,
+"nameDe": "Seeotter",
+"beschreibungDe": "Der Seeotter ist bekannt dafür, beim Ruhen auf dem Rücken im Wasser zu treiben. Er nutzt Steine als Werkzeuge, um Muscheln aufzubrechen. In deinem Zoo ist er ein verspielter Publikumsliebling."
+},
+{
+"id": 838,
+"nameDe": "Tigerhai",
+"beschreibungDe": "Der Tigerhai ist ein großer Hai mit Streifenmuster auf dem Körper. Er ist wenig wählerisch bei der Nahrung. In deinem Zoo zieht er majestätisch seine Runden und beeindruckt durch seine Kraft."
+},
+{
+"id": 839,
+"nameDe": "Trompetenschwan",
+"beschreibungDe": "Der Trompetenschwan ist eine große Schwanenart mit tiefem, trompetenähnlichem Ruf. Er lebt in Nordamerika. In deinem Zoo sorgt sein Gesang für besondere akustische Momente."
+},
+{
+"id": 840,
+"nameDe": "Walross",
+"beschreibungDe": "Das Walross ist ein großes Meeressäugetier mit riesigen Stoßzähnen. Es liebt Eisschollen und ruht gern in Gruppen. In deinem Zoo sorgt es mit seinen Lauten und seiner Erscheinung für arktisches Flair."
+},
+{
+"id": 841,
+"nameDe": "Wander-Albatros",
+"beschreibungDe": "Der Wanderalbatros hat die größte Flügelspannweite aller Vögel. Er kann stundenlang über dem Meer segeln, ohne viel zu schlagen. In deinem Zoo symbolisiert er die Freiheit der Weltmeere."
+},
+{
+"id": 842,
+"nameDe": "Weißer Hai",
+"beschreibungDe": "Der Weiße Hai ist einer der bekanntesten Haie und ein Spitzenprädator der Ozeane. Er hat ein kraftvolles Gebiss und scharfe Sinne. In deinem Zoo sorgt er für Gänsehaut und Bewunderung zugleich."
+},
+{
+"id": 843,
+"nameDe": "Leistenkrokodil",
+"beschreibungDe": "Das Leistenkrokodil ist eines der größten Krokodile der Welt. Es lebt in Flussmündungen und Küstengewässern im indo-pazifischen Raum. In deinem Zoo ruht es oft reglos im Wasser und wirkt wie ein lebendes Fossil."
+},
+{
+"id": 844,
+"nameDe": "Rosa Pelikan",
+"beschreibungDe": "Der Rosa Pelikan ist ein großer Wasservogel mit zart rosafarbenem Gefieder. Er fischt mit seinem großen Kehlsack nach Beute. In deinem Zoo gleitet er elegant über die Wasserfläche und trocknet seine Flügel in der Sonne."
+},
+{
+"id": 845,
+"nameDe": "Unbekannt",
+"beschreibungDe": "Dieses Meerestier ist in der Datenbank noch als „Unbekannt“ gelistet. Es könnte in zukünftigen Updates eine spannende Rolle spielen. Dein Zoo behält damit einen geheimnisvollen Platz im Ozeanbereich."
+},
+{
+"id": 1101,
+"nameDe": "Buntmarder",
+"beschreibungDe": "Der Buntmarder ist ein farbenprächtiger Marder aus Asien mit schwarz-gelb-braunem Fell. Er ist ein aktiver Jäger und Kletterer. In deinem Zoo ist er ständig unterwegs und macht seinem Namen alle Ehre."
+},
+{
+"id": 1102,
+"nameDe": "Eigentlicher Streifentenrek",
+"beschreibungDe": "Der Eigentliche Streifentenrek ist ein kleines, igelähnliches Tier aus Madagaskar. Er trägt auffällige Streifen auf dem Rücken und kann bei Gefahr Stacheln aufstellen. In deinem Zoo ist er ein exotischer, nachtaktiver Bewohner."
+},
+{
+"id": 1103,
+"nameDe": "Feuersalamander",
+"beschreibungDe": "Der Feuersalamander ist eine auffällig schwarz-gelb gefärbte Amphibienart. Seine Färbung warnt Fressfeinde vor seiner Giftigkeit. In deinem Zoo lebt er in feuchten Terrarien und zeigt sich gern nach einem künstlichen „Regenguss“."
+},
+{
+"id": 1104,
+"nameDe": "Geflügelte Stabschrecke",
+"beschreibungDe": "Die Geflügelte Stabschrecke tarnt sich perfekt als Zweig oder Blatt. Erst beim Fliegen erkennt man ihre Flügel. In deinem Zoo ist sie ein Meister der Tarnung im Insektarium."
+},
+{
+"id": 1105,
+"nameDe": "Goldbaumsteiger",
+"beschreibungDe": "Der Goldbaumsteiger ist ein kleiner, leuchtend gefärbter Frosch aus den Tropen. Seine kräftigen Farben warnen vor seiner Giftigkeit. In deinem Zoo strahlt er wie ein winziger Edelstein im Terrarium."
+},
+{
+"id": 1106,
+"nameDe": "Haselmaus",
+"beschreibungDe": "Die Haselmaus ist ein kleines Nagetier, das gerne in Hecken und Wäldern lebt. Sie hält Winterschlaf und ist vor allem in der warmen Jahreszeit aktiv. In deinem Zoo zeigt sie ihre Kletterfreude in verzweigten Ästen."
+},
+{
+"id": 1107,
+"nameDe": "Ili-Pfeifhase",
+"beschreibungDe": "Der Ili-Pfeifhase ist ein kleines Säugetier aus Gebirgsregionen Chinas. Er ist selten und wurde erst spät entdeckt. In deinem Zoo ist er ein kleiner, aber sehr besonderer Bewohner für Kenner."
+},
+{
+"id": 1108,
+"nameDe": "Kaiserskorpion",
+"beschreibungDe": "Der Kaiserskorpion ist einer der größten Skorpione der Welt. Unter UV-Licht leuchtet er geheimnisvoll. In deinem Zoo sorgt er im Terrarienbereich für vorsichtigen Respekt und Faszination."
+},
+{
+"id": 1109,
+"nameDe": "Kurzkopfgleitbeutler",
+"beschreibungDe": "Der Kurzkopfgleitbeutler ist ein kleiner Gleiter mit häutigen Flugmembranen. Er segelt von Baum zu Baum auf der Suche nach Nahrung. In deinem Zoo ist er ein leiser Akrobat der Nacht."
+},
+{
+"id": 1110,
+"nameDe": "Madagasker-Taggecko",
+"beschreibungDe": "Der Madagaskar-Taggecko ist leuchtend grün und tagsüber aktiv. Er lebt auf Pflanzen und jagt Insekten. In deinem Zoo bringt er tropische Farbe ins Terrarium."
+},
+{
+"id": 1111,
+"nameDe": "Mähnenratte",
+"beschreibungDe": "Die Mähnenratte trägt ein auffälliges, langes Rückenhaarkleid. Sie kann Gift aus Pflanzen in ihr Fell einlagern, um sich zu schützen. In deinem Zoo ist sie ein kleines, aber sehr spannendes Forschungsobjekt."
+},
+{
+"id": 1112,
+"nameDe": "Mauswiesel",
+"beschreibungDe": "Das Mauswiesel ist der kleinste Vertreter der Marderfamilie. Es jagt flinke Nager und ist selbst sehr schnell. In deinem Zoo ist es ein winziger, wuseliger Räuber."
+},
+{
+"id": 1113,
+"nameDe": "Maus-Zwergbeutelratte",
+"beschreibungDe": "Die Maus-Zwergbeutelratte ist ein sehr kleines Beuteltier mit großer Kletterfreude. Sie lebt in Bäumen und jagt Insekten. In deinem Zoo ist sie ein leiser, nachtaktiver Mitbewohner im Kleintierhaus."
+},
+{
+"id": 1114,
+"nameDe": "Parsons Chamälion",
+"beschreibungDe": "Parsons Chamäleon gehört zu den größten Chamäleons der Welt. Es kann die Farbe wechseln und seine Augen unabhängig bewegen. In deinem Zoo zeigt es eindrucksvoll, wie gut Tarnung und Geduld zusammenpassen."
+},
+{
+"id": 1115,
+"nameDe": "Rotaugenlaubfrosch",
+"beschreibungDe": "Der Rotaugenlaubfrosch ist mit seinen knallroten Augen und grünen Körper ein Tropenstar. Er sitzt tagsüber ruhig auf Blättern und wird nachts aktiv. In deinem Zoo wirkt er wie ein kleines, lebendiges Kunstwerk."
+},
+{
+"id": 1116,
+"nameDe": "Rüsselhündchen",
+"beschreibungDe": "Das Rüsselhündchen ist ein kleines Säugetier mit langem, beweglichem Rüssel. Es nutzt ihn, um Insekten und andere Kleintiere aufzuspüren. In deinem Zoo flitzt es durch sein Gehege und sucht neugierig jede Ecke ab."
+},
+{
+"id": 1117,
+"nameDe": "Sonnendachs",
+"beschreibungDe": "Der Sonnendachs ist ein kleiner Marder mit hellem Fleck auf der Brust. Er ist ein geschickter Kletterer und Jäger. In deinem Zoo ist er ein lebhafter, neugieriger Bewohner des Raubtierhauses."
+},
+{
+"id": 1118,
+"nameDe": "Streifen-Backenhörnchen",
+"beschreibungDe": "Das Streifen-Backenhörnchen ist ein kleines Nagetier mit auffälligen Streifen. Es sammelt Nahrung in seinen Backentaschen. In deinem Zoo ist es ständig beschäftigt und eine Freude beim Beobachten."
+},
+{
+"id": 1119,
+"nameDe": "Zwergameisenbär",
+"beschreibungDe": "Der Zwergameisenbär ist ein kleiner, kletternder Ameisenfresser. Er verbringt viel Zeit in Bäumen. In deinem Zoo zeigt er, dass auch kleine Tiere große Spezialisten sein können."
+},
+{
+"id": 1120,
+"nameDe": "Europäischer Hamster",
+"beschreibungDe": "Der Europäische Hamster ist größer als seine Heimtier-Verwandten und wildlebend. Er ist farbenfroh gefärbt und liebt Vorräte in seinem Bau. In deinem Zoo zeigt er seine fleißige Seite beim Sammeln und Verstecken von Futter."
+},
+{
+"id": 1121,
+"nameDe": "Unbekannt",
+"beschreibungDe": "Dieser kleine Bewohner ist derzeit noch als „Unbekannt“ eingetragen. Er steht für zukünftige Erweiterungen im Kleintierbereich. So bleibt dein Zoo auch hier spannend und wandelbar."
+},
+{
+"id": 1201,
+"nameDe": "Kleiner Gürtelmull",
+"beschreibungDe": "Der Kleine Gürtelmull ist ein winziges Gürteltier mit zartem Panzer. Er lebt unterirdisch in Südamerika. In deinem Zoo ist er ein geheimnisvoller Buddler, der selten an die Oberfläche kommt."
+},
+{
+"id": 1202,
+"nameDe": "Krötenechse",
+"beschreibungDe": "Die Krötenechse ist eine kleine Echse mit gedrungener Körperform. Einige Arten können bei Gefahr Blut aus den Augen spritzen. In deinem Zoo bleibt sie lieber ruhig und vertraut auf ihre Tarnung."
+},
+{
+"id": 1203,
+"nameDe": "Langohrigel",
+"beschreibungDe": "Der Langohrigel ist ein Insektenfresser mit auffällig großen Ohren. Er nutzt sie zur Kühlung und zum Lauschen. In deinem Zoo ist er ein nächtlicher, pieksiger kleiner Entdecker."
+},
+{
+"id": 1204,
+"nameDe": "Löffelbilch",
+"beschreibungDe": "Der Löffelbilch ist ein kleines Wüsten­nag­etier mit großen Ohren. Er ist nachtaktiv und gräbt sich gerne ein. In deinem Zoo zeigt er sein Wüstenleben im Miniaturformat."
+},
+{
+"id": 1205,
+"nameDe": "Numbat",
+"beschreibungDe": "Der Numbat ist ein australischer Ameisenfresser mit gestreiftem Rücken. Er ist tagaktiv und sehr spezialisiert auf Termiten. In deinem Zoo ist er ein seltener, aber besonders charmanter Bewohner."
+},
+{
+"id": 1206,
+"nameDe": "Panzergürtelschweif",
+"beschreibungDe": "Der Panzergürtelschweif ist eine Echse mit ringförmig angeordneten Schuppen. Bei Gefahr rollt sie sich teilweise zusammen und beißt in den eigenen Schwanz. In deinem Zoo sieht sie aus wie ein kleiner lebender Drachen."
+},
+{
+"id": 1207,
+"nameDe": "Rote Königsnatter",
+"beschreibungDe": "Die Rote Königsnatter ist eine bunt geringelte Schlange. Ihre Färbung imitiert giftige Arten, obwohl sie selbst ungiftig ist. In deinem Zoo zeigt sie eindrucksvoll, wie clever Tarnung und Täuschung sein können."
+},
+{
+"id": 1208,
+"nameDe": "Steppenwaran",
+"beschreibungDe": "Der Steppenwaran ist ein kräftiger Waran aus trockenen Regionen Afrikas. Er ist tagaktiv und ein geschickter Jäger. In deinem Zoo nutzt er gern warme Sonnenplätze und erkundet neugierig jede Ecke seines Terrariums."
+},
+{
+"id": 2101,
+"nameDe": "Axolotl",
+"beschreibungDe": "Der Axolotl ist ein besonderer Schwanzlurch, der sein Larvenstadium im Wasser beibehält. Er kann verlorene Körperteile regenerieren. In deinem Zoo lächelt er mit seinem typischen Gesichtsausdruck aus dem Aquarium."
+},
+{
+"id": 2102,
+"nameDe": "Blauer Floridakrebs",
+"beschreibungDe": "Der Blaue Floridakrebs ist ein leuchtend blauer Flusskrebs. Er stammt aus Nordamerika und ist im Aquarium besonders auffällig. In deinem Zoo bewegt er seine Scheren geschickt und sorgt für farbige Akzente im Wasser."
+},
+{
+"id": 2103,
+"nameDe": "Diskusfisch",
+"beschreibungDe": "Der Diskusfisch ist ein runder, farbenprächtiger Zierfisch aus dem Amazonas. Er hat ruhige Schwimmbewegungen und lebt gerne im Schwarm. In deinem Zoo wirkt sein Aquarium wie ein lebendes Gemälde."
+},
+{
+"id": 2104,
+"nameDe": "Goldfisch",
+"beschreibungDe": "Der Goldfisch ist einer der bekanntesten Aquarienfische. Er wurde schon vor Jahrhunderten aus Wildkarpfen herausgezüchtet. In deinem Zoo schwimmt er in klaren Becken und begeistert vor allem junge Besucher."
+},
+{
+"id": 2105,
+"nameDe": "Pfauen-Stachelaal",
+"beschreibungDe": "Der Pfauen-Stachelaal ist ein langgestreckter Fisch mit auffälligen Augenflecken. Er versteckt sich tagsüber gerne im Boden. In deinem Zoo können aufmerksame Betrachter ihn beim vorsichtigen Hervorlugen beobachten."
+},
+{
+"id": 2106,
+"nameDe": "Roter Piranha",
+"beschreibungDe": "Der Rote Piranha ist ein südamerikanischer Schwarmfisch mit scharfen Zähnen. Sein Ruf ist wilder als sein tatsächliches Verhalten. In deinem Zoo schwimmt er im Schwarm und zeigt, wie beeindruckend koordinierte Fische wirken können."
+},
+{
+"id": 2107,
+"nameDe": "Südamerik. Schmetterlingsbuntbarsch",
+"beschreibungDe": "Der südamerikanische Schmetterlingsbuntbarsch ist ein kleiner, farbenfroher Cichlide. Er zeigt interessantes Brutpflegeverhalten. In deinem Zoo bringt er Farbe in kleinere Aquarienbereiche."
+},
+{
+"id": 2108,
+"nameDe": "Siaminischer Kampffisch",
+"beschreibungDe": "Der Siamesische Kampffisch ist ein prachtvoll gefärbter Labyrinthfisch. Männchen sind territorial und bauen Schaumnester. In deinem Zoo beeindruckt er mit wehenden Flossen und intensiven Farben."
+},
+{
+"id": 2109,
+"nameDe": "Pfauenaugen-Stechrochen",
+"beschreibungDe": "Der Pfauenaugen-Stechrochen hat auffällige Augenflecken auf dem Rücken. Er lebt im Süßwasser und gleitet über den Boden. In deinem Zoo wirkt er wie ein schwebender Teppich mit Muster."
+},
+{
+"id": 2201,
+"nameDe": "Clownfisch",
+"beschreibungDe": "Der Clownfisch lebt in enger Symbiose mit Seeanemonen. Seine orange-weiße Zeichnung macht ihn besonders bekannt. In deinem Zoo versteckt er sich zwischen den Tentakeln und wirkt wie ein kleiner Riffclown."
+},
+{
+"id": 2202,
+"nameDe": "Dumbo-Oktopus",
+"beschreibungDe": "Der Dumbo-Oktopus ist ein Tiefsee-Oktopus mit ohrenähnlichen Flossen. Er sieht dadurch besonders niedlich aus. In deinem Zoo zeigt er, wie skurril Tiefseebewohner sein können."
+},
+{
+"id": 2203,
+"nameDe": "Großer Fetzenfisch",
+"beschreibungDe": "Der Große Fetzenfisch hat lange Hautfortsätze, die ihn wie treibendes Seegras aussehen lassen. Er lebt in kühlen Meeresregionen. In deinem Zoo ist er ein Meister der Tarnung in Seegrasbecken."
+},
+{
+"id": 2204,
+"nameDe": "Japanischer-Feuerfisch",
+"beschreibungDe": "Der Japanische Feuerfisch ist ein giftiger Riffbewohner mit langen, strahlenartigen Flossen. Seine Musterung warnt Fressfeinde. In deinem Zoo wirkt er wie ein lebendes Feuerwerk im Wasser."
+},
+{
+"id": 2205,
+"nameDe": "Karnevalstintenfisch",
+"beschreibungDe": "Der Karnevalstintenfisch fällt durch intensive Farbwechsel und Muster auf. Er nutzt seine Farben zur Kommunikation und Tarnung. In deinem Zoo zeigt er, dass das Meer seine eigenen Karnevalskünstler hat."
+},
+{
+"id": 2206,
+"nameDe": "Kompassqualle",
+"beschreibungDe": "Die Kompassqualle besitzt strahlenförmige Muster, die an einen Kompass erinnern. Ihre langen Tentakel schweben elegant im Wasser. In deinem Zoo wirkt sie wie ein schwebender Stern im Quallenaquarium."
+},
+{
+"id": 2207,
+"nameDe": "Mandarinfisch",
+"beschreibungDe": "Der Mandarinfisch ist ein kleiner Riffbewohner mit spektakulärer Farbzeichnung. Er ist eher scheu und beliebt bei Aquaristikfans. In deinem Zoo funkelt er wie ein bunter Edelstein zwischen Korallen."
+},
+{
+"id": 2208,
+"nameDe": "Maskenkugelfisch",
+"beschreibungDe": "Der Maskenkugelfisch kann sich bei Gefahr zu einer Kugel aufblähen. Er trägt oft maskenartige Zeichnungen im Gesicht. In deinem Zoo zeigt er seine Kuriosität – auch ohne sich ständig aufzublasen."
+},
+{
+"id": 2209,
+"nameDe": "Paletten-Doktorfisch",
+"beschreibungDe": "Der Paletten-Doktorfisch ist ein blau-gelber Riffbewohner. Er nutzt seine Schwanzstacheln zur Verteidigung. In deinem Zoo sorgt er für fröhliche Farbakzente im Korallenbecken."
+},
+{
+"id": 2210,
+"nameDe": "Seepferdchen",
+"beschreibungDe": "Das Seepferdchen ist durch seine aufrechte Haltung und den pferdeähnlichen Kopf unverwechselbar. Männchen tragen die Eier in ihrer Bauchtasche aus. In deinem Zoo treiben sie an Seegrasstängeln und zaubern ein wenig Märchenstimmung ins Aquarium."
+},
+{
+"id": 2211,
+"nameDe": "Gelbbrauner Kofferfisch",
+"beschreibungDe": "Der Gelbbraune Kofferfisch hat einen kantigen, kastenförmigen Körper. Er bewegt sich eher gemächlich durch das Wasser. In deinem Zoo wirkt er wie ein kleiner schwimmender Würfel in Gelb und Braun."
+},
+{
+"id": 3101,
+"nameDe": "Eulenschwalm",
+"beschreibungDe": "Der Eulenschwalm ist ein Vogel, der ein wenig an eine Mischung aus Eule und Nachtgreif erinnert. Er tarnt sich tagsüber perfekt als Ast oder Baumstumpf. In deinem Zoo ist er ein Meister der Unsichtbarkeit für unaufmerksame Besucher."
+},
+{
+"id": 3102,
+"nameDe": "Gemeiner Vampir ",
+"beschreibungDe": "Der Gemeine Vampir ist eine kleine Fledermaus, die sich von Blut ernährt. Seine bevorzugten Opfer sind meist Nutztiere. In deinem Zoo lebt er in gesicherten Nachtbereichen und erinnert an die Vielfalt der Fledertiere."
+},
+{
+"id": 3103,
+"nameDe": "Kleiner Igeltenrek",
+"beschreibungDe": "Der Kleine Igeltenrek ist ein stacheliger Kleinsäuger aus Madagaskar. Er ähnelt einem Igel, ist aber mit Tenreks verwandt. In deinem Zoo ist er ein exotischer und sehr niedlicher Stachelfreund."
+},
+{
+"id": 3104,
+"nameDe": "Zwerghamster",
+"beschreibungDe": "Der Zwerghamster ist ein kleiner, dämmerungsaktiver Nager. Er legt Vorratskammern an und flitzt gern durch Röhrensysteme. In deinem Zoo begeistert er vor allem jüngere Besucher mit seiner wuseligen Art."
+},
+{
+"id": 3105,
+"nameDe": "Zwerglori",
+"beschreibungDe": "Der Zwerglori ist ein kleiner, nachtaktiver Primat mit großen Augen. Er bewegt sich langsam, aber sehr geschickt im Geäst. In deinem Zoo ist er ein leiser, nächtlicher Zauberer im Tropenhaus."
+},
+{
+"id": 3106,
+"nameDe": "Springhase",
+"beschreibungDe": "Der Springhase ist ein nachtaktives Nagetier mit langen Hinterbeinen. Er bewegt sich in Sprüngen fort und lebt in trockenen Regionen Afrikas. In deinem Zoo sorgt er mit seinen Sätzen für Staunen in der Dämmerung."
+},
+{
+"id": 3107,
+"nameDe": "Südliches Gürteltier",
+"beschreibungDe": "Das Südliche Gürteltier ist eine kleinere Gürteltierart mit beweglichem Panzer. Es gräbt Höhlen und ist überwiegend nachtaktiv. In deinem Zoo ist es ein stacheliger, aber sympathischer Buddler."
+},
+{
+"id": 3108,
+"nameDe": "Tokeh",
+"beschreibungDe": "Der Tokeh ist ein großer Gecko mit markantem Ruf und gepunktetem Körper. Er stammt aus Asien und hält sich gerne an Wänden auf. In deinem Zoo ist er ein lautstarker Vertreter der Geckoszene."
+},
+{
+"id": 3109,
+"nameDe": "Perlkauz",
+"beschreibungDe": "Der Perlkauz ist eine kleine Eule mit gepunktetem Gefieder. Er ist vor allem in Wäldern unterwegs. In deinem Zoo zeigt er, wie viel Charme in einer kleinen Eule stecken kann."
+},
+{
+"id": 3110,
+"nameDe": "Beutelmarder",
+"beschreibungDe": "Der Beutelmarder ist ein kleines, räuberisches Beuteltier. Er lebt in Australien und jagt Insekten und Kleintiere. In deinem Zoo demonstriert er die räuberische Seite der Beuteltiere."
+},
+{
+"id": 3111,
+"nameDe": "Fingertier",
+"beschreibungDe": "Das Fingertier, auch Aye-Aye genannt, ist ein Lemur mit besonders langem Mittelfinger. Mit diesem klopft es an Holz und lauscht nach Insekten im Inneren. In deinem Zoo ist es ein skurriler, aber faszinierender Nachtbewohner."
+}
+]

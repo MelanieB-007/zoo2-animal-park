@@ -1,17 +1,68 @@
 {
-  "test": "Hallo Welt",
-  "zoo_title": "KLUB DER TOLLEN TIERE",
+  "zoo_title": "KLUBBEN FOR DE FANTASTISKE DYR",
   "navigation": {
-    "home": "Home",
+    "home": "Hjem",
     "zoo": "Zoo",
-    "zoo_areas": "Zoo Areas",
-    "zoo_enclosures": "Zoo Biomes",
-    "animals": "Animals",
-    "animal_overview": "Animal Overview",
-    "animal_create": "Create Animal",
-    "animal_variants": "Color Variants",
-    "club": "Club",
-    "club_members": "Members",
-    "club_contests": "Contents"
-  }
+    "zoo_areas": "Zoo områder",
+    "zoo_enclosures": "Zoo indhegninger",
+    "animals": "Dyr",
+    "animal_overview": "Dyreoversigt",
+    "animal_create": "Opret dyr",
+    "animal_variants": "Farvevarianter",
+    "club": "Klub",
+    "club_members": "Medlemmer",
+    "club_contests": "Konkurrencer"
+  },
+  "login": {
+    "open_menu": "Åbn menu 🐾",
+    "logout": "Log ud 👋",
+    "login_button": "Log ind",
+    "welcome": "Hej"
+  },
+  "roles": {
+    "Direktor": "Direktør",
+    "Guide": "Guide",
+    "Besucher": "Besøgende"
+  },
+  "footer": {
+    "title": "Klubben for de fantastiske dyr",
+    "imprint": "Impressum"
+  },
+  "results": {
+    "show": "Viser",
+    "of": "af"
+  },
+  "pagination": {
+    "prev": "Forrige",
+    "next": "Næste"
+  },
+  "payment": {
+    "diamonds": "Diamanter",
+    "zoodollar": "Zoodollar",
+    "price": "Pris",
+    "sellPrice": "Salgspris"
+  },
+  "release": "Udgivelse",
+  "enclosure": "Indhegning",
+  "enclosureType": "Indhegningstype",
+
+  "scroll_to_top": "Til toppen",
+  "actions": "Handlinger",
+  "loading": "Indlæser...",
+  "saving": "Gemmer...",
+  "popularity": "Popularitet",
+  "description": "Beskrivelse",
+  "costs": "Omkostninger",
+  "time": "Tid",
+  "action": "Handling",
+  "namesIntl": "Navne på andre sprog",
+  "language": "Sprog",
+  "allLanguages": "Alle sprog er tilføjet",
+  "addRow": "+ Tilføj række",
+  "available": "Tilgængelig",
+  "notAvailable": "Ingen yderligere kilder",
+  "chosen": "Valgt",
+  "pleaseChoose": "Vælg venligst ...",
+  "descriptionPlaceholder": "Indtast beskrivelse...",
+  "noDescriptionAvailable": "Ingen beskrivelse tilgængelig"
 }

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
-import GehegeBadge from "./GehegeBadge";
+import GehegeBadge from "../../ui/GehegeBadge";
 import { getTranslatedName } from "../../ui/TranslationHelper";
 
 export default function CustomGehegeFilter({ animals = [], selectedGehege, onSelect }) {

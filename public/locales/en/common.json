@@ -1,21 +1,20 @@
 {
-  "test": "Hello World",
-  "zoo_title": "KLUB DER TOLLEN TIERE",
+  "zoo_title": "CLUB OF GREAT ANIMALS",
   "navigation": {
     "home": "Home",
     "zoo": "Zoo",
     "zoo_areas": "Zoo Areas",
-    "zoo_enclosures": "Zoo Biomes",
+    "zoo_enclosures": "Zoo Enclosures",
     "animals": "Animals",
     "animal_overview": "Animal Overview",
     "animal_create": "Create Animal",
     "animal_variants": "Color Variants",
     "club": "Club",
     "club_members": "Members",
-    "club_contests": "Contents"
+    "club_contests": "Contests"
   },
   "login": {
-    "open_menu": "Open menu 🐾",
+    "open_menu": "Open Menu 🐾",
     "logout": "Logout 👋",
     "login_button": "Login",
     "welcome": "Hello"
@@ -26,7 +25,7 @@
     "Besucher": "Visitor"
   },
   "footer": {
-    "title": "Great Animals Club",
+    "title": "Club of Great Animals",
     "imprint": "Imprint"
   },
   "results": {
@@ -34,18 +33,35 @@
     "of": "of"
   },
   "pagination": {
-    "prev": "Back",
+    "prev": "Previous",
     "next": "Next"
   },
   "payment": {
-    "diamonds": "Diamonds,",
-    "zoodollar": "Zoodollar"
+    "diamonds": "Diamonds",
+    "zoodollar": "Zoodollars",
+    "price": "Price",
+    "sellPrice": "Selling Price"
   },
+  "release": "Release",
+  "enclosure": "Enclosure",
+  "enclosureType": "Enclosure Type",
+  "scroll_to_top": "Scroll to top",
   "actions": "Actions",
-  "scroll_to_top": "Back to top",
   "loading": "Loading...",
+  "saving": "Saving...",
   "popularity": "Popularity",
   "description": "Description",
   "costs": "Costs",
-  "time": "Time"
+  "time": "Time",
+  "action": "Action",
+  "namesIntl": "Names in other languages",
+  "language": "Language",
+  "allLanguages": "All languages added",
+  "addRow": "+ Add row",
+  "available": "Available",
+  "notAvailable": "No further sources",
+  "chosen": "Selected",
+  "pleaseChoose": "Please choose...",
+  "descriptionPlaceholder": "Insert description...",
+  "noDescriptionAvailable": "No description available"
 }

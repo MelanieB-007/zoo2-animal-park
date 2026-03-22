@@ -13,14 +13,18 @@ export default function ActionGroupIcons({ onEdit, onDelete }) {
       <EditButton
         tooltip={t("animals:tooltips.edit")}
         altText={t("animals:tooltips.edit")}
-        onClick={onEdit}
+        onClick={(e) => {
+          onEdit(e);
+        }}
         aria-label={t("animals:tooltips.edit")}
       />
       <DeleteButton
         tooltip={t("animals:tooltips.delete")}
         altText={t("animals:tooltips.delete")}
         align="left"
-        onClick={onDelete}
+        onClick={(e) => {
+          onDelete(e);
+        }}
       />
     </ActionGroup>
   );

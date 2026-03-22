@@ -13,21 +13,18 @@ export default function AnimalDetailContent({ animal }) {
 
   return (
     <Wrapper>
-      {/* 1. Header über die volle Breite */}
       <HeaderCard animal={animal} />
 
       <MainGrid>
-        {/* Linke Spalte: Beschreibung & Varianten */}
         <PrimaryColumn>
           <Textarea
             label={t("common:description")}
-            text={animal.beschreibung || t("common:no_description_available")}
+            text={animal.beschreibung ?? t("common:noDescriptionAvailable")}
           />
 
           <VariantArea animal={animal} />
         </PrimaryColumn>
 
-        {/* Rechte Spalte: Sidebar mit Accordions */}
         <SecondaryColumn>
           <AccordionCard animal={animal} />
         </SecondaryColumn>
@@ -39,7 +36,7 @@ export default function AnimalDetailContent({ animal }) {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 25px; /* Abstand zwischen HeaderCard und dem Rest */
+  gap: 25px; 
   width: 100%;
 `;
 

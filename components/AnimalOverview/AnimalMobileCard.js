@@ -4,9 +4,9 @@ import { useTranslation } from "next-i18next";
 
 import GameIcon from "../icons/GameIcon";
 import { NameDE } from "../page-structure/Elements/Name";
-import GehegeBadge from "../page-structure/Elements/GehegeBadge";
+import GehegeBadge from "../ui/GehegeBadge";
 import PriceDisplay from "../icons/PriceDisplay";
-import StallLevelBadge from "../page-structure/Elements/StallLevelBadge";
+import StallLevelBadge from "../ui/StallLevelBadge";
 import EditButton from "../icons/EditIcon";
 import DeleteButton from "../icons/DeleteIcon";
 import { getTranslatedName } from "../ui/TranslationHelper";
@@ -29,10 +29,10 @@ export default function AnimalMobileCard({
     <CardContainer onClick={onClick}>
       <HeaderRow>
         <NameDE>{displayName}</NameDE>
-        <ActionGroup onClick={(e) => e.stopPropagation()}>
+        {/*<ActionGroup onClick={(e) => e.stopPropagation()}>
           <EditButton onClick={onEdit} />
           <DeleteButton onClick={onDelete} />
-        </ActionGroup>
+        </ActionGroup>*/}
       </HeaderRow>
 
       <Divider />
@@ -50,7 +50,7 @@ export default function AnimalMobileCard({
         <IconsRow>
           <GameIcon
             type={`tiere/${habitatId}`}
-            fileName={animal.bild || "default.jpg"}
+            fileName={animal.bild}
             size={50}
           />
 
@@ -71,6 +71,7 @@ const CardContainer = styled.div`
   border-radius: 12px;
   padding: 12px 16px;
   margin-bottom: 12px;
+  width:80vw;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid #e0e0e0;
   display: flex;

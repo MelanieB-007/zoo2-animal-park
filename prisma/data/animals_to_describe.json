@@ -1,0 +1,1932 @@
+[
+  {
+    "id": 101,
+    "nameDe": "Achal-Tekkiner",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 102,
+    "nameDe": "Angorakaninchen",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 103,
+    "nameDe": "Biber",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 104,
+    "nameDe": "Blaufußtölpel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 105,
+    "nameDe": "Damhirsch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 106,
+    "nameDe": "Großer Pampashase",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 107,
+    "nameDe": "Großer Panda",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 108,
+    "nameDe": "Hase",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 109,
+    "nameDe": "Hausschwein",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 110,
+    "nameDe": "Hausziege",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 111,
+    "nameDe": "Husarenaffe",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 112,
+    "nameDe": "Jaguarundi",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 113,
+    "nameDe": "Klunkerkranich",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 114,
+    "nameDe": "Kurzschnabeligel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 115,
+    "nameDe": "Lippenbär",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 116,
+    "nameDe": "Löffler",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 117,
+    "nameDe": "Mähnenwolf",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 118,
+    "nameDe": "Mandschurenkranich",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 119,
+    "nameDe": "Nasenbär",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 120,
+    "nameDe": "Nilgauantilope",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 121,
+    "nameDe": "Nilwaran",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 122,
+    "nameDe": "Östliche Graseule",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 123,
+    "nameDe": "Panzernashorn",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 124,
+    "nameDe": "Pferd",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 125,
+    "nameDe": "Poitou-Esel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 126,
+    "nameDe": "Riesenkaninchen",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 127,
+    "nameDe": "Rohrkatze",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 128,
+    "nameDe": "Schaf",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 129,
+    "nameDe": "Schnappschildkröte",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 130,
+    "nameDe": "Schottisches Hochlandrind",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 131,
+    "nameDe": "Schuhschnabel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 132,
+    "nameDe": "Schwan",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 133,
+    "nameDe": "Shetlandpony",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 134,
+    "nameDe": "Stachelibis",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 135,
+    "nameDe": "Suedafrika-Kronenkranich",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 136,
+    "nameDe": "Tapir",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 137,
+    "nameDe": "Waldrapp",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 138,
+    "nameDe": "Waschbär",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 139,
+    "nameDe": "Weißstorch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 140,
+    "nameDe": "Wasserkudu",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 201,
+    "nameDe": "Adlerbussard",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 202,
+    "nameDe": "Amerikanischer Bison",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 203,
+    "nameDe": "Andenfuchs",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 204,
+    "nameDe": "Angoraziege",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 205,
+    "nameDe": "Bongo Antilope",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 206,
+    "nameDe": "Capybara",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 207,
+    "nameDe": "Dikdik",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 208,
+    "nameDe": "Emu",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 209,
+    "nameDe": "Erdwolf",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 210,
+    "nameDe": "Ferkelskunk",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 211,
+    "nameDe": "Flamingo",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 212,
+    "nameDe": "Gabelbock",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 213,
+    "nameDe": "Gepard",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 214,
+    "nameDe": "Goldfasan",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 215,
+    "nameDe": "Grevyzebra",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 216,
+    "nameDe": "Gürteltier",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 217,
+    "nameDe": "Halsbandpekari",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 218,
+    "nameDe": "Hirschziegenantilope",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 219,
+    "nameDe": "Karakal",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 220,
+    "nameDe": "Katzenfrett",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 221,
+    "nameDe": "Lama",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 222,
+    "nameDe": "Massai-Giraffe",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 223,
+    "nameDe": "Oryxantilope",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 224,
+    "nameDe": "Pfau",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 225,
+    "nameDe": "Quokka",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 226,
+    "nameDe": "Rentier",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 227,
+    "nameDe": "Riesenschildkröte",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 228,
+    "nameDe": "Rosada-Drusenkopf",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 229,
+    "nameDe": "Rotes Riesenkänguru",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 230,
+    "nameDe": "Saigaantilope",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 231,
+    "nameDe": "Schwarzfußkatze",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 232,
+    "nameDe": "Sekretär",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 233,
+    "nameDe": "Serval",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 234,
+    "nameDe": "Silberdachs",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 235,
+    "nameDe": "Silberner Riesengalago",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 236,
+    "nameDe": "Steppenschuppentier",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 237,
+    "nameDe": "Steppenzebra",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 238,
+    "nameDe": "Streifenschakal",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 239,
+    "nameDe": "Tigeriltis",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 240,
+    "nameDe": "Zwergflamingo",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 241,
+    "nameDe": "Drusenkopf",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 301,
+    "nameDe": "Afrikanische Goldkatze",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 302,
+    "nameDe": "Australische Gespenstfledermaus",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 303,
+    "nameDe": "Blauer Leguan",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 304,
+    "nameDe": "Blauschopf Krontaube",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 305,
+    "nameDe": "Brillenbär",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 306,
+    "nameDe": "Brillenschlange",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 307,
+    "nameDe": "Diamantfasan",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 308,
+    "nameDe": "Elch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 309,
+    "nameDe": "Europäische Wildkatze",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 310,
+    "nameDe": "Europäischer Dachs",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 311,
+    "nameDe": "Europäisches Reh",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 312,
+    "nameDe": "Fischkatze",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 313,
+    "nameDe": "Fleckenroller",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 314,
+    "nameDe": "Gelbhauben Kakadu",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 315,
+    "nameDe": "Ginsterkatze",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 316,
+    "nameDe": "Goodfellow-Baumkänguru",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 317,
+    "nameDe": "Großer Paradiesvogel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 318,
+    "nameDe": "Helmhornvogel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 319,
+    "nameDe": "Hübschgesichtwallaby",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 320,
+    "nameDe": "Indische Sternschildkröte",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 321,
+    "nameDe": "Kiwi",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 322,
+    "nameDe": "Koala",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 323,
+    "nameDe": "Kusu",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 324,
+    "nameDe": "Mondbär",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 325,
+    "nameDe": "Nordopossum",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 326,
+    "nameDe": "Okapi",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 327,
+    "nameDe": "Pinselohrschwein",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 328,
+    "nameDe": "Roter Brüllaffe",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 329,
+    "nameDe": "Roter Panda",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 330,
+    "nameDe": "Roter Vari",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 331,
+    "nameDe": "Rotfuchs",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 332,
+    "nameDe": "Schimpanse",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 333,
+    "nameDe": "Sumatra-Naßhorn",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 334,
+    "nameDe": "Tanuki",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 335,
+    "nameDe": "Tasmanischer Teufel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 336,
+    "nameDe": "Totenkopfäffchen",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 337,
+    "nameDe": "Tundrawolf",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 338,
+    "nameDe": "Urson",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 339,
+    "nameDe": "Waldhund",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 340,
+    "nameDe": "Wildschwein",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 341,
+    "nameDe": "Zebraducker",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 342,
+    "nameDe": "Amerikanischer Schwarzbär",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 343,
+    "nameDe": "Schwarzstorch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 401,
+    "nameDe": "Afrikanischer Esel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 402,
+    "nameDe": "Alpaka",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 403,
+    "nameDe": "Alpenmurmeltier",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 404,
+    "nameDe": "Alpensteinbock",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 405,
+    "nameDe": "Andenkondor",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 406,
+    "nameDe": "Argali",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 407,
+    "nameDe": "Äthiopischer Wolf",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 408,
+    "nameDe": "Bartgeier",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 409,
+    "nameDe": "Baumstachler",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 410,
+    "nameDe": "Bergnyala",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 411,
+    "nameDe": "Falklandkaraka",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 412,
+    "nameDe": "Fleckenskunk",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 413,
+    "nameDe": "Gewöhnliches Stachelschwein",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 414,
+    "nameDe": "Goldstumpfnase",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 415,
+    "nameDe": "Goldtakin",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 416,
+    "nameDe": "Hermelin",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 417,
+    "nameDe": "Katta",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 418,
+    "nameDe": "Kodiakbär",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 419,
+    "nameDe": "Leopard",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 420,
+    "nameDe": "Luchs",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 421,
+    "nameDe": "Manul",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 422,
+    "nameDe": "Nacktnasenwombat",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 423,
+    "nameDe": "Ozelot",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 424,
+    "nameDe": "Pavian",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 425,
+    "nameDe": "Puma",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 426,
+    "nameDe": "Riesenturako",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 427,
+    "nameDe": "Rothund",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 428,
+    "nameDe": "Walliser Schwarznasenschaf",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 429,
+    "nameDe": "Wapiti",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 430,
+    "nameDe": "Weißkopfseeadler",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 431,
+    "nameDe": "Wolf",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 501,
+    "nameDe": "Afrikanische Zibetkatze",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 502,
+    "nameDe": "Afrikanischer Elefant",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 503,
+    "nameDe": "Afrikanischer Strauß",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 504,
+    "nameDe": "Afrikanischer Weissrückengeier",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 505,
+    "nameDe": "Afrikanischer Wildhund",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 506,
+    "nameDe": "Breitmaulnashorn",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 507,
+    "nameDe": "Chaco-Pekari",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 508,
+    "nameDe": "Dromedar",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 509,
+    "nameDe": "Erdferkel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 510,
+    "nameDe": "Erdmännchen",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 511,
+    "nameDe": "Fennek",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 512,
+    "nameDe": "Flusspferd",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 513,
+    "nameDe": "Giraffengazelle",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 514,
+    "nameDe": "Großer Ameisenbär",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 515,
+    "nameDe": "Honigdach",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 516,
+    "nameDe": "Impala",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 517,
+    "nameDe": "Kaffernbüffel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 518,
+    "nameDe": "Kap-Großkudu",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 519,
+    "nameDe": "Löffelhund",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 520,
+    "nameDe": "Löwe",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 521,
+    "nameDe": "Netzgiraffe",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 522,
+    "nameDe": "Riesen-Elenantilope",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 523,
+    "nameDe": "Rotschnabeltoko",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 524,
+    "nameDe": "Sandkatze",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 525,
+    "nameDe": "Schabrackenhyäne",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 526,
+    "nameDe": "Somalistrauß",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 527,
+    "nameDe": "Spitzmaulnaßhorn",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 528,
+    "nameDe": "Trampeltier",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 529,
+    "nameDe": "Tüpfelhyäne",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 530,
+    "nameDe": "Warzenschwein",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 531,
+    "nameDe": "Weissgesichtseule",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 532,
+    "nameDe": "Weissschwanzmanguste",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 533,
+    "nameDe": "Wollkopfgeier",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 534,
+    "nameDe": "Zebramanguste",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 535,
+    "nameDe": "Riesen-Rappenantilope",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 536,
+    "nameDe": "Weissschwanzgnu",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 537,
+    "nameDe": "Asiatischer Esel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 601,
+    "nameDe": "Banteng",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 602,
+    "nameDe": "Bartschwein",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 603,
+    "nameDe": "Berggorilla",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 604,
+    "nameDe": "Binturong",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 605,
+    "nameDe": "Blauaugenmaki",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 606,
+    "nameDe": "Borstenkopf",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 607,
+    "nameDe": "Brazzameerkatze",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 608,
+    "nameDe": "Brillenflughund",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 609,
+    "nameDe": "Faultier",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 610,
+    "nameDe": "Goldkronen-Flughund",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 611,
+    "nameDe": "Große Anakonda",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 612,
+    "nameDe": "Große Otterspitzmaus",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 613,
+    "nameDe": "Harpyie",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 614,
+    "nameDe": "Hellroter Ara",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 615,
+    "nameDe": "Helmkasuar",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 616,
+    "nameDe": "Jentink-Ducker",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 617,
+    "nameDe": "Kaiserschnurrbarttamarin",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 618,
+    "nameDe": "Kakapo",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 619,
+    "nameDe": "Kleideraffe",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 620,
+    "nameDe": "Köhlerschildkröte",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 621,
+    "nameDe": "Komodowaran",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 622,
+    "nameDe": "Königstiger",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 623,
+    "nameDe": "Krabbenwaschbär",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 624,
+    "nameDe": "Kurzohrfuchs",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 625,
+    "nameDe": "Löwenäffchen",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 626,
+    "nameDe": "Maikong",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 627,
+    "nameDe": "Mandrill",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 628,
+    "nameDe": "Mantelaffe",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 629,
+    "nameDe": "Matschie Baumkänguru",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 630,
+    "nameDe": "Nasenaffe",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 631,
+    "nameDe": "Nebelparder",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 632,
+    "nameDe": "Nepaluhu",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 633,
+    "nameDe": "Netzpython",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 634,
+    "nameDe": "Nilkrokodil",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 635,
+    "nameDe": "Orang Utan",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 636,
+    "nameDe": "Pakarana",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 637,
+    "nameDe": "Panama-Kapuzineraffe",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 638,
+    "nameDe": "Panter",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 639,
+    "nameDe": "Riesenkönigshörnchen",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 640,
+    "nameDe": "Riesenotter",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 641,
+    "nameDe": "Riesentukan",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 642,
+    "nameDe": "Roter Uakari",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 643,
+    "nameDe": "Rothalsfilander",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 644,
+    "nameDe": "Saola",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 645,
+    "nameDe": "Satansaffe",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 647,
+    "nameDe": "Sumatra-Tiger",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 648,
+    "nameDe": "Tamandua",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 649,
+    "nameDe": "Tamarau",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 650,
+    "nameDe": "Tüpfelkuskus",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 651,
+    "nameDe": "Weißhand-Gibbon",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 652,
+    "nameDe": "Westlicher Flachlandgorilla",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 653,
+    "nameDe": "Wickelbär",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 654,
+    "nameDe": "Zwergflusspferd",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 655,
+    "nameDe": "Scharlachsichler",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 656,
+    "nameDe": "Asiatischer Elefant",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 657,
+    "nameDe": "Unbekannt",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 658,
+    "nameDe": "Unbekannt",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 701,
+    "nameDe": "Adeliepinguin",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 702,
+    "nameDe": "Arktischer Ziesel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 703,
+    "nameDe": "Eisbär",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 704,
+    "nameDe": "Glanzfasan",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 705,
+    "nameDe": "Himalaya-Tahr",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 706,
+    "nameDe": "Jakuten-Pferd",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 707,
+    "nameDe": "Japanischer Serau",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 708,
+    "nameDe": "Japanmakak",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 709,
+    "nameDe": "Kaiserpinguin",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 710,
+    "nameDe": "Kanadischer Luchs",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 711,
+    "nameDe": "Moschusochse",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 712,
+    "nameDe": "Moschustier",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 713,
+    "nameDe": "Polarfuchs",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 714,
+    "nameDe": "Polarwolf ",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 715,
+    "nameDe": "Schneeeule",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 716,
+    "nameDe": "Schneegans",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 717,
+    "nameDe": "Schneehase",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 718,
+    "nameDe": "Schneeleopard",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 719,
+    "nameDe": "Schneeziege",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 720,
+    "nameDe": "Sibirischer Tiger",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 721,
+    "nameDe": "Tibetfuchs",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 722,
+    "nameDe": "Vielfraß",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 723,
+    "nameDe": "Weißwangengans",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 724,
+    "nameDe": "Yak",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 725,
+    "nameDe": "Zobel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 726,
+    "nameDe": "Unbekannt",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 727,
+    "nameDe": "Unbekannt",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 728,
+    "nameDe": "Unbekannt",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 729,
+    "nameDe": "Unbekannt",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 730,
+    "nameDe": "Unbekannt",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 731,
+    "nameDe": "Unbekannt",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 732,
+    "nameDe": "Unbekannt",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 801,
+    "nameDe": "Amazonas Delfin",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 802,
+    "nameDe": "Bandrobbe",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 803,
+    "nameDe": "Belugawal",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 804,
+    "nameDe": "Brillenpelikan",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 805,
+    "nameDe": "Brillenpinguin",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 806,
+    "nameDe": "Buckelwal",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 807,
+    "nameDe": "Commerson-Delphin",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 808,
+    "nameDe": "Dugong",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 809,
+    "nameDe": "Echte Karrettschildkröte",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 810,
+    "nameDe": "Felsenpinguin",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 811,
+    "nameDe": "Fransenschildkröte",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 812,
+    "nameDe": "Gangesgavial",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 813,
+    "nameDe": "Großer Tümmler",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 814,
+    "nameDe": "Hammerhai",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 815,
+    "nameDe": "Irawadidelfin",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 816,
+    "nameDe": "Kalifornischer Schweinswal",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 817,
+    "nameDe": "Klappmütze",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 818,
+    "nameDe": "Mähnenrobbe",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 819,
+    "nameDe": "Mandarinente",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 820,
+    "nameDe": "Mississippi-Aligator",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 821,
+    "nameDe": "Narwal",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 822,
+    "nameDe": "Orca",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 823,
+    "nameDe": "Papageintaucher",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 824,
+    "nameDe": "Prachteiderente",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 825,
+    "nameDe": "Riemenfisch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 826,
+    "nameDe": "Riesenmanta",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 827,
+    "nameDe": "Riesen-Süßwasserstechrochen",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 828,
+    "nameDe": "Riffmanta",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 829,
+    "nameDe": "Rote Riesenkrake",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 830,
+    "nameDe": "Rundschwanzseekuh",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 831,
+    "nameDe": "Sägerochen",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 832,
+    "nameDe": "Salmaa-Ringelrobbe",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 833,
+    "nameDe": "Schnabeltier",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 834,
+    "nameDe": "Schwarzhalsschwan",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 835,
+    "nameDe": "See-Elefant",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 836,
+    "nameDe": "Seeleopard",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 837,
+    "nameDe": "Seeotter",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 838,
+    "nameDe": "Tigerhai",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 839,
+    "nameDe": "Trompetenschwan",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 840,
+    "nameDe": "Walross",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 841,
+    "nameDe": "Wander-Albatros",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 842,
+    "nameDe": "Weißer Hai",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 843,
+    "nameDe": "Leistenkrokodil",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 844,
+    "nameDe": "Rosa Pelikan",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 845,
+    "nameDe": "Unbekannt",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1101,
+    "nameDe": "Buntmarder",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1102,
+    "nameDe": "Eigentlicher Streifentenrek",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1103,
+    "nameDe": "Feuersalamander",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1104,
+    "nameDe": "Geflügelte Stabschrecke",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1105,
+    "nameDe": "Goldbaumsteiger",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1106,
+    "nameDe": "Haselmaus",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1107,
+    "nameDe": "Ili-Pfeifhase",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1108,
+    "nameDe": "Kaiserskorpion",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1109,
+    "nameDe": "Kurzkopfgleitbeutler",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1110,
+    "nameDe": "Madagasker-Taggecko",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1111,
+    "nameDe": "Mähnenratte",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1112,
+    "nameDe": "Mauswiesel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1113,
+    "nameDe": "Maus-Zwergbeutelratte",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1114,
+    "nameDe": "Parsons Chamälion",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1115,
+    "nameDe": "Rotaugenlaubfrosch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1116,
+    "nameDe": "Rüsselhündchen",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1117,
+    "nameDe": "Sonnendachs",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1118,
+    "nameDe": "Streifen-Backenhörnchen",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1119,
+    "nameDe": "Zwergameisenbär",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1120,
+    "nameDe": "Europäischer Hamster",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1121,
+    "nameDe": "Unbekannt",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1201,
+    "nameDe": "Kleiner Gürtelmull",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1202,
+    "nameDe": "Krötenechse",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1203,
+    "nameDe": "Langohrigel",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1204,
+    "nameDe": "Löffelbilch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1205,
+    "nameDe": "Numbat",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1206,
+    "nameDe": "Panzergürtelschweif",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1207,
+    "nameDe": "Rote Königsnatter",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 1208,
+    "nameDe": "Steppenwaran",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2101,
+    "nameDe": "Axolotl",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2102,
+    "nameDe": "Blauer Floridakrebs",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2103,
+    "nameDe": "Diskusfisch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2104,
+    "nameDe": "Goldfisch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2105,
+    "nameDe": "Pfauen-Stachelaal",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2106,
+    "nameDe": "Roter Piranha",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2107,
+    "nameDe": "Südamerik. Schmetterlingsbuntbarsch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2108,
+    "nameDe": "Siaminischer Kampffisch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2109,
+    "nameDe": "Pfauenaugen-Stechrochen",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2201,
+    "nameDe": "Clownfisch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2202,
+    "nameDe": "Dumbo-Oktopus",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2203,
+    "nameDe": "Großer Fetzenfisch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2204,
+    "nameDe": "Japanischer-Feuerfisch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2205,
+    "nameDe": "Karnevalstintenfisch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2206,
+    "nameDe": "Kompassqualle",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2207,
+    "nameDe": "Mandarinfisch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2208,
+    "nameDe": "Maskenkugelfisch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2209,
+    "nameDe": "Paletten-Doktorfisch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2210,
+    "nameDe": "Seepferdchen",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 2211,
+    "nameDe": "Gelbbrauner Kofferfisch",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 3101,
+    "nameDe": "Eulenschwalm",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 3102,
+    "nameDe": "Gemeiner Vampir ",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 3103,
+    "nameDe": "Kleiner Igeltenrek",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 3104,
+    "nameDe": "Zwerghamster",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 3105,
+    "nameDe": "Zwerglori",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 3106,
+    "nameDe": "Springhase",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 3107,
+    "nameDe": "Südliches Gürteltier",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 3108,
+    "nameDe": "Tokeh",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 3109,
+    "nameDe": "Perlkauz",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 3110,
+    "nameDe": "Beutelmarder",
+    "beschreibungDe": ""
+  },
+  {
+    "id": 3111,
+    "nameDe": "Fingertier",
+    "beschreibungDe": ""
+  }
+]

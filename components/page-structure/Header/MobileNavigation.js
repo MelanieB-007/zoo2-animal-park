@@ -5,10 +5,12 @@ import { useTranslation } from "next-i18next";
 import { IoChevronDown } from "react-icons/io5";
 
 import Login from "./Login";
+import { useSession } from "next-auth/react";
 
 export const MobileNavigation = ({ isOpen, onClose }) => {
   const { t } = /** @type {any} */ (useTranslation("common"));
   const [openSubMenu, setOpenSubMenu] = useState(null);
+  const { data: session } = useSession();
 
   const toggleSubMenu = (menu) => {
     setOpenSubMenu(openSubMenu === menu ? null : menu);
@@ -17,8 +19,13 @@ export const MobileNavigation = ({ isOpen, onClose }) => {
   return (
     <Overlay $isOpen={isOpen}>
       <MenuContent>
+        {/* Home */}
+        <MobileNavLink href="/" onClick={onClose}>
+         Home
+        </MobileNavLink>
+
         {/* ZOO SECTION */}
-        <MobileMenuWrapper>
+       {/* <MobileMenuWrapper>
           <MenuHeader onClick={() => toggleSubMenu("zoo")}>
             {t("navigation.zoo")}
             <StyledChevron $isRotated={openSubMenu === "zoo"} />
@@ -31,7 +38,7 @@ export const MobileNavigation = ({ isOpen, onClose }) => {
               {t("navigation.zoo_enclosures")}
             </SubNavLink>
           </SubMenu>
-        </MobileMenuWrapper>
+        </MobileMenuWrapper>*/}
 
         {/* TIERE SECTION */}
         <MobileMenuWrapper>
@@ -43,16 +50,21 @@ export const MobileNavigation = ({ isOpen, onClose }) => {
             <SubNavLink href="/animals" onClick={onClose}>
               {t("navigation.animal_overview")}
             </SubNavLink>
-            <SubNavLink href="/animals/varianten" onClick={onClose}>
-              {t("navigation.animal_variants")}
+            {session && (
+            <SubNavLink href="/animals/create" onClick={onClose}>
+              {t("navigation.animal_create")}
             </SubNavLink>
+            )}
+            {/*<SubNavLink href="/animals/varianten" onClick={onClose}>
+              {t("navigation.animal_variants")}
+            </SubNavLink>*/}
           </SubMenu>
         </MobileMenuWrapper>
 
         {/* KLUB */}
-        <MobileNavLink href="/club" onClick={onClose}>
+        {/*<MobileNavLink href="/club" onClick={onClose}>
           {t("navigation.club")}
-        </MobileNavLink>
+        </MobileNavLink>*/}
 
         <Divider />
 

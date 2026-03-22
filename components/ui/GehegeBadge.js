@@ -2,9 +2,8 @@ import styled from "styled-components";
 import NextImage from "next/image";
 import { useTranslation } from "next-i18next";
 
-import { habitatColors } from "../../../utils/habitatConstants";
-import Tooltip from "../../ui/Tooltip";
-import { getTranslatedName } from "../../ui/TranslationHelper";
+import { habitatColors } from "../../utils/habitatConstants";
+import Tooltip from "../ui/Tooltip";
 
 export default function GehegeBadge({ gehege, showTooltip, size = 20 }) {
   const { t, i18n } = useTranslation(["animals", "common"]);
@@ -13,15 +12,13 @@ export default function GehegeBadge({ gehege, showTooltip, size = 20 }) {
 
   const safeType = gehege?.name?.toLowerCase() || "default";
 
-  const displayName = gehege
-    ? getTranslatedName(gehege, i18n.language)
-    : gehege?.name;
 
   const BadgeContent = (
     <BadgeWrapper $type={safeType}>
       <NextImage
         src={`/images/gehege/icons/${safeType}.webp`}
-        alt={displayName}
+        // Ein Fallback-String ("Gehege") verhindert die Fehlermeldung
+        alt={gehege?.name || t("common:enclosure") || "Gehege"}
         width={size}
         height={size}
       />
@@ -29,7 +26,7 @@ export default function GehegeBadge({ gehege, showTooltip, size = 20 }) {
   );
 
   return shouldShowTooltip ? (
-    <Tooltip text={`${displayName} ${t("animals:table.enclosure")}`}>
+    <Tooltip text={`${gehege?.name} ${t("animals:table.enclosure")}`}>
       {BadgeContent}
     </Tooltip>
   ) : (
@@ -44,9 +41,9 @@ const BadgeWrapper = styled.div`
   gap: 8px;
   padding: 6px 14px;
   border-radius: 20px;
-  background-color: ${props => 
+  background-color: ${props =>
           (habitatColors[props.$type]?.main || "#666") + "33"};
-  border: 2px solid ${props => 
+  border: 2px solid ${props =>
           habitatColors[props.$type]?.main || "#666"};
   font-weight: 800;
   font-size: 0.8rem;

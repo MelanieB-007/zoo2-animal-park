@@ -3,14 +3,14 @@ import styled from "styled-components";
 import NextImage from "next/image";
 import Tooltip from "../ui/Tooltip";
 
-export default function DeleteButton({ tooltip, align, onClick, altText }) {
+export default function DeleteButton({ tooltip, align, altText, onClick, ...props }) {
   return (
     <Tooltip
       text={tooltip}
       align={align}
     >
       <StyledButton
-        onClick={onClick}
+        onClick={onClick} {...props}
         type="button"
       >
         <NextImage
@@ -38,7 +38,6 @@ const StyledButton = styled.button`
 
   &:hover {
     filter: brightness(1.1) sepia(1) hue-rotate(-50deg) saturate(5);
-    /* Macht das Icon im Hover leicht rötlich, falls trash.webp neutral ist */
     transform: scale(1.1);
   }
 

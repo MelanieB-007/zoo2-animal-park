@@ -1,0 +1,106 @@
+{
+  "overview_title": "Oversigt over alle dyr",
+  "search_placeholder": "Søg efter dyr...",
+  "results_unit": "dyr fundet",
+  "unknown_animal": "Ukendt dyr",
+  "table": {
+    "species": "Art",
+    "enclosure": "Indhegning",
+    "price": "Pris",
+    "stall": "Stald",
+    "xp": "XP",
+    "sell": "Salg",
+    "release": "Sæt fri",
+    "actions": "Handlinger"
+  },
+  "tooltips": {
+    "level": "Påkrævet stald-niveau",
+    "xp": "Samlet XP udbytte",
+    "sell": "Salgspris i Zoodollar",
+    "release": "XP ved udsætning",
+    "edit": "Rediger dyr",
+    "delete": "Slet dyr"
+  },
+  "filter": {
+    "all_enclosures": "Alle indhegninger",
+    "all_levels": "Alle niveauer",
+    "level_label": "Niveau"
+  },
+  "empty": {
+    "title": "Åh nej, ingen dyr her!",
+    "uppySad": "Uppy er ked af det",
+    "message": "Uppy har søgt overalt, men kunne ikke finde noget.",
+    "button": "Start søgning forfra"
+  },
+  "breeding": {
+    "xpAndActions": "XP og handlinger",
+    "breeding": "Avl",
+    "breedingChance": "Avlshance"
+  },
+  "actions": {
+    "feed": "Fodre",
+    "play": "Lege",
+    "clean": "Rengøre"
+  },
+  "form": {
+    "animalCount": "Antal dyr",
+    "enclosureSize": "Påkrævet indhegningsstørrelse",
+    "createAnimal": "Opret nyt dyr",
+    "saveAnimal": "Gem dyr"
+  },
+  "imageSection": {
+    "image_title": "Dyre-foto & ikon",
+    "image_helper": "Upload et billede, der bruges både som ikon i shoppen og i detaljevisningen.",
+    "image_upload_btn": "Vælg billede",
+    "image_replace_btn": "Skift billede",
+    "image_delete": "Slet",
+    "preview_icon": "Forhåndsvisning ikon",
+    "preview_detail": "Forhåndsvisning detaljer"
+  },
+  "basicInfoSection": {
+    "basicInfo": "Grundlæggende information",
+    "fields": {
+      "name" : "Navn",
+      "releaseDate" : "Udgivelse"
+    }
+  },
+  "translationNameSection": {
+    "otherLanguages": "Andre sprog",
+    "fields": {
+      "name" : "Navn",
+      "releaseDate" : "Udgivelse"
+    }
+  },
+  "translationDescriptionSection": {
+    "descriptionIntl":  "Beskrivelser (International)",
+    "fields": {
+      "name" : "Navn",
+      "releaseDate" : "Udgivelse"
+    }
+  },
+  "descriptionSection": {
+    "descriptionPlaceholder": "Beskriv dyret..."
+  },
+  "priceSection": {
+    "pricesAndValues": "Priser og værdier"
+  },
+  "xpSection": {
+    "actionsXp": "Handlinger & XP"
+  },
+  "originSection": {
+    "originTitle": "Oprindelse",
+    "originDescription": "Hvor får man dette dyr fra?"
+  },
+  "tablePrice": "Købspris",
+  "tableSell": "Salgspris",
+  "tableRelease": "Sæt fri",
+  "biomesCapacity": "Indhegningskapacitet",
+  "animalCount": "Antal dyr",
+  "biomeSize": "Indhegningsstørrelse",
+  "colorVariants": "Farvevarianter",
+  "toy": "Legetøj",
+  "toyPlaceholder": "Legetøj",
+  "biomeCapacity": "Indhegningskapacitet",
+  "capacityTableLabel": "Antal dyr vs. plads i indhegningen",
+  "requiredSize": "Påkrævet areal"
+}

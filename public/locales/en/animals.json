@@ -1,11 +1,11 @@
 {
-  "overview_title": "All Animals Overview",
+  "overview_title": "Overview of all animals",
   "search_placeholder": "Search for animals...",
-  "results_unit": "animals found",
-  "unknown_animal": "Unknown Animal",
+  "results_unit": "Animals found",
+  "unknown_animal": "Unknown animal",
   "table": {
     "species": "Species",
-    "enclosure": "Biomes",
+    "enclosure": "Enclosure",
     "price": "Price",
     "stall": "Shelter",
     "xp": "XP",
@@ -14,39 +14,93 @@
     "actions": "Actions"
   },
   "tooltips": {
-    "level": "Required Habitat Level",
-    "xp": "Total XP Yield",
-    "sell": "Sale value in Zoodollars",
-    "release": "XP when released",
+    "level": "Required stall level",
+    "xp": "Total XP yield",
+    "sell": "Selling price in Zoodollars",
+    "release": "XP when releasing",
     "edit": "Edit animal",
     "delete": "Delete animal"
   },
   "filter": {
-    "all_enclosures": "All Biomes",
-    "all_levels": "All Levels",
+    "all_enclosures": "All enclosures",
+    "all_levels": "All levels",
     "level_label": "Level"
   },
   "empty": {
-    "title": "Oh no, no animals found!",
+    "title": "Oh no, no animals here!",
     "uppySad": "Uppy is sad",
     "message": "Uppy searched everywhere but couldn't find anything.",
-    "button": "Reset search"
-  },
-  "actions": {
-    "feed": "Feeding",
-    "play": "Playing",
-    "clean": "Cleaning"
+    "button": "Restart search"
   },
   "breeding": {
     "xpAndActions": "XP and Actions",
     "breeding": "Breeding",
     "breedingChance": "Breeding chance"
   },
-  "tablePrice": "Price",
-  "tableSell": "Sell",
+  "actions": {
+    "feed": "Feed",
+    "play": "Play",
+    "clean": "Clean"
+  },
+  "form": {
+    "animalCount": "Number of animals",
+    "enclosureSize": "Required enclosure size",
+    "createAnimal": "Create new animal",
+    "saveAnimal": "Save animal"
+  },
+  "imageSection": {
+    "image_title": "Animal Photo & Icon",
+    "image_helper": "Upload an image to be used both as a shop icon and in the detail view.",
+    "image_upload_btn": "Select image",
+    "image_replace_btn": "Change image",
+    "image_delete": "Delete",
+    "preview_icon": "Icon Preview",
+    "preview_detail": "Detail View Preview"
+  },
+  "basicInfoSection": {
+    "basicInfo": "Basic Information",
+    "fields": {
+      "name" : "Name",
+      "releaseDate" : "Release"
+    }
+  },
+  "translationNameSection": {
+    "otherLanguages": "Other Languages",
+    "fields": {
+      "name" : "Name",
+      "releaseDate" : "Release"
+    }
+  },
+  "translationDescriptionSection": {
+    "descriptionIntl":  "Descriptions (International)",
+    "fields": {
+      "name" : "Name",
+      "releaseDate" : "Release"
+    }
+  },
+  "descriptionSection": {
+    "descriptionPlaceholder": "Describe the animal..."
+  },
+  "priceSection": {
+    "pricesAndValues": "Prices and Values"
+  },
+  "xpSection": {
+    "actionsXp": "Actions & XP"
+  },
+  "originSection": {
+    "originTitle": "Origin",
+    "originDescription": "Where to get this animal?"
+  },
+  "tablePrice": "Purchase Price",
+  "tableSell": "Selling Price",
   "tableRelease": "Release",
-  "biomesCapacity": "Biome Capacity",
-  "animalCount": "Animal Count",
-  "biomeSize": "Biome size",
-  "colorVariants": "Color variants"
+  "biomesCapacity": "Enclosure Capacity",
+  "animalCount": "Number of Animals",
+  "biomeSize": "Enclosure Size",
+  "colorVariants": "Color Variants",
+  "toy": "Toy",
+  "toyPlaceholder": "Toy",
+  "biomeCapacity": "Enclosure Capacity",
+  "capacityTableLabel": "Number of Animals vs. Enclosure Space",
+  "requiredSize": "Required Area"
 }

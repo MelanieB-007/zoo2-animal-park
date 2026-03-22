@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
-import GameIcon from "../../icons/GameIcon";
-import Tooltip from "../../ui/Tooltip";
+import GameIcon from "../icons/GameIcon";
+import Tooltip from "./Tooltip";
 
 export default function StallLevelBadge({ level, habitat, showTooltip, size = 64 }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
