@@ -31,7 +31,7 @@ export async function getAllAnimals(locale = 'de') {
       verkaufswert: animal.verkaufswert,
       popularitaet: animal.popularitaet,
       auswildern: animal.auswildern,
-      bild: animal.bild || "/images/tiere/placeholder.png", // Fallback für das Tierbild
+      bild: animal.bild || "/images/placeholder.png",
       gehegeId: animal.gehegeId,
       // WICHTIG: Das Gehege-Objekt für das GehegeBadge
       gehege: animal.gehege || { name: "Unbekannt" },
@@ -63,8 +63,6 @@ export async function createAnimal(data) {
       preisartId: parseInt(data.currency) || 1, // Nutzt die ID aus dem Währungs-Select
       verkaufswert: parseInt(data.sellValue) || 0,
       popularitaet: parseInt(data.popularity) || 0,
-
-      // FIX: Hier stand vorher data.release, was beim Anlegen undefined war
       auswildern: parseInt(data.auswildern) || 0,
 
       gehegeId: parseInt(data.enclosureType) || 1,
