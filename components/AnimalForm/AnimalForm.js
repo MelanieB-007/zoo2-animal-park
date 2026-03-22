@@ -135,6 +135,11 @@ export default function AnimalForm({ initialData, isEdit = false, onSuccess }) {
             onChange={handleChange}
           />
 
+          <EnclosureTypeSection
+            formData={formData}
+            onChange={handleChange}
+          />
+
           <DescriptionSection
             value={formData.descriptionDe}
             onChange={handleChange}
@@ -168,11 +173,6 @@ export default function AnimalForm({ initialData, isEdit = false, onSuccess }) {
           <XpActionSection
             formData={formData}
             setFormData={setFormData} // Braucht setFormData für das Deep-Update
-          />
-
-          <EnclosureTypeSection
-            formData={formData}
-            onChange={handleChange}
           />
 
           <EnclosureCapacitySection

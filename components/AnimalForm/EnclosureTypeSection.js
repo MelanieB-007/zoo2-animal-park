@@ -26,7 +26,7 @@ export default function EnclosureTypeSection({ formData, onChange }) {
     <InfoAccordion
       title={t("common:enclosure")}
       icon="/images/gehege/gras/Gehege.webp"
-      defaultOpen={false}
+      defaultOpen={true}
     >
       <FlexContainer>
         {/* Gehegetyp */}

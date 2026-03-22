@@ -29,10 +29,10 @@ export default function AnimalMobileCard({
     <CardContainer onClick={onClick}>
       <HeaderRow>
         <NameDE>{displayName}</NameDE>
-        <ActionGroup onClick={(e) => e.stopPropagation()}>
+        {/*<ActionGroup onClick={(e) => e.stopPropagation()}>
           <EditButton onClick={onEdit} />
           <DeleteButton onClick={onDelete} />
-        </ActionGroup>
+        </ActionGroup>*/}
       </HeaderRow>
 
       <Divider />
@@ -71,6 +71,7 @@ const CardContainer = styled.div`
   border-radius: 12px;
   padding: 12px 16px;
   margin-bottom: 12px;
+  width:80vw;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid #e0e0e0;
   display: flex;
