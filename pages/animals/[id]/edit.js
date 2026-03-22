@@ -72,6 +72,8 @@ export default function EditAnimal({ animal: fallbackData }) {
 
       // Zahlen-Felder (Mapping von DB-Name auf Form-Name)
       price: raw.preis || 0,
+      // HIER: Die Brücke zwischen DB (preisartId) und Formular (currency)
+      currency: raw.preisartId?.toString() || "1", // "1" als Fallback (meist Münzen)
       popularity: raw.popularitaet || 0,
       sellValue: raw.verkaufswert || 0,
       breedingLevel: raw.stalllevel || 1,

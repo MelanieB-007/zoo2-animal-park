@@ -12,8 +12,8 @@ export default function PriceSection({ formData, onChange }) {
 
 
   const currencyOptions = [
-    { value: "Zoodollar", label: "zoodollar" },
-    { value: "Diamonds", label: "diamant" },
+    { value: "1", label: "Zoodollar" },
+    { value: "2", label: "Diamanten" },
   ];
 
   return (
