@@ -1,6 +1,8 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from "next-i18next";
-import styled from "styled-components";
 
 import PageWrapper from "../../components/page-structure/PageWrapper";
 import ContentWrapper from "../../components/page-structure/ContentWrapper";
@@ -9,6 +11,29 @@ import PageHeader from "../../components/page-structure/PageHeader";
 
 export default function AddAnimalPage() {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  // 1. AUTH-CHECK: Wenn nicht eingeloggt, zurück zur Übersicht oder Login
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/api/auth/signin");
+    }
+  }, [status, router]);
+
+  // Ladezustand anzeigen, während die Session geprüft wird
+  if (status === "loading") {
+    return (
+      <PageWrapper>
+        <ContentWrapper>
+          <p>{t("common:loading")}</p>
+        </ContentWrapper>
+      </PageWrapper>
+    );
+  }
+
+  // Falls nicht eingeloggt, nichts rendern (Redirect läuft oben)
+  if (!session) return null;
 
   return (
     <PageWrapper>
@@ -16,7 +41,8 @@ export default function AddAnimalPage() {
         <PageHeader text={t("animals:form.createAnimal")} />
 
         <AnimalForm
-          onSuccess={() => router.push(`/animals/${id}`)}
+          isEdit={false}
+          onSuccess={(newId) => router.push(`/animals/${newId}`)}
         />
       </ContentWrapper>
     </PageWrapper>
