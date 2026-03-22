@@ -74,7 +74,7 @@ export default function TranslationNameSection({ translations = [], setFormData 
       <StyledDynamicWrapper>
         <DynamicRowInput
           label={t("common:namesIntl") || "Namen in anderen Sprachen"}
-          rows={translations}
+          rows={currentTranslations.filter(t => t.spracheCode !== 'de')}
           columns={[
             {
               key: "spracheCode",

@@ -13,8 +13,9 @@ export default function OriginTransfer({ available, selected, onMoveRight, onMov
         <ColumnTitle>{t("common:available")}</ColumnTitle>
         <List>
           {available.length > 0 ? (
-            available.map((item) => (
-              <Item key={item.id} onClick={() => onMoveRight(item)}>
+            available.map((item, index) => (
+              // Falls item.id fehlt, nehmen wir den Index als Notlösung
+              <Item key={item.id || `avail-${index}`} onClick={() => onMoveRight(item)}>
                 <span>{item.name}</span>
                 <ChevronRight size={16} />
               </Item>
@@ -30,11 +31,11 @@ export default function OriginTransfer({ available, selected, onMoveRight, onMov
         <ColumnTitle>{t("common:chosen")}</ColumnTitle>
         <List>
           {selected.length > 0 ? (
-            selected.map((item) => (
-              <Item key={item.id} onClick={() => onMoveLeft(item)} $selected>
-                <ChevronLeft size={16} />
-                <span>{item.name}</span>
-              </Item>
+            selected.map((item, index) => (
+                <Item key={item.id || `sel-${index}`} onClick={() => onMoveLeft(item)} $selected>
+                  <ChevronLeft size={16} />
+                  <span>{item.name}</span>
+                </Item>
             ))
           ) : (
             <EmptyNote>{t("common:pleaseChoose")}</EmptyNote>

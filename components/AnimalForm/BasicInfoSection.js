@@ -16,7 +16,7 @@ export default function BasicInfoSection({ formData, onChange }) {
         id="nameDe"
         name="nameDe"
         placeholder="Erdmännchen"
-        value={formData.nameDe}
+        value={formData.nameDe ?? ""}
         onChange={onChange}
         required
       />
@@ -26,7 +26,7 @@ export default function BasicInfoSection({ formData, onChange }) {
         id="releaseDate"
         type="date"
         name="releaseDate"
-        value={formData.releaseDate}
+        value={formData.releaseDate ?? ""}
         onChange={onChange}
         $width="200px"
       />

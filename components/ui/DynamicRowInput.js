@@ -14,14 +14,15 @@ export default function DynamicRowInput({
   columns,
 }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
-
+console.log("rows", rows);
+console.log("columns", columns);
   return (
     <Container>
       {label && <Label>{label}</Label>}
 
       <Header>
         {columns.map((col) => (
-          <HeaderCell key={col.key} $flex={col.flex}>
+          <HeaderCell key={col.key} $flex={col.$flex}> {/* Hier $flex statt flex */}
             {col.label}
           </HeaderCell>
         ))}
@@ -31,7 +32,7 @@ export default function DynamicRowInput({
       {rows.map((row) => (
         <Row key={row.id}>
           {columns.map((col) => (
-            <Cell key={col.key} $flex={col.flex}>
+            <Cell key={col.key} $flex={col.$flex}>
               {col.type === "select" ? (
                 <FormSelect
                   value={row[col.key]}

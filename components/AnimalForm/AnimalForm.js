@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
@@ -15,10 +15,44 @@ import OriginSection from "./OriginSection";
 import ImageSection from "./ImageSection";
 
 
-export default function AnimalForm({ initialData }) {
+export default function AnimalForm({ initialData, isEdit = false, onSuccess }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
-
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  console.log("init", initialData);
+
+  // Der initiale leere State
+  const emptyForm = {
+    nameDe: "",
+    descriptionDe: "",
+    translations: [],
+    releaseDate: "",
+    price: 0,
+    priceType: "Münzen",
+    sellValue: 0,
+    popularity: 0,
+    enclosureType: "",
+    breedingLevel: 1,
+    breedingCosts: 0,
+    breedingDuration: 0,
+    breedingChance: 0,
+    actions: {
+      feed: { durationHours: "", durationMinutes: "", xp: 0 },
+      play: { durationHours: "", durationMinutes: "", xp: 0 },
+      clean: { durationHours: "", durationMinutes: "", xp: 0 },
+    },
+    origins: [],
+    enclosureSizes: [{ animalCount: 1, size: 10 }],
+  };
+
+  const [formData, setFormData] = useState(initialData || emptyForm);
+
+  // WICHTIG: Aktualisiere den State, wenn initialData geladen wurde
+  useEffect(() => {
+    if (initialData) {
+      setFormData(initialData);
+    }
+  }, [initialData]);
 
 // ---  HANDLER FÜR EINFACHE FELDER ---
   const handleChange = (e) => {
@@ -28,7 +62,7 @@ export default function AnimalForm({ initialData }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSubmitting) return; // Verhindert Doppel-Klicks
+    if (isSubmitting) return;
 
     if (!formData.enclosureType || formData.enclosureType === "") {
       alert("Bitte wähle ein Gehege aus!");
@@ -37,31 +71,37 @@ export default function AnimalForm({ initialData }) {
 
     setIsSubmitting(true);
 
-    // Wir bereiten den Payload vor (Mapping zwischen Frontend & Backend Service)
+    // 1. DYNAMISCHE URL & METHODE
+    // Wenn wir editieren, hängen wir die ID an die URL an
+    const url = isEdit ? `/api/animals/${formData.id}` : "/api/animals";
+    const method = isEdit ? "PUT" : "POST";
+
+    // 2. PAYLOAD VORBEREITEN
     const payload = {
       ...formData,
       enclosureType: parseInt(formData.enclosureType),
-      selectedOrigins: formData.origins || []
+      // Sicherstellen, dass die Origins als Array von IDs rausgehen
+      origins: formData.origins || []
     };
 
     try {
-      const response = await fetch("/api/animals", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await fetch(url, {
+        method: method,
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
       const result = await response.json();
 
       if (response.ok) {
-        alert("Erfolg! Das Tier wurde im Zoo-Manager gespeichert.");
-        // Optional: Formular zurücksetzen oder zur Liste springen
-        // window.location.href = "/animals";
+        alert(isEdit ? "Änderungen erfolgreich gespeichert!" : "Erfolg! Das Tier wurde neu angelegt.");
+
+        // Hier den Callback aufrufen, um zur Detailseite zurückzukehren
+        if (onSuccess) {
+          onSuccess(result.id || formData.id);
+        }
       } else {
-        // Fehlermeldung vom Server anzeigen
-        alert(`Fehler beim Speichern: ${result.error || "Unbekannter Fehler"}`);
+        alert(`Fehler beim Speichern: ${result.message || "Unbekannter Fehler"}`);
       }
     } catch (error) {
       console.error("Fetch Error:", error);
@@ -76,34 +116,6 @@ export default function AnimalForm({ initialData }) {
     icon: null,
     image: null,
   });
-
-  // --- hält alle Felder aus deinen 3 Screenshots zusammen
-  const [formData, setFormData] = useState(
-    initialData || {
-      name: "",
-      translations: [],
-      releaseDate: "",
-      description: "",
-      price: 0,
-      priceType: "Diamanten", // oder 'Zoodollar'
-      sellValue: 0,
-      popularity: 0,
-      release: 0,
-      enclosureType: "",
-      toy: "",
-      enclosureSizes: [{ animalCount: 1, size: 10 }],
-      breedingLevel: 1,
-      breedingCosts: 0,
-      breedingDuration: "",
-      breedingChance: 0,
-      actions: {
-        feed: { durationHours: "", durationMinutes: "", xp: 0 },
-        play: { durationHours: "", durationMinutes: "", xp: 0 },
-        clean: { durationHours: "", durationMinutes: "", xp: 0 },
-      },
-    }
-  );
-
 
   return (
     <form onSubmit={handleSubmit}>
@@ -128,12 +140,12 @@ export default function AnimalForm({ initialData }) {
           />
 
           <TranslationNameSection
-            translations={formData.translations}
+            translations={formData.translations || []}
             setFormData={setFormData}
           />
 
           <TranslationDescriptionSection
-            translations={formData.translations}
+            translations={formData.translations || []}
             setFormData={setFormData}
           />
 

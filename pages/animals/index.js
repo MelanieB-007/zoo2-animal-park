@@ -64,7 +64,7 @@ export default function AnimalOverview({ fallbackData }) {
   }
 
   function handleEdit(id) {
-    router.push(`/animals/edit/${id}`);
+    router.push(`/animals/${id}/edit`);
   }
 
   return (

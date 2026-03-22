@@ -15,7 +15,9 @@ export default function AddAnimalPage() {
       <ContentWrapper>
         <PageHeader text={t("animals:form.createAnimal")} />
 
-        <AnimalForm />
+        <AnimalForm
+          onSuccess={() => router.push(`/animals/${id}`)}
+        />
       </ContentWrapper>
     </PageWrapper>
   );

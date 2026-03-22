@@ -119,14 +119,79 @@ export async function createAnimal(data) {
   });
 }
 
-export async function getAnimalById(id, locale = 'de') {
+export async function updateAnimal(id, data) {
+  // Prisma $transaction stellt sicher: Alles klappt oder gar nichts
+  return prisma.$transaction(async (tx) => {
+
+    // 1. Zuerst alle alten Relationen entfernen
+    await tx.tier_texte.deleteMany({ where: { tierId: parseInt(id) } });
+    await tx.xp.deleteMany({ where: { tierId: parseInt(id) } });
+    await tx.tierherkunft.deleteMany({ where: { tierId: parseInt(id) } });
+    await tx.tier_gehege_kapazitaet.deleteMany({ where: { tierId: parseInt(id) } });
+
+    // 2. Das Haupt-Tier-Objekt aktualisieren und neue Relationen anlegen
+    return  tx.tiere.update({
+      where: { id: parseInt(id) },
+      data: {
+        release: data.releaseDate || null,
+        preis: parseInt(data.price) || 0,
+        preisartId: data.priceType === "Diamanten" ? 2 : 1,
+        verkaufswert: parseInt(data.sellValue) || 0,
+        popularitaet: parseInt(data.popularity) || 0,
+        gehegeId: parseInt(data.enclosureType) || 1,
+        stalllevel: parseInt(data.breedingLevel) || 1,
+        zuchtkosten: parseInt(data.breedingCosts) || 0,
+        zuchtdauer: parseInt(data.breedingDuration) || 0,
+        startprozent: parseInt(data.breedingChance) || 0,
+        bild: data.imagePath || "placeholder.png",
+
+        // Neue Texte anlegen
+        texte: {
+          create: [
+            {
+              spracheCode: "de",
+              name: data.nameDe || "Unbenannt",
+              beschreibung: data.descriptionDe || ""
+            }
+          ]
+        },
+
+        // Neue XP-Werte (berechnet aus h/m)
+        xp: {
+          create: Object.entries(data.actions || {}).map(([key, action]) => ({
+            xpart: key,
+            wert: parseInt(action.xp) || 0,
+            zeit: (parseInt(action.durationHours) || 0) * 60 + (parseInt(action.durationMinutes) || 0)
+          }))
+        },
+
+        // Neue Herkunftsorte
+        tierherkunft: {
+          create: (data.origins || []).map(oId => ({
+            herkunftId: parseInt(oId.id || oId)
+          }))
+        },
+
+        // Neue Kapazitäten
+        tier_gehege_kapazitaet: {
+          create: (data.enclosureSizes || []).map(size => ({
+            anzahlTiere: parseInt(size.animalCount) || 1,
+            felder: parseInt(size.size) || 1
+          }))
+        }
+      }
+    });
+  });
+}
+
+export async function getAnimalById(id, locale = null) {
 
   const animal = await prisma.tiere.findUnique({
     where: { id: parseInt(id) },
     include: {
-      texte: {
-        where: { spracheCode: locale },
-      },
+      texte: locale ?
+        { where: { spracheCode: locale } } :
+        true,
       variants: { include: { herkunft: true } },
       gehege: true,
       xp: true,
@@ -138,21 +203,14 @@ export async function getAnimalById(id, locale = 'de') {
 
   if (!animal) return null;
 
-  // Mapping: Wir ziehen Name und Beschreibung auf die oberste Ebene
-  const translation = animal.texte[0] || {};
-
-  const flatAnimal = {
-    ...animal,
-    // Wir nehmen den übersetzten Namen, oder den internen als Backup
-    name: translation.name || animal.internalName || "Unbekannt",
-    beschreibung: translation.beschreibung || null,
-  };
-
-  // Wir löschen das originale "texte" Array, damit das Objekt flach bleibt
-  delete flatAnimal.texte;
+  if (locale) {
+    const translation = animal.texte?.[0] || {};
+    animal.name = translation.name || "Unbekannt";
+    animal.beschreibung = translation.beschreibung || null;
+  }
 
   // Wichtig für Next.js: Dates und komplexe Objekte für JSON serialisieren
-  return JSON.parse(JSON.stringify(flatAnimal));
+  return JSON.parse(JSON.stringify(animal));
 }
 
 export async function deleteAnimalFromDB(id) {
