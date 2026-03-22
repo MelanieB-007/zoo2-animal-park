@@ -61,7 +61,7 @@ export default function PriceSection({ formData, onChange }) {
           <FormInput
             type="number"
             $width="100px"
-            name="sellPrice"
+            name="sellValue"
             value={formData.sellValue}
             onChange={onChange}
           />
@@ -74,7 +74,7 @@ export default function PriceSection({ formData, onChange }) {
           <FormInput
             type="number"
             $width="100px"
-            name="release"
+            name="auswildern"
             value={formData.auswildern}
             onChange={onChange}
           />

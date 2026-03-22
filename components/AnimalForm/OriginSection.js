@@ -9,18 +9,23 @@ import OriginTransfer from "../ui/OriginTransfer";
 
 export default function OriginSection({ initialData, setFormData }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
-
-  // 1. Daten laden
   const { data: origins } = useSWR('/api/origins');
 
-  // 2. Lokaler State für die Auswahl (initialisiert mit bereits gespeicherten Daten)
+  // Initialisiere mit initialData, falls vorhanden
   const [selectedOrigins, setSelectedOrigins] = useState(initialData || []);
 
-  // 3. Synchronisation mit dem Haupt-Formular-State
+  // WICHTIG: Synchronisiere den lokalen State, wenn die Daten vom Server kommen
+  useEffect(() => {
+    if (initialData && initialData.length > 0 && selectedOrigins.length === 0) {
+      setSelectedOrigins(initialData);
+    }
+  }, [initialData]);
+
+  // Synchronisation zurück zum Haupt-Formular
   useEffect(() => {
     setFormData(prev => ({
       ...prev,
-      origins: selectedOrigins // Schreibt das Array der gewählten Objekte in formData
+      origins: selectedOrigins
     }));
   }, [selectedOrigins, setFormData]);
 

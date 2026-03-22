@@ -26,7 +26,7 @@ export default function EditAnimal({ animal: fallbackData }) {
 
     // 2. Mappe ALLE ANDEREN Texte in das translations-Array
     const translations = raw.texte
-      ?.filter(t => t.spracheCode !== 'de') // <-- HIER: Deutsch explizit ausschließen
+      ?.filter(t => t.spracheCode !== 'de')
       .map(t => ({
         id: t.spracheCode,
         spracheCode: t.spracheCode,
@@ -34,21 +34,18 @@ export default function EditAnimal({ animal: fallbackData }) {
         description: t.beschreibung || ""
       })) || [];
 
-    // Standard-Objekt für Aktionen (falls mal Daten fehlen)
     const actions = {
       feed: { xp: "", durationHours: "", durationMinutes: "" },
       play: { xp: "", durationHours: "", durationMinutes: "" },
       clean: { xp: "", durationHours: "", durationMinutes: "" },
     };
 
-    // Mapping-Tabelle für xpart IDs zu den Formular-Keys
-    const xpTypeMap = {
+     const xpTypeMap = {
       "0": "feed",
       "1": "play",
       "2": "clean"
     };
 
-    // Wir füllen das actions-Objekt mit echten Daten aus raw.xp
     raw.xp?.forEach(item => {
       const key = xpTypeMap[item.xpart];
       if (key) {
@@ -63,17 +60,15 @@ export default function EditAnimal({ animal: fallbackData }) {
 
     return {
       ...raw,
-      // Diese Felder sind für die "einfachen" Inputs
-      nameDe: deText?.name || raw.name || "", // Falls deText existiert, nimm den Namen von dort
+
+      nameDe: deText?.name || raw.name || "",
       descriptionDe: deText?.beschreibung || raw.beschreibung || "",
 
       // Wir mappen die texte-Relation in das Format der Section
       translations: translations,
 
-      // Zahlen-Felder (Mapping von DB-Name auf Form-Name)
       price: raw.preis || 0,
-      // HIER: Die Brücke zwischen DB (preisartId) und Formular (currency)
-      currency: raw.preisartId?.toString() || "1", // "1" als Fallback (meist Münzen)
+      currency: raw.preisartId?.toString() || "1",
       popularity: raw.popularitaet || 0,
       sellValue: raw.verkaufswert || 0,
       breedingLevel: raw.stalllevel || 1,
@@ -81,17 +76,26 @@ export default function EditAnimal({ animal: fallbackData }) {
       breedingDuration: raw.zuchtdauer || 0,
       breedingChance: raw.startprozent || 0,
 
-      // Datum konvertieren (WICHTIG für HTML-Inputs!)
-      // Macht aus "17.06.2024" -> "2024-06-17"
+      // Datum konvertieren
       releaseDate: formatDateForInput(raw.release || raw.releaseDate),
 
       // Gehege-ID als String (damit das Select-Feld funktioniert)
       enclosureType: raw.gehegeId?.toString() || "",
 
       actions: actions,
+      // Mapping für die Gehegekapazität
+      enclosureSizes: raw.tier_gehege_kapazitaet?.map(cap => ({
+        // Wir brauchen eine ID für DynamicRowInput (animalCount ist hier eindeutig)
+        id: cap.anzahlTiere,
+        animalCount: cap.anzahlTiere,
+        size: cap.felder
+      })) || [],
 
-      // Herkunft (Nur IDs extrahieren)
-      origins: raw.tierherkunft?.map(th => th.herkunftId) || []
+      // HIER: Wir mappen die Relationen auf flache Objekte für den Transfer-View
+      origins: raw.tierherkunft?.map(th => ({
+        id: th.herkunftId,
+        name: th.herkunft?.name || "Unbekannt"
+      })) || []
     };
   };
 

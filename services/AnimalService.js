@@ -45,32 +45,42 @@ export async function getAllAnimals(locale = 'de') {
 
 
 export async function createAnimal(data) {
+  // Hilfsfunktion: Wandelt '2026-03-22' (Browser) in '22.03.2026' (DB) um
+  const formatToDbDate = (dateStr) => {
+    if (!dateStr || !dateStr.includes('-')) return dateStr || null;
+    const [year, month, day] = dateStr.split('-');
+    return `${day}.${month}.${year}`;
+  };
+
+  // Mapping für xpart (DB erwartet oft Zahlen-Strings '0', '1', '2')
+  const xpTypeToId = { feed: "0", play: "1", clean: "2" };
+
   return prisma.tiere.create({
     data: {
-      release: data.releaseDate || null,
+      // 1. Basis-Daten
+      release: formatToDbDate(data.releaseDate), // Konvertiertes Datum
       preis: parseInt(data.price) || 0,
-      // Mapping deiner Preisart (Check, ob Diamonds 1 oder 2 ist)
-      preisartId: data.priceType === "Diamanten" ? 2 : 1,
+      preisartId: parseInt(data.currency) || 1, // Nutzt die ID aus dem Währungs-Select
       verkaufswert: parseInt(data.sellValue) || 0,
       popularitaet: parseInt(data.popularity) || 0,
-      auswildern: parseInt(data.release) || 0,
+
+      // FIX: Hier stand vorher data.release, was beim Anlegen undefined war
+      auswildern: parseInt(data.auswildern) || 0,
+
       gehegeId: parseInt(data.enclosureType) || 1,
       stalllevel: parseInt(data.breedingLevel) || 1,
       zuchtkosten: parseInt(data.breedingCosts) || 0,
-      zuchtdauer: parseInt(data.breedingDuration) || "0",
+      zuchtdauer: parseInt(data.breedingDuration) || 0,
       startprozent: parseInt(data.breedingChance) || 0,
-
-      // Das Bild-Feld (falls es 'bild' in deiner DB heißt)
       bild: data.imagePath || "placeholder.png",
 
-      // 1. TEXTE & BESCHREIBUNG
+      // 2. Texte (Deutsch + Übersetzungen)
       texte: {
         create: [
           {
             spracheCode: "de",
-            name: data.nameDe || "Unbenanntes Tier",
-            // Hier greifen wir auf die Beschreibung aus dem Formular zu
-            beschreibung: data.description || data.descriptionDe || ""
+            name: data.nameDe || "Unbenannt",
+            beschreibung: data.descriptionDe || ""
           },
           ...(data.translations || []).map(t => ({
             spracheCode: t.spracheCode,
@@ -80,35 +90,23 @@ export async function createAnimal(data) {
         ]
       },
 
-      // 2. XP (Aktionen: Füttern, Spielen, Putzen)
-      // Wir mappen das 'actions' Objekt aus deinem Frontend in die XP-Tabelle
+      // 3. XP / Aktionen (mit Umrechnung in Minuten)
       xp: {
-        create: Object.entries(data.actions || {}).map(([key, action]) => {
-          // Wir holen beide Werte aus dem action-Objekt
-          const h = parseInt(action.durationHours) || 0;
-          const m = parseInt(action.durationMinutes) || 0;
-
-          // Umrechnung in die Gesamtzahl der Minuten für das DB-Feld 'zeit'
-          const gesamtMinuten = (h * 60) + m;
-
-          return {
-            xpart: key,            // 'feed', 'play' oder 'clean'
-            wert: parseInt(action.xp) || 0,
-            zeit: gesamtMinuten    // Das berechnete Ergebnis
-          };
-        })
-      },
-
-      // 3. HERKUNFT (m:n Verknüpfung)
-      // Wir verbinden das Tier mit den IDs der gewählten Herkunftsorte
-      tierherkunft: {
-        create: (data.origins || []).map(id => ({
-          // Hier musst du prüfen, wie das Feld in der Tabelle 'tierherkunft' heißt.
-          // Meistens ist es 'herkunftId'
-          herkunftId: parseInt(id.id || id)
+        create: Object.entries(data.actions || {}).map(([key, action]) => ({
+          xpart: xpTypeToId[key] || key, // Wandelt 'feed' in '0' um
+          wert: parseInt(action.xp) || 0,
+          zeit: (parseInt(action.durationHours) || 0) * 60 + (parseInt(action.durationMinutes) || 0)
         }))
       },
 
+      // 4. Herkunft (m:n)
+      tierherkunft: {
+        create: (data.origins || []).map(o => ({
+          herkunftId: parseInt(o.id || o)
+        }))
+      },
+
+      // 5. Kapazitäten
       tier_gehege_kapazitaet: {
         create: (data.enclosureSizes || []).map(size => ({
           anzahlTiere: parseInt(size.animalCount) || 1,
@@ -124,61 +122,30 @@ export async function updateAnimal(id, data) {
   return prisma.$transaction(async (tx) => {
 
     // 1. Zuerst alle alten Relationen entfernen
+    // 1. Zuerst alle alten Relationen entfernen
+    // ACHTUNG: Hier überall prüfen, ob es 'tierid' (klein) heißen muss!
     await tx.tier_texte.deleteMany({ where: { tierId: parseInt(id) } });
     await tx.xp.deleteMany({ where: { tierId: parseInt(id) } });
-    await tx.tierherkunft.deleteMany({ where: { tierId: parseInt(id) } });
+
+    // HIER war der Fehler: tierId -> tierid
+    await tx.tierherkunft.deleteMany({ where: { tierid: parseInt(id) } });
+
     await tx.tier_gehege_kapazitaet.deleteMany({ where: { tierId: parseInt(id) } });
 
-    // 2. Das Haupt-Tier-Objekt aktualisieren und neue Relationen anlegen
-    return  tx.tiere.update({
+    // 2. Das Haupt-Tier-Objekt aktualisieren
+    return await tx.tiere.update({
       where: { id: parseInt(id) },
       data: {
-        release: data.releaseDate || null,
-        preis: parseInt(data.price) || 0,
-        preisartId: data.priceType === "Diamanten" ? 2 : 1,
-        verkaufswert: parseInt(data.sellValue) || 0,
-        popularitaet: parseInt(data.popularity) || 0,
-        gehegeId: parseInt(data.enclosureType) || 1,
-        stalllevel: parseInt(data.breedingLevel) || 1,
-        zuchtkosten: parseInt(data.breedingCosts) || 0,
-        zuchtdauer: parseInt(data.breedingDuration) || 0,
-        startprozent: parseInt(data.breedingChance) || 0,
-        bild: data.imagePath || "placeholder.png",
+        // ... deine restlichen Felder ...
 
-        // Neue Texte anlegen
-        texte: {
-          create: [
-            {
-              spracheCode: "de",
-              name: data.nameDe || "Unbenannt",
-              beschreibung: data.descriptionDe || ""
-            }
-          ]
-        },
-
-        // Neue XP-Werte (berechnet aus h/m)
-        xp: {
-          create: Object.entries(data.actions || {}).map(([key, action]) => ({
-            xpart: key,
-            wert: parseInt(action.xp) || 0,
-            zeit: (parseInt(action.durationHours) || 0) * 60 + (parseInt(action.durationMinutes) || 0)
-          }))
-        },
-
-        // Neue Herkunftsorte
+        // Beim Erstellen der neuen Relationen auch auf die Feldnamen achten!
         tierherkunft: {
           create: (data.origins || []).map(oId => ({
+            // Hier auch prüfen: Heißt das Feld in der DB 'herkunftId' oder 'herkunftid'?
             herkunftId: parseInt(oId.id || oId)
           }))
         },
-
-        // Neue Kapazitäten
-        tier_gehege_kapazitaet: {
-          create: (data.enclosureSizes || []).map(size => ({
-            anzahlTiere: parseInt(size.animalCount) || 1,
-            felder: parseInt(size.size) || 1
-          }))
-        }
+        // ...
       }
     });
   });

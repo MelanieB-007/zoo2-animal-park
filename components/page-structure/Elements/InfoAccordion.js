@@ -68,7 +68,7 @@ const Chevron = styled.span`
 
 const AccordionBody = styled.div`
   padding: ${(props) => (props.$isOpen ? "16px" : "0 16px")};
-  max-height: ${(props) => (props.$isOpen ? "500px" : "0")};
+  max-height: ${(props) => (props.$isOpen ? "600px" : "0")};
   overflow: hidden;
   transition: all 0.3s ease-in-out;
   border-top: ${(props) => (props.$isOpen ? "1px solid #eee" : "none")};
