@@ -44,7 +44,7 @@ export default function EnclosureTypeSection({ formData, onChange }) {
         </Wrapper>
 
         {/* Spielzeug */}
-        <Wrapper>
+        {/*<Wrapper>
           <label htmlFor="toy">{t("animals:toy")}</label>
           <InputGroup icon="">
             <FormInput
@@ -57,7 +57,7 @@ export default function EnclosureTypeSection({ formData, onChange }) {
               $width="100%"
             />
           </InputGroup>
-        </Wrapper>
+        </Wrapper>*/}
       </FlexContainer>
     </InfoAccordion>
   );

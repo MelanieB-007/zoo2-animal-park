@@ -27,19 +27,20 @@ export default function AnimalForm({ initialData, isEdit = false, onSuccess }) {
     descriptionDe: "",
     translations: [],
     releaseDate: "",
-    price: 0,
-    priceType: "Münzen",
-    sellValue: 0,
-    popularity: 0,
+    price: "",
+    priceType: "Diamant",
+    sellValue: "",
+    popularity: "",
+    auswildern: "",
     enclosureType: "",
-    breedingLevel: 1,
-    breedingCosts: 0,
-    breedingDuration: 0,
-    breedingChance: 0,
+    breedingLevel: 0,
+    breedingCosts: "",
+    breedingDuration: "",
+    breedingChance: "",
     actions: {
-      feed: { durationHours: "", durationMinutes: "", xp: 0 },
-      play: { durationHours: "", durationMinutes: "", xp: 0 },
-      clean: { durationHours: "", durationMinutes: "", xp: 0 },
+      feed: { durationHours: "", durationMinutes: "", xp: "" },
+      play: { durationHours: "", durationMinutes: "", xp: "" },
+      clean: { durationHours: "", durationMinutes: "", xp: "" },
     },
     origins: [],
     enclosureSizes: [{ animalCount: 1, size: 10 }],
@@ -123,12 +124,12 @@ export default function AnimalForm({ initialData, isEdit = false, onSuccess }) {
       <FormGrid>
         {/* --- LINKE SPALTE: Texte & Infos --- */}
         <Column>
-          <ImageSection
+          {/*<ImageSection
             setUploadFiles={setUploadFiles}
             initialIcon={formData.iconPath}
             initialImage={formData.imagePath}
           />
-
+*/}
           <BasicInfoSection
             formData={formData}
             onChange={handleChange}

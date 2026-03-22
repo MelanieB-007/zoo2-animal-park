@@ -57,7 +57,7 @@ export default function BreedingSection({ formData, onChange }) {
             <InputGroup unit="h">
               <FormInput
                 name="breedingDuration"
-                type="text"
+                type="number"
                 value={formData.breedingDuration}
                 onChange={onChange}
               />

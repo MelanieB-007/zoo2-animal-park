@@ -34,6 +34,33 @@ export default function EditAnimal({ animal: fallbackData }) {
         description: t.beschreibung || ""
       })) || [];
 
+    // Standard-Objekt für Aktionen (falls mal Daten fehlen)
+    const actions = {
+      feed: { xp: "", durationHours: "", durationMinutes: "" },
+      play: { xp: "", durationHours: "", durationMinutes: "" },
+      clean: { xp: "", durationHours: "", durationMinutes: "" },
+    };
+
+    // Mapping-Tabelle für xpart IDs zu den Formular-Keys
+    const xpTypeMap = {
+      "0": "feed",
+      "1": "play",
+      "2": "clean"
+    };
+
+    // Wir füllen das actions-Objekt mit echten Daten aus raw.xp
+    raw.xp?.forEach(item => {
+      const key = xpTypeMap[item.xpart];
+      if (key) {
+        actions[key] = {
+          xp: item.wert || 0,
+          // Umrechnung: Minuten -> Stunden & Restminuten
+          durationHours: Math.floor((item.zeit || 0) / 60),
+          durationMinutes: (item.zeit || 0) % 60,
+        };
+      }
+    });
+
     return {
       ...raw,
       // Diese Felder sind für die "einfachen" Inputs
@@ -58,6 +85,8 @@ export default function EditAnimal({ animal: fallbackData }) {
 
       // Gehege-ID als String (damit das Select-Feld funktioniert)
       enclosureType: raw.gehegeId?.toString() || "",
+
+      actions: actions,
 
       // Herkunft (Nur IDs extrahieren)
       origins: raw.tierherkunft?.map(th => th.herkunftId) || []
