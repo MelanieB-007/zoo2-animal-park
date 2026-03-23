@@ -63,7 +63,7 @@ export default function ImageSection({ setUploadFiles, initialImage }) {
             <LabelText>{t("animals:imageSection.preview_icon")}</LabelText>
             <IconCircle>
               {preview ? (
-                <img src={preview} alt="Icon" />
+                <Image src={preview} alt="Icon" />
               ) : (
                 <Upload size={24} opacity={0.3} />
               )}
