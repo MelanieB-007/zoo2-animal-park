@@ -1,6 +1,7 @@
 import { SessionProvider } from "next-auth/react";
 import { SWRConfig } from "swr";
 import { appWithTranslation } from 'next-i18next';
+import { ToastContainer } from "react-toastify";
 
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "../styles/styles";
@@ -11,6 +12,7 @@ import Header from "../components/page-structure/Header/Header";
 import Main from "../components/page-structure/Main/Main";
 import Footer from "../components/page-structure/Footer/Footer";
 import ScrollToTop from "../components/ui/ScrollToTop";
+
 
 
 export function App({
@@ -30,6 +32,12 @@ export function App({
           <Header />
           <Main>
             <Component {...pageProps} />
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              theme="colored"
+              style={{ zIndex: 99999 }}
+            />
           </Main>
           <Footer />
           <ScrollToTop />

@@ -6,10 +6,14 @@ import ContentWrapper from "../../../components/page-structure/ContentWrapper";
 import AnimalDetailContent from "../../../components/AnimalDetails/AnimalDetailContent";
 import { getAnimalById } from "../../../services/AnimalService";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 
 export default function TierDetail({ animal: fallbackData }) {
-  const { locale } = useRouter();
+  const router = useRouter();
+  const { locale } = router;
+
   const { data: animal } = useSWR(
     fallbackData?.id ? `/api/animals/${fallbackData.id}?lang=${locale}` : null,
     null,
@@ -29,10 +33,47 @@ export default function TierDetail({ animal: fallbackData }) {
     }
   );
 
+  // --- NEUE LÖSCH-FUNKTION ---
+  const handleDelete = async () => {
+    const result = await Swal.fire({
+      title: 'Tier wirklich löschen?',
+      text: `Möchtest du ${animal?.name || 'dieses Tier'} wirklich entfernen?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Ja, löschen!',
+      cancelButtonText: 'Abbrechen'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const res = await fetch(`/api/animals/${animal.id}`, { method: 'DELETE' });
+        if (res.ok) {
+          toast.success("Erfolgreich gelöscht! 🐾");
+          router.push('/animals'); // Zurück zur Liste
+        } else {
+          toast.error("Fehler beim Löschen.");
+        }
+      } catch (error) {
+        toast.error("Verbindung zum Server fehlgeschlagen.");
+      }
+    }
+  };
+
+  // --- NEUE EDIT-FUNKTION ---
+  const handleEdit = () => {
+    router.push(`/animals/${animal.id}/edit`);
+  };
+
   return (
     <PageWrapper>
       <ContentWrapper>
-        <AnimalDetailContent animal={animal} />
+        <AnimalDetailContent
+          animal={animal}
+          onDelete={handleDelete}
+          onEdit={handleEdit}
+        />
       </ContentWrapper>
     </PageWrapper>
   );

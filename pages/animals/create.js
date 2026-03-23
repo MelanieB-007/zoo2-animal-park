@@ -42,7 +42,16 @@ export default function AddAnimalPage() {
 
         <AnimalForm
           isEdit={false}
-          onSuccess={(newId) => router.push(`/animals/${newId}`)}
+          onSuccess={(response) => {
+            const newId = response.id;
+            console.log("Navigiere zu ID:", newId);
+
+            if (newId) {
+              router.push(`/animals/${newId}`);
+            } else {
+              console.error("Keine ID im Response gefunden!", response);
+            }
+          }}
         />
       </ContentWrapper>
     </PageWrapper>
