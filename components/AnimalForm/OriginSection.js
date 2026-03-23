@@ -19,7 +19,7 @@ export default function OriginSection({ initialData, setFormData }) {
     if (initialData && initialData.length > 0 && selectedOrigins.length === 0) {
       setSelectedOrigins(initialData);
     }
-  }, [initialData]);
+  }, [initialData, selectedOrigins.length]);
 
   // Synchronisation zurück zum Haupt-Formular
   useEffect(() => {

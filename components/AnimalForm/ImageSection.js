@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import InfoAccordion from "../page-structure/Elements/InfoAccordion";
 import { useTranslation } from "next-i18next";
 import { Upload, Trash2 } from "lucide-react";
+import Image from 'next/image';
+
+import InfoAccordion from "../page-structure/Elements/InfoAccordion";
+
 
 export default function ImageSection({ setUploadFiles, initialImage }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
@@ -60,7 +63,7 @@ export default function ImageSection({ setUploadFiles, initialImage }) {
             <LabelText>{t("animals:imageSection.preview_icon")}</LabelText>
             <IconCircle>
               {preview ? (
-                <img src={preview} alt="Icon" />
+                <Image src={preview} alt="Icon" />
               ) : (
                 <Upload size={24} opacity={0.3} />
               )}
@@ -74,7 +77,7 @@ export default function ImageSection({ setUploadFiles, initialImage }) {
             </LabelText>
             <BigPreview>
               {preview ? (
-                <img src={preview} alt="Detail" />
+                <Image src={preview} alt="Detail" />
               ) : (
                 <Upload size={32} opacity={0.3} />
               )}
