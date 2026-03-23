@@ -12,14 +12,10 @@ import XpActionSection from "./XpActionSection";
 import EnclosureCapacitySection from "./EnclosureCapacitySection";
 import EnclosureTypeSection from "./EnclosureTypeSection";
 import OriginSection from "./OriginSection";
-import ImageSection from "./ImageSection";
-
 
 export default function AnimalForm({ initialData, isEdit = false, onSuccess }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  console.log("init", initialData);
 
   // Der initiale leere State
   const emptyForm = {
@@ -28,7 +24,7 @@ export default function AnimalForm({ initialData, isEdit = false, onSuccess }) {
     translations: [],
     releaseDate: "",
     price: "",
-    priceType: "Diamant",
+    priceType: "Diamanten",
     sellValue: "",
     popularity: "",
     auswildern: "",
@@ -72,8 +68,6 @@ export default function AnimalForm({ initialData, isEdit = false, onSuccess }) {
 
     setIsSubmitting(true);
 
-    // 1. DYNAMISCHE URL & METHODE
-    // Wenn wir editieren, hängen wir die ID an die URL an
     const url = isEdit ? `/api/animals/${formData.id}` : "/api/animals";
     const method = isEdit ? "PUT" : "POST";
 
@@ -81,7 +75,6 @@ export default function AnimalForm({ initialData, isEdit = false, onSuccess }) {
     const payload = {
       ...formData,
       enclosureType: parseInt(formData.enclosureType),
-      // Sicherstellen, dass die Origins als Array von IDs rausgehen
       origins: formData.origins || []
     };
 
@@ -97,9 +90,8 @@ export default function AnimalForm({ initialData, isEdit = false, onSuccess }) {
       if (response.ok) {
         alert(isEdit ? "Änderungen erfolgreich gespeichert!" : "Erfolg! Das Tier wurde neu angelegt.");
 
-        // Hier den Callback aufrufen, um zur Detailseite zurückzukehren
         if (onSuccess) {
-          onSuccess(result.id || formData.id);
+          onSuccess(result);
         }
       } else {
         alert(`Fehler beim Speichern: ${result.message || "Unbekannter Fehler"}`);
@@ -111,12 +103,6 @@ export default function AnimalForm({ initialData, isEdit = false, onSuccess }) {
       setIsSubmitting(false);
     }
   };
-
-
-  const [uploadFiles, setUploadFiles] = useState({
-    icon: null,
-    image: null,
-  });
 
   return (
     <form onSubmit={handleSubmit}>

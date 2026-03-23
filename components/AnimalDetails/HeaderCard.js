@@ -12,13 +12,22 @@ import BoxWithHeadline from "../page-structure/Elements/BoxWithHeadline";
 import OriginBadgeList from "../page-structure/Elements/OriginBadgeList";
 import XPIcon from "../icons/XPIcon";
 import FormattedDate from "../ui/FormattedDate";
+import { useRouter } from "next/router";
 
 
 export default function HeaderCard({ animal }) {
-  const { t, i18n } = /** @type {any} */ (
+  const { locale } = useRouter();
+  const { t } = /** @type {any} */ (
     useTranslation(["animals", "common"])
   );
 
+  // 1. Suche den Namen passend zur aktuellen Sprache im texte-Array
+  const translation = animal.texte?.find(t => t.spracheCode === locale)
+    || animal.texte?.find(t => t.spracheCode === 'de') // Fallback Deutsch
+    || {};
+
+  // 2. Priorität: Übersetzter Name -> Falls leer, nimm das Root-Feld .name
+  const displayName = translation.name || animal.name || "Unbekannt";
 
   if (!animal) return null;
 
@@ -29,7 +38,7 @@ export default function HeaderCard({ animal }) {
       <InfoSection>
         <TitleRow>
           <TextContent>
-            <h1>{animal.name}</h1>
+            <h1>{displayName}</h1>
             <ReleaseDate>
               📅 {t("common:release")}:
               <FormattedDate
@@ -85,7 +94,7 @@ export default function HeaderCard({ animal }) {
           <BoxWithHeadline label={t("common:enclosure")}>
               {/* Gehegeart */}
               <GameIcon
-                type={`gehege/${animal.gehege.name}/`}
+                type={`gehege/${animal.gehege.name || 'placeholder'}/`}
                 fileName="Gehege.webp"
                 bordercolor="#4ca64c"
                 size={45}

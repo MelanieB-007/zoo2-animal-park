@@ -19,6 +19,7 @@ export default async function handler(req, res) {
   if (req.method === 'PUT') {
     try {
       const updatedAnimal = await updateAnimal(id, req.body);
+      console.log("API", updatedAnimal);
       return res.status(200).json(updatedAnimal);
     } catch (error) {
       console.error("Update Error:", error);

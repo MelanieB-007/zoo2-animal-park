@@ -14,8 +14,7 @@ export default function DynamicRowInput({
   columns,
 }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
-console.log("rows", rows);
-console.log("columns", columns);
+
   return (
     <Container>
       {label && <Label>{label}</Label>}
