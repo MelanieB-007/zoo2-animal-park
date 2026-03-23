@@ -1,6 +1,6 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from "swr";
 
 import PageWrapper from "../../../components/page-structure/PageWrapper";
 import ContentWrapper from "../../../components/page-structure/ContentWrapper";
@@ -8,13 +8,14 @@ import AnimalForm from "../../../components/AnimalForm/AnimalForm";
 import { getAnimalById } from "../../../services/AnimalService";
 
 export default function EditAnimal({ animal: fallbackData }) {
+  const { mutate } = useSWRConfig();
   const router = useRouter();
   const { id } = router.query;
 
   // SWR für Live-Daten (falls sich im Hintergrund was ändert)
   const { data: animal } = useSWR(id ? `/api/animals/${id}` : null, {
     fallbackData,
-    revalidateOnMount: true // Wichtig, um die DB-Relationen (texte, xp) sicher zu laden
+    revalidateOnMount: true
   });
 
   // Mapper: Datenbank-Struktur -> Formular-Struktur
@@ -64,7 +65,7 @@ export default function EditAnimal({ animal: fallbackData }) {
       nameDe: deText?.name || raw.name || "",
       descriptionDe: deText?.beschreibung || raw.beschreibung || "",
 
-      // Wir mappen die texte-Relation in das Format der Section
+      //  Mapping für die texte-Relation in das Format der Section
       translations: translations,
 
       price: raw.preis || 0,
@@ -85,13 +86,12 @@ export default function EditAnimal({ animal: fallbackData }) {
       actions: actions,
       // Mapping für die Gehegekapazität
       enclosureSizes: raw.tier_gehege_kapazitaet?.map(cap => ({
-        // Wir brauchen eine ID für DynamicRowInput (animalCount ist hier eindeutig)
         id: cap.anzahlTiere,
         animalCount: cap.anzahlTiere,
         size: cap.felder
       })) || [],
 
-      // HIER: Wir mappen die Relationen auf flache Objekte für den Transfer-View
+      //  Mapping für die Relationen auf flache Objekte für den Transfer-View
       origins: raw.tierherkunft?.map(th => ({
         id: th.herkunftId,
         name: th.herkunft?.name || "Unbekannt"
@@ -116,7 +116,20 @@ export default function EditAnimal({ animal: fallbackData }) {
           key={animal?.id || id}
           initialData={formatInitialData(animal)}
           isEdit={true}
-          onSuccess={() => router.push(`/animals/${id}`)}
+          onSuccess={async (updatedData) => {
+            // Wir löschen eventuelle "alte" flache Namen/Beschreibungen aus dem Cache-Objekt,
+            // damit die Komponenten gezwungen sind, im texte-Array (nach Sprache) zu suchen.
+            const cleanData = {
+              ...updatedData,
+              name: undefined,
+              beschreibung: undefined
+            };
+
+            // SWR Cache mit dem vollständigen Prisma-Objekt (inkl. aller Sprachen) füttern
+            await mutate(`/api/animals/${id}`, cleanData, false);
+
+            router.push(`/animals/${id}`);
+          }}
         />
       </ContentWrapper>
     </PageWrapper>

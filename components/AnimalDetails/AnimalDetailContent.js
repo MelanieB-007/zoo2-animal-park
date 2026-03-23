@@ -5,11 +5,16 @@ import HeaderCard from "./HeaderCard";
 import Textarea from "../page-structure/Elements/Textarea";
 import VariantArea from "./VariantArea";
 import AccordionCard from "./AccordionCard";
+import { useRouter } from "next/router";
 
 export default function AnimalDetailContent({ animal }) {
+  const { locale } = useRouter();
   const { t } = useTranslation(["animals", "common"]);
 
   if (!animal) return <div>{t("common:not_found")}</div>;
+
+  const translation = animal.texte?.find(t => t.spracheCode === locale) || {};
+  const displayDescription = translation.beschreibung || animal.beschreibung;
 
   return (
     <Wrapper>
@@ -19,7 +24,7 @@ export default function AnimalDetailContent({ animal }) {
         <PrimaryColumn>
           <Textarea
             label={t("common:description")}
-            text={animal.beschreibung ?? t("common:noDescriptionAvailable")}
+            text={displayDescription ?? t("common:noDescriptionAvailable")}
           />
 
           <VariantArea animal={animal} />
