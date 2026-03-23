@@ -8,12 +8,11 @@ import XPIcon from "../icons/XPIcon";
 import { formatMinutes } from "../ui/XpDateFormat";
 import { XP_MAP } from "../../utils/XP_MAP";
 import { useTranslation } from "next-i18next";
-import InfoAccordionRow from "../page-structure/Elements/InfoAccordionRow";
 import DataRow from "../ui/DataRow";
 
 const actionOrder = ["fuettern", "spielen", "putzen"];
 
-export default function AccordionCard({ translationsAnimals, animal }) {
+export default function AccordionCard({ animal }) {
   const { t } = /** @type {any} */ (
     useTranslation(["animals", "common"])
   );
