@@ -59,8 +59,8 @@ export default function AnimalOverview({ fallbackData }) {
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: t("common:yes_delete") || 'Ja, löschen!',
-      cancelButtonText: t("common:cancel") || 'Abbrechen'
+      confirmButtonText: t("common:messages.yes_delete") || 'Ja, löschen!',
+      cancelButtonText: t("common:messages.cancel") || 'Abbrechen'
     });
 
     if (result.isConfirmed) {

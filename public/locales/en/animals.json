@@ -109,6 +109,7 @@
 
   "messages": {
     "createSuccess": "Animal successfully created! 🐾",
+    "editSuccess":  "Changes successfully saved! 🐾",
     "deleteSuccess": "The animal has been successfully deleted! 🐾",
     "deleteError": "Error deleting the animal. Please try again.",
     "deleteErrorTitle": "Delete Animal?",

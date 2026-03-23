@@ -8,9 +8,11 @@ import { getAnimalById } from "../../../services/AnimalService";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { useTranslation } from "next-i18next";
 
 
 export default function TierDetail({ animal: fallbackData }) {
+  const { t } = useTranslation(["animals", "common"]);
   const router = useRouter();
   const { locale } = router;
 
@@ -42,8 +44,8 @@ export default function TierDetail({ animal: fallbackData }) {
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: t("common:yes_delete") || 'Ja, löschen!',
-      cancelButtonText: t("common:cancel") || 'Abbrechen'
+      confirmButtonText: t("common:messages.yes_delete") || 'Ja, löschen!',
+      cancelButtonText: t("common:messages.cancel") || 'Abbrechen'
     });
 
     if (result.isConfirmed) {

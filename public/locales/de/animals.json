@@ -107,6 +107,7 @@
   "messages": {
     "createSuccess":  "Tier erfolgreich angelegt! 🐾",
     "deleteSuccess": "Das Tier wurde erfolgreich gelöscht! 🐾",
+    "editSuccess":  "Änderungen erfolgreich gespeichert! 🐾",
     "deleteError": "Fehler beim Löschen des Tieres. Bitte versuche es erneut.",
     "deleteErrorTitle": "Tier löschen?",
     "confirmDelete": "Bist du sicher, dass du dieses Tier unwiderruflich löschen möchtest? Alle verknüpften Daten wie Texte und XP-Werte gehen dabei verloren."
