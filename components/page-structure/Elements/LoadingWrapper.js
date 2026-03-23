@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function ({ children }) {
+export default function LoadingWrapper ({ children }) {
   return (
     <StyledLoadingWrapper>
       {children}

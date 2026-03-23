@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
+import Image from 'next/image';
 
 import InfoAccordion from "../page-structure/Elements/InfoAccordion";
 import InputGroup from "../ui/InputGroup";
@@ -15,7 +16,6 @@ export default function XpActionSection({ formData, setFormData }) {
         ...prev.actions,
         [actionKey]: {
           ...prev.actions[actionKey],
-          // Wir speichern die Werte als Zahlen (oder leeren String für das Input-Handling)
           [field]: value === "" ? "" : parseInt(value)
         }
       }
@@ -38,7 +38,7 @@ export default function XpActionSection({ formData, setFormData }) {
         {actions.map((action) => (
           <ActionRow key={action.key}>
             <ActionLabel>
-              {action.icon && <img src={action.icon} alt="" width="20" height="20" />}
+              {action.icon && <Image src={action.icon} alt="" width="20" height="20" />}
               <span>{action.label}</span>
             </ActionLabel>
 
