@@ -1,15 +1,17 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useSWR from "swr";
 
-import PageWrapper from "../../components/page-structure/PageWrapper";
-import ContentWrapper from "../../components/page-structure/ContentWrapper";
-import AnimalDetailContent from "../../components/AnimalDetails/AnimalDetailContent";
-import { getAnimalById } from "../../services/AnimalService";
+import PageWrapper from "../../../components/page-structure/PageWrapper";
+import ContentWrapper from "../../../components/page-structure/ContentWrapper";
+import AnimalDetailContent from "../../../components/AnimalDetails/AnimalDetailContent";
+import { getAnimalById } from "../../../services/AnimalService";
+import { useRouter } from "next/router";
 
 
 export default function TierDetail({ animal: fallbackData }) {
+  const { locale } = useRouter();
   const { data: animal } = useSWR(
-    `/api/animals/${fallbackData.id}`,
+    fallbackData?.id ? `/api/animals/${fallbackData.id}?lang=${locale}` : null,
     null,
     {
       fallbackData,// 1. Kein automatisches Update, wenn man das Fenster wieder anklickt
