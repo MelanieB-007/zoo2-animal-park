@@ -8,6 +8,7 @@ import AnimalDesktopTable from "../AnimalOverview/AnimalDesktopTable";
 import EmptyState from "../page-structure/Elements/EmptyState";
 import PaginationSignpost from "../ui/PaginationSignpost";
 import MobileView from "./MobileView";
+import styled from "styled-components";
 
 export default function AnimalOverviewContent({
   t,
@@ -55,17 +56,19 @@ export default function AnimalOverviewContent({
 
       {currentItems.length > 0 ? (
         <>
-          <AnimalDesktopTable
-            animals={currentItems}
-            sortBy={sortBy}
-            sortDirection={sortDirection}
-            onSort={toggleSort}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-          />
+          <TableContainer>
+            <AnimalDesktopTable
+              animals={currentItems}
+              sortBy={sortBy}
+              sortDirection={sortDirection}
+              onSort={toggleSort}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+            />
+          </TableContainer>
 
           <MobileView
-            currentItems = {currentItems}
+            currentItems={currentItems}
             handleAnimalClick={handleAnimalClick}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
@@ -86,3 +89,10 @@ export default function AnimalOverviewContent({
     </PageWrapper>
   );
 }
+
+const TableContainer = styled.div`
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: auto;
+`;

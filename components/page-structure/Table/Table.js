@@ -14,7 +14,7 @@ export default function Table({children}){
 
 const DesktopView = styled.div`
   display: block;
-  @media (max-width: 1024px) {
+  @media (max-width: 767px) {
     display: none;
   }
 `;
@@ -23,7 +23,8 @@ export const TableFrame = styled.div`
   background: var(--color-white);
   border: 2px solid var(--color-green);
   border-radius: var(--border-radius);
-  overflow: visible;
+  overflow-x: auto;  
+  overflow-y: hidden;
   position: relative;
   margin-top: 10px;
 `;
