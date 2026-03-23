@@ -36,24 +36,24 @@ export default function TierDetail({ animal: fallbackData }) {
   // --- NEUE LÖSCH-FUNKTION ---
   const handleDelete = async () => {
     const result = await Swal.fire({
-      title: 'Tier wirklich löschen?',
-      text: `Möchtest du ${animal?.name || 'dieses Tier'} wirklich entfernen?`,
+      title: t("animals:messages.deleteErrorTitle") || 'Tier löschen?',
+      text: t("animals:messages.confirmDelete") || "Möchtest du dieses Tier wirklich aus der Liste entfernen?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Ja, löschen!',
-      cancelButtonText: 'Abbrechen'
+      confirmButtonText: t("common:yes_delete") || 'Ja, löschen!',
+      cancelButtonText: t("common:cancel") || 'Abbrechen'
     });
 
     if (result.isConfirmed) {
       try {
         const res = await fetch(`/api/animals/${animal.id}`, { method: 'DELETE' });
         if (res.ok) {
-          toast.success("Erfolgreich gelöscht! 🐾");
+          toast.success(t("animals:messages.deleteSuccess") || "Tier erfolgreich gelöscht! 🐾");
           router.push('/animals'); // Zurück zur Liste
         } else {
-          toast.error("Fehler beim Löschen.");
+          toast.error(t("animals:messages.deleteError") || "Fehler beim Löschen des Tieres 🐾");
         }
       } catch (error) {
         toast.error("Verbindung zum Server fehlgeschlagen.");

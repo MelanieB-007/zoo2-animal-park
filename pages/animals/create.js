@@ -8,6 +8,7 @@ import PageWrapper from "../../components/page-structure/PageWrapper";
 import ContentWrapper from "../../components/page-structure/ContentWrapper";
 import AnimalForm from "../../components/AnimalForm/AnimalForm";
 import PageHeader from "../../components/page-structure/PageHeader";
+import { toast } from "react-toastify";
 
 export default function AddAnimalPage() {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
@@ -44,12 +45,14 @@ export default function AddAnimalPage() {
           isEdit={false}
           onSuccess={(response) => {
             const newId = response.id;
-            console.log("Navigiere zu ID:", newId);
+
+            toast.success(t("animals:messages.createSuccess") || "Tier erfolgreich angelegt! 🐾");
 
             if (newId) {
               router.push(`/animals/${newId}`);
             } else {
               console.error("Keine ID im Response gefunden!", response);
+              router.push("/animals");
             }
           }}
         />

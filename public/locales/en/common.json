@@ -42,6 +42,10 @@
     "price": "Price",
     "sellPrice": "Selling Price"
   },
+  "messages": {
+    "yes_delete": "Yes, delete!",
+    "cancel": "Cancel"
+  },
   "release": "Release",
   "enclosure": "Enclosure",
   "enclosureType": "Enclosure Type",

@@ -105,5 +105,13 @@
   "requiredSize": "Required Area",
   "confirm_delete": "Are you sure you want to permanently delete this animal? All linked data like texts and XP values will be lost.",
   "delete_success": "The animal has been successfully removed from the community manager.",
-  "delete_error": "Error deleting the animal. Please try again."
+  "delete_error": "Error deleting the animal. Please try again.",
+
+  "messages": {
+    "createSuccess": "Animal successfully created! 🐾",
+    "deleteSuccess": "The animal has been successfully deleted! 🐾",
+    "deleteError": "Error deleting the animal. Please try again.",
+    "deleteErrorTitle": "Delete Animal?",
+    "confirmDelete": "Are you sure you want to permanently delete this animal? All linked data, such as descriptions and XP values, will be lost."
+  }
 }

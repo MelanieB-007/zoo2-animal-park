@@ -42,6 +42,10 @@
     "price": "Preis",
     "sellPrice": "Verkaufspreis"
   },
+  "messages": {
+    "yes_delete": "Ja, löschen!",
+    "cancel": "Abbrechen"
+  },
   "release": "Release",
   "enclosure": "Gehege",
   "enclosureType": "Gehegetyp",
