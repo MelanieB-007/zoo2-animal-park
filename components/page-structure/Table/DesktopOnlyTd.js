@@ -10,10 +10,10 @@ export default function DesktopOnlyTd({children}){
 }
 
 const StyledDesktopOnlyTd = styled.td`
-  text-align: right;
-  padding-right: 20px !important;
-  
-  @media (max-width: 1024px) {
-    display: none;
+  display: none; /* Standardmäßig ausblenden (Mobile/Tablet) */
+
+  /* Erst ab einer Breite, wo die Tabelle wirklich Platz hat, anzeigen */
+  @media (min-width: 1100px) {
+    display: table-cell;
   }
 `;
