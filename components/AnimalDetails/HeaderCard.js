@@ -199,9 +199,18 @@ const StatsGrid = styled.div`
 
   @media (min-width: 768px) {
     display: grid;
-     grid-template-columns: repeat(2, 220px) minmax(220px, 1fr);
-    justify-content: start; 
-    gap: 15px; 
+    grid-template-columns: repeat(2, 1fr) minmax(180px, 1.2fr);
+    justify-content: start;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  @media (min-width: 768px) and (max-width: 1100px) {
+    grid-template-columns: 1fr 1fr;
+    
+    & > :last-child {
+      grid-column: span 2;
+    }
   }
 `;
 
@@ -209,8 +218,7 @@ const StatsGroup = styled.div`
   display: flex;
   gap: 15px;
   width: 100%;
-
-  /* Auf Mobile: 2 Boxen nebeneinander */
+  
   & > * {
     flex: 1;
   }
