@@ -6,10 +6,16 @@ import ContentWrapper from "../../../components/page-structure/ContentWrapper";
 import AnimalDetailContent from "../../../components/AnimalDetails/AnimalDetailContent";
 import { getAnimalById } from "../../../services/AnimalService";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import { useTranslation } from "next-i18next";
 
 
 export default function TierDetail({ animal: fallbackData }) {
-  const { locale } = useRouter();
+  const { t } = useTranslation(["animals", "common"]);
+  const router = useRouter();
+  const { locale } = router;
+
   const { data: animal } = useSWR(
     fallbackData?.id ? `/api/animals/${fallbackData.id}?lang=${locale}` : null,
     null,
@@ -29,10 +35,47 @@ export default function TierDetail({ animal: fallbackData }) {
     }
   );
 
+  // --- NEUE LÖSCH-FUNKTION ---
+  const handleDelete = async () => {
+    const result = await Swal.fire({
+      title: t("animals:messages.deleteErrorTitle") || 'Tier löschen?',
+      text: t("animals:messages.confirmDelete") || "Möchtest du dieses Tier wirklich aus der Liste entfernen?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: t("common:messages.yes_delete") || 'Ja, löschen!',
+      cancelButtonText: t("common:messages.cancel") || 'Abbrechen'
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const res = await fetch(`/api/animals/${animal.id}`, { method: 'DELETE' });
+        if (res.ok) {
+          toast.success(t("animals:messages.deleteSuccess") || "Tier erfolgreich gelöscht! 🐾");
+          router.push('/animals'); // Zurück zur Liste
+        } else {
+          toast.error(t("animals:messages.deleteError") || "Fehler beim Löschen des Tieres 🐾");
+        }
+      } catch (error) {
+        toast.error("Verbindung zum Server fehlgeschlagen.");
+      }
+    }
+  };
+
+  // --- NEUE EDIT-FUNKTION ---
+  const handleEdit = () => {
+    router.push(`/animals/${animal.id}/edit`);
+  };
+
   return (
     <PageWrapper>
       <ContentWrapper>
-        <AnimalDetailContent animal={animal} />
+        <AnimalDetailContent
+          animal={animal}
+          onDelete={handleDelete}
+          onEdit={handleEdit}
+        />
       </ContentWrapper>
     </PageWrapper>
   );

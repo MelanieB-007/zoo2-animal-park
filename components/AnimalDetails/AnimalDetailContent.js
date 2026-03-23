@@ -6,8 +6,9 @@ import Textarea from "../page-structure/Elements/Textarea";
 import VariantArea from "./VariantArea";
 import AccordionCard from "./AccordionCard";
 import { useRouter } from "next/router";
+import ActionGroupIcons from "../page-structure/Table/ActionGroupIcons";
 
-export default function AnimalDetailContent({ animal }) {
+export default function AnimalDetailContent({ animal, onDelete, onEdit }) {
   const { locale } = useRouter();
   const { t } = useTranslation(["animals", "common"]);
 
@@ -18,6 +19,13 @@ export default function AnimalDetailContent({ animal }) {
 
   return (
     <Wrapper>
+      <TopBar>
+        <ActionGroupIcons
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
+      </TopBar>
+
       <HeaderCard animal={animal} />
 
       <MainGrid>
@@ -43,6 +51,13 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 25px; 
   width: 100%;
+`;
+
+const TopBar = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-bottom: -10px; /* Zieht es etwas näher an die HeaderCard ran */
 `;
 
 const MainGrid = styled.div`

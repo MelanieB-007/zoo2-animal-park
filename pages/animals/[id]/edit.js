@@ -6,8 +6,11 @@ import PageWrapper from "../../../components/page-structure/PageWrapper";
 import ContentWrapper from "../../../components/page-structure/ContentWrapper";
 import AnimalForm from "../../../components/AnimalForm/AnimalForm";
 import { getAnimalById } from "../../../services/AnimalService";
+import { toast } from "react-toastify";
+import { useTranslation } from "next-i18next";
 
 export default function EditAnimal({ animal: fallbackData }) {
+  const { t } = useTranslation(["animals", "common"]);
   const { mutate } = useSWRConfig();
   const router = useRouter();
   const { id } = router.query;
@@ -117,6 +120,8 @@ export default function EditAnimal({ animal: fallbackData }) {
           initialData={formatInitialData(animal)}
           isEdit={true}
           onSuccess={async (updatedData) => {
+            toast.success(t("animals:messages.editSuccess") || "Änderungen erfolgreich gespeichert! 🐾");
+
             // Wir löschen eventuelle "alte" flache Namen/Beschreibungen aus dem Cache-Objekt,
             // damit die Komponenten gezwungen sind, im texte-Array (nach Sprache) zu suchen.
             const cleanData = {

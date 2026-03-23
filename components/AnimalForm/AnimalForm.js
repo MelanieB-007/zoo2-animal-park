@@ -12,6 +12,7 @@ import XpActionSection from "./XpActionSection";
 import EnclosureCapacitySection from "./EnclosureCapacitySection";
 import EnclosureTypeSection from "./EnclosureTypeSection";
 import OriginSection from "./OriginSection";
+import { toast } from "react-toastify";
 
 export default function AnimalForm({ initialData, isEdit = false, onSuccess }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
@@ -88,17 +89,16 @@ export default function AnimalForm({ initialData, isEdit = false, onSuccess }) {
       const result = await response.json();
 
       if (response.ok) {
-        alert(isEdit ? "Änderungen erfolgreich gespeichert!" : "Erfolg! Das Tier wurde neu angelegt.");
 
         if (onSuccess) {
           onSuccess(result);
         }
       } else {
-        alert(`Fehler beim Speichern: ${result.message || "Unbekannter Fehler"}`);
+        toast.error(`Fehler: ${result.message || "Unbekannter Fehler"}`);
       }
     } catch (error) {
       console.error("Fetch Error:", error);
-      alert("Netzwerkfehler: Konnte keine Verbindung zur API herstellen.");
+      toast.error("Netzwerkfehler: Keine Verbindung zur API.");
     } finally {
       setIsSubmitting(false);
     }

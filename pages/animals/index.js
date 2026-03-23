@@ -8,6 +8,8 @@ import { filterAnimals, sortAnimals, paginate } from "../../services/AnimalHelpe
 import { useSort } from "../../hooks/useSort";
 import AnimalOverviewContent from "../../components/AnimalOverview/AnimalOverviewContent";
 import { getAllAnimals } from "../../services/AnimalService";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 
 export default function AnimalOverview({ fallbackData }) {
@@ -49,16 +51,33 @@ export default function AnimalOverview({ fallbackData }) {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm(t("animals:confirm_delete"))) return;
+    // 2. SweetAlert2 statt window.confirm
+    const result = await Swal.fire({
+      title: t("animals:messages.deleteErrorTitle") || 'Tier löschen?',
+      text: t("animals:messages.confirmDelete") || "Möchtest du dieses Tier wirklich aus der Liste entfernen?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: t("common:messages.yes_delete") || 'Ja, löschen!',
+      cancelButtonText: t("common:messages.cancel") || 'Abbrechen'
+    });
 
-    const success = await deleteAnimalFrontend(id);
+    if (result.isConfirmed) {
+      const success = await deleteAnimalFrontend(id);
 
-    if (success) {
-      // SWR Cache lokal aktualisieren
-      mutate(
-        animals.filter((a) => a.id !== id),
-        false
-      );
+      if (success) {
+        // 3. SWR Cache lokal aktualisieren (Optimistic UI)
+        mutate(
+          animals.filter((a) => a.id !== id),
+          false
+        );
+
+        // 4. Toast-Feedback
+        toast.success(t("animals:messages.deleteSuccess") || "Tier erfolgreich gelöscht! 🐾");
+      } else {
+        toast.error(t("common:error_deleting") || "Fehler beim Löschen.");
+      }
     }
   };
 
