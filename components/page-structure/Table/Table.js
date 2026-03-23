@@ -33,7 +33,7 @@ export const StyledTable = styled.table`
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  min-width: 600px;
+  min-width: 800px;
 
   th {
     background: var(--color-white);
