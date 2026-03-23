@@ -1,4 +1,4 @@
-import { getAnimalById, updateAnimal } from "../../../services/AnimalService";
+import { getAnimalById, updateAnimal, deleteAnimalFromDB } from "../../../services/AnimalService";
 
 export default async function handler(req, res) {
   const { id } = req.query;
@@ -24,6 +24,16 @@ export default async function handler(req, res) {
     } catch (error) {
       console.error("Update Error:", error);
       return res.status(500).json({ message: "Fehler beim Aktualisieren", error: error.message });
+    }
+  }
+
+  // DELETE: Das Tier löschen
+  if (req.method === 'DELETE') {
+    const success = await deleteAnimalFromDB(id);
+    if (success) {
+      return res.status(200).json({ success: true });
+    } else {
+      return res.status(500).json({ error: "Löschen fehlgeschlagen" });
     }
   }
 

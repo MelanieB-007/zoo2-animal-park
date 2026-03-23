@@ -102,5 +102,8 @@
   "toyPlaceholder": "Toy",
   "biomeCapacity": "Enclosure Capacity",
   "capacityTableLabel": "Number of Animals vs. Enclosure Space",
-  "requiredSize": "Required Area"
+  "requiredSize": "Required Area",
+  "confirm_delete": "Are you sure you want to permanently delete this animal? All linked data like texts and XP values will be lost.",
+  "delete_success": "The animal has been successfully removed from the community manager.",
+  "delete_error": "Error deleting the animal. Please try again."
 }

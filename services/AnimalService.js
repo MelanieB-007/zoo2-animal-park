@@ -210,6 +210,13 @@ export async function updateAnimal(id, data) {
 }
 
 export async function getAnimalById(id, locale = null) {
+  const numericId = parseInt(id);
+
+  if (isNaN(numericId)) {
+    console.log("getAnimalById abgebrochen: ID ist keine Zahl:", id);
+    return null; // Oder wirf einen Fehler
+  }
+
   const animal = await prisma.tiere.findUnique({
     where: { id: parseInt(id) },
     include: {

@@ -7,7 +7,7 @@ import useSWR from "swr";
 import { filterAnimals, sortAnimals, paginate } from "../../services/AnimalHelper";
 import { useSort } from "../../hooks/useSort";
 import AnimalOverviewContent from "../../components/AnimalOverview/AnimalOverviewContent";
-import { deleteAnimalFromDB, getAllAnimals } from "../../services/AnimalService";
+import { getAllAnimals } from "../../services/AnimalService";
 
 
 export default function AnimalOverview({ fallbackData }) {
@@ -41,11 +41,21 @@ export default function AnimalOverview({ fallbackData }) {
   const currentItems = paginate(sortedTiere, currentPage, itemsPerPage);
   const totalPages = Math.ceil(filteredTiere.length / itemsPerPage);
 
+  const deleteAnimalFrontend = async (id) => {
+    const response = await fetch(`/api/animals/${id}`, {
+      method: 'DELETE',
+    });
+    return response.ok;
+  };
+
   const handleDelete = async (id) => {
     if (!window.confirm(t("animals:confirm_delete"))) return;
-    const success = await deleteAnimalFromDB(id);
+
+    const success = await deleteAnimalFrontend(id);
+
     if (success) {
-      await mutate(
+      // SWR Cache lokal aktualisieren
+      mutate(
         animals.filter((a) => a.id !== id),
         false
       );
