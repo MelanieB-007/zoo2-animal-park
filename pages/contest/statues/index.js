@@ -1,43 +1,75 @@
-import StatueOverviewContent from "../../../components/contest/statues/StatueOverviewContent";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import useSWR from "swr";
+
+import { filterStatues, sortStatues, paginate } from "../../../services/StatueHelper";
 import { useSort } from "../../../hooks/useSort";
 import { getAllStatues } from "../../../services/StatueService";
+import StatueOverviewContent from "../../../components/contest/statues/StatueOverviewContent";
 
-export default function StatueOverview({fallbackData}) {
-  const { t } = /** @type {any} */ (useTranslation(["animals", "contest", "common"]));
+export default function StatueOverview({ fallbackData }) {
   const router = useRouter();
   const { locale } = router;
-  const { sortBy, sortDirection, toggleSort } = useSort("name");
 
-
-   const { data: statues } = useSWR(
+  const { data: statues } = useSWR(
     `/api/contest/statues?lang=${locale}`, {
-       fallbackData,
-       revalidateOnFocus: false,
-       revalidateOnMount: false // Wichtig, damit er die fallbackData vom Server nicht sofort überschreibt
-     });
+      fallbackData,
+      revalidateOnFocus: false,
+      revalidateOnMount: false
+    });
+
+  const currentStatues = statues || [];
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedGehege, setSelectedGehege] = useState("Alle");
+
+  // Statuen haben meist kein eigenes Level, sondern hängen am Tier-Stalllevel
+  const { sortBy, sortDirection, toggleSort } = useSort("tier.name");
+
+  const itemsPerPage = 10;
+
+  // --- LOGIK (Exakt wie bei den Tieren) ---
+  const filteredStatues = filterStatues(currentStatues, {
+    searchTerm,
+    selectedGehege,
+  });
+
+  const sortedStatues = sortStatues(filteredStatues, { sortBy, sortDirection });
+  const currentItems = paginate(sortedStatues, currentPage, itemsPerPage);
+  const totalPages = Math.ceil(filteredStatues.length / itemsPerPage);
+
+  function handleResetFilters() {
+    setSearchTerm("");
+    setSelectedGehege("Alle");
+    setCurrentPage(1);
+  }
 
   return (
     <StatueOverviewContent
-      statues={statues}
-      currentItems={filteredStatues} // Hier könnten wir noch Pagination einbauen
+      statues={currentStatues}
+      currentItems={currentItems}
       filteredCount={filteredStatues.length}
       searchTerm={searchTerm}
       setSearchTerm={setSearchTerm}
       selectedGehege={selectedGehege}
       setSelectedGehege={setSelectedGehege}
+      setCurrentPage={setCurrentPage}
       sortBy={sortBy}
       sortDirection={sortDirection}
       toggleSort={toggleSort}
+      handleResetFilters={handleResetFilters}
+      totalPages={totalPages}
+      currentPage={currentPage}
+      handleNextPage={() => setCurrentPage((prev) => prev + 1)}
+      handlePrevPage={() => setCurrentPage((prev) => prev - 1)}
     />
   );
 }
 
 export async function getStaticProps({ locale }) {
-  const initialStatues =  await getAllStatues(locale);
+  const initialStatues = await getAllStatues(locale);
 
   return {
     props: {

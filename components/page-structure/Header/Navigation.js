@@ -66,14 +66,14 @@ export default function Navigation() {
           </Dropdown>
         </NavItem>
 
-       {/* <NavItem>
-          <NavButton $active={isActive("/klub")}>
+       <NavItem>
+          <NavButton $active={isActive("/contest")}>
             {t("navigation.club", "Klub")} <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
-              <DropdownLink href="/club/mitglieder" $active={pathname === "/club/mitglieder"}>
-                {t("navigation.club_members", "Mitglieder")}
+              <DropdownLink href="/contest/statues" $active={pathname === "/contest/statues"}>
+                {t("navigation.club_statues", "Statuen")}
               </DropdownLink>
             </li>
             <li>
@@ -82,7 +82,7 @@ export default function Navigation() {
               </DropdownLink>
             </li>
           </Dropdown>
-        </NavItem>*/}
+        </NavItem>
       </NavList>
     </NavContainer>
   );

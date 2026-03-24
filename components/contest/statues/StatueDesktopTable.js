@@ -3,9 +3,7 @@ import React from "react";
 
 import Table from "../../page-structure/Table/Table";
 import SortableTableHeader from "../../page-structure/Table/SortableTableHeader";
-
 import InfoCell from "../../page-structure/Table/InfoCell";
-import AnimalThumbnail from "../../page-structure/icons/ItemThumbnail";
 import { NameDE } from "../../page-structure/Elements/Name";
 import LinkedRow from "../../page-structure/Table/LinkedRow";
 import NoResult from "../../page-structure/Table/NoResult";
@@ -19,7 +17,9 @@ export default function StatueDesktopTable({
   sortDirection,
   onSort,
 }) {
-  const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
+  const { t } = /** @type {any} */ (
+    useTranslation(["animals", "contest", "common"])
+  );
 
   return (
     <Table>
@@ -27,7 +27,15 @@ export default function StatueDesktopTable({
         <tr>
           {/* 1. Statuen-Bild & Tiername */}
           <SortableTableHeader
-            text={t("animals:statues.species")}
+            text={t("contest:statues.species")}
+            onSort={() => onSort("tier.name")}
+            columnKey="tier.name"
+            currentSortBy={sortBy}
+            sortDirection={sortDirection}
+          />
+
+          <SortableTableHeader
+            text={t("contest:statues.animal")}
             onSort={() => onSort("tier.name")}
             columnKey="tier.name"
             currentSortBy={sortBy}
@@ -64,7 +72,6 @@ export default function StatueDesktopTable({
             return (
               // <LinkedRow key={statue.id} path={`/statue/${statue.id}`}>
               <tr key={statue.id}>
-
                 {/* Spalte 1: Bild der Statue + Tiername */}
                 <td>
                   <InfoCell>
@@ -73,11 +80,16 @@ export default function StatueDesktopTable({
                       name={tiername}
                       habitat={tier?.gehege}
                       category="statues"
+                      tooltip={false}
                     />
                     <div>
                       <NameDE>{statue.name}</NameDE>
                     </div>
                   </InfoCell>
+                </td>
+
+                <td>
+                  <NameDE>{tiername}</NameDE>
                 </td>
 
                 {/* Spalte 2: Gehege */}
@@ -89,7 +101,7 @@ export default function StatueDesktopTable({
                 <td>
                   <StallLevelBadge
                     level={tier?.stalllevel}
-                    habitat={gehege?.name}
+                    habitat={tier?.gehege?.name}
                   />
                 </td>
               </tr>

@@ -10,22 +10,31 @@ export default function ItemThumbnail({
   name,
   habitat,
   size = 55,
-  category, // Hier übergibst du jetzt "tiere/grasland", "statues", "items" etc.
+  category,
+  tooltip = true,
 }) {
   const habitatKey = (habitat?.name || "standard").toLowerCase();
 
-  return (
-    <Tooltip text={name} align="top">
-      <StyledThumbnail $habitat={habitatKey} $size={size}>
-        <GameIcon
-          type={category} // Direktübergabe des Pfades
-          fileName={image}
-          size={size - 10}
-          bordercolor="transparent"
-        />
-      </StyledThumbnail>
-    </Tooltip>
+  const thumbnail = (
+    <StyledThumbnail $habitat={habitatKey} $size={size}>
+      <GameIcon
+        type={category}
+        fileName={image}
+        size={size - 10}
+        bordercolor="transparent"
+      />
+    </StyledThumbnail>
   );
+
+  if (tooltip && name) {
+    return (
+      <Tooltip text={name} align="top">
+        {thumbnail}
+      </Tooltip>
+    );
+  }
+
+  return thumbnail;
 }
 
 const StyledThumbnail = styled.div`

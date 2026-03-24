@@ -4,7 +4,6 @@ import React from "react";
 import PageWrapper from "../../page-structure/PageWrapper";
 import FilterBar from "../../page-structure/Elements/FilterBar";
 import ResultsInfo from "../../page-structure/Elements/ResultsInfo";
-import MobileView from "../../animals/AnimalOverview/MobileView";
 import EmptyState from "../../page-structure/Elements/EmptyState";
 import PaginationSignpost from "../../ui/PaginationSignpost";
 import TableContainer from "../../page-structure/Table/TableContainer";
@@ -30,7 +29,7 @@ export default function StatueOverviewContent({
   handlePrevPage,
 }) {
   const { t } = /** @type {any} */ (
-    useTranslation(["animals", "statues", "common"])
+    useTranslation(["animals", "contest", "common"])
   );
 
   return (
