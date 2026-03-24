@@ -98,17 +98,6 @@ const ReleaseDate = styled.div`
   margin-top: 5px;
 `;
 
-// Diese müssen unten in die VariantCard.js zu den anderen Styled Components:
-
-const InfoRow = styled.div`
-  margin-top: 8px;
-  font-size: 0.85rem;
-  color: #666;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-`;
-
 const OriginRow = styled.div`
   margin-top: 8px;
   display: flex;
