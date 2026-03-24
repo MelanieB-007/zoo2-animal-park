@@ -32,7 +32,8 @@ model tiere {
   startprozent  Int?
 
   // --- NEU: Dynamische Relationen ---
-  texte         tier_texte[] // Hier landen Namen & Beschreibungen
+  statue        wettbewerbstatuen?
+  texte         tier_texte[]
   tierherkunft  tierherkunft[]
   variants      farbvarianten[]
   tier_gehege_kapazitaet tier_gehege_kapazitaet[]
@@ -86,7 +87,7 @@ model farbvarianten {
   tier       tiere   @relation(fields: [tierId], references: [id], onDelete: Cascade)
   farbe      String  @db.VarChar(20)
   herkunftId Int
-  herkunft    herkunft @relation(fields: [herkunftId], references: [id])
+  herkunft   herkunft @relation(fields: [herkunftId], references: [id])
   release    String? @db.VarChar(20)
   bild       String? @db.VarChar(255)
 
@@ -247,7 +248,7 @@ model tierherkunft {
 }
 
 model users {
-  id         String    @id @db.VarChar(255)
+  id         Int       @unique
   name       String?   @db.VarChar(255)
   email      String?   @unique @db.VarChar(255)
   image      String?   @db.Text
@@ -259,9 +260,9 @@ model wettbewerbe {
   id                 Int     @id @unique(map: "wettbewerbe") @default(autoincrement())
   start              String  @db.VarChar(20)
   ende               String  @db.VarChar(20)
-  tier1Id            Int
-  tier2Id            Int
-  tier3Id            Int
+  tier1Id            Int     @unique
+  tier2Id            Int     @unique
+  tier3Id            Int     @unique
   farbvarianteId     Int?
   aktiv              Int
   tierTeilgenommenId String? @db.VarChar(20)
@@ -271,13 +272,14 @@ model wettbewerbe {
 
 model wettbewerbfarbvarianten {
   id             Int     @id @unique(map: "wettbewerbfarbvariantenindex") @default(autoincrement())
-  tierId         String  @db.VarChar(20)
-  farbvarianteId String? @db.VarChar(255)
+  tierId         Int     @unique
+  farbvarianteId Int     @unique
 }
 
 model wettbewerbstatuen {
   id            Int     @id @unique(map: "wettbewerbstatuenindex") @default(autoincrement())
-  tierId        String  @db.VarChar(20)
+  tierId        Int     @unique
+  tier          tiere   @relation(fields: [tierId], references: [id])
   preis         Int?
   preisartId    Int?
   popularitaet  Int?

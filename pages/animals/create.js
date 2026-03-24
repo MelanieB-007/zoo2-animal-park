@@ -6,7 +6,7 @@ import { useTranslation } from "next-i18next";
 
 import PageWrapper from "../../components/page-structure/PageWrapper";
 import ContentWrapper from "../../components/page-structure/ContentWrapper";
-import AnimalForm from "../../components/AnimalForm/AnimalForm";
+import AnimalForm from "../../components/animals/AnimalForm/AnimalForm";
 import PageHeader from "../../components/page-structure/PageHeader";
 import { toast } from "react-toastify";
 

@@ -6,7 +6,7 @@ import useSWR from "swr";
 
 import { filterAnimals, sortAnimals, paginate } from "../../services/AnimalHelper";
 import { useSort } from "../../hooks/useSort";
-import AnimalOverviewContent from "../../components/AnimalOverview/AnimalOverviewContent";
+import AnimalOverviewContent from "../../components/animals/AnimalOverview/AnimalOverviewContent";
 import { getAllAnimals } from "../../services/AnimalService";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
@@ -17,7 +17,8 @@ export default function AnimalOverview({ fallbackData }) {
   const router = useRouter();
   const { locale } = router;
 
-  const { data: animals, mutate } = useSWR(`/api/animals?lang=${locale}`, {
+  const { data: animals, mutate } = useSWR(
+    `/api/animals?lang=${locale}`, {
     fallbackData,
     revalidateOnFocus: false,
     revalidateOnMount: false // Wichtig, damit er die fallbackData vom Server nicht sofort überschreibt
@@ -98,7 +99,6 @@ export default function AnimalOverview({ fallbackData }) {
 
   return (
     <AnimalOverviewContent
-      t={t}
       animals={animals}
       currentItems={currentItems}
       filteredCount={filteredTiere.length}

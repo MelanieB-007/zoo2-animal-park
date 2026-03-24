@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
-import EditButton from "../../icons/EditIcon";
-import DeleteButton from "../../icons/DeleteIcon";
+import EditButton from "../icons/EditIcon";
+import DeleteButton from "../icons/DeleteIcon";
 
 export default function ActionGroupIcons({ onEdit, onDelete }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
