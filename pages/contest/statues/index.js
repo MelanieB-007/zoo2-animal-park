@@ -24,6 +24,7 @@ export default function StatueOverview({ fallbackData }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedGehege, setSelectedGehege] = useState("Alle");
+  const [selectedLevel, setSelectedLevel] = useState("Alle");
 
   // Statuen haben meist kein eigenes Level, sondern hängen am Tier-Stalllevel
   const { sortBy, sortDirection, toggleSort } = useSort("tier.name");
@@ -34,6 +35,7 @@ export default function StatueOverview({ fallbackData }) {
   const filteredStatues = filterStatues(currentStatues, {
     searchTerm,
     selectedGehege,
+    selectedLevel,
   });
 
   const sortedStatues = sortStatues(filteredStatues, { sortBy, sortDirection });
@@ -43,6 +45,7 @@ export default function StatueOverview({ fallbackData }) {
   function handleResetFilters() {
     setSearchTerm("");
     setSelectedGehege("Alle");
+    setSelectedLevel("Alle");
     setCurrentPage(1);
   }
 
@@ -55,6 +58,8 @@ export default function StatueOverview({ fallbackData }) {
       setSearchTerm={setSearchTerm}
       selectedGehege={selectedGehege}
       setSelectedGehege={setSelectedGehege}
+      selectedLevel={selectedLevel}
+      setSelectedLevel={setSelectedLevel}
       setCurrentPage={setCurrentPage}
       sortBy={sortBy}
       sortDirection={sortDirection}

@@ -1,12 +1,19 @@
-export function filterStatues(statues, { searchTerm, selectedGehege }) {
+export function filterStatues(statues, { searchTerm, selectedGehege, selectedLevel }) {
   return statues.filter((statue) => {
     const tier = statue.tier;
     const tierName = tier?.texte?.[0]?.name?.toLowerCase() || "";
+    const stallLevel = tier?.stalllevel || 0;
 
+    // Suche nach Tiername
     const matchesSearch = tierName.includes(searchTerm.toLowerCase());
+
+    // Filter nach Gehege
     const matchesGehege = selectedGehege === "Alle" || tier?.gehege?.name === selectedGehege;
 
-    return matchesSearch && matchesGehege;
+    // Filter nach Stall-Level
+    const matchesLevel = selectedLevel === "Alle" || stallLevel === parseInt(selectedLevel);
+
+    return matchesSearch && matchesGehege && matchesLevel;
   });
 }
 
