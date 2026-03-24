@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { Upload, Trash2 } from "lucide-react";
 import Image from 'next/image';
 
-import InfoAccordion from "../page-structure/Elements/InfoAccordion";
+import InfoAccordion from "../../page-structure/Elements/InfoAccordion";
 
 
 export default function ImageSection({ setUploadFiles, initialImage }) {

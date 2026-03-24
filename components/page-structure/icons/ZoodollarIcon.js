@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import NextImage from 'next/image';
-import FormattedNumber from "../ui/FormattedNumber";
+import FormattedNumber from "../../ui/FormattedNumber";
 
 export default function ZoodollarIcon({ value, altText, size = 20 }) {
   const hasValue = value !== undefined && value !== null;

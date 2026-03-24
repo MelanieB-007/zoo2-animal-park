@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 import PageWrapper from "../../../components/page-structure/PageWrapper";
 import ContentWrapper from "../../../components/page-structure/ContentWrapper";
-import AnimalDetailContent from "../../../components/AnimalDetails/AnimalDetailContent";
+import AnimalDetailContent from "../../../components/animals/AnimalDetails/AnimalDetailContent";
 import { getAnimalById } from "../../../services/AnimalService";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";

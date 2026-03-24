@@ -1,17 +1,18 @@
 import React from "react";
+import { useTranslation } from "next-i18next";
 
-import PageHeader from "../page-structure/PageHeader";
-import PageWrapper from "../page-structure/PageWrapper";
-import FilterBar from "../page-structure/Elements/FilterBar";
-import ResultsInfo from "../page-structure/Elements/ResultsInfo";
-import AnimalDesktopTable from "../AnimalOverview/AnimalDesktopTable";
-import EmptyState from "../page-structure/Elements/EmptyState";
-import PaginationSignpost from "../ui/PaginationSignpost";
+import PageHeader from "../../page-structure/PageHeader";
+import PageWrapper from "../../page-structure/PageWrapper";
+import FilterBar from "../../page-structure/Elements/FilterBar";
+import ResultsInfo from "../../page-structure/Elements/ResultsInfo";
+import AnimalDesktopTable from "./AnimalDesktopTable";
+import EmptyState from "../../page-structure/Elements/EmptyState";
+import PaginationSignpost from "../../ui/PaginationSignpost";
 import MobileView from "./MobileView";
-import styled from "styled-components";
+import TableContainer from "../../page-structure/Table/TableContainer";
+
 
 export default function AnimalOverviewContent({
-  t,
   animals,
   currentItems,
   filteredCount,
@@ -34,6 +35,10 @@ export default function AnimalOverviewContent({
   handleNextPage,
   handlePrevPage,
 }) {
+  const { t } = /** @type {any} */ (
+    useTranslation(["animals", "common"])
+  );
+
   return (
     <PageWrapper>
       <PageHeader text={t("animals:overview_title")} />
@@ -89,10 +94,3 @@ export default function AnimalOverviewContent({
     </PageWrapper>
   );
 }
-
-const TableContainer = styled.div`
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  height: auto;
-`;

@@ -3,8 +3,8 @@ import useSWR from "swr";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
-import InfoAccordion from "..//page-structure/Elements/InfoAccordion";
-import OriginTransfer from "../ui/OriginTransfer";
+import InfoAccordion from "../../page-structure/Elements/InfoAccordion";
+import OriginTransfer from "../../ui/OriginTransfer";
 
 
 export default function OriginSection({ initialData, setFormData }) {

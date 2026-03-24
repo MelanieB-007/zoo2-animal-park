@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
-import InfoAccordion from "../page-structure/Elements/InfoAccordion";
-import DynamicRowInput from "../ui/DynamicRowInput";
+import InfoAccordion from "../../page-structure/Elements/InfoAccordion";
+import DynamicRowInput from "../../ui/DynamicRowInput";
 
 
 export default function EnclosureCapacitySection({ enclosureSizes = [], setFormData }) {

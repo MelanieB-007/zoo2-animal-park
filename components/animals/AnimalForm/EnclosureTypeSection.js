@@ -3,10 +3,8 @@ import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import useSWR from "swr";
 
-import InfoAccordion from "..//page-structure/Elements/InfoAccordion";
-import FormSelect from "../ui/FormSelect";
-import FormInput from "../ui/FormInput";
-import InputGroup from "../ui/InputGroup";
+import InfoAccordion from "../../page-structure/Elements/InfoAccordion";
+import FormSelect from "../../ui/FormSelect";
 
 
 export default function EnclosureTypeSection({ formData, onChange }) {

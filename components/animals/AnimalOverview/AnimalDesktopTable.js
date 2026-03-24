@@ -1,23 +1,23 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 
-import { NameDE } from "../page-structure/Elements/Name";
-import GehegeBadge from "../ui/GehegeBadge";
-import PriceDisplay from "../icons/PriceDisplay";
-import StallLevelBadge from "../ui/StallLevelBadge";
-import XPIcon from "../icons/XPIcon";
-import { calculateTotalXP } from "../../services/AnimalHelper";
-import ZoodollarIcon from "../icons/ZoodollarIcon";
-import SortableTableHeader from "../page-structure/Table/SortableTableHeader";
-import ActionsHeadline from "../page-structure/Table/ActionsHeadline";
-import ActionGroupIcons from "../page-structure/Table/ActionGroupIcons";
-import DesktopOnlyTd from "../page-structure/Table/DesktopOnlyTd";
-import RightAlignedTd from "../page-structure/Table/RightAlignedTd";
-import InfoCell from "../page-structure/Table/InfoCell";
-import Table from "../page-structure/Table/Table";
-import LinkedRow from "../page-structure/Table/LinkedRow";
-import NoResult from "../page-structure/Table/NoResult";
-import AnimalThumbnail from "../icons/AnimalThumbnail";
+import { NameDE } from "../../page-structure/Elements/Name";
+import GehegeBadge from "../../ui/GehegeBadge";
+import PriceDisplay from "../../page-structure/icons/PriceDisplay";
+import StallLevelBadge from "../../ui/StallLevelBadge";
+import XPIcon from "../../page-structure/icons/XPIcon";
+import { calculateTotalXP } from "../../../services/AnimalHelper";
+import ZoodollarIcon from "../../page-structure/icons/ZoodollarIcon";
+import SortableTableHeader from "../../page-structure/Table/SortableTableHeader";
+import ActionsHeadline from "../../page-structure/Table/ActionsHeadline";
+import ActionGroupIcons from "../../page-structure/Table/ActionGroupIcons";
+import DesktopOnlyTd from "../../page-structure/Table/DesktopOnlyTd";
+import RightAlignedTd from "../../page-structure/Table/RightAlignedTd";
+import InfoCell from "../../page-structure/Table/InfoCell";
+import Table from "../../page-structure/Table/Table";
+import LinkedRow from "../../page-structure/Table/LinkedRow";
+import NoResult from "../../page-structure/Table/NoResult";
+import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
 
 export default function AnimalDesktopTable({
   animals,
@@ -111,7 +111,12 @@ export default function AnimalDesktopTable({
               <LinkedRow key={animal.id} path={`/animals/${animal.id}`}>
                 <td>
                   <InfoCell>
-                    <AnimalThumbnail animal={animal} />
+                    <ItemThumbnail
+                      image={animal.bild}
+                      name={animal.name}
+                      habitat={animal.gehege}
+                      category={`tiere/${(animal.gehege?.name || "standard").toLowerCase()}`}
+                    />
                     <div>
                       <NameDE>{animal.name}</NameDE>
                     </div>

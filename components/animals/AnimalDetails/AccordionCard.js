@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import NextImage from "next/image";
 
-import InfoAccordion from "../page-structure/Elements/InfoAccordion";
-import StallLevelBadge from "../ui/StallLevelBadge";
-import PriceDisplay from "../icons/PriceDisplay";
-import XPIcon from "../icons/XPIcon";
-import { formatMinutes } from "../ui/XpDateFormat";
-import { XP_MAP } from "../../utils/XP_MAP";
+import InfoAccordion from "../../page-structure/Elements/InfoAccordion";
+import StallLevelBadge from "../../ui/StallLevelBadge";
+import PriceDisplay from "../../page-structure/icons/PriceDisplay";
+import XPIcon from "../../page-structure/icons/XPIcon";
+import { formatMinutes } from "../../ui/XpDateFormat";
+import { XP_MAP } from "../../../utils/XP_MAP";
 import { useTranslation } from "next-i18next";
-import DataRow from "../ui/DataRow";
+import DataRow from "../../ui/DataRow";
 
 const actionOrder = ["fuettern", "spielen", "putzen"];
 

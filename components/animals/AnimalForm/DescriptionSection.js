@@ -1,7 +1,7 @@
 import { useTranslation } from "next-i18next";
 
-import InfoAccordion from "../page-structure/Elements/InfoAccordion";
-import FormTextarea from "../ui/FormTextarea";
+import InfoAccordion from "../../page-structure/Elements/InfoAccordion";
+import FormTextarea from "../../ui/FormTextarea";
 
 
 export default function DescriptionSection({ value, onChange }) {

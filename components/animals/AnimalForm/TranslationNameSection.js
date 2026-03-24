@@ -3,9 +3,9 @@ import useSWR from "swr";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
-import DynamicRowInput from "../ui/DynamicRowInput";
-import InfoAccordion from "../page-structure/Elements/InfoAccordion";
-import { flagMap } from "../../utils/FlagMap";
+import DynamicRowInput from "../../ui/DynamicRowInput";
+import InfoAccordion from "../../page-structure/Elements/InfoAccordion";
+import { flagMap } from "../../../utils/FlagMap";
 
 export default function TranslationNameSection({ translations = [], setFormData }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));

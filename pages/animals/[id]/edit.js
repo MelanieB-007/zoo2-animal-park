@@ -4,7 +4,7 @@ import useSWR, { useSWRConfig } from "swr";
 
 import PageWrapper from "../../../components/page-structure/PageWrapper";
 import ContentWrapper from "../../../components/page-structure/ContentWrapper";
-import AnimalForm from "../../../components/AnimalForm/AnimalForm";
+import AnimalForm from "../../../components/animals/AnimalForm/AnimalForm";
 import { getAnimalById } from "../../../services/AnimalService";
 import { toast } from "react-toastify";
 import { useTranslation } from "next-i18next";

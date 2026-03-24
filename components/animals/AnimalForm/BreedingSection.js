@@ -2,12 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
-import InfoAccordion from "../page-structure/Elements/InfoAccordion";
-import InputGroup from "../ui/InputGroup";
-import FormInput from "../ui/FormInput";
-import FormSelect from "../ui/FormSelect";
-import PriceDisplay from "../icons/PriceDisplay";
-import StallLevelBadge from "../ui/StallLevelBadge";
+import InfoAccordion from "../../page-structure/Elements/InfoAccordion";
+import InputGroup from "../../ui/InputGroup";
+import FormInput from "../../ui/FormInput";
+import FormSelect from "../../ui/FormSelect";
 
 
 export default function BreedingSection({ formData, onChange }) {
@@ -92,11 +90,6 @@ const SectionLayout = styled.div`
     flex-direction: column;
     align-items: center;
   }
-`;
-
-const BadgeWrapper = styled.div`
-  padding-top: 10px;
-  flex-shrink: 0;
 `;
 
 const FieldsGrid = styled.div`

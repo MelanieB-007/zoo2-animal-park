@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
-import CardContainer from "../page-structure/CardContainer";
-import MainImage from "../page-structure/Elements/MainImage";
-import PriceDisplay from "../icons/PriceDisplay";
-import PopularityDisplay from "../icons/PopularityDisplay";
-import StatBox from "../page-structure/Elements/StatBox";
-import GameIcon from "../icons/GameIcon";
-import StallLevelBadge from "../ui/StallLevelBadge";
-import BoxWithHeadline from "../page-structure/Elements/BoxWithHeadline";
-import OriginBadgeList from "../page-structure/Elements/OriginBadgeList";
-import XPIcon from "../icons/XPIcon";
-import FormattedDate from "../ui/FormattedDate";
+import CardContainer from "../../page-structure/CardContainer";
+import MainImage from "../../page-structure/Elements/MainImage";
+import PriceDisplay from "../../page-structure/icons/PriceDisplay";
+import PopularityDisplay from "../../page-structure/icons/PopularityDisplay";
+import StatBox from "../../page-structure/Elements/StatBox";
+import GameIcon from "../../page-structure/icons/GameIcon";
+import StallLevelBadge from "../../ui/StallLevelBadge";
+import BoxWithHeadline from "../../page-structure/Elements/BoxWithHeadline";
+import OriginBadgeList from "../../page-structure/Elements/OriginBadgeList";
+import XPIcon from "../../page-structure/icons/XPIcon";
+import FormattedDate from "../../ui/FormattedDate";
 import { useRouter } from "next/router";
 
 

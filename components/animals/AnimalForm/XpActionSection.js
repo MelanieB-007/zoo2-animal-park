@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import Image from 'next/image';
 
-import InfoAccordion from "../page-structure/Elements/InfoAccordion";
-import InputGroup from "../ui/InputGroup";
-import FormInput from "../ui/FormInput";
+import InfoAccordion from "../../page-structure/Elements/InfoAccordion";
+import InputGroup from "../../ui/InputGroup";
+import FormInput from "../../ui/FormInput";
 
 export default function XpActionSection({ formData, setFormData }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));

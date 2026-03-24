@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
-import GameIcon from "../icons/GameIcon";
-import { NameDE } from "../page-structure/Elements/Name";
-import GehegeBadge from "../ui/GehegeBadge";
-import PriceDisplay from "../icons/PriceDisplay";
-import StallLevelBadge from "../ui/StallLevelBadge";
-import EditButton from "../icons/EditIcon";
-import DeleteButton from "../icons/DeleteIcon";
-import { getTranslatedName } from "../ui/TranslationHelper";
+import GameIcon from "../../page-structure/icons/GameIcon";
+import { NameDE } from "../../page-structure/Elements/Name";
+import GehegeBadge from "../../ui/GehegeBadge";
+import PriceDisplay from "../../page-structure/icons/PriceDisplay";
+import StallLevelBadge from "../../ui/StallLevelBadge";
+import { getTranslatedName } from "../../ui/TranslationHelper";
+import DeleteButton from "../../page-structure/icons/DeleteIcon";
+import EditButton from "../../page-structure/icons/EditIcon";
 
 export default function AnimalMobileCard({
   animal,
@@ -29,10 +29,10 @@ export default function AnimalMobileCard({
     <CardContainer onClick={onClick}>
       <HeaderRow>
         <NameDE>{displayName}</NameDE>
-        {/*<ActionGroup onClick={(e) => e.stopPropagation()}>
+        <ActionGroup onClick={(e) => e.stopPropagation()}>
           <EditButton onClick={onEdit} />
           <DeleteButton onClick={onDelete} />
-        </ActionGroup>*/}
+        </ActionGroup>
       </HeaderRow>
 
       <Divider />

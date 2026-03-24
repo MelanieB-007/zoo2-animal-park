@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import HeaderCard from "./HeaderCard";
 
-import Textarea from "../page-structure/Elements/Textarea";
+import Textarea from "../../page-structure/Elements/Textarea";
 import VariantArea from "./VariantArea";
 import AccordionCard from "./AccordionCard";
 import { useRouter } from "next/router";
-import ActionGroupIcons from "../page-structure/Table/ActionGroupIcons";
+import ActionGroupIcons from "../../page-structure/Table/ActionGroupIcons";
 
 export default function AnimalDetailContent({ animal, onDelete, onEdit }) {
   const { locale } = useRouter();

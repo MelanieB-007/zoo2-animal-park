@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
-import FormInput from "../ui/FormInput";
-import InfoAccordion from "../page-structure/Elements/InfoAccordion";
+import FormInput from "../../ui/FormInput";
+import InfoAccordion from "../../page-structure/Elements/InfoAccordion";
 
 export default function BasicInfoSection({ formData, onChange }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));

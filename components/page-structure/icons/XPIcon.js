@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import FormattedNumber from "../ui/FormattedNumber";
+import FormattedNumber from "../../ui/FormattedNumber";
 
 export default function XPIcon({ label: value, size = 20 }) {
   return (
