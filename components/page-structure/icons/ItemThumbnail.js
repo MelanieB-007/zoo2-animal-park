@@ -1,27 +1,25 @@
 import React from "react";
 import styled from "styled-components";
+
 import GameIcon from "./GameIcon";
-import Tooltip from "../ui/Tooltip";
-import { habitatColors } from "../../utils/habitatConstants";
-import { useTranslation } from "next-i18next";
-import { getTranslatedName } from "../ui/TranslationHelper";
+import Tooltip from "../../ui/Tooltip";
+import { habitatColors } from "../../../utils/habitatConstants";
 
-export default function AnimalThumbnail({ animal, size = 55 }) {
-  const { t, i18n } = /** @type {any} */ (
-    useTranslation(["animals", "common"])
-  );
-  const habitatKey = (animal.gehege?.name || "standard").toLowerCase();
-  const animalName =
-    getTranslatedName(animal, i18n.language) || t("animals:unknown_animal");
-
-  const iconPath = `tiere/${habitatKey}`;
+export default function ItemThumbnail({
+  image,
+  name,
+  habitat,
+  size = 55,
+  category, // Hier übergibst du jetzt "tiere/grasland", "statues", "items" etc.
+}) {
+  const habitatKey = (habitat?.name || "standard").toLowerCase();
 
   return (
-    <Tooltip text={animalName} align="top">
+    <Tooltip text={name} align="top">
       <StyledThumbnail $habitat={habitatKey} $size={size}>
         <GameIcon
-          type={iconPath}
-          fileName={animal.bild}
+          type={category} // Direktübergabe des Pfades
+          fileName={image}
           size={size - 10}
           bordercolor="transparent"
         />
