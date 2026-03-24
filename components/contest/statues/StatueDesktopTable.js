@@ -46,7 +46,7 @@ export default function StatueDesktopTable({
           <SortableTableHeader
             text={t("animals:table.enclosure")}
             onSort={() => onSort("tier.gehege.name")}
-            columnKey="gehege.name"
+            columnKey="tier.gehege.name"
             currentSortBy={sortBy}
             sortDirection={sortDirection}
           />

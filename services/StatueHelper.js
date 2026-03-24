@@ -21,13 +21,18 @@ export function sortStatues(statues, { sortBy, sortDirection }) {
   return [...statues].sort((a, b) => {
     let valA, valB;
 
+    // Logik für die verschiedenen Sortier-Keys
     if (sortBy === "tier.name") {
-      valA = a.tier?.texte?.[0]?.name || "";
-      valB = b.tier?.texte?.[0]?.name || "";
-    } else if (sortBy === "stalllevel") {
+      valA = a.tier?.texte?.[0]?.name?.toLowerCase() || "";
+      valB = b.tier?.texte?.[0]?.name?.toLowerCase() || "";
+    } else if (sortBy === "tier.gehege.name") {
+      valA = a.tier?.gehege?.name?.toLowerCase() || "";
+      valB = b.tier?.gehege?.name?.toLowerCase() || "";
+    } else if (sortBy === "tier.stalllevel") {
       valA = a.tier?.stalllevel || 0;
       valB = b.tier?.stalllevel || 0;
     } else {
+      // Fallback für direkte Attribute der Statue (z.B. statue.name)
       valA = a[sortBy] || "";
       valB = b[sortBy] || "";
     }
