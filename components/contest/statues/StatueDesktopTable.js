@@ -68,10 +68,10 @@ export default function StatueDesktopTable({
           statues.map((statue) => {
             const tier = statue.tier;
             const tiername = tier?.texte?.[0]?.name || "Unbekannt";
+            const animalId = tier?.id;
 
             return (
-              // <LinkedRow key={statue.id} path={`/statue/${statue.id}`}>
-              <tr key={statue.id}>
+              <LinkedRow key={statue.id} path={`/animals/${animalId}`}>
                 {/* Spalte 1: Bild der Statue + Tiername */}
                 <td>
                   <InfoCell>
@@ -104,8 +104,7 @@ export default function StatueDesktopTable({
                     habitat={tier?.gehege?.name}
                   />
                 </td>
-              </tr>
-              //</LinkedRow>
+              </LinkedRow>
             );
           })
         ) : (

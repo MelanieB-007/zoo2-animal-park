@@ -49,6 +49,10 @@ export default function StatueOverview({ fallbackData }) {
     setCurrentPage(1);
   }
 
+  function handleStatueClick(animalId) {
+    router.push(`/animals/${animalId}`);
+  }
+
   return (
     <StatueOverviewContent
       statues={currentStatues}
@@ -60,6 +64,7 @@ export default function StatueOverview({ fallbackData }) {
       setSelectedGehege={setSelectedGehege}
       selectedLevel={selectedLevel}
       setSelectedLevel={setSelectedLevel}
+      handleStatueClick={handleStatueClick}
       setCurrentPage={setCurrentPage}
       sortBy={sortBy}
       sortDirection={sortDirection}

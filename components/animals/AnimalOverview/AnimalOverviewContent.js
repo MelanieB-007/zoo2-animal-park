@@ -8,8 +8,9 @@ import ResultsInfo from "../../page-structure/Elements/ResultsInfo";
 import AnimalDesktopTable from "./AnimalDesktopTable";
 import EmptyState from "../../page-structure/Elements/EmptyState";
 import PaginationSignpost from "../../ui/PaginationSignpost";
-import MobileView from "./MobileView";
+import MobileListView from "../../page-structure/Elements/MobileListView";
 import TableContainer from "../../page-structure/Table/TableContainer";
+import AnimalMobileCard from "./AnimalMobileCard";
 
 
 export default function AnimalOverviewContent({
@@ -72,11 +73,19 @@ export default function AnimalOverviewContent({
             />
           </TableContainer>
 
-          <MobileView
-            currentItems={currentItems}
-            handleAnimalClick={handleAnimalClick}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
+          <MobileListView
+            currentItems={animals}
+            onItemClick={handleAnimalClick}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            renderCard={(animal, handlers) => (
+              <AnimalMobileCard
+                animal={animal}
+                onClick={handlers.onClick}
+                onEdit={handlers.onEdit}
+                onDelete={handlers.onDelete}
+              />
+            )}
           />
         </>
       ) : (

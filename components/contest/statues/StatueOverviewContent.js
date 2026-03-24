@@ -1,13 +1,16 @@
+import React from "react";
+import { useTranslation } from "next-i18next";
+
 import StatueDesktopTable from "./StatueDesktopTable";
 import PageHeader from "../../page-structure/PageHeader";
-import React from "react";
 import PageWrapper from "../../page-structure/PageWrapper";
 import FilterBar from "../../page-structure/Elements/FilterBar";
 import ResultsInfo from "../../page-structure/Elements/ResultsInfo";
 import EmptyState from "../../page-structure/Elements/EmptyState";
 import PaginationSignpost from "../../ui/PaginationSignpost";
 import TableContainer from "../../page-structure/Table/TableContainer";
-import { useTranslation } from "next-i18next";
+import MobileListView from "../../page-structure/Elements/MobileListView";
+import StatueMobileCard from "./StatueMobileCard";
 
 export default function StatueOverviewContent({
   statues,
@@ -20,6 +23,7 @@ export default function StatueOverviewContent({
   selectedLevel,
   setSelectedLevel,
   setCurrentPage,
+  handleStatueClick,
   sortBy,
   sortDirection,
   toggleSort,
@@ -61,6 +65,17 @@ export default function StatueOverviewContent({
               onSort={toggleSort}
             />
           </TableContainer>
+
+          <MobileListView
+            currentItems={statues}
+            onItemClick={handleStatueClick}
+            renderCard={(statue, handlers) => (
+              <StatueMobileCard
+                statue={statue}
+                onClick={handlers.onClick}
+              />
+            )}
+          />
 
         </>
       ) : (

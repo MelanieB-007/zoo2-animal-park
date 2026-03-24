@@ -2,6 +2,7 @@
   "statues": {
     "species": "Art",
     "animal": "Tier",
-    "overview_title": "Übersicht über alle Statuen"
+    "overview_title": "Übersicht über alle Statuen",
+    "card_label": "Statue"
   }
 }
