@@ -6,7 +6,7 @@ import useSWR from "swr";
 import { filterStatues, sortStatues, paginate } from "../../../services/StatueHelper";
 import { useSort } from "../../../hooks/useSort";
 import { getAllStatues } from "../../../services/StatueService";
-import StatueOverviewContent from "../../../components/contest/statues/StatueOverviewContent";
+import StatueOverviewContent from "../../../components/contests/statues/StatueOverviewContent";
 
 export default function StatueOverview({ fallbackData }) {
   const router = useRouter();
@@ -84,7 +84,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       fallbackData: JSON.parse(JSON.stringify(initialStatues)),
-      ...(await serverSideTranslations(locale, ["common", "contest", "animals"])),
+      ...(await serverSideTranslations(locale, ["common", "contests", "animals"])),
     },
     revalidate: 60,
   };

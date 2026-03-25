@@ -1,0 +1,29 @@
+{
+  "statues": {
+    "species": "Art",
+    "animal": "Tier",
+    "overview_title": "Übersicht über alle Statuen",
+    "card_label": "Statue"
+  },
+  "contextForm": {
+    "createTitle": "Neuen Wettbewerb anlegen",
+    "createSubtitle": "Wähle den Zeitraum und die drei Statuen für diesen Wettbewerb aus."
+  },
+  "contestOverview": {
+    "overview_title": "Wettbewerbe",
+    "table": {
+      "period": "Zeitraum",
+      "statues_animals": "Wettbewerbs-Tiere",
+      "status": "Status"
+    },
+    "status": {
+      "live": "LIVE",
+      "running": "Läuft gerade",
+      "upcoming": "Demnächst"
+    },
+    "empty": {
+      "title": "Keine Wettbewerbe gefunden",
+      "text": "Es wurden noch keine Wettbewerbe in der Datenbank angelegt."
+    }
+  }
+}

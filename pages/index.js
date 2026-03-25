@@ -14,7 +14,7 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common", "home", "animals"])),
+      ...(await serverSideTranslations(locale, ["common", "home", "contests", "animals"])),
       stats: {
         tiere: tierCount,
         varianten: variantsCount,

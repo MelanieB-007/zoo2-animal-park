@@ -33,12 +33,12 @@ export default function StatueOverviewContent({
   handlePrevPage,
 }) {
   const { t } = /** @type {any} */ (
-    useTranslation(["animals", "contest", "common"])
+    useTranslation(["animals", "contests", "common"])
   );
 
   return (
     <PageWrapper>
-      <PageHeader text={t("contest:statues.overview_title")} />
+      <PageHeader text={t("contests:statues.overview_title")} />
       <FilterBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
