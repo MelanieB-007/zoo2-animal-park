@@ -53,7 +53,6 @@ export default function CustomGehegeFilter({ animals = [], selectedGehege, onSel
         <Chevron $isOpen={isOpen}>▼</Chevron>
       </SelectHeader>
 
-      {/* Hier war der Fehler: isOpen muss innerhalb des Returns verfügbar sein */}
       {isOpen && (
         <OptionsList>
           <Option

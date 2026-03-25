@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { contestService } from "../../services/contestService";
 
+import { getAllContests } from "../../services/ContestService";
 import PageWrapper from "../../components/page-structure/PageWrapper";
 import ContestMobileCard from "../../components/contests/ContestOverview/ContestMobileCard";
 import MobileListView from "../../components/page-structure/Elements/MobileListView";
@@ -46,9 +46,8 @@ export default function ContestsPage({ initialContests }) {
 // Daten serverseitig laden
 export async function getServerSideProps({ locale }) {
   try {
-    const data = await contestService.getAllContests();
+    const data = await getAllContests();
 
-    // WICHTIG: Prisma-Dates müssen für Next.js serialisiert werden (Stringify/Parse)
     const serializedContests = JSON.parse(JSON.stringify(data));
 
     return {
