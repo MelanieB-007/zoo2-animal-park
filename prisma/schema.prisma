@@ -304,3 +304,16 @@ model xp {
 
   @@index([tierId])
 }
+
+model wettbewerb_ergebnisse {
+  id          Int      @id @default(autoincrement())
+  contest_id  Int
+  member_id   Int
+  tier_id     Int
+  level       Int
+  anzahl      Int
+  zeitpunkt   DateTime @default(now())
+
+  @@index([contest_id])
+  @@index([member_id])
+}

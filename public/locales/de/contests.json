@@ -24,6 +24,10 @@
     "empty": {
       "title": "Keine Wettbewerbe gefunden",
       "text": "Es wurden noch keine Wettbewerbe in der Datenbank angelegt."
+    },
+    "entry": {
+      "title": "Tiere eintragen",
+      "chooseMember": "Mitglied wählen"
     }
   }
 }

@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
-import { contestService } from "../../../services/contestService";
+import { createContest } from "../../../services/ContestService";
 
 export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions);
@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const result = await contestService.createContest(req.body);
+    const result = await createContest(req.body);
     return res.status(201).json({ success: true, contest: result });
   } catch (error) {
     console.error("Service Error:", error);
