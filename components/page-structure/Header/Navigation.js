@@ -67,18 +67,23 @@ export default function Navigation() {
         </NavItem>
 
        <NavItem>
-          <NavButton $active={isActive("/contest")}>
+          <NavButton $active={isActive("/contests")}>
             {t("navigation.club", "Klub")} <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
-              <DropdownLink href="/contest/statues" $active={pathname === "/contest/statues"}>
+              <DropdownLink href="/contests/statues" $active={pathname === "/contest/statues"}>
                 {t("navigation.club_statues", "Statuen")}
               </DropdownLink>
             </li>
             <li>
-              <DropdownLink href="/club/wettbewerbe" $active={pathname === "/club/wettbewerbe"}>
+              <DropdownLink href="/contests" $active={pathname === "/contest"}>
                 {t("navigation.club_contests", "Wettbewerbe")}
+              </DropdownLink>
+            </li>
+            <li>
+              <DropdownLink href="/contests/create" $active={pathname === "/contest/create"}>
+                {t("navigation.club_create_contest", "Wettbewerb anlegen")}
               </DropdownLink>
             </li>
           </Dropdown>

@@ -3,50 +3,86 @@ import styled from "styled-components";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useTranslation } from "next-i18next";
 
-export default function OriginTransfer({ available, selected, onMoveRight, onMoveLeft }) {
+export default function OriginTransfer({
+                                         available,
+                                         selected,
+                                         onMoveRight,
+                                         onMoveLeft,
+                                         maxSelected = null // Standardmäßig kein Limit
+                                       }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
+
+  // Nur sperren, wenn ein Limit gesetzt UND erreicht ist
+  const isFull = maxSelected !== null && selected.length >= maxSelected;
 
   return (
     <TransferContainer>
-      {/* Linke Seite: Verfügbar */}
       <Column>
         <ColumnTitle>{t("common:available")}</ColumnTitle>
         <List>
-          {available.length > 0 ? (
-            available.map((item, index) => (
-              // Falls item.id fehlt, nehmen wir den Index als Notlösung
-              <Item key={item.id || `avail-${index}`} onClick={() => onMoveRight(item)}>
-                <span>{item.name}</span>
-                <ChevronRight size={16} />
-              </Item>
-            ))
-          ) : (
-            <EmptyNote>{t("common:notAvailable")}</EmptyNote>
-          )}
+          {available.map((item, index) => (
+            <Item
+              key={item.id || `avail-${index}`}
+              onClick={() => onMoveRight(item)}
+              $disabled={isFull} // Greift nur, wenn maxSelected gesetzt ist
+            >
+              <span>{item.name}</span>
+              <ChevronRight size={16} />
+            </Item>
+          ))}
         </List>
       </Column>
 
-      {/* Rechte Seite: Ausgewählt */}
       <Column $highlight>
         <ColumnTitle>{t("common:chosen")}</ColumnTitle>
         <List>
-          {selected.length > 0 ? (
-            selected.map((item, index) => (
-                <Item key={item.id || `sel-${index}`} onClick={() => onMoveLeft(item)} $selected>
-                  <ChevronLeft size={16} />
-                  <span>{item.name}</span>
-                </Item>
-            ))
-          ) : (
-            <EmptyNote>{t("common:pleaseChoose")}</EmptyNote>
-          )}
+          {selected.map((item, index) => (
+            <Item key={item.id || `sel-${index}`} onClick={() => onMoveLeft(item)} $selected>
+              <ChevronLeft size={16} />
+              <span>{item.name}</span>
+            </Item>
+          ))}
         </List>
       </Column>
     </TransferContainer>
   );
 }
 
-// --- STYLED COMPONENTS ---
+
+const Item = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  margin: 4px;
+  border-radius: 8px;
+  background: white;
+  border: 1px solid #eef3e2;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+
+  /* 3. Logik für das Ausgrauen */
+  ${props => props.$disabled && !props.$selected && `
+    opacity: 0.4;
+    filter: grayscale(1);
+    cursor: not-allowed;
+    background: #fdfdfd;
+    pointer-events: none; /* Verhindert das Klicken komplett */
+  `}
+
+  &:hover {
+    /* Hover-Effekt nur erlauben, wenn nicht disabled oder wenn es ein ausgewähltes Item ist */
+    border-color: ${props => (props.$disabled && !props.$selected) ? "#eef3e2" : "#88a04d"};
+    background: ${props => (props.$disabled && !props.$selected) ? "white" : "#f0f4e8"};
+    transform: translateX(${props => {
+  if (props.$disabled && !props.$selected) return "0";
+  return props.$selected ? "-3px" : "3px";
+}});
+  }
+
+  /* ... restliche Styles (span, svg) ... */
+`;
 
 const TransferContainer = styled.div`
   display: grid;
@@ -87,35 +123,6 @@ const List = styled.div`
   /* Custom Scrollbar für den Look */
   &::-webkit-scrollbar { width: 6px; }
   &::-webkit-scrollbar-thumb { background: #d1e2a5; border-radius: 10px; }
-`;
-
-const Item = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 12px;
-  margin: 4px;
-  border-radius: 8px;
-  background: white;
-  border: 1px solid #eef3e2;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.2s;
-
-  &:hover {
-    border-color: #88a04d;
-    background: #f0f4e8;
-    transform: translateX(${props => props.$selected ? "-3px" : "3px"});
-  }
-
-  span {
-    flex: 1;
-    margin: 0 8px;
-  }
-
-  svg {
-    color: #88a04d;
-  }
 `;
 
 const EmptyNote = styled.div`

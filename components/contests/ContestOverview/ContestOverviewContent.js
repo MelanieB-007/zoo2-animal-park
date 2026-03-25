@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 
-import StatueDesktopTable from "./StatueDesktopTable";
+
 import PageHeader from "../../page-structure/PageHeader";
 import PageWrapper from "../../page-structure/PageWrapper";
 import FilterBar from "../../page-structure/Elements/FilterBar";
@@ -10,9 +10,10 @@ import EmptyState from "../../page-structure/Elements/EmptyState";
 import PaginationSignpost from "../../ui/PaginationSignpost";
 import TableContainer from "../../page-structure/Table/TableContainer";
 import MobileListView from "../../page-structure/Elements/MobileListView";
-import StatueMobileCard from "./StatueMobileCard";
+import ContestDesktopTable from "./ContestDesktopTable";
+import ContestMobileCard from "./ContestMobileCard";
 
-export default function StatueOverviewContent({
+export default function ContestOverviewContent({
   statues,
   currentItems,
   filteredCount,
@@ -33,12 +34,12 @@ export default function StatueOverviewContent({
   handlePrevPage,
 }) {
   const { t } = /** @type {any} */ (
-    useTranslation(["animals", "contest", "common"])
+    useTranslation(["animals", "contests", "common"])
   );
 
   return (
     <PageWrapper>
-      <PageHeader text={t("contest:statues.overview_title")} />
+      <PageHeader text={t("contests:contest.overview_title")} />
       <FilterBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
@@ -47,7 +48,7 @@ export default function StatueOverviewContent({
         selectedLevel={selectedLevel}
         setSelectedLevel={setSelectedLevel}
         setCurrentPage={setCurrentPage}
-        animals={statues.map(s => s.tier)}
+        animals={statues.map((s) => s.tier)}
       />
 
       <ResultsInfo
@@ -58,7 +59,7 @@ export default function StatueOverviewContent({
       {currentItems.length > 0 ? (
         <>
           <TableContainer>
-            <StatueDesktopTable
+            <ContestDesktopTable
               statues={currentItems}
               sortBy={sortBy}
               sortDirection={sortDirection}
@@ -67,16 +68,12 @@ export default function StatueOverviewContent({
           </TableContainer>
 
           <MobileListView
-            currentItems={statues}
+            currentItems={contests}
             onItemClick={handleStatueClick}
             renderCard={(statue, handlers) => (
-              <StatueMobileCard
-                statue={statue}
-                onClick={handlers.onClick}
-              />
+              <ContestMobileCard statue={statue} onClick={handlers.onClick} />
             )}
           />
-
         </>
       ) : (
         <EmptyState onReset={handleResetFilters} />

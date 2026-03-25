@@ -258,16 +258,22 @@ model users {
 
 model wettbewerbe {
   id                 Int     @id @unique(map: "wettbewerbe") @default(autoincrement())
-  start              String  @db.VarChar(20)
-  ende               String  @db.VarChar(20)
-  tier1Id            Int     @unique
-  tier2Id            Int     @unique
-  tier3Id            Int     @unique
-  farbvarianteId     Int?
+  start              DateTime
+  ende               DateTime
   aktiv              Int
   tierTeilgenommenId String? @db.VarChar(20)
   ergebnis           String? @db.VarChar(20)
   platz              String? @db.VarChar(255)
+  statuen            contest_statuen[]
+}
+
+model contest_statuen {
+  id           Int         @id @default(autoincrement())
+  wettbewerbId Int
+  statueId     Int
+
+  wettbewerb   wettbewerbe @relation(fields: [wettbewerbId], references: [id])
+  statue       wettbewerbstatuen @relation(fields: [statueId], references: [id])
 }
 
 model wettbewerbfarbvarianten {
@@ -285,6 +291,7 @@ model wettbewerbstatuen {
   popularitaet  Int?
   verkaufspreis Int?
   bild          String? @db.VarChar(255)
+  contests      contest_statuen[]
 }
 
 model xp {

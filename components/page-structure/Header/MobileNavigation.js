@@ -62,9 +62,31 @@ export const MobileNavigation = ({ isOpen, onClose }) => {
         </MobileMenuWrapper>
 
         {/* KLUB */}
-        {/*<MobileNavLink href="/club" onClick={onClose}>
-          {t("navigation.club")}
-        </MobileNavLink>*/}
+        <MobileMenuWrapper>
+          <MenuHeader onClick={() => toggleSubMenu("contests")}>
+            {t("navigation.club", "Klub")}
+            <StyledChevron $isRotated={openSubMenu === "contests"} />
+          </MenuHeader>
+
+          <SubMenu $isOpen={openSubMenu === "contests"}>
+            {/* 1. Statuen */}
+            <SubNavLink href="/contests/statues" onClick={onClose}>
+              {t("navigation.club_statues", "Statuen")}
+            </SubNavLink>
+
+            {/* 2. Wettbewerbe Übersicht */}
+            <SubNavLink href="/contests" onClick={onClose}>
+              {t("navigation.club_contests", "Wettbewerbe")}
+            </SubNavLink>
+
+            {/* 3. Wettbewerb anlegen (Nur wenn eingeloggt) */}
+            {session && (
+              <SubNavLink href="/contests/create" onClick={onClose}>
+                {t("navigation.club_create_contest", "Wettbewerb anlegen")}
+              </SubNavLink>
+            )}
+          </SubMenu>
+        </MobileMenuWrapper>
 
         <Divider />
 
