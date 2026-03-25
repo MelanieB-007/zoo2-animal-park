@@ -28,8 +28,7 @@ export const contestService = {
   },
 
   async getAllContests() {
-    return prisma.wettbewerbe.findMany({
-      orderBy: { start: 'desc' }, // Neueste zuerst
+    const contests = await prisma.wettbewerbe.findMany({
       include: {
         statuen: {
           include: {
@@ -43,6 +42,21 @@ export const contestService = {
           }
         }
       }
+    });
+
+    const now = new Date();
+
+    // Manuelle Sortierung, da Prisma "isAktiv" nicht direkt in der DB kennt
+    return contests.sort((a, b) => {
+      const aAktiv = now >= new Date(a.start) && now <= new Date(a.ende);
+      const bAktiv = now >= new Date(b.start) && now <= new Date(b.ende);
+
+      // 1. Wenn einer aktiv ist und der andere nicht, kommt der aktive nach oben
+      if (aAktiv && !bAktiv) return -1;
+      if (!aAktiv && bAktiv) return 1;
+
+      // 2. Wenn beide gleich aktiv/inaktiv sind, sortiere nach Startdatum (neueste zuerst)
+      return new Date(b.start) - new Date(a.start);
     });
   }
 };
