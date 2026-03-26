@@ -1,16 +1,38 @@
+import React from "react";
+import Link from "next/link";
 import styled from "styled-components";
 
 import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
 import PageHeader from "../../page-structure/PageHeader";
+import { useTranslation } from "next-i18next";
 
-export default function ContestDetailView({ contest, analyses, t }) {
+
+export default function ContestDetailView({ contest, analyses }) {
+  const { t } = /** @type {any} */ (
+    useTranslation(["animals", "contests", "common"])
+  );
+
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+  const isExpired = new Date() > new Date(contest.ende);
+
   return (
     <Container>
       <PageHeader text={t("contests:details.headline", "Wettbewerbs-Planung")} />
 
       <MetaInfo>
-        📅 {new Date(contest.start).toLocaleDateString()} – {new Date(contest.ende).toLocaleDateString()}
+        📅 {new Date(contest.start).toLocaleDateString('de-DE', options)} –
+        {new Date(contest.ende).toLocaleDateString('de-DE', options)}
       </MetaInfo>
+
+      {!isExpired && (
+        <ActionRow>
+          <Link href={`/contests/${contest.id}/entries`}>
+             <StyledButton type="button">
+              {t("contests:details.add_my_animals", "Eigene Tiere melden")}
+            </StyledButton>
+          </Link>
+        </ActionRow>
+      )}
 
       <TierGrid>
         {analyses.map(({ tier, stats }) => (
@@ -106,48 +128,61 @@ const List = styled.div`
 `;
 
 const ListHeader = styled.div`
-  display: flex; 
-  justify-content: space-between;
-  font-size: 0.75rem; 
-  color: #888; 
+  display: flex;
+  align-items: center; 
+  gap: 10px; 
+
+  font-size: 0.75rem;
+  color: #888;
   text-transform: uppercase;
-  margin-bottom: 10px; 
-  padding: 0 5px;
-  
-  .right { 
-    text-align: right; 
+  letter-spacing: 0.5px;
+
+  padding: 0 5px 3px 5px; 
+  margin-bottom: 2px;
+
+  border-bottom: 1px solid #f0f0f0;
+
+  /* Spalte 1: "RANG" (Dasselbe Maß wie Badge + Gap in Row) */
+  span:nth-child(1) {
+    width: 30px;
+    text-align: center;
+  }
+
+  /* Spalte 2: "MITGLIED" */
+  span:nth-child(2) {
+    flex: 1; 
+    text-align: left; 
+  }
+
+  /* Spalte 3: "PUNKTE (XN)" */
+  span:nth-child(3) {
+    text-align: right;
   }
 `;
 
 const Row = styled.div`
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
   gap: 10px;
-  padding: 8px 5px; 
-  border-bottom: 1px solid #f5f5f5;
-  
-  &:last-child { 
-    border: none; 
-  }
-`;
 
-const Badge = styled.span`
-  background: #eee; 
-  width: 22px; 
-  height: 22px; 
-  border-radius: 50%;
+  padding: 5px 5px; 
+  border-bottom: 1px solid #f5f5f5;
+
+  &:last-child {
+    border: none;
+  }
   
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  font-size: 0.7rem; 
-  font-weight: bold;
+  > span:first-child {
+    margin-right: 0; 
+  }
 `;
 
 const Name = styled.span` 
   flex: 1; 
   font-size: 0.9rem; 
   font-weight: 500; 
+  text-align: left;
+  padding-left: 5px;
 `;
 
 const Points = styled.div`
@@ -166,9 +201,72 @@ const Points = styled.div`
   }
 `;
 
+const Badge = styled.span`
+  background: #eee; 
+  width: 22px; 
+  height: 22px; 
+  border-radius: 50%;
+  
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-size: 0.7rem; 
+  font-weight: bold;
+  margin-left: 5px;
+`;
+
 const Empty = styled.div` 
   text-align: center; 
   color: #ccc; 
   padding: 20px; 
   font-style: italic; 
+`;
+
+const StyledButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  
+  padding: 12px 24px;
+  background-color: #5d7a2a; 
+  color: white;
+  
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #4a6221;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  svg {
+    font-size: 1.2rem;
+  }
+`;
+
+const ActionRow = styled.div`
+  display: flex;
+  justify-content: center; 
+  width: 100%;
+  max-width: 800px; 
+  margin: 0 auto 25px auto; 
+  padding: 0 10px; 
+  box-sizing: border-box;
 `;

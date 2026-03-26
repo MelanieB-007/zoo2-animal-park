@@ -41,10 +41,16 @@ export default function ContestEntryPage({ contest, members }) {
     const res = await fetch("/api/contests/save-entry", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ contestId: contest.id, memberId: selectedMember, data: entries }),
+      body: JSON.stringify({
+        contestId: contest.id,
+        memberId: selectedMember,
+        data: entries,
+      }),
     });
 
-    if (res.ok) router.push("/contests");
+    if (res.ok) {
+      router.push(`/contests/${contest.id}`);
+    }
   };
 
   return (

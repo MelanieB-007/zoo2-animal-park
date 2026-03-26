@@ -1,33 +1,44 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 import styled, { keyframes } from "styled-components";
+
 import Table from "../../page-structure/Table/Table";
 import { NameDE } from "../../page-structure/Elements/Name";
 import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
+import LinkedRow from "../../page-structure/Table/LinkedRow";
+
 
 export default function ContestDesktopTable({ contests }) {
   const { t } = /** @type {any} */ (
     useTranslation(["animals", "contests", "common"])
   );
 
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+
+
   return (
     <Table>
       <thead>
       <tr>
-        <th>{t("contests:contestOverview.table.period")}</th>
-        <th>{t("contests:contestOverview.table.statues_animals")}</th>
-        <th>{t("contests:contestOverview.table.status")}</th>
+        <th>
+          {t("contests:contestOverview.table.period")}
+        </th>
+        <th>
+          {t("contests:contestOverview.table.statues_animals")}
+        </th>
+        <th>
+          {t("contests:contestOverview.table.status")}
+        </th>
       </tr>
       </thead>
       <tbody>
       {contests.map((contest) => {
-        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
         const startDate = new Date(contest.start).toLocaleDateString('de-DE', options);
         const endDate = new Date(contest.ende).toLocaleDateString('de-DE', options);
         const isAktiv = new Date() >= new Date(contest.start) && new Date() <= new Date(contest.ende);
 
         return (
-          <tr key={contest.id}>
+          <LinkedRow key={contest.id} path={`/contests/${contest.id}`}>
             {/* Zeitraum */}
             <td>
               <DateWrapper>
@@ -74,7 +85,7 @@ export default function ContestDesktopTable({ contests }) {
                 <StatusDot $active={isAktiv} />
               </StatusWrapper>
             </td>
-          </tr>
+          </LinkedRow>
         );
       })}
       </tbody>
