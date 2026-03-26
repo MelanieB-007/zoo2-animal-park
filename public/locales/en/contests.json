@@ -1,0 +1,33 @@
+{
+  "statues": {
+    "species": "Species",
+    "animal": "Animal",
+    "overview_title": "Overview of all Statues",
+    "card_label": "Statue"
+  },
+  "contextForm": {
+    "createTitle": "Create New Contest",
+    "createSubtitle": "Select the period and the three statues for this contest."
+  },
+  "contestOverview": {
+    "overview_title": "Contests",
+    "table": {
+      "period": "Period",
+      "statues_animals": "Contest Animals",
+      "status": "Status"
+    },
+    "status": {
+      "live": "LIVE",
+      "running": "Currently Running",
+      "upcoming": "Upcoming"
+    },
+    "empty": {
+      "title": "No contests found",
+      "text": "No contests have been created in the database yet."
+    },
+    "entry": {
+      "title": "Enter Animals",
+      "chooseMember": "Choose Member"
+    }
+  }
+}
