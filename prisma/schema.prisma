@@ -195,6 +195,8 @@ model mitglieder {
   klubrang          Int
   level             Int
   akademie          Int?
+
+  ergebnisse        wettbewerb_ergebnisse[]
 }
 
 model mitgliederlevel20 {
@@ -309,6 +311,7 @@ model wettbewerb_ergebnisse {
   id          Int      @id @default(autoincrement())
   contest_id  Int
   member_id   Int
+  mitglied    mitglieder @relation(fields: [member_id], references: [id])
   tier_id     Int
   level       Int
   anzahl      Int
