@@ -71,8 +71,8 @@ export async function getContestById(id) {
               include: {
                 tier: {
                   include: {
-                    texte: true,  // Für den Namen (tiername)
-                    gehege: true  // Für die Kategorie/Farbe des Icons
+                    texte: true,
+                    gehege: true
                   }
                 }
               }
@@ -97,7 +97,6 @@ export async function getContestById(id) {
 export async function saveContestResults(contestId, memberId, data) {
   const recordsToCreate = [];
 
-  // Logik zum Aufbereiten der Daten (Flachklopfen)
   Object.keys(data).forEach((tierId) => {
     const rows = data[tierId];
     rows.forEach((row) => {
@@ -120,5 +119,20 @@ export async function saveContestResults(contestId, memberId, data) {
   // Datenbank-Operation
   return prisma.wettbewerb_ergebnisse.createMany({
     data: recordsToCreate,
+  });
+}
+
+export async function getResultsByContestId(contestId) {
+  return prisma.wettbewerb_ergebnisse.findMany({
+    where: { contest_id: parseInt(contestId) },
+    include: {
+      mitglied: {
+        select: {
+          upjersname: true,
+          name: true,
+          id: true
+        }
+      }
+    }
   });
 }
