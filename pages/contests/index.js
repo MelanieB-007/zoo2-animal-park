@@ -10,7 +10,7 @@ import EmptyState from "../../components/page-structure/Elements/EmptyState";
 import PageHeader from "../../components/page-structure/PageHeader";
 import ContestDesktopTable from "../../components/contests/ContestOverview/ContestDesktopTable";
 
-export default function ContestsPage({ initialContests }) {
+export default function ContestsOverview({ initialContests }) {
   const [contests] = useState(initialContests || []);
 
   return (

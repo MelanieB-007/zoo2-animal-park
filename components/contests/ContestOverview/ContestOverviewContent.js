@@ -1,10 +1,8 @@
 import React from "react";
-import { useTranslation } from "next-i18next";
-
+import { useRouter } from "next/router";
 
 import PageHeader from "../../page-structure/PageHeader";
 import PageWrapper from "../../page-structure/PageWrapper";
-import FilterBar from "../../page-structure/Elements/FilterBar";
 import ResultsInfo from "../../page-structure/Elements/ResultsInfo";
 import EmptyState from "../../page-structure/Elements/EmptyState";
 import PaginationSignpost from "../../ui/PaginationSignpost";
@@ -13,72 +11,59 @@ import MobileListView from "../../page-structure/Elements/MobileListView";
 import ContestDesktopTable from "./ContestDesktopTable";
 import ContestMobileCard from "./ContestMobileCard";
 
+
 export default function ContestOverviewContent({
-  statues,
+  contests,
   currentItems,
-  filteredCount,
-  searchTerm,
-  setSearchTerm,
-  selectedGehege,
-  setSelectedGehege,
-  selectedLevel,
-  setSelectedLevel,
-  setCurrentPage,
-  handleStatueClick,
-  sortBy,
-  sortDirection,
-  toggleSort,
+  handleContestClick,
+  handleEdit,
+  handleDelete,
   totalPages,
   currentPage,
   handleNextPage,
   handlePrevPage,
 }) {
-  const { t } = /** @type {any} */ (
-    useTranslation(["animals", "contests", "common"])
-  );
+
+  const router = useRouter();
 
   return (
     <PageWrapper>
-      <PageHeader text={t("contests:contest.overview_title")} />
-      <FilterBar
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        selectedGehege={selectedGehege}
-        setSelectedGehege={setSelectedGehege}
-        selectedLevel={selectedLevel}
-        setSelectedLevel={setSelectedLevel}
-        setCurrentPage={setCurrentPage}
-        animals={statues.map((s) => s.tier)}
-      />
+      <PageHeader text="Zoo 2 Wettbewerbe" />
 
       <ResultsInfo
         currentCount={currentItems.length}
-        totalCount={filteredCount}
+        totalCount={contests.length}
       />
 
       {currentItems.length > 0 ? (
         <>
+          {/* Desktop Ansicht */}
           <TableContainer>
             <ContestDesktopTable
-              statues={currentItems}
-              sortBy={sortBy}
-              sortDirection={sortDirection}
-              onSort={toggleSort}
+              contests={currentItems}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
             />
           </TableContainer>
 
+          {/* Mobile Ansicht */}
           <MobileListView
-            currentItems={contests}
-            onItemClick={handleStatueClick}
-            renderCard={(statue, handlers) => (
-              <ContestMobileCard statue={statue} onClick={handlers.onClick} />
+            currentItems={currentItems}
+
+            renderCard={(contest) => (
+              <ContestMobileCard
+                key={contest.id}
+                contest={contest}
+                onClick={handleContestClick}
+                onEdit={handleEdit(contest.id)}
+                onDelete={() => handleDelete(contest.id)}
+              />
             )}
           />
         </>
       ) : (
-        <EmptyState onReset={handleResetFilters} />
+        <EmptyState onReset={() => router.reload()} />
       )}
-
       {totalPages > 1 && (
         <PaginationSignpost
           currentPage={currentPage}

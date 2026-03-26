@@ -6,88 +6,107 @@ import Table from "../../page-structure/Table/Table";
 import { NameDE } from "../../page-structure/Elements/Name";
 import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
 import LinkedRow from "../../page-structure/Table/LinkedRow";
+import ActionsHeadline from "../../page-structure/Table/ActionsHeadline";
+import ActionGroupIcons from "../../page-structure/Table/ActionGroupIcons";
 
-
-export default function ContestDesktopTable({ contests }) {
+export default function ContestDesktopTable({ contests, onEdit, onDelete }) {
   const { t } = /** @type {any} */ (
     useTranslation(["animals", "contests", "common"])
   );
 
-  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-
+  const options = { day: "2-digit", month: "2-digit", year: "numeric" };
 
   return (
     <Table>
       <thead>
-      <tr>
-        <th>
-          {t("contests:contestOverview.table.period")}
-        </th>
-        <th>
-          {t("contests:contestOverview.table.statues_animals")}
-        </th>
-        <th>
-          {t("contests:contestOverview.table.status")}
-        </th>
-      </tr>
+        <tr>
+          <th>{t("contests:contestOverview.table.period")}</th>
+          <th>{t("contests:contestOverview.table.statues_animals")}</th>
+          <th>{t("contests:contestOverview.table.status")}</th>
+          <ActionsHeadline text={t("common:actions")} />
+        </tr>
       </thead>
       <tbody>
-      {contests.map((contest) => {
-        const startDate = new Date(contest.start).toLocaleDateString('de-DE', options);
-        const endDate = new Date(contest.ende).toLocaleDateString('de-DE', options);
-        const isAktiv = new Date() >= new Date(contest.start) && new Date() <= new Date(contest.ende);
+        {contests.map((contest) => {
+          const startDate = new Date(contest.start).toLocaleDateString(
+            "de-DE",
+            options
+          );
+          const endDate = new Date(contest.ende).toLocaleDateString(
+            "de-DE",
+            options
+          );
+          const isAktiv =
+            new Date() >= new Date(contest.start) &&
+            new Date() <= new Date(contest.ende);
 
-        return (
-          <LinkedRow key={contest.id} path={`/contests/${contest.id}`}>
-            {/* Zeitraum */}
-            <td>
-              <DateWrapper>
-                <span>{startDate}</span>
-                <Divider>-</Divider>
-                <span>{endDate}</span>
-              </DateWrapper>
-            </td>
+          return (
+            <LinkedRow key={contest.id} path={`/contests/${contest.id}`}>
+              {/* Zeitraum */}
+              <td>
+                <DateWrapper>
+                  <span>{startDate}</span>
+                  <Divider>-</Divider>
+                  <span>{endDate}</span>
+                </DateWrapper>
+              </td>
 
-            {/* Die 3 Tiere/Statuen */}
-            <td>
-              <StatueGroup>
-                {contest.statuen && contest.statuen.map((link) => {
-                  const statue = link.statue;
-                  const tier = statue.tier;
-                  const tiername = tier?.texte?.[0]?.name || "Unbekannt";
-                  const tierBild = tier?.bild;
+              {/* Die 3 Tiere/Statuen */}
+              <td>
+                <StatueGroup>
+                  {contest.statuen &&
+                    contest.statuen.map((link) => {
+                      const statue = link.statue;
+                      const tier = statue.tier;
+                      const tiername = tier?.texte?.[0]?.name || "Unbekannt";
+                      const tierBild = tier?.bild;
 
-                  return (
-                    <AnimalCard key={link.id}>
-                      <ItemThumbnail
-                        image={tierBild}
-                        name={tiername}
-                        size="65"
-                        category={`tiere/${(tier.gehege?.name || "standard").toLowerCase()}`}
-                        habitat={tier?.gehege}
-                      />
-                      <NameStack>
-                        <NameDE>{tiername}</NameDE>
-                        <SubText>{tier?.gehege?.name}</SubText>
-                      </NameStack>
-                    </AnimalCard>
-                  );
-                })}
-              </StatueGroup>
-            </td>
+                      return (
+                        <AnimalCard key={link.id}>
+                          <ItemThumbnail
+                            image={tierBild}
+                            name={tiername}
+                            size="65"
+                            category={`tiere/${(tier.gehege?.name || "standard").toLowerCase()}`}
+                            habitat={tier?.gehege}
+                          />
+                          <NameStack>
+                            <NameDE>{tiername}</NameDE>
+                            <SubText>{tier?.gehege?.name}</SubText>
+                          </NameStack>
+                        </AnimalCard>
+                      );
+                    })}
+                </StatueGroup>
+              </td>
 
-            {/* Status Badge */}
-            <td>
-              <StatusWrapper
-                $active={isAktiv}
-                title={isAktiv ? t("contests:status.running") : t("contests:status.upcoming")}
-              >
-                <StatusDot $active={isAktiv} />
-              </StatusWrapper>
-            </td>
-          </LinkedRow>
-        );
-      })}
+              {/* Status Badge */}
+              <td>
+                <StatusWrapper
+                  $active={isAktiv}
+                  title={
+                    isAktiv
+                      ? t("contests:status.running")
+                      : t("contests:status.upcoming")
+                  }
+                >
+                  <StatusDot $active={isAktiv} />
+                </StatusWrapper>
+              </td>
+
+              <td>
+                <ActionGroupIcons
+                  onEdit={function () {
+                    onEdit(contest.id);
+                  }}
+                  onDelete={function () {
+                    onDelete(contest.id);
+                  }}
+                />
+              </td>
+            </LinkedRow>
+          );
+        })}
       </tbody>
     </Table>
   );
@@ -98,22 +117,22 @@ export default function ContestDesktopTable({ contests }) {
 const DateWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;    
+  align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 0.95rem;
-  line-height: 1.1;       
+  line-height: 1.1;
   color: #333;
   padding: 4px 0;
 `;
 
 const Divider = styled.span`
-  height: 14px;           
+  height: 14px;
   display: flex;
-  align-items: center;    
-  color: #88a04d;         
-  font-size: 1.2rem;      
-  user-select: none;      
+  align-items: center;
+  color: #88a04d;
+  font-size: 1.2rem;
+  user-select: none;
 `;
 
 const StatueGroup = styled.div`
@@ -130,8 +149,8 @@ const AnimalCard = styled.div`
   padding: 8px 12px;
   border-radius: 10px;
   border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  min-width: 200px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  min-width: 200px;
 `;
 
 const NameStack = styled.div`
@@ -176,21 +195,24 @@ const pulseShockwave = keyframes`
 const StatusDot = styled.div`
   width: 12px;
   height: 12px;
-  background-color: ${props => props.$active ? "#5d7a2a" : "#bbb"};
+  background-color: ${(props) => (props.$active ? "#5d7a2a" : "#bbb")};
   border-radius: 50%;
   margin: 0 auto;
   position: relative;
 
   /* Nur der aktive Wettbewerb pulsiert - Trick 3: Schnellere Frequenz (1.2s) */
-  animation: ${props => props.$active ? pulseShockwave : "none"} 1.2s infinite ease-out;
+  animation: ${(props) => (props.$active ? pulseShockwave : "none")} 1.2s
+    infinite ease-out;
 
   /* Fallback-Schatten für besseren Kontrast */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   cursor: help;
 
   /* Zusätzlicher visueller Effekt: Ein "Kern" */
-  ${props => props.$active && `
+  ${(props) =>
+    props.$active &&
+    `
     &::after {
       content: '';
       position: absolute;
