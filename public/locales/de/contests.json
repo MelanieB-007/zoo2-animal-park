@@ -28,6 +28,10 @@
     "entry": {
       "title": "Tiere eintragen",
       "chooseMember": "Mitglied wählen"
+    },
+    "tooltips": {
+      "edit": "Wettbewerb bearbeiten",
+      "delete": "Wettbewerb löschen"
     }
   }
 }
