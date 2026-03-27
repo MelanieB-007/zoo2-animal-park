@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import PageWrapper from "../../../components/page-structure/PageWrapper";
 import ContestEntryForm from "../../../components/contests/ContestEntryForm/ContestEntryForm";
-import { getAllMembers } from "../../../services/memberService";
+import { getAllMembers } from "../../../services/MemberService";
 import { getContestById } from "../../../services/ContestService";
 
 export default function ContestEntryPage({ contest, members }) {
