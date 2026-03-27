@@ -21,6 +21,7 @@ export default function AnimalDetailContent({ animal, onDelete, onEdit }) {
     <Wrapper>
       <TopBar>
         <ActionGroupIcons
+          localeFile="animals"
           onEdit={onEdit}
           onDelete={onDelete}
         />

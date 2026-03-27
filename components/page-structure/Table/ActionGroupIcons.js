@@ -5,22 +5,22 @@ import { useTranslation } from "next-i18next";
 import EditButton from "../icons/EditIcon";
 import DeleteButton from "../icons/DeleteIcon";
 
-export default function ActionGroupIcons({ onEdit, onDelete }) {
+export default function ActionGroupIcons({ localeFile, onEdit, onDelete }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
 
   return (
     <ActionGroup onClick={(e) => e.stopPropagation()}>
       <EditButton
-        tooltip={t("animals:tooltips.edit")}
-        altText={t("animals:tooltips.edit")}
+        tooltip={t(`${localeFile}:tooltips.edit`)}
+        altText={t(`${localeFile}:tooltips.edit`)}
         onClick={(e) => {
           onEdit(e);
         }}
         aria-label={t("animals:tooltips.edit")}
       />
       <DeleteButton
-        tooltip={t("animals:tooltips.delete")}
-        altText={t("animals:tooltips.delete")}
+        tooltip={t(`${localeFile}:tooltips.delete`)}
+        altText={t(`${localeFile}:tooltips.delete`)}
         align="left"
         onClick={(e) => {
           onDelete(e);

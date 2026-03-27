@@ -20,8 +20,8 @@ export default function ContestEntryPage({ contest, members }) {
   });
 
   const columns = [
-    { key: "level", label: "Level", type: "number", placeholder: "0", $flex: 1 },
-    { key: "count", label: "Anzahl", type: "number", placeholder: "0", $flex: 1 },
+    { key: "level", label: "Level", type: "number", placeholder: "", $flex: 1 },
+    { key: "count", label: "Anzahl", type: "number", placeholder: "", $flex: 1 },
   ];
 
   const handlers = {

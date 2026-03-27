@@ -159,6 +159,7 @@ export default function AnimalDesktopTable({
 
                 <td>
                   <ActionGroupIcons
+                    localeFile="animals"
                     onEdit={function () {
                       onEdit(animal.id);
                     }}

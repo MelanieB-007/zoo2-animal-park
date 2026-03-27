@@ -96,6 +96,7 @@ export default function ContestDesktopTable({ contests, onEdit, onDelete }) {
 
               <td>
                 <ActionGroupIcons
+                  localeFile="contests"
                   onEdit={function () {
                     onEdit(contest.id);
                   }}
