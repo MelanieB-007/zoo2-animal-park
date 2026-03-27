@@ -6,7 +6,7 @@ import useSWR from "swr";
 import { filterStatues, sortStatues, paginate } from "../../../services/StatueHelper";
 import { useSort } from "../../../hooks/useSort";
 import { getAllStatues } from "../../../services/StatueService";
-import StatueOverviewContent from "../../../components/contests/statues/StatueOverviewContent";
+import StatueOverviewContent from "../../../components/contests/statues/StatueOverview/StatueOverviewContent";
 
 export default function StatueOverview({ fallbackData }) {
   const router = useRouter();
