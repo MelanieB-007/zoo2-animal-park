@@ -6,7 +6,7 @@ import EditButton from "../icons/EditIcon";
 import DeleteButton from "../icons/DeleteIcon";
 
 export default function ActionGroupIcons({ localeFile, onEdit, onDelete }) {
-  const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
+  const { t } = /** @type {any} */ (useTranslation([localeFile, "common"]));
 
   return (
     <ActionGroup onClick={(e) => e.stopPropagation()}>
@@ -16,7 +16,7 @@ export default function ActionGroupIcons({ localeFile, onEdit, onDelete }) {
         onClick={(e) => {
           onEdit(e);
         }}
-        aria-label={t("animals:tooltips.edit")}
+        aria-label={t(`${localeFile}:tooltips.edit`)}
       />
       <DeleteButton
         tooltip={t(`${localeFile}:tooltips.delete`)}

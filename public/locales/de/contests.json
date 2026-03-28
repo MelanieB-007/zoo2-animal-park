@@ -7,7 +7,9 @@
   },
   "contextForm": {
     "createTitle": "Neuen Wettbewerb anlegen",
-    "createSubtitle": "Wähle den Zeitraum und die drei Statuen für diesen Wettbewerb aus."
+    "editTitle": "Wettbewerb bearbeiten",
+    "createSubtitle": "Wähle den Zeitraum und die drei Statuen für diesen Wettbewerb aus.",
+    "saveContest": "Wettbewerb speichern"
   },
   "contestOverview": {
     "overview_title": "Wettbewerbe",

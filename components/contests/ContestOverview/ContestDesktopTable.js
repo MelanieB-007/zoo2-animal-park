@@ -97,12 +97,8 @@ export default function ContestDesktopTable({ contests, onEdit, onDelete }) {
               <td>
                 <ActionGroupIcons
                   localeFile="contests"
-                  onEdit={function () {
-                    onEdit(contest.id);
-                  }}
-                  onDelete={function () {
-                    onDelete(contest.id);
-                  }}
+                  onEdit={() => onEdit(contest.id)}
+                  onDelete={() => onDelete(contest.id)}
                 />
               </td>
             </LinkedRow>

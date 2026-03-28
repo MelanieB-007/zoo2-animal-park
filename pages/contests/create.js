@@ -1,72 +1,60 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
-
+import { prisma } from "../../lib/prisma";
+import ContestForm from "../../components/contests/ContestForm/ContestForm";
+import { toast } from "react-toastify";
+import PageHeader from "../../components/page-structure/PageHeader";
 import PageWrapper from "../../components/page-structure/PageWrapper";
 import ContentWrapper from "../../components/page-structure/ContentWrapper";
-import ContestForm from "../../components/contests/ContestForm/ContestForm";
-import { getAllStatues } from "../../services/StatueService";
-import PageHeader from "../../components/page-structure/PageHeader";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 export default function CreateContest({ statues }) {
-  const { t } = /** @type {any} */ (useTranslation(["contest", "common"]));
-
-  const { data: session, status } = useSession();
+  const { t } = /** @type {any} */ (useTranslation(["contests", "common"]));
   const router = useRouter();
 
-  // 1. AUTH-CHECK: Wenn nicht eingeloggt, zurück zur Übersicht oder Login
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/api/auth/signin");
+  const handleCreate = async (formData) => {
+    const res = await fetch("/api/contests/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (res.ok) {
+      toast.success("Wettbewerb erfolgreich angelegt!");
+      router.push("/contests");
+    } else {
+      toast.error("Fehler beim Anlegen.");
     }
-  }, [status, router]);
-
-  // Ladezustand anzeigen, während die Session geprüft wird
-  if (status === "loading") {
-    return (
-      <PageWrapper>
-        <ContentWrapper>
-          <p>{t("common:loading")}</p>
-        </ContentWrapper>
-      </PageWrapper>
-    );
-  }
-
-  // Falls nicht eingeloggt, nichts rendern (Redirect läuft oben)
-  if (!session) return null;
+  };
 
   return (
     <PageWrapper>
       <ContentWrapper>
         <PageHeader text={t("contests:contextForm.createTitle")} />
-
-        <p style={{ marginBottom: "30px", color: "#666" }}>
-          {t("contests:contextForm.createSubtitle")}
-        </p>
-
-        <ContestForm statues={statues} />
+      <ContestForm statues={statues} onSubmit={handleCreate} />
       </ContentWrapper>
     </PageWrapper>
   );
 }
 
 export async function getServerSideProps({ locale }) {
-  // 1. Statuen aus der DB holen (inkl. Tier-Namen via Prisma)
-  const allStatues = await getAllStatues(locale);
+  // Wir laden ALLE Statuen, damit der User sie links im OriginTransfer sieht
+  const allStatues = await prisma.wettbewerbstatuen.findMany({
+    include: {
+      tier: {
+        include: { texte: true },
+      },
+    },
+  });
 
   return {
     props: {
-      // JSON.parse(JSON.stringify(...)) ist wichtig, um Date-Objekte von Prisma
-      // Next.js-konform zu serialisieren
       statues: JSON.parse(JSON.stringify(allStatues)),
-
-      // Lade alle benötigten Sprachdateien
-      ...(await serverSideTranslations(locale || "de", [
+      ...(await serverSideTranslations(locale, [
         "common",
         "contests",
-        "animals"
+        "animals",
       ])),
     },
   };

@@ -1,44 +1,70 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { toast } from "react-toastify";
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import OriginTransfer from "../../ui/OriginTransfer";
 
-export default function ContestForm({ statues }) {
-  const router = useRouter();
-  const { t } = /** @type {any} */ (useTranslation(["contests", "common"]));
+import OriginTransfer from "../../ui/OriginTransfer";
+import SubmitButton from "../../forms/SubmitButton";
+
+export default function ContestForm({
+  statues = [],
+  initialData = null,
+  onSubmit,
+}) {
+
+  const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-
-  const getNextWednesday = (date) => {
-    const result = new Date(date);
-    // getDay() liefert 3 für Mittwoch. Wir rechnen die Differenz aus.
-    const day = result.getDay();
-    const diff = (3 - day + 7) % 7;
-    result.setDate(result.getDate() + diff);
-    return result;
+  // Hilfsfunktion zum Formatieren von Prisma-Dates (ISO) zu HTML-Input-Dates (YYYY-MM-DD)
+  const formatDate = (date) => {
+    if (!date) return "";
+    const d = new Date(date);
+    return d.toISOString().split("T")[0];
   };
 
-  const today = new Date();
-  const startWednesday = getNextWednesday(today);
+  // 1. Initialisierung des Form-States
+  const [formData, setFormData] = useState(() => {
+    if (initialData) {
+      return {
+        start: formatDate(initialData.start),
+        ende: formatDate(initialData.ende),
+        aktiv: initialData.aktiv ?? 1,
+      };
+    }
 
-  const endWednesday = new Date(startWednesday);
-  endWednesday.setDate(startWednesday.getDate() + 7);
+    // Fallback: Logik für neuen Wettbewerb (nächster Mittwoch)
+    const getNextWednesday = (date) => {
+      const result = new Date(date);
+      const day = result.getDay();
+      const diff = (3 - day + 7) % 7;
+      result.setDate(result.getDate() + diff);
+      return result;
+    };
+    const start = getNextWednesday(new Date());
+    const end = new Date(start);
+    end.setDate(start.getDate() + 7);
 
-  const formatDate = (date) => date.toISOString().split('T')[0];
-
-  const [formData, setFormData] = useState({
-    start: formatDate(startWednesday), // Standard: 2026-03-25 (heute)
-    ende: formatDate(endWednesday),    // Standard: 2026-04-01
-    aktiv: 1,
+    return {
+      start: formatDate(start),
+      ende: formatDate(end),
+      aktiv: 1,
+    };
   });
 
-  // State für die 3 ausgewählten Statuen
-  const [selectedStatues, setSelectedStatues] = useState([]);
+  // 2. Initialisierung der gewählten Statuen
+  const [selectedStatues, setSelectedStatues] = useState(() => {
+    if (initialData?.statuen) {
+      // WICHTIG: Mappen der verschachtelten Prisma-Struktur (link.statue.tier...)
+      return initialData.statuen.map((link) => ({
+        id: link.statue.id,
+        name: link.statue.tier?.texte?.[0]?.name || `Statue #${link.statue.id}`,
+      }));
+    }
+    return [];
+  });
 
-  // Logik: Welche Statuen sind noch übrig? (Einfach gefiltert)
-  const availableStatues = statues
+  // Verfügbare Statuen filtern (die, die noch nicht rechts sind)
+  const availableStatues = (statues || [])
     .filter((s) => !selectedStatues.find((sel) => sel.id === s.id))
     .map((s) => ({
       id: s.id,
@@ -57,7 +83,7 @@ export default function ContestForm({ statues }) {
     setSelectedStatues(selectedStatues.filter((s) => s.id !== statue.id));
   };
 
-  const handleSubmit = async (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     if (selectedStatues.length !== 3) {
@@ -65,43 +91,30 @@ export default function ContestForm({ statues }) {
       return;
     }
 
-    if (formData.start && formData.ende) {
-      const startDate = new Date(formData.start);
-      const endDate = new Date(formData.ende);
-
-      if (endDate < startDate) {
-        toast.error("Das Enddatum darf nicht vor dem Startdatum liegen!");
-        return;
-      }
+    const startDate = new Date(formData.start);
+    const endDate = new Date(formData.ende);
+    if (endDate < startDate) {
+      toast.error("Das Enddatum darf nicht vor dem Startdatum liegen!");
+      return;
     }
+
+    const submissionData = {
+      ...formData,
+      statuenIds: selectedStatues.map((s) => s.id),
+    };
 
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/contests/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          statuenIds: selectedStatues.map((s) => s.id),
-        }),
-      });
-
-      if (response.ok) {
-        toast.success("Wettbewerb erfolgreich angelegt!");
-        router.push("/contests");
-      } else {
-        toast.error("Fehler beim Speichern.");
-      }
+      await onSubmit(submissionData);
     } catch (error) {
-      toast.error("Netzwerkfehler.");
+      console.error("Submission error:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <SectionHeadline>Zeitraum & Status</SectionHeadline>
+    <form onSubmit={handleFormSubmit}>
       <Row>
         <InputGroup>
           <label>Startdatum</label>
@@ -111,44 +124,46 @@ export default function ContestForm({ statues }) {
             onChange={(e) => {
               const newStart = e.target.value;
               const startDate = new Date(newStart);
-
-              // Automatisch 7 Tage auf das neue Startdatum draufrechnen
               const newEnd = new Date(startDate);
               newEnd.setDate(startDate.getDate() + 7);
 
               setFormData({
                 ...formData,
                 start: newStart,
-                ende: formatDate(newEnd)
+                ende: formatDate(newEnd),
               });
             }}
             required
           />
         </InputGroup>
+
         <InputGroup>
           <label>Enddatum</label>
           <input
             type="date"
             value={formData.ende}
-            // WICHTIG: min={formData.start} verhindert das Auswählen früherer Daten
             min={formData.start}
-            disabled={!formData.start} // Optional: Deaktiviert bis Start gewählt ist
-            onChange={(e) => setFormData({...formData, ende: e.target.value})}
+            onChange={(e) => setFormData({ ...formData, ende: e.target.value })}
             required
           />
         </InputGroup>
+
         <CheckboxGroup>
           <input
             type="checkbox"
             id="aktiv"
             checked={formData.aktiv === 1}
-            onChange={(e) => setFormData({...formData, aktiv: e.target.checked ? 1 : 0})}
+            onChange={(e) =>
+              setFormData({ ...formData, aktiv: e.target.checked ? 1 : 0 })
+            }
           />
           <label htmlFor="aktiv">Wettbewerb aktiv</label>
         </CheckboxGroup>
       </Row>
 
-      <SectionHeadline>Statuen-Auswahl ({selectedStatues.length} / 3)</SectionHeadline>
+      <SectionHeadline>
+        Statuen-Auswahl ({selectedStatues.length} / 3)
+      </SectionHeadline>
 
       <OriginTransfer
         available={availableStatues}
@@ -158,28 +173,23 @@ export default function ContestForm({ statues }) {
         maxSelected={3}
       />
 
-      <SubmitButton type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Wird gespeichert..." : "Wettbewerb anlegen"}
-      </SubmitButton>
-    </StyledForm>
+      <SubmitButton
+        label={
+          isSubmitting
+            ? t("common:saving")
+            : t("contests:contextForm.saveContest")
+        }
+        isSubmitting={isSubmitting}
+      />
+    </form>
   );
 }
 
-// --- Styles bleiben wie gehabt ---
-const StyledForm = styled.form`
-  background: white;
-  border: 2px solid var(--color-green);
-  border-radius: var(--border-radius);
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
 const SectionHeadline = styled.h3`
-  color: var(--color-green);
+  color: #5d7a2a;
   border-bottom: 2px solid #eee;
   padding-bottom: 8px;
+  padding-top: 20px;
   margin: 0;
 `;
 
@@ -194,7 +204,17 @@ const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  input { padding: 10px; border-radius: 6px; border: 1px solid #ccc; }
+  label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #555;
+  }
+  input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
 `;
 
 const CheckboxGroup = styled.div`
@@ -202,16 +222,14 @@ const CheckboxGroup = styled.div`
   align-items: center;
   gap: 10px;
   padding-bottom: 10px;
-`;
-
-const SubmitButton = styled.button`
-  background: var(--color-green);
-  color: white;
-  padding: 15px;
-  border: none;
-  border-radius: var(--border-radius);
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 20px;
-  &:disabled { opacity: 0.5; }
+  label {
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+  }
+  input {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+  }
 `;

@@ -1,75 +1,87 @@
-import React, { useState } from "react";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
+import Swal from "sweetalert2";
 
-import { getAllContests } from "../../../services/ContestService";
-import ContestOverviewContent from "../../../components/contests/ContestOverview/ContestOverviewContent";
-import { paginate } from "../../../services/AnimalHelper";
+import PageWrapper from "../../../components/page-structure/PageWrapper";
+import ContestDetailView from "../../../components/contests/ContestDetail/ContestDetailView";
+import { getContestById, getResultsByContestId } from "../../../services/ContestService";
+import { calculateTierStats } from "../../../services/ContestHelper";
 
 
-export default function ContestsOverview({ initialContests }) {
-  const [contests, setContests] = useState(initialContests || []);
-  const [currentPage, setCurrentPage] = useState(1);
+
+export default function ContestDetailPage({ contest, results }) {
+  const { t } = /** @type {any} */ (useTranslation(["contests", "common"]));
   const router = useRouter();
 
-  const itemsPerPage = 10;
-  const currentItems = paginate(contests, currentPage, itemsPerPage);
-  const totalPages = Math.ceil(contests.length / itemsPerPage);
+  const handleEdit = () => {
+    router.push(`/contests/${contest.id}/edit`);
+  };
 
-  const handleDelete = async (id) => {
-    if (!confirm("Wettbewerb wirklich löschen? Alle Punkte-Einträge gehen verloren!")) return;
+  const handleDelete = async () => {
+    // Hier nutzen wir jetzt Swal für die Sicherheitsabfrage
+    const result = await Swal.fire({
+      title: t("common:confirmDeleteTitle"), // z.B. "Bist du sicher?"
+      text: t("common:confirmDeleteText"), // z.B. "Alle Daten dieses Wettbewerbs gehen verloren!"
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: t("common:deleteButton"),
+      cancelButtonText: t("common:cancelButton"),
+    });
 
-    try {
-      const res = await fetch(`/api/contests/${id}`, { method: "DELETE" });
-      if (res.ok) {
-        // Lokal aus dem State entfernen, damit die UI sofort reagiert
-        setContests(prev => prev.filter(c => c.id !== id));
-      } else {
-        alert("Fehler beim Löschen.");
+    // Nur wenn der User auf den Bestätigen-Button geklickt hat
+    if (result.isConfirmed) {
+      try {
+        const res = await fetch(`/api/contests/${contest.id}`, {
+          method: "DELETE",
+        });
+        if (res.ok) {
+          await Swal.fire(
+            t("common:deletedTitle"),
+            t("common:deletedText"),
+            "success"
+          );
+          await router.push("/contests");
+        } else {
+          await Swal.fire("Error", t("common:errorDelete"), "error");
+        }
+      } catch (err) {
+        console.error("Delete failed:", err);
+        await Swal.fire("Error", "Server Error", "error");
       }
-    } catch (err) {
-      console.error("Delete failed:", err);
     }
   };
 
-  function handleContestClick(id) {
-    router.push(`/contests/${id}`);
-  }
-
-  function handleEdit(id) {
-    router.push(`/contests/${id}/edit`);
-  }
+  const analyses = contest.statuen.map(link => ({
+    tier: link.statue.tier,
+    stats: calculateTierStats(link.statue.tier.id, results)
+  }));
 
   return (
-   <ContestOverviewContent
-   contests = {contests}
-   currentItems={currentItems}
-   handleContestClick={handleContestClick}
-   handleEdit={handleEdit}
-   handleDelete={handleDelete}
-   totalPages={totalPages}
-   currentPage={currentPage}
-   handleNextPage={() => setCurrentPage((prev) => prev + 1)}
-   handlePrevPage={() => setCurrentPage((prev) => prev - 1)}
-   />
+    <PageWrapper>
+      <ContestDetailView
+        contest={contest}
+        analyses={analyses}
+        onEdit = {handleEdit}
+        onDelete = {handleDelete}
+      />
+    </PageWrapper>
   );
 }
 
-export async function getServerSideProps({ locale }) {
-  try {
-    const data = await getAllContests();
-    return {
-      props: {
-        initialContests: JSON.parse(JSON.stringify(data)),
-        ...(await serverSideTranslations(locale, ["common", "contests", "animals"])),
-      },
-    };
-  } catch (error) {
-    return {
-      props: {
-        initialContests: [],
-        ...(await serverSideTranslations(locale, ["common", "contests", "animals"])),
-      },
-    };
-  }
+export async function getServerSideProps({ params, locale }) {
+  const contest = await getContestById(params.id);
+  const results = await getResultsByContestId(params.id);
+
+  if (!contest) return { notFound: true };
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "contests", "animals"])),
+      contest: JSON.parse(JSON.stringify(contest)),
+      results: JSON.parse(JSON.stringify(results)),
+    },
+  };
 }
