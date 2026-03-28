@@ -21,14 +21,16 @@ export default function DynamicRowInput({
 
       <Header>
         {columns.map((col) => (
-          <HeaderCell key={col.key} $flex={col.$flex}> {/* Hier $flex statt flex */}
+          <HeaderCell key={col.key} $flex={col.$flex}>
+            {" "}
+            {/* Hier $flex statt flex */}
             {col.label}
           </HeaderCell>
         ))}
         <DeletePlaceholder />
       </Header>
 
-      {rows.map((row) => (
+      {(rows || []).map((row) => (
         <Row key={row.id}>
           {columns.map((col) => (
             <Cell key={col.key} $flex={col.$flex}>
