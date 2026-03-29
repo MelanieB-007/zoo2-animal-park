@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import RightAlignedTd from "./RightAlignedTd";
 
 export default function DesktopOnlyTd({children}){
   return (
@@ -9,10 +10,9 @@ export default function DesktopOnlyTd({children}){
   );
 }
 
-const StyledDesktopOnlyTd = styled.td`
-  display: none; /* Standardmäßig ausblenden (Mobile/Tablet) */
-
-  /* Erst ab einer Breite, wo die Tabelle wirklich Platz hat, anzeigen */
+const StyledDesktopOnlyTd = styled(RightAlignedTd)`
+  display: none;
+  
   @media (min-width: 1100px) {
     display: table-cell;
   }
