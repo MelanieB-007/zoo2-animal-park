@@ -1,15 +1,15 @@
 import { useTranslation } from "next-i18next";
 import React from "react";
 
-import Table from "../../page-structure/Table/Table";
-import SortableTableHeader from "../../page-structure/Table/SortableTableHeader";
-import InfoCell from "../../page-structure/Table/InfoCell";
-import { NameDE } from "../../page-structure/Elements/Name";
-import LinkedRow from "../../page-structure/Table/LinkedRow";
-import NoResult from "../../page-structure/Table/NoResult";
-import GehegeBadge from "../../ui/GehegeBadge";
-import StallLevelBadge from "../../ui/StallLevelBadge";
-import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
+import Table from "../../../page-structure/Table/Table";
+import SortableTableHeader from "../../../page-structure/Table/SortableTableHeader";
+import InfoCell from "../../../page-structure/Table/InfoCell";
+import { NameDE } from "../../../page-structure/Elements/Name";
+import LinkedRow from "../../../page-structure/Table/LinkedRow";
+import NoResult from "../../../page-structure/Table/NoResult";
+import GehegeBadge from "../../../ui/GehegeBadge";
+import StallLevelBadge from "../../../ui/StallLevelBadge";
+import ItemThumbnail from "../../../page-structure/icons/ItemThumbnail";
 
 export default function StatueDesktopTable({
   statues,

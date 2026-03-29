@@ -101,7 +101,7 @@ export default function AnimalDesktopTable({
             align="right"
           />
 
-          {<ActionsHeadline text={t("common:actions")} />}
+          <ActionsHeadline text={t("common:actions")} />
         </tr>
       </thead>
       <tbody>
@@ -157,8 +157,9 @@ export default function AnimalDesktopTable({
                   <XPIcon label={animal.auswildern} />
                 </DesktopOnlyTd>
 
-                {<td>
+                <td>
                   <ActionGroupIcons
+                    localeFile="animals"
                     onEdit={function () {
                       onEdit(animal.id);
                     }}
@@ -166,7 +167,7 @@ export default function AnimalDesktopTable({
                       onDelete(animal.id);
                     }}
                   />
-                </td>}
+                </td>
               </LinkedRow>
             );
           })

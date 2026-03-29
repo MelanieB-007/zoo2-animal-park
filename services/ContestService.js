@@ -1,27 +1,24 @@
 import { prisma } from "../lib/prisma";
 
-export async function createContest({ start, ende, aktiv, statuenIds }) {
-  return prisma.$transaction(async (tx) => {
-    // 1. Wettbewerb anlegen
-    const newContest = await tx.wettbewerbe.create({
-      data: {
-        start: new Date(start),
-        ende: new Date(ende),
-        aktiv: parseInt(aktiv),
+export async function createContest(data) {
+  const { start, ende, aktiv, statuenIds } = data;
+
+  // Prisma Transaktion: Erstellt den Wettbewerb und die Verknüpfungen in einem Rutsch
+  return await prisma.wettbewerbe.create({
+    data: {
+      start: new Date(start),
+      ende: new Date(ende),
+      aktiv: parseInt(aktiv) || 1,
+      // Hier werden die Einträge in der Tabelle 'contest_statuen' erzeugt
+      statuen: {
+        create: statuenIds.map((sId) => ({
+          statueId: parseInt(sId),
+        })),
       },
-    });
-
-    // 2. Verknüpfungen erstellen
-    const statueLinks = statuenIds.map((id) => ({
-      wettbewerbId: newContest.id,
-      statueId: parseInt(id),
-    }));
-
-    await tx.contest_statuen.createMany({
-      data: statueLinks,
-    });
-
-    return newContest;
+    },
+    include: {
+      statuen: true, // Damit wir im Response sehen, dass es geklappt hat
+    },
   });
 }
 
@@ -59,10 +56,11 @@ export async function getAllContests() {
 }
 
 export async function getContestById(id) {
+  console.log("Suche Wettbewerb mit ID:", id, "Typ:", typeof id);
   try {
     const contest = await prisma.wettbewerbe.findUnique({
       where: {
-        id: parseInt(id)
+        id: parseInt(id),
       },
       include: {
         statuen: {
@@ -72,14 +70,14 @@ export async function getContestById(id) {
                 tier: {
                   include: {
                     texte: true,
-                    gehege: true
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+                    gehege: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     });
 
     if (!contest) {

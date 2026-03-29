@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 
@@ -6,22 +6,64 @@ import PageWrapper from "../../../components/page-structure/PageWrapper";
 import ContestEntryForm from "../../../components/contests/ContestEntryForm/ContestEntryForm";
 import { getAllMembers } from "../../../services/MemberService";
 import { getContestById } from "../../../services/ContestService";
+import { toast } from "react-toastify";
 
 export default function ContestEntryPage({ contest, members }) {
   const router = useRouter();
   const [selectedMember, setSelectedMember] = useState("");
 
-  const [entries, setEntries] = useState(() => {
+  // Hilfsfunktion für das leere Start-Layout
+  const getEmptyEntries = () => {
     return contest.statuen.reduce((acc, link) => {
       const tierId = link.statue.tier.id;
+      // Ein leeres Feld als Startpunkt
       acc[tierId] = [{ id: Math.random(), level: "", count: "" }];
       return acc;
     }, {});
-  });
+  };
+
+  const [entries, setEntries] = useState(getEmptyEntries);
+
+  useEffect(() => {
+    async function loadMemberEntries() {
+      // Wenn kein Mitglied gewählt ist, sofort auf leer zurücksetzen
+      if (!selectedMember) {
+        setEntries(getEmptyEntries());
+        return;
+      }
+
+      try {
+        const res = await fetch(
+          `/api/contests/get-entry?contestId=${contest.id}&memberId=${selectedMember}`
+        );
+
+        if (res.ok) {
+          const result = await res.json();
+
+          // Wir nehmen das leere Grundgerüst als Basis
+          const baseEntries = getEmptyEntries();
+
+          // Wenn die DB Daten liefert, mergen wir sie in das Grundgerüst
+          if (result.data && Object.keys(result.data).length > 0) {
+            // Wir stellen sicher, dass für JEDE Tier-ID im Wettbewerb ein Key existiert
+            const mergedEntries = { ...baseEntries, ...result.data };
+            setEntries(mergedEntries);
+          } else {
+            setEntries(baseEntries);
+          }
+        }
+      } catch (error) {
+        console.error("Fehler beim Laden:", error);
+        setEntries(getEmptyEntries()); // Fallback bei Fehler
+      }
+    }
+
+    loadMemberEntries();
+  }, [selectedMember, contest.id]);
 
   const columns = [
-    { key: "level", label: "Level", type: "number", placeholder: "0", $flex: 1 },
-    { key: "count", label: "Anzahl", type: "number", placeholder: "0", $flex: 1 },
+    { key: "level", label: "Level", type: "number", placeholder: "", $flex: 1 },
+    { key: "count", label: "Anzahl", type: "number", placeholder: "", $flex: 1 },
   ];
 
   const handlers = {
@@ -49,7 +91,10 @@ export default function ContestEntryPage({ contest, members }) {
     });
 
     if (res.ok) {
+      toast.success("Daten erfolgreich übermittelt!");
       router.push(`/contests/${contest.id}`);
+    } else {
+      toast.error("Hoppla, da ging was schief beim Speichern.");
     }
   };
 

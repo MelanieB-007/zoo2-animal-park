@@ -5,9 +5,10 @@ import styled from "styled-components";
 import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
 import PageHeader from "../../page-structure/PageHeader";
 import { useTranslation } from "next-i18next";
+import ActionGroupIcons from "../../page-structure/Table/ActionGroupIcons";
 
 
-export default function ContestDetailView({ contest, analyses }) {
+export default function ContestDetailView({ contest, analyses, onEdit, onDelete }) {
   const { t } = /** @type {any} */ (
     useTranslation(["animals", "contests", "common"])
   );
@@ -17,17 +18,31 @@ export default function ContestDetailView({ contest, analyses }) {
 
   return (
     <Container>
-      <PageHeader text={t("contests:details.headline", "Wettbewerbs-Planung")} />
+      <AdminActions>
+        <ActionGroupIcons
+          localeFile="contests"
+          onEdit={function () {
+            onEdit(contest.id);
+          }}
+          onDelete={function () {
+            onDelete(contest.id);
+          }}
+        />
+      </AdminActions>
+
+      <PageHeader
+        text={t("contests:details.headline", "Wettbewerbs-Planung")}
+      />
 
       <MetaInfo>
-        📅 {new Date(contest.start).toLocaleDateString('de-DE', options)} –
-        {new Date(contest.ende).toLocaleDateString('de-DE', options)}
+        📅 {new Date(contest.start).toLocaleDateString("de-DE", options)} –
+        {new Date(contest.ende).toLocaleDateString("de-DE", options)}
       </MetaInfo>
 
       {!isExpired && (
         <ActionRow>
           <Link href={`/contests/${contest.id}/entries`}>
-             <StyledButton type="button">
+            <StyledButton type="button">
               {t("contests:details.add_my_animals", "Eigene Tiere melden")}
             </StyledButton>
           </Link>
@@ -46,7 +61,9 @@ export default function ContestDetailView({ contest, analyses }) {
               />
               <TitleGroup>
                 <h3>{tier.texte?.[0]?.name}</h3>
-                <GrandTotal>{stats.totalWeighted.toLocaleString()} Pkt.</GrandTotal>
+                <GrandTotal>
+                  {stats.totalWeighted.toLocaleString()} Pkt.
+                </GrandTotal>
               </TitleGroup>
             </TierHeader>
 
@@ -61,12 +78,16 @@ export default function ContestDetailView({ contest, analyses }) {
                   <Badge>{i + 1}</Badge>
                   <Name>{m.name}</Name>
                   <Points>
-                    <small>{m.rawSum} × {m.multiplier}</small>
+                    <small>
+                      {m.rawSum} × {m.multiplier}
+                    </small>
                     <strong>{m.weighted.toLocaleString()}</strong>
                   </Points>
                 </Row>
               ))}
-              {stats.rankedMembers.length === 0 && <Empty>Noch keine Meldungen</Empty>}
+              {stats.rankedMembers.length === 0 && (
+                <Empty>Noch keine Meldungen</Empty>
+              )}
             </List>
           </TierCard>
         ))}
@@ -75,6 +96,18 @@ export default function ContestDetailView({ contest, analyses }) {
   );
 }
 
+const AdminActions = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: -20px; 
+  padding: 0 10px;
+
+  @media (max-width: 600px) {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+`;
 const Container = styled.div` 
   padding: 10px; 
 `;

@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
-import { NameDE } from "../../page-structure/Elements/Name";
-import GehegeBadge from "../../ui/GehegeBadge";
-import StallLevelBadge from "../../ui/StallLevelBadge";
-import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
+import { NameDE } from "../../../page-structure/Elements/Name";
+import GehegeBadge from "../../../ui/GehegeBadge";
+import StallLevelBadge from "../../../ui/StallLevelBadge";
+import ItemThumbnail from "../../../page-structure/icons/ItemThumbnail";
 import { useRouter } from "next/router";
 
 export default function StatueMobileCard({ statue }) {

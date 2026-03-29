@@ -267,6 +267,7 @@ model wettbewerbe {
   ergebnis           String? @db.VarChar(20)
   platz              String? @db.VarChar(255)
   statuen            contest_statuen[]
+  ergebnisse         wettbewerb_ergebnisse[]
 }
 
 model contest_statuen {
@@ -274,8 +275,8 @@ model contest_statuen {
   wettbewerbId Int
   statueId     Int
 
-  wettbewerb   wettbewerbe @relation(fields: [wettbewerbId], references: [id])
-  statue       wettbewerbstatuen @relation(fields: [statueId], references: [id])
+  wettbewerb   wettbewerbe @relation(fields: [wettbewerbId], references: [id],onDelete: Cascade )
+  statue       wettbewerbstatuen @relation(fields: [statueId], references: [id], onDelete: Cascade)
 }
 
 model wettbewerbfarbvarianten {
@@ -310,6 +311,7 @@ model xp {
 model wettbewerb_ergebnisse {
   id          Int      @id @default(autoincrement())
   contest_id  Int
+  wettbewerb  wettbewerbe @relation(fields: [contest_id], references: [id], onDelete: Cascade)
   member_id   Int
   mitglied    mitglieder @relation(fields: [member_id], references: [id])
   tier_id     Int

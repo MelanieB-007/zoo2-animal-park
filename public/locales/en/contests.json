@@ -29,5 +29,9 @@
       "title": "Enter Animals",
       "chooseMember": "Choose Member"
     }
+  },
+  "tooltips": {
+    "edit": "Edit contest",
+    "delete": "Delete contest"
   }
 }
