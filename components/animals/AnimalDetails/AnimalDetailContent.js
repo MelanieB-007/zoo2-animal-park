@@ -7,10 +7,14 @@ import VariantArea from "./VariantArea";
 import AccordionCard from "./AccordionCard";
 import { useRouter } from "next/router";
 import ActionGroupIcons from "../../page-structure/Table/ActionGroupIcons";
+import { useSession } from "next-auth/react";
 
 export default function AnimalDetailContent({ animal, onDelete, onEdit }) {
   const { locale } = useRouter();
   const { t } = useTranslation(["animals", "common"]);
+
+  const { data: session } = useSession();
+  const isAdmin = session?.user?.role === "Direktor";
 
   if (!animal) return <div>{t("common:not_found")}</div>;
 
@@ -20,11 +24,13 @@ export default function AnimalDetailContent({ animal, onDelete, onEdit }) {
   return (
     <Wrapper>
       <TopBar>
+        {isAdmin &&
         <ActionGroupIcons
           localeFile="animals"
           onEdit={onEdit}
           onDelete={onDelete}
         />
+        }
       </TopBar>
 
       <HeaderCard animal={animal} />
