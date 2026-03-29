@@ -50,11 +50,13 @@ export const MobileNavigation = ({ isOpen, onClose }) => {
             <SubNavLink href="/animals" onClick={onClose}>
               {t("navigation.animal_overview")}
             </SubNavLink>
+
             {session && (
             <SubNavLink href="/animals/create" onClick={onClose}>
               {t("navigation.animal_create")}
             </SubNavLink>
             )}
+
             {/*<SubNavLink href="/animals/varianten" onClick={onClose}>
               {t("navigation.animal_variants")}
             </SubNavLink>*/}
@@ -75,9 +77,11 @@ export const MobileNavigation = ({ isOpen, onClose }) => {
             </SubNavLink>
 
             {/* 2. Wettbewerbe Übersicht */}
+            {session && (
             <SubNavLink href="/contests" onClick={onClose}>
               {t("navigation.club_contests", "Wettbewerbe")}
             </SubNavLink>
+            )}
 
             {/* 3. Wettbewerb anlegen (Nur wenn eingeloggt) */}
             {session && (

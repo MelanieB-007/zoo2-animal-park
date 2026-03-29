@@ -23,7 +23,7 @@ export default function Navigation() {
           </NavLink>
         </NavItem>
 
-       {/* <NavItem>
+        {/* <NavItem>
           <NavButton $active={isActive("/zoo")}>
             {t("navigation.zoo", "Zoo")} <IoChevronDown className="arrow" />
           </NavButton>
@@ -43,7 +43,8 @@ export default function Navigation() {
 
         <NavItem>
           <NavButton $active={isActive("/animals")}>
-            {t("navigation.animals", "Tiere")} <IoChevronDown className="arrow" />
+            {t("navigation.animals", "Tiere")}{" "}
+            <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
@@ -53,12 +54,15 @@ export default function Navigation() {
             </li>
             {session && (
               <li>
-                <DropdownLink href="/animals/create" $active={pathname === "/animals/create"}>
+                <DropdownLink
+                  href="/animals/create"
+                  $active={pathname === "/animals/create"}
+                >
                   {t("navigation.animal_create", "Tier anlegen")}
                 </DropdownLink>
               </li>
-              )}
-           {/* <li>
+            )}
+            {/* <li>
               <DropdownLink href="/animals/farbvarianten" $active={pathname === "/animals/farbvarianten"}>
                 {t("navigation.animal_variants", "Farbvarianten")}
               </DropdownLink>
@@ -66,26 +70,41 @@ export default function Navigation() {
           </Dropdown>
         </NavItem>
 
-       <NavItem>
+        <NavItem>
           <NavButton $active={isActive("/contests")}>
             {t("navigation.club", "Klub")} <IoChevronDown className="arrow" />
           </NavButton>
           <Dropdown>
             <li>
-              <DropdownLink href="/contests/statues" $active={pathname === "/contest/statues"}>
+              <DropdownLink
+                href="/contests/statues"
+                $active={pathname === "/contest/statues"}
+              >
                 {t("navigation.club_statues", "Statuen")}
               </DropdownLink>
             </li>
-            <li>
-              <DropdownLink href="/contests" $active={pathname === "/contest"}>
-                {t("navigation.club_contests", "Wettbewerbe")}
-              </DropdownLink>
-            </li>
-            <li>
-              <DropdownLink href="/contests/create" $active={pathname === "/contest/create"}>
-                {t("navigation.club_create_contest", "Wettbewerb anlegen")}
-              </DropdownLink>
-            </li>
+
+            {session && (
+              <li>
+                <DropdownLink
+                  href="/contests"
+                  $active={pathname === "/contest"}
+                >
+                  {t("navigation.club_contests", "Wettbewerbe")}
+                </DropdownLink>
+              </li>
+            )}
+
+            {session && (
+              <li>
+                <DropdownLink
+                  href="/contests/create"
+                  $active={pathname === "/contest/create"}
+                >
+                  {t("navigation.club_create_contest", "Wettbewerb anlegen")}
+                </DropdownLink>
+              </li>
+            )}
           </Dropdown>
         </NavItem>
       </NavList>
@@ -152,17 +171,17 @@ const NavElementStyles = `
 `;
 
 const NavLink = styled(Link)`
-  ${NavElementStyles}; 
-  color: ${props => 
-          props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
+  ${NavElementStyles};
+  color: ${(props) =>
+    props.$active ? "var(--color-zoo-orange)" : "var(--color-green)"};
 
   &::before {
-    content: '🐾';
+    content: "🐾";
     position: absolute;
     top: -15px;
     left: 50%;
     transform: translateX(-50%);
-    display: ${props => (props.$active ? 'block' : 'none')};
+    display: ${(props) => (props.$active ? "block" : "none")};
     font-size: 0.8rem;
     filter: drop-shadow(1px 1px 0 var(--color-black));
   }
@@ -170,17 +189,17 @@ const NavLink = styled(Link)`
 
 const NavButton = styled.div`
   ${NavElementStyles};
-  color: ${props => 
-          props.$active ? 'var(--color-zoo-orange)' : 'var(--color-green)'};
+  color: ${(props) =>
+    props.$active ? "var(--color-zoo-orange)" : "var(--color-green)"};
   cursor: pointer;
 
   &::before {
-    content: '🐾';
+    content: "🐾";
     position: absolute;
     top: -15px;
     left: 50%;
     transform: translateX(-50%);
-    display: ${props => (props.$active ? 'block' : 'none')};
+    display: ${(props) => (props.$active ? "block" : "none")};
     font-size: 0.8rem;
     filter: drop-shadow(1px 1px 0 var(--color-black));
   }
@@ -217,12 +236,11 @@ const DropdownLink = styled(Link)`
   text-decoration: none;
   font-size: 0.9rem;
   font-family: var(--font-text);
-  background: ${({ $active }) => 
-          $active ? 'rgba(0,0,0,0.05)' : 'transparent'};
-  font-weight: ${props => 
-          props.$active ? '900' : '400'};
-  border-left: ${props =>
-          props.$active ? '4px solid var(--color-green)' : '4px solid transparent'};
+  background: ${({ $active }) =>
+    $active ? "rgba(0,0,0,0.05)" : "transparent"};
+  font-weight: ${(props) => (props.$active ? "900" : "400")};
+  border-left: ${(props) =>
+    props.$active ? "4px solid var(--color-green)" : "4px solid transparent"};
 
   &:hover {
     background: #f5f5f5;
