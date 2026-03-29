@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
+import { useSession } from "next-auth/react";
 
 import { NameDE } from "../../page-structure/Elements/Name";
 import GehegeBadge from "../../ui/GehegeBadge";
@@ -19,6 +20,7 @@ import LinkedRow from "../../page-structure/Table/LinkedRow";
 import NoResult from "../../page-structure/Table/NoResult";
 import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
 
+
 export default function AnimalDesktopTable({
   animals,
   sortBy,
@@ -27,9 +29,10 @@ export default function AnimalDesktopTable({
   onEdit,
   onDelete,
 }) {
-  const { t } = /** @type {any} */ (
-    useTranslation(["animals", "common"])
-  );
+  const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
+
+  const { data: session } = useSession();
+  const isAdmin = session?.user?.role === "Direktor";
 
   return (
     <Table>
@@ -100,8 +103,9 @@ export default function AnimalDesktopTable({
             desktopOnly={true}
             align="right"
           />
-
+          {isAdmin &&
           <ActionsHeadline text={t("common:actions")} />
+          }
         </tr>
       </thead>
       <tbody>
@@ -157,6 +161,7 @@ export default function AnimalDesktopTable({
                   <XPIcon label={animal.auswildern} />
                 </DesktopOnlyTd>
 
+                {isAdmin &&
                 <td>
                   <ActionGroupIcons
                     localeFile="animals"
@@ -168,6 +173,7 @@ export default function AnimalDesktopTable({
                     }}
                   />
                 </td>
+                }
               </LinkedRow>
             );
           })

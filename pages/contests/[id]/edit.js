@@ -26,24 +26,24 @@ export default function EditContestPage({ contest, statues }) {
       });
 
       if (res.ok) {
-        toast.success("Wettbewerb erfolgreich aktualisiert!");
+        toast.success(t("contests:contestForm.successUpdated"));
         router.push("/contests");
       } else {
         const errorData = await res.json();
-        toast.error(errorData.message || "Fehler beim Aktualisieren.");
+        toast.error(errorData.message || t("contests:contestForm.errorUpdating"));
       }
     } catch (err) {
       console.error("Update failed:", err);
-      toast.error("Netzwerkfehler beim Speichern.");
+      toast.error(t("contests:contestForm.networkError"));
     }
   };
 
-  if (!contest) return <div>Wettbewerb nicht gefunden.</div>;
+  if (!contest) return <div>{t("contests:contestForm.contestNotFound")}</div>;
 
   return (
     <PageWrapper>
       <ContentWrapper>
-        <PageHeader text={t("contests:contextForm.editTitle")} />
+        <PageHeader text={t("contests:contestForm.editTitle")} />
         <ContestForm
           statues={statues}
           initialData={contest}

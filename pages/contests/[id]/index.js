@@ -7,6 +7,7 @@ import PageWrapper from "../../../components/page-structure/PageWrapper";
 import ContestDetailView from "../../../components/contests/ContestDetail/ContestDetailView";
 import { getContestById, getResultsByContestId } from "../../../services/ContestService";
 import { calculateTierStats } from "../../../services/ContestHelper";
+import { toast } from "react-toastify";
 
 
 
@@ -21,14 +22,14 @@ export default function ContestDetailPage({ contest, results }) {
   const handleDelete = async () => {
     // Hier nutzen wir jetzt Swal für die Sicherheitsabfrage
     const result = await Swal.fire({
-      title: t("common:confirmDeleteTitle"), // z.B. "Bist du sicher?"
-      text: t("common:confirmDeleteText"), // z.B. "Alle Daten dieses Wettbewerbs gehen verloren!"
+      title: t("contests:contestOverview.messages.deleteErrorTitle"),
+      text: t("contests:contestOverview.messages.confirmDelete"),
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: t("common:deleteButton"),
-      cancelButtonText: t("common:cancelButton"),
+      confirmButtonText: t("contests:contestOverview.messages.deleteButton"),
+      cancelButtonText: t("contests:contestOverview.messages.cancelButton"),
     });
 
     // Nur wenn der User auf den Bestätigen-Button geklickt hat
@@ -38,18 +39,11 @@ export default function ContestDetailPage({ contest, results }) {
           method: "DELETE",
         });
         if (res.ok) {
-          await Swal.fire(
-            t("common:deletedTitle"),
-            t("common:deletedText"),
-            "success"
-          );
+          toast.success(t("common:save_changes", "Erfolgreich gelöscht"));
           await router.push("/contests");
-        } else {
-          await Swal.fire("Error", t("common:errorDelete"), "error");
         }
       } catch (err) {
         console.error("Delete failed:", err);
-        await Swal.fire("Error", "Server Error", "error");
       }
     }
   };

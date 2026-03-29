@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { useTranslation } from "next-i18next";
 
 export default function EditAnimal({ animal: fallbackData }) {
-  const { t } = useTranslation(["animals", "common"]);
+  const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
   const { mutate } = useSWRConfig();
   const router = useRouter();
   const { id } = router.query;
@@ -18,7 +18,7 @@ export default function EditAnimal({ animal: fallbackData }) {
   // SWR für Live-Daten (falls sich im Hintergrund was ändert)
   const { data: animal } = useSWR(id ? `/api/animals/${id}` : null, {
     fallbackData,
-    revalidateOnMount: true
+    revalidateOnMount: true,
   });
 
   // Mapper: Datenbank-Struktur -> Formular-Struktur
@@ -26,17 +26,18 @@ export default function EditAnimal({ animal: fallbackData }) {
     if (!raw) return null;
 
     // 1. Suche den deutschen Text für die Hauptfelder
-    const deText = raw.texte?.find(t => t.spracheCode === 'de');
+    const deText = raw.texte?.find((t) => t.spracheCode === "de");
 
     // 2. Mappe ALLE ANDEREN Texte in das translations-Array
-    const translations = raw.texte
-      ?.filter(t => t.spracheCode !== 'de')
-      .map(t => ({
-        id: t.spracheCode,
-        spracheCode: t.spracheCode,
-        name: t.name || "",
-        description: t.beschreibung || ""
-      })) || [];
+    const translations =
+      raw.texte
+        ?.filter((t) => t.spracheCode !== "de")
+        .map((t) => ({
+          id: t.spracheCode,
+          spracheCode: t.spracheCode,
+          name: t.name || "",
+          description: t.beschreibung || "",
+        })) || [];
 
     const actions = {
       feed: { xp: "", durationHours: "", durationMinutes: "" },
@@ -44,13 +45,13 @@ export default function EditAnimal({ animal: fallbackData }) {
       clean: { xp: "", durationHours: "", durationMinutes: "" },
     };
 
-     const xpTypeMap = {
-      "0": "feed",
-      "1": "play",
-      "2": "clean"
+    const xpTypeMap = {
+      0: "feed",
+      1: "play",
+      2: "clean",
     };
 
-    raw.xp?.forEach(item => {
+    raw.xp?.forEach((item) => {
       const key = xpTypeMap[item.xpart];
       if (key) {
         actions[key] = {
@@ -88,23 +89,26 @@ export default function EditAnimal({ animal: fallbackData }) {
 
       actions: actions,
       // Mapping für die Gehegekapazität
-      enclosureSizes: raw.tier_gehege_kapazitaet?.map(cap => ({
-        id: cap.anzahlTiere,
-        animalCount: cap.anzahlTiere,
-        size: cap.felder
-      })) || [],
+      enclosureSizes:
+        raw.tier_gehege_kapazitaet?.map((cap) => ({
+          id: cap.anzahlTiere,
+          animalCount: cap.anzahlTiere,
+          size: cap.felder,
+        })) || [],
 
       //  Mapping für die Relationen auf flache Objekte für den Transfer-View
-      origins: raw.tierherkunft?.map(th => ({
-        id: th.herkunftId,
-        name: th.herkunft?.name || "Unbekannt"
-      })) || []
+      origins:
+        raw.tierherkunft?.map((th) => ({
+          id: th.herkunftId,
+          name: th.herkunft?.name || "Unbekannt",
+        })) || [],
     };
   };
 
   function formatDateForInput(dateStr) {
-    if (!dateStr || typeof dateStr !== "string" || !dateStr.includes('.')) return "";
-    const [day, month, year] = dateStr.split('.');
+    if (!dateStr || typeof dateStr !== "string" || !dateStr.includes("."))
+      return "";
+    const [day, month, year] = dateStr.split(".");
     return `${year}-${month}-${day}`;
   }
 
@@ -112,7 +116,7 @@ export default function EditAnimal({ animal: fallbackData }) {
     <PageWrapper>
       <ContentWrapper>
         <h1 style={{ color: "#5d7a2a", marginBottom: "20px" }}>
-          {animal?.name || "Tier"} bearbeiten
+          {t("animals:form.editAnimal")}
         </h1>
 
         <AnimalForm
@@ -120,14 +124,17 @@ export default function EditAnimal({ animal: fallbackData }) {
           initialData={formatInitialData(animal)}
           isEdit={true}
           onSuccess={async (updatedData) => {
-            toast.success(t("animals:messages.editSuccess") || "Änderungen erfolgreich gespeichert! 🐾");
+            toast.success(
+              t("animals:messages.editSuccess") ||
+                "Änderungen erfolgreich gespeichert! 🐾"
+            );
 
             // Wir löschen eventuelle "alte" flache Namen/Beschreibungen aus dem Cache-Objekt,
             // damit die Komponenten gezwungen sind, im texte-Array (nach Sprache) zu suchen.
             const cleanData = {
               ...updatedData,
               name: undefined,
-              beschreibung: undefined
+              beschreibung: undefined,
             };
 
             // SWR Cache mit dem vollständigen Prisma-Objekt (inkl. aller Sprachen) füttern

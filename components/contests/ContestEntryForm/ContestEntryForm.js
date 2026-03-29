@@ -6,6 +6,7 @@ import DynamicRowInput from "../../ui/DynamicRowInput";
 import PageHeader from "../../page-structure/PageHeader";
 import PageWrapper from "../../page-structure/PageWrapper";
 import { useTranslation } from "next-i18next";
+import SubmitButton from "../../forms/SubmitButton";
 
 export default function ContestEntryForm({
   contest,
@@ -22,10 +23,9 @@ export default function ContestEntryForm({
   const options = { day: "2-digit", month: "2-digit", year: "numeric" };
 
   return (
-    <PageWrapper>
     <form onSubmit={onSubmit}>
       <HeaderSection>
-        <PageHeader text={t("contests:entry.title", "Tiere eintragen")} />
+        <PageHeader text={t("contests:contestOverview.entry.title")} />
         <DateRange>
           {new Date(contest.start).toLocaleDateString("de-DE", options)} &ndash;
           {new Date(contest.ende).toLocaleDateString("de-DE", options)}
@@ -33,11 +33,11 @@ export default function ContestEntryForm({
       </HeaderSection>
 
       <Section>
-        <Label>Klubmitglied</Label>
+        <Label>{t("contests:contestOverview.entry.clubMember")}</Label>
         <FormSelect
           value={selectedMember}
           onChange={(e) => setSelectedMember(e.target.value)}
-          placeholder={t("contests:entry.chooseMember", "Mitglied wählen")}
+          placeholder={t("contests:contestOverview.entry.chooseMember")}
           options={members.map((m) => ({
             value: m.id,
             label: m.upjersname || m.name,
@@ -74,10 +74,10 @@ export default function ContestEntryForm({
           </AnimalSection>
         );
       })}
-
-      <SubmitButton type="submit">Speichern</SubmitButton>
+      <SubmitButton
+        label={t("common:save")}
+      />
     </form>
-    </PageWrapper>
   );
 }
 
@@ -121,21 +121,4 @@ const Label = styled.label`
   font-weight: bold;
   margin-bottom: 8px;
   color: #5d7a2a;
-`;
-
-const SubmitButton = styled.button`
-  width: 100%;
-  padding: 15px;
-  background: #5d7a2a;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-
-  &:hover {
-    background: #4a6221;
-  }
 `;

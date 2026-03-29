@@ -7,7 +7,7 @@ export default function VariantCard({ variant }) {
   return (
     <StyledVariantCard title={variant.name}>
       <ImageWrapper>
-        <NextImage
+        <VariantIcon
           src={`/images/farbvarianten/${variant.bild}`}
           alt={variant.name}
           width={200}
@@ -16,9 +16,7 @@ export default function VariantCard({ variant }) {
         />
       </ImageWrapper>
       <VariantName>{variant.farbe}</VariantName>
-      <ReleaseDate>
-        📅 Release: {variant.release}
-      </ReleaseDate>
+      <ReleaseDate>📅 Release: {variant.release}</ReleaseDate>
       {herkunft && (
         <OriginRow title={herkunft.name}>
           <NextImage
@@ -110,8 +108,15 @@ const OriginRow = styled.div`
   color: #2e7d32;
   border: 1px solid #c8e6c9;
   width: fit-content; /* Damit der Hintergrund nicht über die volle Breite geht */
-  
+
   span {
     font-weight: 600;
   }
+`;
+
+const VariantIcon = styled(NextImage)`
+  border-radius: 20px;
+  border: 2px solid #004d4d; // Sehr dezenter Grauton
+  background: white; // Wichtig für den Schatten
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.06);
 `;

@@ -10,6 +10,7 @@ import StallLevelBadge from "../../ui/StallLevelBadge";
 import { getTranslatedName } from "../../ui/TranslationHelper";
 import DeleteButton from "../../page-structure/icons/DeleteIcon";
 import EditButton from "../../page-structure/icons/EditIcon";
+import { useSession } from "next-auth/react";
 
 export default function AnimalMobileCard({
   animal,
@@ -20,6 +21,9 @@ export default function AnimalMobileCard({
   const { t, i18n } = /** @type {any} */ (
     useTranslation(["animals", "common"])
   );
+  const { data: session } = useSession();
+  const isAdmin = session?.user?.role === "Direktor";
+
   const habitatId = animal.gehege?.name?.toLowerCase() || "standard";
 
   const displayName =
@@ -29,10 +33,13 @@ export default function AnimalMobileCard({
     <CardContainer onClick={onClick}>
       <HeaderRow>
         <NameDE>{displayName}</NameDE>
+        {isAdmin && (
         <ActionGroup onClick={(e) => e.stopPropagation()}>
+
           <EditButton onClick={onEdit} />
           <DeleteButton onClick={onDelete} />
         </ActionGroup>
+          )}
       </HeaderRow>
 
       <Divider />

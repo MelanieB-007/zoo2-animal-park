@@ -11,7 +11,9 @@
     "animal_variants": "Color Variants",
     "club": "Club",
     "club_members": "Members",
-    "club_contests": "Contests"
+    "club_contests": "Contests",
+    "club_create_contest": "Create Contest",
+    "club_statues": "Statues"
   },
   "login": {
     "open_menu": "Open Menu 🐾",
@@ -61,11 +63,16 @@
   "namesIntl": "Names in other languages",
   "language": "Language",
   "allLanguages": "All languages added",
-  "addRow": "+ Add row",
   "available": "Available",
   "notAvailable": "No further sources",
   "chosen": "Selected",
   "pleaseChoose": "Please choose...",
   "descriptionPlaceholder": "Insert description...",
-  "noDescriptionAvailable": "No description available"
+  "noDescriptionAvailable": "No description available",
+  "addRow": "Add Row",
+  "removeRow": "Remove Row",
+  "save": "Save",
+  "save_changes": "Data successfully submitted!",
+  "save_changes_error": "Oops, something went wrong while saving.",
+  "errorDelete": "Error deleting"
 }

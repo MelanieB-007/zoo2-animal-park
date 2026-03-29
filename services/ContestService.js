@@ -56,7 +56,7 @@ export async function getAllContests() {
 }
 
 export async function getContestById(id) {
-  console.log("Suche Wettbewerb mit ID:", id, "Typ:", typeof id);
+
   try {
     const contest = await prisma.wettbewerbe.findUnique({
       where: {

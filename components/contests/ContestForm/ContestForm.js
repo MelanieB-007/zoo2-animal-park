@@ -12,7 +12,7 @@ export default function ContestForm({
   onSubmit,
 }) {
 
-  const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));
+  const { t } = /** @type {any} */ (useTranslation(["animals", "contests", "common"]));
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Hilfsfunktion zum Formatieren von Prisma-Dates (ISO) zu HTML-Input-Dates (YYYY-MM-DD)
@@ -73,28 +73,29 @@ export default function ContestForm({
 
   const handleMoveRight = (statue) => {
     if (selectedStatues.length >= 3) {
-      toast.warn("Maximal 3 Statuen erlaubt!");
+      toast.warn(t("contests:contestForm.maxStatues"));
       return;
     }
     setSelectedStatues([...selectedStatues, statue]);
   };
 
   const handleMoveLeft = (statue) => {
-    setSelectedStatues(selectedStatues.filter((s) => s.id !== statue.id));
+    setSelectedStatues(selectedStatues.filter((s) =>
+      s.id !== statue.id));
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     if (selectedStatues.length !== 3) {
-      toast.error("Bitte wähle genau 3 Statuen aus!");
+      toast.error(t("contests:contestForm.chooseStatues"));
       return;
     }
 
     const startDate = new Date(formData.start);
     const endDate = new Date(formData.ende);
     if (endDate < startDate) {
-      toast.error("Das Enddatum darf nicht vor dem Startdatum liegen!");
+      toast.error(t("contests:contestForm.endDateBeforeStart"));
       return;
     }
 
@@ -117,7 +118,7 @@ export default function ContestForm({
     <form onSubmit={handleFormSubmit}>
       <Row>
         <InputGroup>
-          <label>Startdatum</label>
+          <label>{t("contests:contestForm.startDate")}</label>
           <input
             type="date"
             value={formData.start}
@@ -138,7 +139,7 @@ export default function ContestForm({
         </InputGroup>
 
         <InputGroup>
-          <label>Enddatum</label>
+          <label>{t("contests:contestForm.endDate")}</label>
           <input
             type="date"
             value={formData.ende}
@@ -157,12 +158,12 @@ export default function ContestForm({
               setFormData({ ...formData, aktiv: e.target.checked ? 1 : 0 })
             }
           />
-          <label htmlFor="aktiv">Wettbewerb aktiv</label>
+          <label htmlFor="aktiv">{t("contests:contestForm.activeContest")}</label>
         </CheckboxGroup>
       </Row>
 
       <SectionHeadline>
-        Statuen-Auswahl ({selectedStatues.length} / 3)
+        {t("contests:contestForm.statuesChoise")} ({selectedStatues.length} / 3)
       </SectionHeadline>
 
       <OriginTransfer
@@ -177,7 +178,7 @@ export default function ContestForm({
         label={
           isSubmitting
             ? t("common:saving")
-            : t("contests:contextForm.saveContest")
+            : t("contests:contestForm.saveContest")
         }
         isSubmitting={isSubmitting}
       />

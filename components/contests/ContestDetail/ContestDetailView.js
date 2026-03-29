@@ -31,7 +31,7 @@ export default function ContestDetailView({ contest, analyses, onEdit, onDelete 
       </AdminActions>
 
       <PageHeader
-        text={t("contests:details.headline", "Wettbewerbs-Planung")}
+        text={t("contests:contestOverview.details.headline", "Wettbewerbs-Planung")}
       />
 
       <MetaInfo>
@@ -43,7 +43,7 @@ export default function ContestDetailView({ contest, analyses, onEdit, onDelete 
         <ActionRow>
           <Link href={`/contests/${contest.id}/entries`}>
             <StyledButton type="button">
-              {t("contests:details.add_my_animals", "Eigene Tiere melden")}
+              {t("contests:contestOverview.details.postAnimals")}
             </StyledButton>
           </Link>
         </ActionRow>
@@ -69,9 +69,9 @@ export default function ContestDetailView({ contest, analyses, onEdit, onDelete 
 
             <List>
               <ListHeader>
-                <span>Rang</span>
-                <span>Mitglied</span>
-                <span className="right">Punkte (xN)</span>
+                <span> {t("contests:contestOverview.details.rang")}</span>
+                <span> {t("contests:contestOverview.details.member")}</span>
+                <span className="right"> {t("contests:contestOverview.details.points")}</span>
               </ListHeader>
               {stats.rankedMembers.map((m, i) => (
                 <Row key={i}>
@@ -86,7 +86,7 @@ export default function ContestDetailView({ contest, analyses, onEdit, onDelete 
                 </Row>
               ))}
               {stats.rankedMembers.length === 0 && (
-                <Empty>Noch keine Meldungen</Empty>
+                <Empty> {t("contests:contestOverview.details.noPosts")}</Empty>
               )}
             </List>
           </TierCard>

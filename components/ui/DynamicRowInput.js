@@ -3,6 +3,7 @@ import FormInput from "./FormInput";
 import FormSelect from "./FormSelect";
 import FormTextarea from "./FormTextarea";
 import { useTranslation } from "next-i18next";
+import Tooltip from "./Tooltip";
 
 export default function DynamicRowInput({
   label,
@@ -64,13 +65,14 @@ export default function DynamicRowInput({
               )}
             </Cell>
           ))}
+          <Tooltip text={t("common:removeRow")}>
           <DeleteBtn
             onClick={() => onRemove(row.id)}
             type="button"
-            title="Löschen"
           >
             🗑️
           </DeleteBtn>
+          </Tooltip>
         </Row>
       ))}
 

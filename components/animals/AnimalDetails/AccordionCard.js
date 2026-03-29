@@ -34,26 +34,26 @@ export default function AccordionCard({ animal }) {
         title={t("animals:breeding.breeding")}
         icon="/images/icons/breeding.png"
       >
-          <DataRow label={t("animals:table.stall")}>
-            <StallLevelBadge
-              level={animal.stalllevel}
-              habitat={animal.gehege?.name}
-              size={35}
-              showTooltip={false}
-            />
-          </DataRow>
+        <DataRow label={t("animals:table.stall")}>
+          <StallLevelBadge
+            level={animal.stalllevel}
+            habitat={animal.gehege?.name}
+            size={35}
+            showTooltip={false}
+          />
+        </DataRow>
 
-          <DataRow label={t("common:costs")}>
-            <PriceDisplay value={animal.zuchtkosten} type="zoodollar" />
-          </DataRow>
+        <DataRow label={t("common:costs")}>
+          <PriceDisplay value={animal.zuchtkosten} type="zoodollar" />
+        </DataRow>
 
-          <DataRow label={t("common:time")}>
-            <strong>{animal.zuchtdauer} h</strong>
-          </DataRow>
+        <DataRow label={t("common:time")}>
+          <strong>{animal.zuchtdauer} h</strong>
+        </DataRow>
 
-          <DataRow label={t("animals:breeding.breedingChance")}>
-            <strong>{animal.startprozent} %</strong>
-          </DataRow>
+        <DataRow label={t("animals:breeding.breedingChance")}>
+          <strong>{animal.startprozent} %</strong>
+        </DataRow>
       </InfoAccordion>
 
       {/* XP & Aktionen Accordion */}
@@ -63,38 +63,38 @@ export default function AccordionCard({ animal }) {
       >
         <XpTable>
           <thead>
-          <tr>
-            <th style={{ textAlign: 'left' }}>{t("common:action")}</th>
-            <th>{t("common:time")}</th>
-            <THRechts>XP</THRechts>
-          </tr>
+            <tr>
+              <th style={{ textAlign: "left" }}>{t("common:action")}</th>
+              <th style={{ textAlign: "center" }}>{t("common:time")}</th>
+              <THRechts>XP</THRechts>
+            </tr>
           </thead>
           <tbody>
-          {sortedXp.map((item) => {
-            const actionInfo = XP_MAP[item.xpart];
-            return (
-              <tr key={item.id}>
-                <td>
-                  <ActionWrapper>
-                    {actionInfo?.icon && (
-                      <NextImage
-                        src={actionInfo.icon}
-                        alt={actionInfo.key}
-                        width={20}
-                        height={20}
-                      />
-                    )}
-                  </ActionWrapper>
-                </td>
-                <td style={{ textAlign: 'center' }}>
-                  {formatMinutes(item.zeit)}
-                </td>
-                <td>
-                  <XPIcon label={item.wert} />
-                </td>
-              </tr>
-            );
-          })}
+            {sortedXp.map((item) => {
+              const actionInfo = XP_MAP[item.xpart];
+              return (
+                <tr key={item.id}>
+                  <td>
+                    <ActionWrapper>
+                      {actionInfo?.icon && (
+                        <NextImage
+                          src={actionInfo.icon}
+                          alt={actionInfo.key}
+                          width={20}
+                          height={20}
+                        />
+                      )}
+                    </ActionWrapper>
+                  </td>
+                  <td style={{ textAlign: "center" }}>
+                    {formatMinutes(item.zeit)}
+                  </td>
+                  <td>
+                    <XPIcon label={item.wert} />
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </XpTable>
       </InfoAccordion>
@@ -107,27 +107,28 @@ export default function AccordionCard({ animal }) {
         {hasCapacity ? (
           <XpTable>
             <thead>
-            <tr>
-              <TableHeader>
-                {t("animals:animalCount") || "Anzahl Tiere"}
-              </TableHeader>
-              <TableHeader>
-                {t("animals:biomeSize") || "Gehegegröße (Felder)"}
-              </TableHeader>
-            </tr>
+              <tr>
+                <TableHeader>
+                  {t("animals:animalCount") || "Anzahl Tiere"}
+                </TableHeader>
+                <TableHeader>
+                  {t("animals:biomeSize") || "Gehegegröße (Felder)"}
+                </TableHeader>
+              </tr>
             </thead>
             <tbody>
-            {capacityData.map((kap) => (
-              <tr key={kap.anzahlTiere}>
-                <TableCell>{kap.anzahlTiere}</TableCell>
-                <TableCell>{kap.felder}</TableCell>
-              </tr>
-            ))}
+              {capacityData.map((kap) => (
+                <tr key={kap.anzahlTiere}>
+                  <TableCell>{kap.anzahlTiere}</TableCell>
+                  <TableCell>{kap.felder}</TableCell>
+                </tr>
+              ))}
             </tbody>
           </XpTable>
         ) : (
           <EmptyState>
-            {t("common:loading_data") || "Daten werden gerade vom System erfasst..."}
+            {t("common:loading_data") ||
+              "Daten werden gerade vom System erfasst..."}
           </EmptyState>
         )}
       </InfoAccordion>

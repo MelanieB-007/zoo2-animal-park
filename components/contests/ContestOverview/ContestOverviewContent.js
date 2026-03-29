@@ -10,6 +10,7 @@ import TableContainer from "../../page-structure/Table/TableContainer";
 import MobileListView from "../../page-structure/Elements/MobileListView";
 import ContestDesktopTable from "./ContestDesktopTable";
 import ContestMobileCard from "./ContestMobileCard";
+import { useTranslation } from "next-i18next";
 
 
 export default function ContestOverviewContent({
@@ -23,12 +24,13 @@ export default function ContestOverviewContent({
   handleNextPage,
   handlePrevPage,
 }) {
+  const { t } = /** @type {any} */ (useTranslation(["contests", "common"]));
 
   const router = useRouter();
 
   return (
     <PageWrapper>
-      <PageHeader text="Zoo 2 Wettbewerbe" />
+      <PageHeader text={t("contests:contestOverview.overview_title")} />
 
       <ResultsInfo
         currentCount={currentItems.length}
@@ -49,7 +51,6 @@ export default function ContestOverviewContent({
           {/* Mobile Ansicht */}
           <MobileListView
             currentItems={currentItems}
-
             renderCard={(contest) => (
               <ContestMobileCard
                 key={contest.id}
