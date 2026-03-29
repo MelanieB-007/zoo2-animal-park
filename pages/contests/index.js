@@ -12,6 +12,7 @@ import TableContainer from "../../components/page-structure/Table/TableContainer
 import EmptyState from "../../components/page-structure/Elements/EmptyState";
 import PageHeader from "../../components/page-structure/PageHeader";
 import ContestDesktopTable from "../../components/contests/ContestOverview/ContestDesktopTable";
+import { toast } from "react-toastify";
 
 
 export default function ContestsOverview({ initialContests }) {
@@ -25,34 +26,32 @@ export default function ContestsOverview({ initialContests }) {
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
-      title: t("common:confirmDeleteTitle"),
-      text: t("common:confirmDeleteText"),
+      title: t("contests:contestOverview.messages.deleteErrorTitle"),
+      text: t("contests:contestOverview.messages.confirmDelete"),
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
-      confirmButtonText: t("common:deleteButton"),
-      cancelButtonText: t("common:cancelButton"),
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: t("contests:contestOverview.messages.deleteButton"),
+      cancelButtonText: t("contests:contestOverview.messages.cancelButton"),
     });
 
     if (result.isConfirmed) {
       try {
         const res = await fetch(`/api/contests/${id}`, { method: "DELETE" });
         if (res.ok) {
-          setContests((prev) => prev.filter((c) => c.id !== id));
-          await Swal.fire(t("common:deletedTitle"), "", "success");
-        } else {
-          await Swal.fire("Error", t("common:errorDelete"), "error");
+          toast.success(t("common:save_changes", "Erfolgreich gelöscht"));
+          await router.push("/contests");
         }
       } catch (err) {
         console.error("Delete failed:", err);
-        await Swal.fire("Error", "Server Error", "error");
       }
     }
   };
 
   return (
     <PageWrapper>
-      <PageHeader text="Zoo 2 Wettbewerbe" />
+      <PageHeader text={t("contests:contestOverview.overview_title")} />
 
       {contests.length > 0 ? (
         <>

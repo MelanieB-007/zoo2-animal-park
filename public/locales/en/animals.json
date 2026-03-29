@@ -46,6 +46,7 @@
     "animalCount": "Number of animals",
     "enclosureSize": "Required enclosure size",
     "createAnimal": "Create new animal",
+    "editAnimal": "Edit animal",
     "saveAnimal": "Save animal"
   },
   "imageSection": {

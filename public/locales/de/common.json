@@ -68,7 +68,12 @@
   "available": "Verfügbar",
   "notAvailable": "Keine weiteren Quellen",
   "chosen": "Ausgewählt",
-  "pleaseChoose" : "Bitte Wählen ...",
+  "pleaseChoose": "Bitte Wählen ...",
   "descriptionPlaceholder": "Beschreibung eingeben...",
-  "noDescriptionAvailable": "Keine Beschreibung vorhanden"
+  "noDescriptionAvailable": "Keine Beschreibung vorhanden",
+  "removeRow": "Zeile löschen",
+  "save": "Speichern",
+  "save_changes": "Daten erfolgreich übermittelt!",
+  "save_changes_error": "Hoppla, da ging was schief beim Speichern.",
+  "errorDelete": "Fehler beim Löschen"
 }

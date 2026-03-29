@@ -46,6 +46,7 @@
     "animalCount": "Anzahl Tiere",
     "enclosureSize": "Benötigte Gehegegröße",
     "createAnimal": "Neues Tier anlegen",
+    "editAnimal": "Tier bearbeiten",
     "saveAnimal": "Tier speichern"
   },
   "imageSection": {

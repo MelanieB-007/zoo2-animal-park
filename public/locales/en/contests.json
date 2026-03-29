@@ -5,9 +5,28 @@
     "overview_title": "Overview of all Statues",
     "card_label": "Statue"
   },
-  "contextForm": {
+  "contestForm": {
     "createTitle": "Create New Contest",
-    "createSubtitle": "Select the period and the three statues for this contest."
+    "editTitle": "Edit Contest",
+    "createSubtitle": "Select the period and the three statues for this contest.",
+    "saveContest": "Save Contest",
+    "maxStatues": "Maximum of 3 statues allowed!",
+    "chooseStatues": "Please select exactly 3 statues!",
+    "endDateBeforeStart": "The end date cannot be before the start date!",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "activeContest": "Contest Active",
+    "statuesChoise": "Statue Selection",
+    "successCreated": "Contest successfully created!",
+    "errorCreating": "Error creating the contest.",
+    "successUpdated": "Contest successfully updated!",
+    "errorUpdating": "Error updating the contest.",
+    "networkError": "Network error while saving. Please try again.",
+    "contestNotFound": "Contest not found."
+  },
+  "tooltips": {
+    "edit": "Edit contest",
+    "delete": "Delete contest"
   },
   "contestOverview": {
     "overview_title": "Contests",
@@ -27,11 +46,24 @@
     },
     "entry": {
       "title": "Enter Animals",
-      "chooseMember": "Choose Member"
+      "chooseMember": "Choose Member",
+      "clubMember": "Club Member",
+      "level": "Level",
+      "count": "Count"
+    },
+    "details": {
+      "headline": "Contest Planning",
+      "postAnimals": "Post Animals",
+      "rang": "Rank",
+      "member": "Member",
+      "points": "Points (xN)",
+      "noPosts": "No posts yet"
+    },
+    "messages": {
+      "deleteButton": "Yes, delete it!",
+      "cancelButton": "Cancel",
+      "deleteErrorTitle": "Delete Contest?",
+      "confirmDelete": "Are you sure you want to permanently delete this contest?"
     }
-  },
-  "tooltips": {
-    "edit": "Edit contest",
-    "delete": "Delete contest"
   }
 }

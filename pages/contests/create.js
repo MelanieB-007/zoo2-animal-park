@@ -21,17 +21,17 @@ export default function CreateContest({ statues }) {
     });
 
     if (res.ok) {
-      toast.success("Wettbewerb erfolgreich angelegt!");
+      toast.success(t("contests:contestForm.successCreated"));
       router.push("/contests");
     } else {
-      toast.error("Fehler beim Anlegen.");
+      toast.error(t("contests:contestForm.errorCreating"));
     }
   };
 
   return (
     <PageWrapper>
       <ContentWrapper>
-        <PageHeader text={t("contests:contextForm.createTitle")} />
+        <PageHeader text={t("contests:contestForm.createTitle")} />
       <ContestForm statues={statues} onSubmit={handleCreate} />
       </ContentWrapper>
     </PageWrapper>

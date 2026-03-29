@@ -86,8 +86,8 @@ export default function ContestDesktopTable({ contests, onEdit, onDelete }) {
                   $active={isAktiv}
                   title={
                     isAktiv
-                      ? t("contests:status.running")
-                      : t("contests:status.upcoming")
+                      ? t("contests:contestOverview.status.running")
+                      : t("contests:contestOverview.status.upcoming")
                   }
                 >
                   <StatusDot $active={isAktiv} />

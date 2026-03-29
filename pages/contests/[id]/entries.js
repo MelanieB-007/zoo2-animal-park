@@ -7,8 +7,10 @@ import ContestEntryForm from "../../../components/contests/ContestEntryForm/Cont
 import { getAllMembers } from "../../../services/MemberService";
 import { getContestById } from "../../../services/ContestService";
 import { toast } from "react-toastify";
+import { useTranslation } from "next-i18next";
 
 export default function ContestEntryPage({ contest, members }) {
+  const { t } = /** @type {any} */ (useTranslation(["contests", "common"]));
   const router = useRouter();
   const [selectedMember, setSelectedMember] = useState("");
 
@@ -62,20 +64,43 @@ export default function ContestEntryPage({ contest, members }) {
   }, [selectedMember, contest.id]);
 
   const columns = [
-    { key: "level", label: "Level", type: "number", placeholder: "", $flex: 1 },
-    { key: "count", label: "Anzahl", type: "number", placeholder: "", $flex: 1 },
+    {
+      key: "level",
+      label: t("contests:contestOverview.entry.level"),
+      type: "number",
+      placeholder: "",
+      $flex: 1,
+    },
+    {
+      key: "count",
+      label: t("contests:contestOverview.entry.count"),
+      type: "number",
+      placeholder: "",
+      $flex: 1,
+    },
   ];
 
   const handlers = {
-    addRow: (tierId) => setEntries(prev => ({
-      ...prev, [tierId]: [...prev[tierId], { id: Math.random(), level: "", count: "" }]
-    })),
-    removeRow: (tierId, rowId) => setEntries(prev => ({
-      ...prev, [tierId]: prev[tierId].filter(row => row.id !== rowId)
-    })),
-    handleRowChange: (tierId, rowId, key, value) => setEntries(prev => ({
-      ...prev, [tierId]: prev[tierId].map(row => row.id === rowId ? { ...row, [key]: value } : row)
-    }))
+    addRow: (tierId) =>
+      setEntries((prev) => ({
+        ...prev,
+        [tierId]: [
+          ...prev[tierId],
+          { id: Math.random(), level: "", count: "" },
+        ],
+      })),
+    removeRow: (tierId, rowId) =>
+      setEntries((prev) => ({
+        ...prev,
+        [tierId]: prev[tierId].filter((row) => row.id !== rowId),
+      })),
+    handleRowChange: (tierId, rowId, key, value) =>
+      setEntries((prev) => ({
+        ...prev,
+        [tierId]: prev[tierId].map((row) =>
+          row.id === rowId ? { ...row, [key]: value } : row
+        ),
+      })),
   };
 
   const handleSubmit = async (e) => {
@@ -91,10 +116,17 @@ export default function ContestEntryPage({ contest, members }) {
     });
 
     if (res.ok) {
-      toast.success("Daten erfolgreich übermittelt!");
+      toast.success(
+        t("common:save_changes" || "Daten erfolgreich übermittelt!")
+      );
       router.push(`/contests/${contest.id}`);
     } else {
-      toast.error("Hoppla, da ging was schief beim Speichern.");
+      toast.error(
+        t(
+          "common:save_changes_error" ||
+            "Hoppla, da ging was schief beim Speichern."
+        )
+      );
     }
   };
 
@@ -120,7 +152,11 @@ export async function getServerSideProps({ params, locale }) {
 
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["common", "contests", "animals"])),
+      ...(await serverSideTranslations(locale, [
+        "common",
+        "contests",
+        "animals",
+      ])),
       contest: JSON.parse(JSON.stringify(contest)),
       members: JSON.parse(JSON.stringify(members)),
     },
