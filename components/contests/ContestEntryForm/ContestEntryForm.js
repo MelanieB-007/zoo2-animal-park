@@ -28,8 +28,8 @@ export default function ContestEntryForm({
       <HeaderSection>
         <PageHeader text={t("contests:contestOverview.entry.title")} />
         <DateRange>
-          {new Date(contest.start).toLocaleDateString("de-DE", options)} &ndash;
-          {new Date(contest.ende).toLocaleDateString("de-DE", options)}
+          {new Date(contest.start).toLocaleDateString(locale, options)} &ndash;
+          {new Date(contest.ende).toLocaleDateString(locale, options)}
         </DateRange>
       </HeaderSection>
 
@@ -79,9 +79,7 @@ export default function ContestEntryForm({
           </AnimalSection>
         );
       })}
-      <SubmitButton
-        label={t("common:save")}
-      />
+      <SubmitButton label={t("common:save")} />
     </form>
   );
 }

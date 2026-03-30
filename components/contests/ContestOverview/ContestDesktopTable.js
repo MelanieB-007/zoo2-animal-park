@@ -31,11 +31,11 @@ export default function ContestDesktopTable({ contests, onEdit, onDelete }) {
       <tbody>
         {contests.map((contest) => {
           const startDate = new Date(contest.start).toLocaleDateString(
-            "de-DE",
+            locale,
             options
           );
           const endDate = new Date(contest.ende).toLocaleDateString(
-            "de-DE",
+            locale,
             options
           );
           const isAktiv =
