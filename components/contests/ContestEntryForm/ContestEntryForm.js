@@ -7,6 +7,7 @@ import PageHeader from "../../page-structure/PageHeader";
 import PageWrapper from "../../page-structure/PageWrapper";
 import { useTranslation } from "next-i18next";
 import SubmitButton from "../../forms/SubmitButton";
+import { useRouter } from "next/router";
 
 export default function ContestEntryForm({
   contest,
@@ -19,7 +20,7 @@ export default function ContestEntryForm({
   onSubmit,
 }) {
   const { t } = /** @type {any} */ (useTranslation(["contests", "common"]));
-
+  const { locale } = useRouter();
   const options = { day: "2-digit", month: "2-digit", year: "numeric" };
 
   return (
@@ -27,8 +28,8 @@ export default function ContestEntryForm({
       <HeaderSection>
         <PageHeader text={t("contests:contestOverview.entry.title")} />
         <DateRange>
-          {new Date(contest.start).toLocaleDateString("de-DE", options)} &ndash;
-          {new Date(contest.ende).toLocaleDateString("de-DE", options)}
+          {new Date(contest.start).toLocaleDateString(locale, options)} &ndash;
+          {new Date(contest.ende).toLocaleDateString(locale, options)}
         </DateRange>
       </HeaderSection>
 
@@ -48,7 +49,11 @@ export default function ContestEntryForm({
 
       {contest.statuen.map((link) => {
         const tier = link.statue.tier;
-        const tiername = tier.texte?.[0]?.name || "Unbekannt";
+        const localizedText =
+          tier?.texte?.find((t) => t.spracheCode === locale) ||
+          tier?.texte?.[0]; // Fallback auf den ersten Text, falls Sprache nicht gefunden
+
+        const tiername = localizedText?.name || "Unbekannt";
 
         return (
           <AnimalSection key={tier.id}>
@@ -74,9 +79,7 @@ export default function ContestEntryForm({
           </AnimalSection>
         );
       })}
-      <SubmitButton
-        label={t("common:save")}
-      />
+      <SubmitButton label={t("common:save")} />
     </form>
   );
 }

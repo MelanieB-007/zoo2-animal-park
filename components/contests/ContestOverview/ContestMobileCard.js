@@ -4,13 +4,15 @@ import { useTranslation } from "next-i18next";
 import { Calendar } from "lucide-react";
 import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
 import { NameDE } from "../../page-structure/Elements/Name";
+import { useRouter } from "next/router";
 
 export default function ContestMobileCard({ contest, onClick }) {
   const { t } = useTranslation(["contests", "common"]);
+  const { locale } = useRouter();
 
   const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-  const startDate = new Date(contest.start).toLocaleDateString('de-DE', options);
-  const endDate = new Date(contest.ende).toLocaleDateString('de-DE', options);
+  const startDate = new Date(contest.start).toLocaleDateString(locale, options);
+  const endDate = new Date(contest.ende).toLocaleDateString(locale, options);
   const isAktiv = new Date() >= new Date(contest.start) && new Date() <= new Date(contest.ende);
 
   return (
@@ -34,7 +36,11 @@ export default function ContestMobileCard({ contest, onClick }) {
         {contest.statuen && contest.statuen.map((link) => {
           const statue = link.statue;
           const tier = statue.tier;
-          const tiername = tier?.texte?.[0]?.name || "Unbekannt";
+          const localizedText =
+            tier?.texte?.find((t) => t.spracheCode === locale) ||
+            tier?.texte?.[0]; // Fallback auf den ersten Text, falls Sprache nicht gefunden
+
+          const tiername = localizedText?.name || "Unbekannt";
           const tierBild = tier?.bild;
 
           return (

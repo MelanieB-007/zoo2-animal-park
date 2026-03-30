@@ -25,7 +25,7 @@ export function calculateTierStats(tierId, results) {
 
   let totalWeighted = 0;
   const rankedMembers = sorted.map((m, index) => {
-    const multiplier = Math.max(1, 4 - index);
+    const multiplier = 10 * Math.max(1, 4 - index);
     const weighted = m.rawSum * multiplier;
     totalWeighted += weighted;
 

@@ -8,8 +8,10 @@ import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
 import LinkedRow from "../../page-structure/Table/LinkedRow";
 import ActionsHeadline from "../../page-structure/Table/ActionsHeadline";
 import ActionGroupIcons from "../../page-structure/Table/ActionGroupIcons";
+import { useRouter } from "next/router";
 
 export default function ContestDesktopTable({ contests, onEdit, onDelete }) {
+  const { locale } = useRouter();
   const { t } = /** @type {any} */ (
     useTranslation(["animals", "contests", "common"])
   );
@@ -29,11 +31,11 @@ export default function ContestDesktopTable({ contests, onEdit, onDelete }) {
       <tbody>
         {contests.map((contest) => {
           const startDate = new Date(contest.start).toLocaleDateString(
-            "de-DE",
+            locale,
             options
           );
           const endDate = new Date(contest.ende).toLocaleDateString(
-            "de-DE",
+            locale,
             options
           );
           const isAktiv =
@@ -58,7 +60,12 @@ export default function ContestDesktopTable({ contests, onEdit, onDelete }) {
                     contest.statuen.map((link) => {
                       const statue = link.statue;
                       const tier = statue.tier;
-                      const tiername = tier?.texte?.[0]?.name || "Unbekannt";
+
+                      const localizedText =
+                        tier?.texte?.find((t) => t.spracheCode === locale) ||
+                        tier?.texte?.[0]; // Fallback auf den ersten Text, falls Sprache nicht gefunden
+
+                      const tiername = localizedText?.name || "Unbekannt";
                       const tierBild = tier?.bild;
 
                       return (

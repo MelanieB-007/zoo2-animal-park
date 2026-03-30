@@ -6,13 +6,14 @@ import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
 import PageHeader from "../../page-structure/PageHeader";
 import { useTranslation } from "next-i18next";
 import ActionGroupIcons from "../../page-structure/Table/ActionGroupIcons";
+import { useRouter } from "next/router";
 
 
 export default function ContestDetailView({ contest, analyses, onEdit, onDelete }) {
   const { t } = /** @type {any} */ (
     useTranslation(["animals", "contests", "common"])
   );
-
+  const { locale } = useRouter();
   const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
   const isExpired = new Date() > new Date(contest.ende);
 
@@ -35,8 +36,8 @@ export default function ContestDetailView({ contest, analyses, onEdit, onDelete 
       />
 
       <MetaInfo>
-        📅 {new Date(contest.start).toLocaleDateString("de-DE", options)} –
-        {new Date(contest.ende).toLocaleDateString("de-DE", options)}
+        📅 {new Date(contest.start).toLocaleDateString(locale, options)} –
+        {new Date(contest.ende).toLocaleDateString(locale, options)}
       </MetaInfo>
 
       {!isExpired && (

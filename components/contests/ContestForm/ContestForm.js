@@ -5,6 +5,7 @@ import { useTranslation } from "next-i18next";
 
 import OriginTransfer from "../../ui/OriginTransfer";
 import SubmitButton from "../../forms/SubmitButton";
+import { useRouter } from "next/router";
 
 export default function ContestForm({
   statues = [],
@@ -14,6 +15,7 @@ export default function ContestForm({
 
   const { t } = /** @type {any} */ (useTranslation(["animals", "contests", "common"]));
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { locale } = useRouter();
 
   // Hilfsfunktion zum Formatieren von Prisma-Dates (ISO) zu HTML-Input-Dates (YYYY-MM-DD)
   const formatDate = (date) => {
@@ -54,22 +56,35 @@ export default function ContestForm({
   // 2. Initialisierung der gewählten Statuen
   const [selectedStatues, setSelectedStatues] = useState(() => {
     if (initialData?.statuen) {
-      // WICHTIG: Mappen der verschachtelten Prisma-Struktur (link.statue.tier...)
-      return initialData.statuen.map((link) => ({
-        id: link.statue.id,
-        name: link.statue.tier?.texte?.[0]?.name || `Statue #${link.statue.id}`,
-      }));
+      return initialData.statuen.map((link) => {
+        // Sprache dynamisch finden
+        const localized =
+          link.statue.tier?.texte?.find((t) => t.spracheCode === locale) ||
+          link.statue.tier?.texte?.[0];
+
+        return {
+          id: link.statue.id,
+          name: localized?.name || `Statue #${link.statue.id}`,
+        };
+      });
     }
     return [];
   });
 
-  // Verfügbare Statuen filtern (die, die noch nicht rechts sind)
+  // Verfügbare Statuen filtern
   const availableStatues = (statues || [])
     .filter((s) => !selectedStatues.find((sel) => sel.id === s.id))
-    .map((s) => ({
-      id: s.id,
-      name: s.tier?.texte?.[0]?.name || `Statue #${s.id}`,
-    }));
+    .map((s) => {
+      // Sprache dynamisch finden
+      const localized =
+        s.tier?.texte?.find((t) => t.spracheCode === locale) ||
+        s.tier?.texte?.[0];
+
+      return {
+        id: s.id,
+        name: localized?.name || `Statue #${s.id}`,
+      };
+    });
 
   const handleMoveRight = (statue) => {
     if (selectedStatues.length >= 3) {
