@@ -1,4 +1,4 @@
-import { getAnimalById, updateAnimal, deleteAnimalFromDB } from "../../../services/AnimalService";
+import { getAnimalById, updateAnimal, deleteAnimal } from "../../../services/AnimalService";
 
 export default async function handler(req, res) {
   const { id } = req.query;
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
 
   // DELETE: Das Tier löschen
   if (req.method === 'DELETE') {
-    const success = await deleteAnimalFromDB(id);
+    const success = await deleteAnimal(id);
     if (success) {
       return res.status(200).json({ success: true });
     } else {

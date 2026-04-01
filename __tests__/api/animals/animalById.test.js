@@ -24,7 +24,7 @@ jest.mock("../../../services/AnimalService", () => ({
 }));
 
 import { getServerSession } from "next-auth/next";
-import { getAnimalById, updateAnimal, deleteAnimalFromDB } from "../../../services/AnimalService";
+import { getAnimalById, updateAnimal, deleteAnimal } from "../../../services/AnimalService";
 
 function createMockRes() {
   return {
@@ -92,25 +92,25 @@ describe("DELETE /api/animals/[id] – Authentifizierung (Punkt 4)", () => {
     await handler(req, res);
 
     expect(res.status).toHaveBeenCalledWith(401);
-    expect(deleteAnimalFromDB).not.toHaveBeenCalled();
+    expect(deleteAnimal).not.toHaveBeenCalled();
   });
 
   test("löscht Tier und gibt 200 zurück wenn eingeloggt", async () => {
     getServerSession.mockResolvedValue({ user: { name: "Alice" } });
-    deleteAnimalFromDB.mockResolvedValue(true);
+    deleteAnimal.mockResolvedValue(true);
 
     const req = { method: "DELETE", query: { id: "7" } };
     const res = createMockRes();
 
     await handler(req, res);
 
-    expect(deleteAnimalFromDB).toHaveBeenCalledWith("7");
+    expect(deleteAnimal).toHaveBeenCalledWith("7");
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
   test("gibt 500 zurück wenn Löschen fehlschlägt", async () => {
     getServerSession.mockResolvedValue({ user: { name: "Alice" } });
-    deleteAnimalFromDB.mockResolvedValue(false);
+    deleteAnimal.mockResolvedValue(false);
 
     const req = { method: "DELETE", query: { id: "7" } };
     const res = createMockRes();

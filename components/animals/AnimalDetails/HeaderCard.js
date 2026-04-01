@@ -90,12 +90,12 @@ export default function HeaderCard({ animal }) {
             </StatBox>
           </StatsGroup>
 
-          {/* Spalte 3 für die Gehege */}
+          {/* Spalte 3 für die Biome */}
           <BoxWithHeadline label={t("common:enclosure")}>
               {/* Gehegeart */}
               <GameIcon
                 type={`gehege/${animal.gehege.name || 'placeholder'}/`}
-                fileName="Gehege.webp"
+                fileName="Biome.webp"
                 bordercolor="#4ca64c"
                 size={45}
               />

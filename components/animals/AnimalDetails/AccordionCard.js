@@ -6,7 +6,7 @@ import StallLevelBadge from "../../ui/StallLevelBadge";
 import PriceDisplay from "../../page-structure/icons/PriceDisplay";
 import XPIcon from "../../page-structure/icons/XPIcon";
 import { formatMinutes } from "../../ui/XpDateFormat";
-import { XP_MAP } from "../../../utils/XP_MAP";
+import { XpMap } from "../../../constants/xpMap";
 import { useTranslation } from "next-i18next";
 import DataRow from "../../ui/DataRow";
 
@@ -23,8 +23,8 @@ export default function AccordionCard({ animal }) {
 
   // 3. Sortierung
   const sortedXp = [...xpData].sort((a, b) => {
-    const orderA = actionOrder.indexOf(XP_MAP[a.xpart]?.key);
-    const orderB = actionOrder.indexOf(XP_MAP[b.xpart]?.key);
+    const orderA = actionOrder.indexOf(XpMap[a.xpart]?.key);
+    const orderB = actionOrder.indexOf(XpMap[b.xpart]?.key);
     return orderA - orderB;
   });
 
@@ -71,7 +71,7 @@ export default function AccordionCard({ animal }) {
           </thead>
           <tbody>
             {sortedXp.map((item) => {
-              const actionInfo = XP_MAP[item.xpart];
+              const actionInfo = XpMap[item.xpart];
               return (
                 <tr key={item.id}>
                   <td>
