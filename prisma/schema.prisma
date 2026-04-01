@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
@@ -9,51 +9,51 @@ datasource db {
 }
 
 model tiere {
-  id            Int     @id @default(autoincrement())
-  release       String? @db.VarChar(10)
-  preis         Int?
-  preisartId    Int?
-  preisart      preisart? @relation(fields: [preisartId], references: [id])
-  verkaufswert  Int?
-  popularitaet  Int?
-  auswildern    Int?
-  bild          String? @db.VarChar(255)
+  id           Int       @id @default(autoincrement())
+  release      String?   @db.VarChar(10)
+  preis        Int?
+  preisartId   Int?
+  preisart     preisart? @relation(fields: [preisartId], references: [id])
+  verkaufswert Int?
+  popularitaet Int?
+  auswildern   Int?
+  bild         String?   @db.VarChar(255)
 
   // Gehege (Biome) & Platz
   gehegeId      Int
-  gehege        gehege  @relation(fields: [gehegeId], references: [id])
+  gehege        gehege @relation(fields: [gehegeId], references: [id])
   platzbedarf   Int?
   spielgeraetId Int?
 
   // Zucht & Stall
-  stalllevel    Int?
-  zuchtkosten   Int?
-  zuchtdauer    Int?
-  startprozent  Int?
+  stalllevel   Int?
+  zuchtkosten  Int?
+  zuchtdauer   Int?
+  startprozent Int?
 
   // --- NEU: Dynamische Relationen ---
-  statue        wettbewerbstatuen?
-  texte         tier_texte[]
-  tierherkunft  tierherkunft[]
-  variants      farbvarianten[]
+  statue                 wettbewerbstatuen?
+  texte                  tier_texte[]
+  tierherkunft           tierherkunft[]
+  variants               farbvarianten[]
   tier_gehege_kapazitaet tier_gehege_kapazitaet[]
-  xp            xp[]
+  xp                     xp[]
 }
 
 model tier_texte {
-  id           Int    @id @default(autoincrement())
+  id           Int     @id @default(autoincrement())
   tierId       Int
-  tier         tiere  @relation(fields: [tierId], references: [id], onDelete: Cascade)
-  spracheCode  String @db.VarChar(5) // z.B. "de", "en"
-  name         String @db.VarChar(255)
+  tier         tiere   @relation(fields: [tierId], references: [id], onDelete: Cascade)
+  spracheCode  String  @db.VarChar(5) // z.B. "de", "en"
+  name         String  @db.VarChar(255)
   beschreibung String? @db.Text
 
   @@unique([tierId, spracheCode]) // Verhindert doppelte Sprachen pro Tier
 }
 
 model sprachen {
-  code String @id @db.VarChar(5) // "de", "en", "dk"
-  name String @db.VarChar(50) // "Deutsch", "English"
+  code   String  @id @db.VarChar(5) // "de", "en", "dk"
+  name   String  @db.VarChar(50) // "Deutsch", "English"
   flagge String? // Optional ein Emoji oder Icon-Pfad
 }
 
@@ -82,16 +82,31 @@ model akademie {
 }
 
 model farbvarianten {
-  id         Int     @id @unique(map: "farbvariantenindex") @default(autoincrement())
+  id         Int     @id @default(autoincrement())
   tierId     Int
-  tier       tiere   @relation(fields: [tierId], references: [id], onDelete: Cascade)
-  farbe      String  @db.VarChar(20)
-  herkunftId Int
-  herkunft   herkunft @relation(fields: [herkunftId], references: [id])
-  release    String? @db.VarChar(20)
-  bild       String? @db.VarChar(255)
+  bild       String?
+  herkunftId Int?
 
-  @@index([tierId])
+  // Relationen
+  tier  tiere                 @relation(fields: [tierId], references: [id])
+  texte farbvarianten_texte[]
+
+  // GEÄNDERT: Hier muss die Relation zu 'herkunft' stehen,
+  // damit sie zum Feld 'variants' im model 'herkunft' passt.
+  herkunft herkunft? @relation(fields: [herkunftId], references: [id])
+}
+
+model farbvarianten_texte {
+  id             Int    @id @default(autoincrement())
+  farbvarianteId Int
+  spracheCode    String // 'de', 'en', etc.
+  name           String // Der Name der Farbe (z.B. "Apfelschimmel")
+
+  // Relation zurück zur Variante
+  variante farbvarianten @relation(fields: [farbvarianteId], references: [id])
+
+  // Ein Index hilft Prisma, Übersetzungen schneller zu finden
+  @@unique([farbvarianteId, spracheCode])
 }
 
 model gehegedeko {
@@ -170,7 +185,7 @@ model herkunft {
   bild      String? @db.VarChar(255)
 
   tierherkunft tierherkunft[]
-  variants    farbvarianten[]
+  variants     farbvarianten[] // Passt jetzt zum Feld 'herkunft' oben
 }
 
 model klubrollen {
@@ -196,7 +211,7 @@ model mitglieder {
   level             Int
   akademie          Int?
 
-  ergebnisse        wettbewerb_ergebnisse[]
+  ergebnisse wettbewerb_ergebnisse[]
 }
 
 model mitgliederlevel20 {
@@ -242,8 +257,8 @@ model tierherkunft {
   tierid     Int
   herkunftId Int?
 
-  tier       tiere     @relation(fields: [tierid], references: [id], onDelete: Cascade)
-  herkunft   herkunft? @relation(fields: [herkunftId], references: [id], onDelete: Cascade)
+  tier     tiere     @relation(fields: [tierid], references: [id], onDelete: Cascade)
+  herkunft herkunft? @relation(fields: [herkunftId], references: [id], onDelete: Cascade)
 
   @@index([tierid])
   @@index([herkunftId])
@@ -259,41 +274,41 @@ model users {
 }
 
 model wettbewerbe {
-  id                 Int     @id @unique(map: "wettbewerbe") @default(autoincrement())
+  id                 Int                     @id @unique(map: "wettbewerbe") @default(autoincrement())
   start              DateTime
   ende               DateTime
   aktiv              Int
-  tierTeilgenommenId String? @db.VarChar(20)
-  ergebnis           String? @db.VarChar(20)
-  platz              String? @db.VarChar(255)
+  tierTeilgenommenId String?                 @db.VarChar(20)
+  ergebnis           String?                 @db.VarChar(20)
+  platz              String?                 @db.VarChar(255)
   statuen            contest_statuen[]
   ergebnisse         wettbewerb_ergebnisse[]
 }
 
 model contest_statuen {
-  id           Int         @id @default(autoincrement())
+  id           Int @id @default(autoincrement())
   wettbewerbId Int
   statueId     Int
 
-  wettbewerb   wettbewerbe @relation(fields: [wettbewerbId], references: [id],onDelete: Cascade )
-  statue       wettbewerbstatuen @relation(fields: [statueId], references: [id], onDelete: Cascade)
+  wettbewerb wettbewerbe       @relation(fields: [wettbewerbId], references: [id], onDelete: Cascade)
+  statue     wettbewerbstatuen @relation(fields: [statueId], references: [id], onDelete: Cascade)
 }
 
 model wettbewerbfarbvarianten {
-  id             Int     @id @unique(map: "wettbewerbfarbvariantenindex") @default(autoincrement())
-  tierId         Int     @unique
-  farbvarianteId Int     @unique
+  id             Int @id @unique(map: "wettbewerbfarbvariantenindex") @default(autoincrement())
+  tierId         Int @unique
+  farbvarianteId Int @unique
 }
 
 model wettbewerbstatuen {
-  id            Int     @id @unique(map: "wettbewerbstatuenindex") @default(autoincrement())
-  tierId        Int     @unique
-  tier          tiere   @relation(fields: [tierId], references: [id])
+  id            Int               @id @unique(map: "wettbewerbstatuenindex") @default(autoincrement())
+  tierId        Int               @unique
+  tier          tiere             @relation(fields: [tierId], references: [id])
   preis         Int?
   preisartId    Int?
   popularitaet  Int?
   verkaufspreis Int?
-  bild          String? @db.VarChar(255)
+  bild          String?           @db.VarChar(255)
   contests      contest_statuen[]
 }
 
@@ -303,21 +318,21 @@ model xp {
   xpart  String @db.VarChar(20)
   wert   Int?
   zeit   Int?
-  tier    tiere  @relation(fields: [tierId], references: [id], onDelete: Cascade)
+  tier   tiere  @relation(fields: [tierId], references: [id], onDelete: Cascade)
 
   @@index([tierId])
 }
 
 model wettbewerb_ergebnisse {
-  id          Int      @id @default(autoincrement())
-  contest_id  Int
-  wettbewerb  wettbewerbe @relation(fields: [contest_id], references: [id], onDelete: Cascade)
-  member_id   Int
-  mitglied    mitglieder @relation(fields: [member_id], references: [id])
-  tier_id     Int
-  level       Int
-  anzahl      Int
-  zeitpunkt   DateTime @default(now())
+  id         Int         @id @default(autoincrement())
+  contest_id Int
+  wettbewerb wettbewerbe @relation(fields: [contest_id], references: [id], onDelete: Cascade)
+  member_id  Int
+  mitglied   mitglieder  @relation(fields: [member_id], references: [id])
+  tier_id    Int
+  level      Int
+  anzahl     Int
+  zeitpunkt  DateTime    @default(now())
 
   @@index([contest_id])
   @@index([member_id])
