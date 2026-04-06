@@ -2,14 +2,14 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 
 import StatueDesktopTable from "./StatueDesktopTable";
-import PageHeader from "../../../page-structure/PageHeader";
-import PageWrapper from "../../../page-structure/PageWrapper";
-import FilterBar from "../../../page-structure/Elements/FilterBar";
-import ResultsInfo from "../../../page-structure/Elements/ResultsInfo";
-import EmptyState from "../../../page-structure/Elements/EmptyState";
-import PaginationSignpost from "../../../ui/PaginationSignpost";
-import TableContainer from "../../../page-structure/Table/TableContainer";
-import MobileListView from "../../../page-structure/Elements/MobileListView";
+import PageHeader from "../../../../src/components/pageStructure/PageHeader";
+import PageWrapper from "../../../../src/components/pageStructure/PageWrapper";
+import FilterBar from "../../../../src/components/pageStructure/filter/FilterBar";
+import ResultsInfo from "../../../../src/components/pageStructure/ui/ResultsInfo";
+import EmptyState from "../../../../src/components/pageStructure/ui/EmptyState";
+import PaginationSignpost from "../../../../src/components/pageStructure/ui/PaginationSignpost";
+import TableContainer from "../../../../src/components/pageStructure/table/TableContainer";
+import MobileListView from "../../../../src/components/pageStructure/mobileListView/MobileListView";
 import StatueMobileCard from "./StatueMobileCard";
 
 export default function StatueOverviewContent({
@@ -43,8 +43,8 @@ export default function StatueOverviewContent({
       <FilterBar
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
-        selectedGehege={selectedGehege}
-        setSelectedGehege={setSelectedGehege}
+        selectedBiomes={selectedGehege}
+        setSelectedBiomes={setSelectedGehege}
         selectedLevel={selectedLevel}
         setSelectedLevel={setSelectedLevel}
         setCurrentPage={setCurrentPage}

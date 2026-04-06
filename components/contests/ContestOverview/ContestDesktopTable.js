@@ -2,12 +2,12 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import styled, { keyframes } from "styled-components";
 
-import Table from "../../page-structure/Table/Table";
-import { NameDE } from "../../page-structure/Elements/Name";
-import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
-import LinkedRow from "../../page-structure/Table/LinkedRow";
-import ActionsHeadline from "../../page-structure/Table/ActionsHeadline";
-import ActionGroupIcons from "../../page-structure/Table/ActionGroupIcons";
+import Table from "../../../src/components/pageStructure/table/Table";
+import { NameDE } from "../../../src/components/pageStructure/ui/Name";
+import ItemThumbnail from "../../../src/components/pageStructure/ui/ItemThumbnail";
+import LinkedRow from "../../../src/components/pageStructure/table/TableLinkedRow";
+import ActionsHeadline from "../../../src/components/pageStructure/ui/ActionsHeadline";
+import ActionGroupIcons from "../../../src/components/pageStructure/ui/ActionGroup";
 import { useRouter } from "next/router";
 
 export default function ContestDesktopTable({ contests, onEdit, onDelete }) {

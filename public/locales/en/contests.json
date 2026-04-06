@@ -62,7 +62,7 @@
     "messages": {
       "deleteButton": "Yes, delete it!",
       "cancelButton": "Cancel",
-      "deleteErrorTitle": "Delete Contest?",
+      "deleteTitle": "Delete Contest?",
       "confirmDelete": "Are you sure you want to permanently delete this contest?"
     }
   }

@@ -4,13 +4,13 @@ import { appWithTranslation } from 'next-i18next';
 import { ToastContainer } from "react-toastify";
 
 import { ThemeProvider } from "styled-components";
-import GlobalStyle from "../styles/styles";
-import { theme } from "../styles/theme";
+import GlobalStyle from "../src/styles/GlobalStyles";
+import { theme } from "../src/styles/theme";
 import "flag-icons/css/flag-icons.min.css";
 
-import Header from "../components/page-structure/Header/Header";
-import Main from "../components/page-structure/Main/Main";
-import Footer from "../components/page-structure/Footer/Footer";
+import Header from "../src/components/pageStructure/Header/Header";
+import Main from "../src/components/pageStructure/Main/Main";
+import Footer from "../src/components/pageStructure/Footer/Footer";
 import ScrollToTop from "../components/ui/ScrollToTop";
 
 

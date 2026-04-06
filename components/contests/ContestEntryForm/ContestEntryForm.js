@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 import FormSelect from "../../forms/FormSelect";
-import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
+import ItemThumbnail from "../../../src/components/pageStructure/ui/ItemThumbnail";
 import DynamicRowInput from "../../ui/DynamicRowInput";
-import PageHeader from "../../page-structure/PageHeader";
-import PageWrapper from "../../page-structure/PageWrapper";
+import PageHeader from "../../../src/components/pageStructure/PageHeader";
+import PageWrapper from "../../../src/components/pageStructure/PageWrapper";
 import { useTranslation } from "next-i18next";
 import SubmitButton from "../../forms/SubmitButton";
 import { useRouter } from "next/router";

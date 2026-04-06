@@ -113,7 +113,7 @@
     "editSuccess":  "Changes successfully saved! 🐾",
     "deleteSuccess": "The animal has been successfully deleted! 🐾",
     "deleteError": "Error deleting the animal. Please try again.",
-    "deleteErrorTitle": "Delete Animal?",
+    "deleteTitle": "Delete Animal?",
     "confirmDelete": "Are you sure you want to permanently delete this animal? All linked data, such as descriptions and XP values, will be lost."
   }
 }

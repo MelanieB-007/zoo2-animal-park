@@ -3,7 +3,7 @@ import FormInput from "./FormInput";
 import FormSelect from "./FormSelect";
 import FormTextarea from "./FormTextarea";
 import { useTranslation } from "next-i18next";
-import Tooltip from "./Tooltip";
+import Tooltip from "../../src/components/pageStructure/ui/Tooltip";
 
 export default function DynamicRowInput({
   label,

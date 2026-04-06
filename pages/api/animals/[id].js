@@ -1,4 +1,4 @@
-import { getAnimalById, updateAnimal, deleteAnimal } from "../../../services/AnimalService";
+import { getAnimalById, updateAnimal, deleteAnimal } from "../../../src/services/AnimalService";
 
 export default async function handler(req, res) {
   const { id } = req.query;

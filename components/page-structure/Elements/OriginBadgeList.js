@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import NextImage from "next/image";
-import Tooltip from "../../ui/Tooltip";
+import Tooltip from "../../../src/components/pageStructure/ui/Tooltip";
 
 export default function OriginBadgeList({ animal }) {
   if (!animal?.tierherkunft) return null;

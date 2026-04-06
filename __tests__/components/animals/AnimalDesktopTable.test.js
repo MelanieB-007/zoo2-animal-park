@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import AnimalDesktopTable from "../../../components/animals/AnimalOverview/AnimalDesktopTable";
+import AnimalDesktopTable from "../../../src/components/pages/animals/AnimalOverview/AnimalDesktopTable";
 
 // --- Mocks ---
 
@@ -13,7 +13,7 @@ jest.mock("next-i18next", () => ({
 }));
 
 // ActionGroupIcons mocken, damit Edit- und Delete-Buttons testbar sind
-jest.mock("../../../components/page-structure/Table/ActionGroupIcons", () => {
+jest.mock("../../../src/components/pageStructure/ui/ActionGroup", () => {
   return function MockActionGroupIcons({ onEdit, onDelete }) {
     return (
       <div data-testid="action-icons">
@@ -28,97 +28,97 @@ jest.mock("../../../components/page-structure/Table/ActionGroupIcons", () => {
   };
 });
 
-jest.mock("../../../components/page-structure/Table/SortableTableHeader", () => {
+jest.mock("../../../src/components/pageStructure/table/SortableTableHeader", () => {
   return function MockSortableTableHeader({ text }) {
     return <th>{text}</th>;
   };
 });
 
-jest.mock("../../../components/page-structure/Table/ActionsHeadline", () => {
+jest.mock("../../../src/components/pageStructure/ui/ActionsHeadline", () => {
   return function MockActionsHeadline({ text }) {
     return <th>{text}</th>;
   };
 });
 
-jest.mock("../../../components/page-structure/Table/LinkedRow", () => {
+jest.mock("../../../src/components/pageStructure/table/TableLinkedRow", () => {
   return function MockLinkedRow({ children }) {
     return <tr>{children}</tr>;
   };
 });
 
-jest.mock("../../../components/page-structure/Table/Table", () => {
+jest.mock("../../../src/components/pageStructure/table/Table", () => {
   return function MockTable({ children }) {
     return <table>{children}</table>;
   };
 });
 
-jest.mock("../../../components/page-structure/Table/NoResult", () => {
+jest.mock("../../../src/components/pageStructure/table/TableNoResult", () => {
   return function MockNoResult({ text }) {
     return <tr><td>{text}</td></tr>;
   };
 });
 
-jest.mock("../../../components/page-structure/Table/RightAlignedTd", () => {
+jest.mock("../../../src/components/pageStructure/table/RightAlignedTd", () => {
   return function MockRightAlignedTd({ children }) {
     return <td>{children}</td>;
   };
 });
 
-jest.mock("../../../components/page-structure/Table/DesktopOnlyTd", () => {
+jest.mock("../../../src/components/pageStructure/table/DesktopOnlyTd", () => {
   return function MockDesktopOnlyTd({ children }) {
     return <td>{children}</td>;
   };
 });
 
-jest.mock("../../../components/page-structure/Table/InfoCell", () => {
+jest.mock("../../../src/components/pageStructure/table/TableInfoCell", () => {
   return function MockInfoCell({ children }) {
     return <div>{children}</div>;
   };
 });
 
-jest.mock("../../../components/page-structure/icons/ItemThumbnail", () => {
+jest.mock("../../../src/components/pageStructure/ui/ItemThumbnail", () => {
   return function MockItemThumbnail({ name }) {
     return <div data-testid="thumbnail">{name}</div>;
   };
 });
 
-jest.mock("../../../components/page-structure/icons/PriceDisplay", () => {
+jest.mock("../../../src/components/pageStructure/ui/PriceDisplay", () => {
   return function MockPriceDisplay({ value }) {
     return <span>{value}</span>;
   };
 });
 
-jest.mock("../../../components/page-structure/icons/XPIcon", () => {
+jest.mock("../../../src/components/icons/XPIcon", () => {
   return function MockXPIcon({ label }) {
     return <span>{label}</span>;
   };
 });
 
-jest.mock("../../../components/page-structure/icons/ZoodollarIcon", () => {
+jest.mock("../../../src/components/icons/ZoodollarIcon", () => {
   return function MockZoodollarIcon({ value }) {
     return <span>{value}</span>;
   };
 });
 
-jest.mock("../../../components/ui/GehegeBadge", () => {
+jest.mock("../../../src/components/pageStructure/ui/BiomeBadge", () => {
   return function MockGehegeBadge({ gehege }) {
     return <span>{gehege?.name}</span>;
   };
 });
 
-jest.mock("../../../components/ui/StallLevelBadge", () => {
+jest.mock("../../../src/components/pageStructure/ui/StallLevelBadge", () => {
   return function MockStallLevelBadge({ level }) {
     return <span>{level}</span>;
   };
 });
 
-jest.mock("../../../components/page-structure/Elements/Name", () => ({
+jest.mock("../../../src/components/pageStructure/ui/Name", () => ({
   NameDE: function MockNameDE({ children }) {
     return <span>{children}</span>;
   },
 }));
 
-jest.mock("../../../services/AnimalHelper", () => ({
+jest.mock("../../../src/utils/AnimalHelper", () => ({
   calculateTotalXP: jest.fn(() => 100),
 }));
 

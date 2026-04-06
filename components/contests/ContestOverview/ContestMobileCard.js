@@ -2,8 +2,8 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { useTranslation } from "next-i18next";
 import { Calendar } from "lucide-react";
-import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
-import { NameDE } from "../../page-structure/Elements/Name";
+import ItemThumbnail from "../../../src/components/pageStructure/ui/ItemThumbnail";
+import { NameDE } from "../../../src/components/pageStructure/ui/Name";
 import { useRouter } from "next/router";
 
 export default function ContestMobileCard({ contest, onClick }) {

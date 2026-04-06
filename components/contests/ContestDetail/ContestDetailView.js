@@ -2,10 +2,10 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-import ItemThumbnail from "../../page-structure/icons/ItemThumbnail";
-import PageHeader from "../../page-structure/PageHeader";
+import ItemThumbnail from "../../../src/components/pageStructure/ui/ItemThumbnail";
+import PageHeader from "../../../src/components/pageStructure/PageHeader";
 import { useTranslation } from "next-i18next";
-import ActionGroupIcons from "../../page-structure/Table/ActionGroupIcons";
+import ActionGroupIcons from "../../../src/components/pageStructure/ui/ActionGroup";
 import { useRouter } from "next/router";
 
 

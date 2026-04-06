@@ -7,9 +7,9 @@ import { useTranslation } from "next-i18next";
 import { getContestById } from "../../../services/ContestService";
 import ContestForm from "../../../components/contests/ContestForm/ContestForm";
 import { getAllStatues } from "../../../services/StatueService";
-import PageWrapper from "../../../components/page-structure/PageWrapper";
+import PageWrapper from "../../../src/components/pageStructure/PageWrapper";
 import ContentWrapper from "../../../components/page-structure/ContentWrapper";
-import PageHeader from "../../../components/page-structure/PageHeader";
+import PageHeader from "../../../src/components/pageStructure/PageHeader";
 
 
 export default function EditContestPage({ contest, statues }) {

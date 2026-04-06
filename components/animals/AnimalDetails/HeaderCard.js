@@ -3,14 +3,14 @@ import { useTranslation } from "next-i18next";
 
 import CardContainer from "../../page-structure/CardContainer";
 import MainImage from "../../page-structure/Elements/MainImage";
-import PriceDisplay from "../../page-structure/icons/PriceDisplay";
-import PopularityDisplay from "../../page-structure/icons/PopularityDisplay";
+import PriceDisplay from "../../../src/components/pageStructure/ui/PriceDisplay";
+import PopularityDisplay from "../../../src/components/pageStructure/ui/PopularityDisplay";
 import StatBox from "../../page-structure/Elements/StatBox";
-import GameIcon from "../../page-structure/icons/GameIcon";
-import StallLevelBadge from "../../ui/StallLevelBadge";
+import GameIcon from "../../../src/components/icons/GameIcon";
+import StallLevelBadge from "../../../src/components/pageStructure/ui/StallLevelBadge";
 import BoxWithHeadline from "../../page-structure/Elements/BoxWithHeadline";
 import OriginBadgeList from "../../page-structure/Elements/OriginBadgeList";
-import XPIcon from "../../page-structure/icons/XPIcon";
+import XPIcon from "../../../src/components/icons/XPIcon";
 import FormattedDate from "../../ui/FormattedDate";
 import { useRouter } from "next/router";
 

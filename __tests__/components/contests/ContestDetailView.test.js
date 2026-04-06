@@ -17,19 +17,19 @@ jest.mock("next/link", () => {
   };
 });
 
-jest.mock("../../../components/page-structure/icons/ItemThumbnail", () => {
+jest.mock("../../../src/components/pageStructure/ui/ItemThumbnail", () => {
   return function MockItemThumbnail({ name }) {
     return <div data-testid="item-thumbnail">{name}</div>;
   };
 });
 
-jest.mock("../../../components/page-structure/PageHeader", () => {
+jest.mock("../../../src/components/pageStructure/PageHeader", () => {
   return function MockPageHeader({ text }) {
     return <h1>{text}</h1>;
   };
 });
 
-jest.mock("../../../components/page-structure/Table/ActionGroupIcons", () => {
+jest.mock("../../../src/components/pageStructure/ui/ActionGroup", () => {
   return function MockActionGroupIcons({ onEdit, onDelete }) {
     return (
       <div data-testid="action-icons">

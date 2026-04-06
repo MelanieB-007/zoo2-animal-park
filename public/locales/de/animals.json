@@ -1,8 +1,6 @@
 {
   "overview_title": "Übersicht über alle Tiere",
-  "search_placeholder": "Suche nach Tieren...",
-  "results_unit": "Tiere gefunden",
-  "unknown_animal": "Unbekanntes Tier",
+
   "table": {
     "species": "Art",
     "enclosure": "Gehege",
@@ -11,7 +9,10 @@
     "xp": "XP",
     "sell": "Verkauf",
     "release": "Auswildern",
-    "actions": "Aktionen"
+    "actions": "Aktionen",
+    "tablePrice": "Kaufpreis",
+    "tableSell": "Verkaufswert",
+    "tableRelease": "Auswildern"
   },
   "tooltips": {
     "level": "Benötigtes Stall-Level",
@@ -24,7 +25,9 @@
   "filter": {
     "all_enclosures": "Alle Gehege",
     "all_levels": "Alle Level",
-    "level_label": "Level"
+    "level_label": "Level",
+    "search_placeholder": "Suche nach Tieren...",
+    "results_unit": "Tiere gefunden"
   },
   "empty": {
     "title": "Oje, kein Tier da!",
@@ -61,22 +64,22 @@
   "basicInfoSection": {
     "basicInfo": "Grundinformationen",
     "fields": {
-      "name" : "Name",
-      "releaseDate" : "Release"
+      "name": "Name",
+      "releaseDate": "Release"
     }
   },
   "translationNameSection": {
     "otherLanguages": "Andere Sprachen",
     "fields": {
-      "name" : "Name",
-      "releaseDate" : "Release"
+      "name": "Name",
+      "releaseDate": "Release"
     }
   },
   "translationDescriptionSection": {
-    "descriptionIntl":  "Beschreibungen (International)",
+    "descriptionIntl": "Beschreibungen (International)",
     "fields": {
-      "name" : "Name",
-      "releaseDate" : "Release"
+      "name": "Name",
+      "releaseDate": "Release"
     }
   },
   "descriptionSection": {
@@ -92,26 +95,24 @@
     "originTitle": "Herkunft",
     "originDescription": "Woher bekommt man dieses Tier?"
   },
-  "tablePrice": "Kaufpreis",
-  "tableSell": "Verkaufswert",
-  "tableRelease": "Auswildern",
-  "biomesCapacity": "Gehegekapazität",
-  "animalCount": "Anzahl Tiere",
-  "biomeSize": "Gehegegröße",
-  "colorVariants": "Farbvarianten",
-  "toy": "Spielgerät",
-  "toyPlaceholder": "Spielgerät",
-  "biomeCapacity": "Gehegekapazität",
-  "capacityTableLabel": "Anzahl Tiere vs. Gehegeplatz",
-  "requiredSize": "Benötigte Fläche",
-
+  "detail": {
+    "biomesCapacity": "Gehegekapazität",
+    "animalCount": "Anzahl Tiere",
+    "biomeSize": "Gehegegröße",
+    "colorVariants": "Farbvarianten",
+    "toy": "Spielgerät",
+    "toyPlaceholder": "Spielgerät",
+    "biomeCapacity": "Gehegekapazität",
+    "capacityTableLabel": "Anzahl Tiere vs. Gehegeplatz",
+    "requiredSize": "Benötigte Fläche"
+  },
   "messages": {
-    "createSuccess":  "Tier erfolgreich angelegt! 🐾",
+    "createSuccess": "Tier erfolgreich angelegt! 🐾",
     "deleteSuccess": "Das Tier wurde erfolgreich gelöscht! 🐾",
-    "editSuccess":  "Änderungen erfolgreich gespeichert! 🐾",
+    "editSuccess": "Änderungen erfolgreich gespeichert! 🐾",
     "deleteError": "Fehler beim Löschen des Tieres. Bitte versuche es erneut.",
-    "deleteErrorTitle": "Tier löschen?",
-    "confirmDelete": "Bist du sicher, dass du dieses Tier unwiderruflich löschen möchtest? Alle verknüpften Daten wie Texte und XP-Werte gehen dabei verloren."
+    "deleteTitle": "Tier löschen?",
+    "confirmDelete": "Bist du sicher, dass du dieses Tier unwiderruflich löschen möchtest? Alle verknüpften Daten wie Texte und XP-Werte gehen dabei verloren.",
+    "unknown_animal": "Unbekanntes Tier"
   }
-
 }

@@ -6,7 +6,7 @@ import Textarea from "../../page-structure/Elements/Textarea";
 import VariantArea from "./VariantArea";
 import AccordionCard from "./AccordionCard";
 import { useRouter } from "next/router";
-import ActionGroupIcons from "../../page-structure/Table/ActionGroupIcons";
+import ActionGroupIcons from "../../../src/components/pageStructure/ui/ActionGroup";
 import { useSession } from "next-auth/react";
 
 export default function AnimalDetailContent({ animal, onDelete, onEdit }) {

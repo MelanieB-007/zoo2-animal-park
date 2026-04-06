@@ -17,14 +17,14 @@ jest.mock("../../../pages/api/auth/[...nextauth]", () => ({
   authOptions: {},
 }));
 
-jest.mock("../../../lib/prisma", () => ({
+jest.mock("../../../src/lib/prisma", () => ({
   prisma: {
     $transaction: jest.fn(),
   },
 }));
 
 import { getServerSession } from "next-auth/next";
-import { prisma } from "../../../lib/prisma";
+import { prisma } from "../../../src/lib/prisma";
 
 function createMockRes() {
   return {

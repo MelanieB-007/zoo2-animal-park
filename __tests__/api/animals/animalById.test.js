@@ -17,14 +17,14 @@ jest.mock("../../../pages/api/auth/[...nextauth]", () => ({
   authOptions: {},
 }));
 
-jest.mock("../../../services/AnimalService", () => ({
+jest.mock("../../../src/services/AnimalService", () => ({
   getAnimalById: jest.fn(),
   updateAnimal: jest.fn(),
   deleteAnimalFromDB: jest.fn(),
 }));
 
 import { getServerSession } from "next-auth/next";
-import { getAnimalById, updateAnimal, deleteAnimal } from "../../../services/AnimalService";
+import { getAnimalById, updateAnimal, deleteAnimal } from "../../../src/services/AnimalService";
 
 function createMockRes() {
   return {

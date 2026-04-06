@@ -5,12 +5,12 @@ import { useTranslation } from "next-i18next";
 import Swal from "sweetalert2";
 
 import { getAllContests } from "../../services/ContestService";
-import PageWrapper from "../../components/page-structure/PageWrapper";
+import PageWrapper from "../../src/components/pageStructure/PageWrapper";
 import ContestMobileCard from "../../components/contests/ContestOverview/ContestMobileCard";
-import MobileListView from "../../components/page-structure/Elements/MobileListView";
-import TableContainer from "../../components/page-structure/Table/TableContainer";
-import EmptyState from "../../components/page-structure/Elements/EmptyState";
-import PageHeader from "../../components/page-structure/PageHeader";
+import MobileListView from "../../src/components/pageStructure/mobileListView/MobileListView";
+import TableContainer from "../../src/components/pageStructure/table/TableContainer";
+import EmptyState from "../../src/components/pageStructure/ui/EmptyState";
+import PageHeader from "../../src/components/pageStructure/PageHeader";
 import ContestDesktopTable from "../../components/contests/ContestOverview/ContestDesktopTable";
 import { toast } from "react-toastify";
 

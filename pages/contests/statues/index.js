@@ -4,7 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import useSWR from "swr";
 
 import { filterStatues, sortStatues, paginate } from "../../../services/StatueHelper";
-import { useSort } from "../../../hooks/useSort";
+import { useSort } from "../../../src/hooks/useSort";
 import { getAllStatues } from "../../../services/StatueService";
 import StatueOverviewContent from "../../../components/contests/statues/StatueOverview/StatueOverviewContent";
 

@@ -1,11 +1,11 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../src/lib/prisma";
 import ContestForm from "../../components/contests/ContestForm/ContestForm";
 import { toast } from "react-toastify";
-import PageHeader from "../../components/page-structure/PageHeader";
-import PageWrapper from "../../components/page-structure/PageWrapper";
+import PageHeader from "../../src/components/pageStructure/PageHeader";
+import PageWrapper from "../../src/components/pageStructure/PageWrapper";
 import ContentWrapper from "../../components/page-structure/ContentWrapper";
 import { useTranslation } from "next-i18next";
 

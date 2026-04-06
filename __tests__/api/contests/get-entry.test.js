@@ -1,6 +1,6 @@
 import handler from "../../../pages/api/contests/get-entry";
 
-jest.mock("../../../lib/prisma", () => ({
+jest.mock("../../../src/lib/prisma", () => ({
   prisma: {
     wettbewerb_ergebnisse: {
       findMany: jest.fn(),
@@ -8,7 +8,7 @@ jest.mock("../../../lib/prisma", () => ({
   },
 }));
 
-import { prisma } from "../../../lib/prisma";
+import { prisma } from "../../../src/lib/prisma";
 
 function createMockRes() {
   return {

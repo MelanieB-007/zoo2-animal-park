@@ -7,7 +7,7 @@ import {
 } from "../../services/ContestService";
 
 // Mock prisma
-jest.mock("../../lib/prisma", () => ({
+jest.mock("../../src/lib/prisma", () => ({
   prisma: {
     wettbewerbe: {
       create: jest.fn(),
@@ -21,7 +21,7 @@ jest.mock("../../lib/prisma", () => ({
   },
 }));
 
-import { prisma } from "../../lib/prisma";
+import { prisma } from "../../src/lib/prisma";
 
 beforeEach(() => {
   jest.clearAllMocks();

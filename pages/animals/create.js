@@ -4,10 +4,10 @@ import { useSession } from "next-auth/react";
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from "next-i18next";
 
-import PageWrapper from "../../components/page-structure/PageWrapper";
+import PageWrapper from "../../src/components/pageStructure/PageWrapper";
 import ContentWrapper from "../../components/page-structure/ContentWrapper";
 import AnimalForm from "../../components/animals/AnimalForm/AnimalForm";
-import PageHeader from "../../components/page-structure/PageHeader";
+import PageHeader from "../../src/components/pageStructure/PageHeader";
 import { toast } from "react-toastify";
 
 export default function AddAnimalPage() {

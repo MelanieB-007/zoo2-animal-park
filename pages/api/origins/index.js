@@ -1,4 +1,4 @@
-import { getAllOrigins } from "../../../services/AnimalService";
+import { getAllOrigins } from "../../../src/services/AnimalService";
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {

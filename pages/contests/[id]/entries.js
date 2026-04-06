@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 
-import PageWrapper from "../../../components/page-structure/PageWrapper";
+import PageWrapper from "../../../src/components/pageStructure/PageWrapper";
 import ContestEntryForm from "../../../components/contests/ContestEntryForm/ContestEntryForm";
 import { getAllMembers } from "../../../services/MemberService";
 import { getContestById } from "../../../services/ContestService";

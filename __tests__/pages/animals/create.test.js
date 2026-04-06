@@ -20,7 +20,7 @@ jest.mock("next/router", () => ({
   useRouter: () => ({ push: mockPush }),
 }));
 
-jest.mock("../../../components/page-structure/PageWrapper", () => {
+jest.mock("../../../src/components/pageStructure/PageWrapper", () => {
   return function MockPageWrapper({ children }) {
     return <div>{children}</div>;
   };
@@ -32,7 +32,7 @@ jest.mock("../../../components/page-structure/ContentWrapper", () => {
   };
 });
 
-jest.mock("../../../components/page-structure/PageHeader", () => {
+jest.mock("../../../src/components/pageStructure/PageHeader", () => {
   return function MockPageHeader({ text }) {
     return <h1>{text}</h1>;
   };

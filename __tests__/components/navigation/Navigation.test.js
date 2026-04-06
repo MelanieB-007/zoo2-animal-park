@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Navigation from "../../../components/page-structure/Header/Navigation";
+import Navigation from "../../../src/components/pageStructure/Header/Navigation";
 
 // --- Mocks ---
 

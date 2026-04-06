@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
-import { getAllAnimals, createAnimal, getAnimalById } from "../../../services/AnimalService";
+import { getAllAnimals, createAnimal, getAnimalById } from "../../../src/services/AnimalService";
 
 export default async function handler(req, res) {
   const { lang = 'de' } = req.query; // Fallback auf 'de'

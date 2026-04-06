@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 
 import DynamicRowInput from "../../ui/DynamicRowInput";
 import InfoAccordion from "../../page-structure/Elements/InfoAccordion";
-import { flagMap } from "../../../utils/FlagMap";
+import { flagMap } from "../../../src/constants/FlagMap";
 
 export default function TranslationNameSection({ translations = [], setFormData }) {
   const { t } = /** @type {any} */ (useTranslation(["animals", "common"]));

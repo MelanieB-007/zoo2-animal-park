@@ -62,7 +62,7 @@
     "messages": {
       "deleteButton": "Ja, löschen!",
       "cancelButton": "Abbrechen",
-      "deleteErrorTitle": "Wettbewerb löschen?",
+      "deleteTitle": "Wettbewerb löschen?",
       "confirmDelete": "Bist du sicher, dass du diesen Wettbewerb unwiderruflich löschen möchtest?"
     }
   }

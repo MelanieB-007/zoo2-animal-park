@@ -1,15 +1,15 @@
 import { useTranslation } from "next-i18next";
 import React from "react";
 
-import Table from "../../../page-structure/Table/Table";
-import SortableTableHeader from "../../../page-structure/Table/SortableTableHeader";
-import InfoCell from "../../../page-structure/Table/InfoCell";
-import { NameDE } from "../../../page-structure/Elements/Name";
-import LinkedRow from "../../../page-structure/Table/LinkedRow";
-import NoResult from "../../../page-structure/Table/NoResult";
-import GehegeBadge from "../../../ui/GehegeBadge";
-import StallLevelBadge from "../../../ui/StallLevelBadge";
-import ItemThumbnail from "../../../page-structure/icons/ItemThumbnail";
+import Table from "../../../../src/components/pageStructure/table/Table";
+import SortableTableHeader from "../../../../src/components/pageStructure/table/SortableTableHeader";
+import InfoCell from "../../../../src/components/pageStructure/table/TableInfoCell";
+import { NameDE } from "../../../../src/components/pageStructure/ui/Name";
+import LinkedRow from "../../../../src/components/pageStructure/table/TableLinkedRow";
+import TableNoResult from "../../../../src/components/pageStructure/table/TableNoResult";
+import BiomeBadge from "../../../../src/components/pageStructure/ui/BiomeBadge";
+import StallLevelBadge from "../../../../src/components/pageStructure/ui/StallLevelBadge";
+import ItemThumbnail from "../../../../src/components/pageStructure/ui/ItemThumbnail";
 
 export default function StatueDesktopTable({
   statues,
@@ -94,7 +94,7 @@ export default function StatueDesktopTable({
 
                 {/* Spalte 2: Gehege */}
                 <td>
-                  <GehegeBadge gehege={tier?.gehege} />
+                  <BiomeBadge gehege={tier?.gehege} />
                 </td>
 
                 {/* Spalte 3: Stalllevel */}
@@ -108,7 +108,7 @@ export default function StatueDesktopTable({
             );
           })
         ) : (
-          <NoResult text={`${t("statue:empty.title")} 🐾`} />
+          <TableNoResult text={`${t("statue:empty.title")} 🐾`} />
         )}
       </tbody>
     </Table>

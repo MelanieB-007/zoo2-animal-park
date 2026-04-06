@@ -2,11 +2,11 @@ import styled from "styled-components";
 import NextImage from "next/image";
 
 import InfoAccordion from "../../page-structure/Elements/InfoAccordion";
-import StallLevelBadge from "../../ui/StallLevelBadge";
-import PriceDisplay from "../../page-structure/icons/PriceDisplay";
-import XPIcon from "../../page-structure/icons/XPIcon";
+import StallLevelBadge from "../../../src/components/pageStructure/ui/StallLevelBadge";
+import PriceDisplay from "../../../src/components/pageStructure/ui/PriceDisplay";
+import XPIcon from "../../../src/components/icons/XPIcon";
 import { formatMinutes } from "../../ui/XpDateFormat";
-import { XpMap } from "../../../constants/xpMap";
+import { XpMap } from "../../../src/constants/xpMap";
 import { useTranslation } from "next-i18next";
 import DataRow from "../../ui/DataRow";
 

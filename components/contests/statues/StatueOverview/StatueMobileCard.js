@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 
-import { NameDE } from "../../../page-structure/Elements/Name";
-import GehegeBadge from "../../../ui/GehegeBadge";
-import StallLevelBadge from "../../../ui/StallLevelBadge";
-import ItemThumbnail from "../../../page-structure/icons/ItemThumbnail";
+import { NameDE } from "../../../../src/components/pageStructure/ui/Name";
+import BiomeBadge from "../../../../src/components/pageStructure/ui/BiomeBadge";
+import StallLevelBadge from "../../../../src/components/pageStructure/ui/StallLevelBadge";
+import ItemThumbnail from "../../../../src/components/pageStructure/ui/ItemThumbnail";
 import { useRouter } from "next/router";
 
 export default function StatueMobileCard({ statue }) {
@@ -57,7 +57,7 @@ export default function StatueMobileCard({ statue }) {
           />
 
           {/* Gehege Badge */}
-          <GehegeBadge gehege={tier?.gehege} size={35} />
+          <BiomeBadge gehege={tier?.gehege} size={35} />
 
           {/* Stalllevel Badge */}
           <StallLevelBadge

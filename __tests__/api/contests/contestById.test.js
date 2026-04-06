@@ -8,7 +8,7 @@ jest.mock("../../../pages/api/auth/[...nextauth]", () => ({
   authOptions: {},
 }));
 
-jest.mock("../../../lib/prisma", () => ({
+jest.mock("../../../src/lib/prisma", () => ({
   prisma: {
     wettbewerbe: {
       findUnique: jest.fn(),
@@ -19,7 +19,7 @@ jest.mock("../../../lib/prisma", () => ({
 }));
 
 import { getServerSession } from "next-auth/next";
-import { prisma } from "../../../lib/prisma";
+import { prisma } from "../../../src/lib/prisma";
 
 function createMockRes() {
   return {

@@ -39,10 +39,12 @@
     "next": "Weiter"
   },
   "payment": {
-    "diamonds": "Diamanten,",
-    "zoodollar": "Zoodollar",
     "price": "Preis",
     "sellPrice": "Verkaufspreis"
+  },
+  "currencies": {
+    "diamonds": "Diamanten",
+    "zoodollars": "Zoodollar"
   },
   "messages": {
     "yes_delete": "Ja, löschen!",

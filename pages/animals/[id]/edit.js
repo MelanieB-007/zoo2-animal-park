@@ -2,10 +2,10 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR, { useSWRConfig } from "swr";
 
-import PageWrapper from "../../../components/page-structure/PageWrapper";
+import PageWrapper from "../../../src/components/pageStructure/PageWrapper";
 import ContentWrapper from "../../../components/page-structure/ContentWrapper";
 import AnimalForm from "../../../components/animals/AnimalForm/AnimalForm";
-import { getAnimalById } from "../../../services/AnimalService";
+import { getAnimalById } from "../../../src/services/AnimalService";
 import { toast } from "react-toastify";
 import { useTranslation } from "next-i18next";
 

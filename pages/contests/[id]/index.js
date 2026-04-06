@@ -3,7 +3,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
 
-import PageWrapper from "../../../components/page-structure/PageWrapper";
+import PageWrapper from "../../../src/components/pageStructure/PageWrapper";
 import ContestDetailView from "../../../components/contests/ContestDetail/ContestDetailView";
 import { getContestById, getResultsByContestId } from "../../../services/ContestService";
 import { calculateTierStats } from "../../../services/ContestHelper";
